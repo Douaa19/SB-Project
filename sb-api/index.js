@@ -5,6 +5,9 @@ const app = express();
 const morgan = require("morgan");
 const PORT = process.env.PORT || 8000;
 
+// require mongoose
+require("./src/config/mongoose");
+
 // meddlewares
 app.use(morgan("tiny"));
 app.use(cors());
