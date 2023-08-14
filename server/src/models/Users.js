@@ -31,6 +31,14 @@ const Users = new mongoose.Schema({
     maxlength: [20, "the password must be less than 20 characters"],
   },
   role: Role,
+  phoneNum: {
+    type: String,
+    required: false,
+  },
+  address: {
+    type: String,
+    required: false,
+  },
 });
 
 Users.pre("save", function (next) {

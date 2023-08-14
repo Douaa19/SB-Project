@@ -9,3 +9,7 @@ const Orders = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
   },
 });
+
+const Order = mongoose.model("Order", Orders);
+
+module.exports = Order;
