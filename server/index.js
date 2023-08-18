@@ -8,9 +8,17 @@ const PORT = process.env.PORT || 8000;
 // require mongoose
 require("./src/config/mongoose");
 
+// routes
+const { auth } = require("./src/routes");
+
 // meddlewares
 app.use(morgan("tiny"));
-app.use(cors());
+app.use(
+  cors({
+    // origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  })
+);
 app.use(
   express.urlencoded({
     extended: true,
@@ -18,11 +26,14 @@ app.use(
 );
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.json({
     message: "Welcom to Saba Embrodery",
   });
 });
+
+// use routes
+app.use("/api/auth", auth);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
