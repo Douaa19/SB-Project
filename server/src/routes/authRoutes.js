@@ -13,4 +13,7 @@ const { Users } = require("../controllers");
 // register
 router.route("/register").post(Users.handleRegister);
 
+// register
+router.route("/login").post(Users.hendleLogin);
+
 module.exports = router;
