@@ -4,10 +4,10 @@ const router = express.Router();
 router.route("/create-item").post();
 
 // get item
-router.route("/get-item/:item_id").post();
+router.route("/get-item/:item_id").get();
 
 // get items
-router.route("/get-items").post();
+router.route("/get-items").get();
 
 // update item
 router.route("/update-item/:item_id").post();
