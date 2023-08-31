@@ -14,12 +14,12 @@ router.route("/get-categories").get();
 router.route("/get-category/:category_id").get();
 
 // create gategory
-router.route("/create-category").get();
+router.route("/create-category").post();
 
 // delete gategory
-router.route("/delete-category/:category_id").get();
+router.route("/delete-category/:category_id").post();
 
 // update gategory
-router.route("/update-category/:category_id").get();
+router.route("/update-category/:category_id").post();
 
 module.exports = router;
