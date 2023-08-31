@@ -3,7 +3,7 @@ const { Item, Category } = require("../models");
 // get all items
 const getItems = async (req, res) => {
   try {
-    const items = await Item.find();
+    const items = await Item.find().populate("category_id", "name");
     if (items.length > 0) {
       res.status(200).send(items);
     } else {
@@ -20,7 +20,7 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { item_id } = req.params;
-    const item = await Item.findById(item_id);
+    const item = await Item.findById(item_id).populate("category_id", "name");
     if (!item) {
       res.status(404).send({ messageError: "Item doesn't found" });
     } else {
@@ -38,7 +38,10 @@ const getItem = async (req, res) => {
 const getItemsByCategory = async (req, res) => {
   try {
     const { category_id } = req.params;
-    const items = await Item.find({ category_id: category_id });
+    const items = await Item.find({ category_id: category_id }).populate(
+      "category_id",
+      "name"
+    );
     if (!items) {
       res
         .status(400)
