@@ -17,11 +17,11 @@ const Items = new mongoose.Schema({
     },
   ],
   size: {
-    type: Number,
+    type: String,
     required: true,
   },
   price: {
-    type: Number,
+    type: String,
     required: true,
   },
   category_id: {

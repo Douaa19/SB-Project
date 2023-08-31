@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8000;
 require("./src/config/mongoose");
 
 // routes
-const { auth, categories } = require("./src/routes");
+const { auth, categories, items } = require("./src/routes");
 
 // meddlewares
 app.use(morgan("tiny"));
@@ -35,6 +35,7 @@ app.get("/api", (req, res) => {
 // use routes
 app.use("/api/auth", auth);
 app.use("/api/categories", categories);
+app.use("/api/items", items);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
