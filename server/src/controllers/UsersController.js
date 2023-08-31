@@ -59,13 +59,13 @@ const hendleLogin = async (req, res) => {
           const id = user._id;
           const username = user.username;
           const email = user.email;
-          const address = user.address;
+          const role = user.role;
           const token = jwt.sign(
             {
               id,
               username,
               email,
-              address,
+              role,
             },
             process.env.JWT_ACCESS_SECRET
           );

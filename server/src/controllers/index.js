@@ -1,3 +1,7 @@
 const Users = require("./UsersController");
+const Categories = require("./Categories");
 
-module.exports = { Users };
+module.exports = {
+  Users,
+  Categories,
+};
