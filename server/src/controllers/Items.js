@@ -93,6 +93,13 @@ const createItem = async (req, res) => {
 // delete item
 const deleteItem = async (req, res) => {
   try {
+    const { item_id } = req.params;
+    const item = await Item.findByIdAndDelete(item_id);
+    if (item) {
+      res.status(200).send({ messageSuccess: "Item deleted", item });
+    } else {
+      res.status(400).send({ messageError: "Item doesn't deleted" });
+    }
   } catch (error) {
     res.status(500).send({
       messageError: "Somthing goes wrong in server side!",

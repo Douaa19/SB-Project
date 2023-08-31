@@ -29,14 +29,14 @@ router
     Item.createItem
   );
 
-// update item
-router
-  .route("/update-item/:item_id")
-  .post(authorization, authorizationRole("admin"), Item.deleteItem);
-
 // delete item
 router
   .route("/delete-item/:item_id")
+  .post(authorization, authorizationRole("admin"), Item.deleteItem);
+
+// update item
+router
+  .route("/update-item/:item_id")
   .post(authorization, authorizationRole("admin"), Item.updateItem);
 
 module.exports = router;
