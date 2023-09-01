@@ -98,6 +98,22 @@ const deleteItem = async (req, res) => {
     const { item_id } = req.params;
     const item = await Item.findByIdAndDelete(item_id);
     if (item) {
+      item.images.forEach((image) => {
+        const imagePath = path.join(
+          path.dirname(__dirname),
+          "public",
+          "img",
+          "items",
+          `${image}`
+        );
+        try {
+          fs.unlinkSync(imagePath);
+          console.log(`Deleted image: ${image}`);
+        } catch (error) {
+          console.error(`Error deleting image ${image}: ${error}`);
+        }
+      });
+
       res.status(200).send({ messageSuccess: "Item deleted", item });
     } else {
       res.status(400).send({ messageError: "Item doesn't deleted" });
