@@ -13,12 +13,7 @@ const storage = (pathName) => {
       cb(null, pathName);
     },
     filename: function (req, file, cb) {
-      cb(
-        null,
-        `item_${Date.now()}${path
-          .extname(file.originalname)
-          .toLocaleLowerCase()}`
-      );
+      cb(null, file.originalname);
     },
   });
 };

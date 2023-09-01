@@ -1,4 +1,6 @@
 const { Item, Category } = require("../models");
+const path = require("path");
+const fs = require("fs");
 
 // get all items
 const getItems = async (req, res) => {
@@ -111,6 +113,51 @@ const deleteItem = async (req, res) => {
 // update item
 const updateItem = async (req, res) => {
   try {
+    const { item_id } = req.params;
+    const { title, description, size, price, category_id } = req.body;
+    const images = [];
+    req.files.map((file, index) => {
+      images.push(file.filename);
+    });
+    const item = await Item.findById(item_id);
+    if (item) {
+      // Compare the images with the existing ones
+      const imagesToDelete = item.images.filter(
+        (image) => !image.includes(image)
+      );
+
+      // Delete images that are no longer associated with the item
+      imagesToDelete.forEach((image) => {
+        const imagePath = path.join(
+          path.dirname(__dirname),
+          "public",
+          "img",
+          "items",
+          `${image}`
+        );
+        fs.unlinkSync(imagePath);
+      });
+
+      const updatedItem = await Item.findByIdAndUpdate(item_id, {
+        title,
+        description,
+        size,
+        price,
+        category_id,
+        images,
+      });
+
+      if (updatedItem) {
+        res
+          .status(200)
+          .send({ messageSuccess: "Item updated successfully", updatedItem });
+      } else {
+        res.status(400).send({
+          messageSuccess: "Item doesn't updated!",
+          updatedItem,
+        });
+      }
+    }
   } catch (error) {
     res.status(500).send({
       messageError: "Somthing goes wrong in server side!",

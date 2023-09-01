@@ -37,6 +37,11 @@ router
 // update item
 router
   .route("/update-item/:item_id")
-  .post(authorization, authorizationRole("admin"), Item.updateItem);
+  .post(
+    authorization,
+    authorizationRole("admin"),
+    uploadImages.array("images", 4),
+    Item.updateItem
+  );
 
 module.exports = router;
