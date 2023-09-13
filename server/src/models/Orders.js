@@ -9,6 +9,10 @@ const Orders = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Item",
   },
+  status: {
+    type: String,
+    default: "pending",
+  },
 });
 
 const Order = mongoose.model("Order", Orders);
