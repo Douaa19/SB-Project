@@ -62,7 +62,7 @@ const getItemsByCategory = async (req, res) => {
 // create item
 const createItem = async (req, res) => {
   try {
-    const { title, description, size, price, category_id } = req.body;
+    const { title, description, color, size, price, category_id } = req.body;
     const images = [];
     req.files.map((file, index) => {
       images.push(file.filename);
@@ -75,10 +75,11 @@ const createItem = async (req, res) => {
       const newItem = await Item.create({
         title,
         description,
+        color,
         size,
         price,
         category_id,
-        images,
+        images: images,
       });
       if (newItem) {
         res.status(200).send({ messageSuccess: "New atem created", newItem });

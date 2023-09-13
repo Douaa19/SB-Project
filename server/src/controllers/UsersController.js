@@ -1,6 +1,7 @@
 const { User } = require("../models");
 const jwt = require("jsonwebtoken");
 const moment = require("moment");
+const uuid = require("node-uuid");
 
 // hendle register
 const handleRegister = async (req, res) => {
@@ -90,7 +91,31 @@ const hendleLogin = async (req, res) => {
   }
 };
 
+// forget password
+const forgetPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      res.status(404).send({ messageError: "This email is wrong" });
+    } else {
+      const token = uuid.v4();
+
+      user.resetToken = token;
+      user.resetTokenExpiration = "pending";
+      await user.save();
+      res.status(200).send(token);
+    }
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in server side",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   handleRegister,
   hendleLogin,
+  forgetPassword,
 };

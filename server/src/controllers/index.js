@@ -1,6 +1,7 @@
 const Users = require("./UsersController");
 const Categories = require("./Categories");
 const Item = require("./Items");
+const Order = require("./Orders");
 
 // multer
 const path = require("path");
@@ -50,4 +51,5 @@ module.exports = {
   Categories,
   Item,
   uploadImages,
+  Order,
 };

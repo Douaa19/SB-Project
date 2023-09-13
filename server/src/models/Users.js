@@ -40,6 +40,14 @@ const Users = new mongoose.Schema(
       required: false,
       default: null,
     },
+    resetToken: {
+      type: String,
+      default: null,
+    },
+    resetTokenExpiration: {
+      type: String,
+      default: null,
+    },
   },
   {
     timestamps: true,

@@ -16,4 +16,7 @@ router.route("/register").post(Users.handleRegister);
 // register
 router.route("/login").post(Users.hendleLogin);
 
+// forget password
+router.route("/forget-password").post(Users.forgetPassword);
+
 module.exports = router;

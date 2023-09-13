@@ -7,6 +7,7 @@ const Orders = new mongoose.Schema({
   },
   item_id: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: "Item",
   },
 });
 

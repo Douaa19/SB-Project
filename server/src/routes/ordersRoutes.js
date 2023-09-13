@@ -3,12 +3,15 @@ const router = express.Router();
 
 // authorization
 const {
-    authorization,
-    authorizationRole,
-  } = require("../middlewares/authorization");
+  authorization,
+  authorizationRole,
+} = require("../middlewares/authorization");
+
+// controllers
+const { Order } = require("../controllers");
 
 // create order
-router.route("/create-order").post();
+router.route("/create-order").post(authorization, Order.createOrder);
 
 // get order
 router.route("/get-order/:order_id").get();
@@ -16,8 +19,8 @@ router.route("/get-order/:order_id").get();
 // get orders
 router.route("/get-orders").get();
 
-// update orders
-router.route("/update-order/:order_id").post();
+// get my orders
+router.route("/my-orders").get(authorization, Order.getMyOrders);
 
 // delete orders
 router.route("/delete-order/:order_id").post();
