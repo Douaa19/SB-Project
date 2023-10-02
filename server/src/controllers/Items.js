@@ -131,7 +131,8 @@ const deleteItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { item_id } = req.params;
-    const { title, description, size, price, category_id } = req.body;
+    const { title, description, size, price, bestSelling, category_id } =
+      req.body;
     const images = [];
     req.files.map((file, index) => {
       images.push(file.filename);
@@ -162,6 +163,7 @@ const updateItem = async (req, res) => {
         price,
         category_id,
         images,
+        bestSelling,
       });
 
       if (updatedItem) {
@@ -183,6 +185,22 @@ const updateItem = async (req, res) => {
   }
 };
 
+const getBestSelling = async (req, res) => {
+  try {
+    const bestSellingItems = await Item.find({ bestSelling: true });
+    if (bestSellingItems.length == 0) {
+      res.status(200).send({ messageError: "Best selling list is empty!" });
+    } else {
+      res.status(200).send(bestSellingItems);
+    }
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in server side",
+      err: error.message,
+    });
+  }
+};
+
 module.exports = {
   getItems,
   getItem,
@@ -190,4 +208,5 @@ module.exports = {
   createItem,
   deleteItem,
   updateItem,
+  getBestSelling,
 };

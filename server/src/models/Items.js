@@ -28,6 +28,10 @@ const Items = new mongoose.Schema({
     type: String,
     required: true,
   },
+  bestSelling: {
+    type: Boolean,
+    deault: false,
+  },
   category_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",

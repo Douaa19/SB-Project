@@ -44,4 +44,7 @@ router
     Item.updateItem
   );
 
+// get best selling items
+router.route("/best-selling").get(Item.getBestSelling);
+
 module.exports = router;
