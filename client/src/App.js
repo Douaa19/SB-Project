@@ -1,13 +1,12 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import Counter from "./features/counter/Counter";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline text-center">
-        Hello Saba Embroidery project!
-      </h1>
-    </>
+    <React.Fragment>
+      <AppRoutes />
+    </React.Fragment>
   );
 }
 
