@@ -1,10 +1,11 @@
 import React from "react";
+import Header from "../components/layout/Header";
 
 function Home() {
   return (
-    <>
-      <h1>HOME!</h1>
-    </>
+    <div className="w-full">
+      <Header />
+    </div>
   );
 }
 

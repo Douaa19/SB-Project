@@ -1,9 +1,14 @@
-import React from 'react'
-
-function Input() {
+function Input({ className, placeHolder, rightIcon, classIcon }) {
   return (
-    <div>Input</div>
-  )
+    <>
+      <input type="text" className={className} placeholder={placeHolder} />
+      {rightIcon && (
+        <>
+          <img src={rightIcon} alt="" className={classIcon} />
+        </>
+      )}
+    </>
+  );
 }
 
-export default Input
+export default Input;
