@@ -3,6 +3,15 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: "class",
   theme: {
+    screens: {
+      ssm: "320px",
+      sm: "640px",
+      md: "768px",
+      lg: "950px",
+      xl: "1024px",
+      "2xl": "1280px",
+      "3xl": "1536px",
+    },
     extend: {
       fontSize: {
         12: "12px",
@@ -17,6 +26,7 @@ module.exports = {
       textColor: {
         main: "#DAB88A",
         white: "#FFFFFF",
+        dark: "#000000",
       },
       padding: {
         1: "2px",
@@ -44,6 +54,7 @@ module.exports = {
       },
       width: {
         400: "400px",
+        500: "500px",
         640: "640px",
         760: "760px",
         780: "780",
@@ -51,7 +62,7 @@ module.exports = {
         1000: "1000px",
         1200: "1200px",
         1400: "1400px",
-        1800: "1800px"
+        1800: "1800px",
       },
       height: {
         80: "80px",

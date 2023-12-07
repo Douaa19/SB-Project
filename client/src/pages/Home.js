@@ -3,7 +3,7 @@ import Header from "../components/layout/Header";
 
 function Home() {
   return (
-    <div className="w-full">
+    <div className="">
       <Header />
     </div>
   );
