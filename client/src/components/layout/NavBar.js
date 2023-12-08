@@ -2,21 +2,31 @@ import React, { useState } from "react";
 import Basket from "../../assets/icons/basket.png";
 import Search from "../../assets/icons/loupe.png";
 import Logo from "../../assets/icons/Logo_White.png";
-import Menu from "../../assets/icons/menu.png";
+import Menu from "../../assets/icons/burger-bar-black.png";
+import Close from "../../assets/icons/close-black.png";
 import Input from "../atoms/Input";
 
 function NavBar() {
   const [searchValue, setSearchValue] = useState("");
 
+  let links = [
+    { name: "home", link: "/" },
+    { name: "best selling", link: "/besst-selling" },
+    { name: "our products", link: "/products" },
+    { name: "about us", link: "/about" },
+    { name: "contact us", link: "/contact" },
+  ];
+
+  let [open, setOpen] = useState(false);
+
   const handleSubmit = () => {
-    console.log(searchValue);
+    if (searchValue.length > 0) {
+      console.log(searchValue);
+    }
   };
 
   return (
-    <div className="h-max flex items-center justify-around gap-4 w-full pt-6 font-normal md:gap-1 md:px-11 ssm:flex ssm:justify-between ssm:px-8">
-      <div className="humberger md:hidden ssm:block ssm:w-14">
-        <img src={Menu} alt="menu" className="" />
-      </div>
+    <div className="h-max bg-white ssm:bg-slate-50 md:flex md:flex-row md:items-center md:justify-around gap-4 md:w-full pt-6 font-normal md:gap-1 md:px-6 ssm:flex ssm:flex-col ssm:items-start ssm:px-8 ssm:gap-1">
       <div className="logo flex justify-center items-center">
         <img
           src={Logo}
@@ -24,16 +34,21 @@ function NavBar() {
           className="text-main lg:w-20 text-center p-2 text-18 hover:cursor-pointer md:w-16 ssm:w-14"
         />
       </div>
-      <div className="menu lg:block lg:text-18 lg:w-640 flex justify-center md:block md:text-14 md:w-500 ssm:hidden">
-        <ul className="flex justify-around w-full capitalize">
-          <li className="costum-list list">home</li>
-          <li className="costum-list list">best selling</li>
-          <li className="costum-list list">our products</li>
-          <li className="costum-list list">about us</li>
-          <li className="costum-list list">contact us</li>
+      <div className="menu lg:block lg:text-18 lg:w-640 flex justify-center md:block md:text-14 md:w-500 ssm:w-full">
+        <ul
+          className={`md:flex md:justify-around md:flex-row w-full ssm:z-1 z-[-1] capitalize ssm:flex ssm:flex-col ssm:items-end md:static ssm:absolute ssm:pr-8 transition-all duration-500 ease-in ${
+            open ? "top-20 opacity-100" : "top-[-490px]"
+          } ssm:opacity-100 opacity-0`}>
+          {links.map((link) => (
+            <li key={link.name} className="ssm:pt-2.5">
+              <a href={link.link} className="costum-list list">
+                {link.name}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
-      <div className="btns flex justify-between items-center md:gap-2 md:w-max ssm:w-14 ssm:gap-2">
+      <div className="btns md:static flex justify-between items-center md:gap-2 w-max ssm:gap-2 ssm:mt-2 ssm:absolute ssm:right-8">
         <Input
           className="border rounded-5 border-main lg:text-14 lg:block px-3 py-2 outline-none md:block md:text-12 ssm:hidden"
           placeHolder="search..."
@@ -46,13 +61,26 @@ function NavBar() {
           }}
           onIconClick={handleSubmit}
         />
-        <img src={Search} alt="" className="md:hidden ssm:w-5" />
+        <img
+          src={Search}
+          alt=""
+          className="md:hidden ssm:w-5 hover:cursor-pointer"
+        />
         <img
           src={Basket}
           alt="basket"
           className="lg:w-6 hover:cursor-pointer md:w-5 ssm:w-6"
           onClick={() => (window.location = "/basket")}
         />
+        <div
+          className="w-5 cursor-pointer md:hidden"
+          onClick={() => setOpen(!open)}>
+          {open !== true ? (
+            <img src={Menu} alt="menu" />
+          ) : (
+            <img src={Close} alt="menu" />
+          )}
+        </div>
       </div>
     </div>
   );

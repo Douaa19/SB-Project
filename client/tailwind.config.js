@@ -39,6 +39,7 @@ module.exports = {
         "main-bg": "#F5F5F5",
         "main-color": "#DAB88A",
         dark: "#000000",
+        white: "#FFFFFF",
       },
       borderWidth: {
         1: "1px",
