@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Basket from "../../assets/icons/basket.png";
 import Search from "../../assets/icons/loupe.png";
 import Logo from "../../assets/icons/Logo_White.png";
@@ -7,8 +6,14 @@ import Menu from "../../assets/icons/menu.png";
 import Input from "../atoms/Input";
 
 function NavBar() {
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSubmit = () => {
+    console.log(searchValue);
+  };
+
   return (
-    <div className="h-max flex items-center justify-around gap-4 w-full pt-6 font-normal md:gap-1 ssm:flex ssm:justify-between ssm:px-6">
+    <div className="h-max flex items-center justify-around gap-4 w-full pt-6 font-normal md:gap-1 md:px-11 ssm:flex ssm:justify-between ssm:px-8">
       <div className="humberger md:hidden ssm:block ssm:w-14">
         <img src={Menu} alt="menu" className="" />
       </div>
@@ -33,7 +38,13 @@ function NavBar() {
           className="border rounded-5 border-main lg:text-14 lg:block px-3 py-2 outline-none md:block md:text-12 ssm:hidden"
           placeHolder="search..."
           rightIcon={Search}
+          name="search"
           classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-36 md:left-32 md:w-4"
+          value={searchValue}
+          onChange={(e) => {
+            setSearchValue(e.target.value);
+          }}
+          onIconClick={handleSubmit}
         />
         <img src={Search} alt="" className="md:hidden ssm:w-5" />
         <img
