@@ -26,7 +26,7 @@ function NavBar() {
   };
 
   return (
-    <div className="h-max bg-white ssm:bg-slate-50 md:flex md:flex-row md:items-center md:justify-around gap-4 md:w-full pt-6 font-normal md:gap-1 md:px-6 ssm:flex ssm:flex-col ssm:items-start ssm:px-8 ssm:gap-1">
+    <div className="h-max bg-white ssm:bg-slate-50 md:flex md:flex-row md:items-center md:justify-around gap-4 md:w-full pt-6 font-normal md:gap-1 md:px-6 ssm:flex ssm:flex-col ssm:items-start ssm:px-8 ssm:gap-1 ssm:justify-center">
       <div className="logo flex justify-center items-center">
         <img
           src={Logo}
@@ -36,7 +36,7 @@ function NavBar() {
       </div>
       <div className="menu lg:block lg:text-18 lg:w-640 flex justify-center md:block md:text-14 md:w-500 ssm:w-full">
         <ul
-          className={`md:flex md:justify-around md:flex-row w-full ssm:z-1 z-[-1] capitalize ssm:flex ssm:flex-col ssm:items-end md:static ssm:absolute ssm:pr-8 transition-all duration-500 ease-in ${
+          className={`md:flex md:pr-0 md:justify-around md:flex-row w-full ssm:z-1 z-[-1] capitalize ssm:flex ssm:flex-col ssm:items-end md:static ssm:absolute ssm:pr-8 transition-all duration-500 ease-in ${
             open ? "top-20 opacity-100" : "top-[-490px]"
           } ssm:opacity-100 opacity-0`}>
           {links.map((link) => (
