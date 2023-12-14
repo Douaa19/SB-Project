@@ -47,6 +47,8 @@ module.exports = {
       },
       borderColor: {
         main: "#DAB88A",
+        white: "#FFFFFF",
+        dark: "#000000",
       },
       borderRadius: {
         2: "2px",
