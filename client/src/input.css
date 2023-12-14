@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+.costum-list {
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.list:hover {
+  color: #dab88a;
+  background: transparent;
+  box-shadow: none;
+}
+.list:before,
+.list:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #dab88a;
+  transition: 400ms ease all;
+}
+.list:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+.list:hover:after {
+  width: 100%;
+  transition: 400ms ease all;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
