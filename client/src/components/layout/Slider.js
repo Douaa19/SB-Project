@@ -31,12 +31,12 @@ function Slider({
         <button
           onClick={prev}
           className="rounded-full p-1 shadow border border-white text-gray-800 hover:bg-white/20">
-          <LeftBtn size={40} />
+          <LeftBtn size={40} className="ssm:w-4 ssm:h-4 sm:w-full sm:h-full" />
         </button>
         <button
           onClick={next}
           className="rounded-full p-1 shadow border border-white text-gray-800 hover:bg-white/20">
-          <RigthBtn size={40} />
+          <RigthBtn size={40} className="ssm:w-4 ssm:h-4 sm:w-full sm:h-full" />
         </button>
       </div>
 
@@ -44,8 +44,8 @@ function Slider({
         <div className="flex items-center justify-center gap-2">
           {slides.map((_, i) => (
             <div
-              className={`transition-all w-2 h-2 bg-white rounded-full ${
-                curr === i ? "p-2" : "bg-opacity-50"
+              className={`transition-all sm:w-2 sm:h-2 ssm:h-1 ssm:w-1 bg-white rounded-full ${
+                curr === i ? "sm:p-2 ssm:p-1" : "bg-opacity-50"
               }`}
             />
           ))}

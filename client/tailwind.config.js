@@ -13,7 +13,15 @@ module.exports = {
       "3xl": "1536px",
     },
     extend: {
+      fontWeight: {
+        normale: "400",
+        medium: "500",
+        bold: "600",
+        extrabold: "700",
+      },
       fontSize: {
+        8: "8px",
+        10: "10px",
         12: "12px",
         14: "14px",
         16: "16px",
@@ -27,6 +35,7 @@ module.exports = {
         main: "#DAB88A",
         white: "#FFFFFF",
         dark: "#000000",
+        gray: "#CCCCCC",
       },
       padding: {
         1: "2px",
@@ -40,6 +49,15 @@ module.exports = {
         "main-color": "#DAB88A",
         dark: "#000000",
         white: "#FFFFFF",
+        gray: "#F0F0F0",
+        "slate-50": "rgb(248 250 252)",
+        "slate-100": "rgb(241 245 249)",
+        "slate-200": "rgb(226 232 240)",
+        "slate-300": "rgb(203 213 225)",
+        "slate-400": "rgb(148 163 184)",
+        "slate-500": "rgb(100 116 139)",
+        "slate-600": "rgb(71 85 105)",
+        "slate-700": "rgb(30 41 59)",
       },
       borderWidth: {
         1: "1px",
@@ -56,6 +74,8 @@ module.exports = {
         8: "8px",
       },
       width: {
+        300: "300px",
+        336: "336px",
         400: "400px",
         500: "500px",
         640: "640px",
