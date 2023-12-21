@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/layout/Header";
-import PresentationCards from "../components/templates/PresentationCards";
-import SectionCards from "../components/templates/SectionCards";
+import PresentationCards from "../components/layout/PresentationCards";
+import SectionCards from "../components/layout/SectionCards";
 import Product from "../assets/images/eniko-kis-KsLPTsYaqIQ-unsplash.jpg";
 
 function Home() {
@@ -82,7 +82,7 @@ function Home() {
     },
   ];
   return (
-    <div className="">
+    <div>
       <Header />
       <PresentationCards />
       <SectionCards
