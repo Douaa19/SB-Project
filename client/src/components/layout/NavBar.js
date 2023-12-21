@@ -9,7 +9,7 @@ function NavBar() {
 
   let links = [
     { name: "home", link: "/" },
-    { name: "best selling", link: "/besst-selling" },
+    { name: "best selling", link: "/besstSelling" },
     { name: "our products", link: "/products" },
     { name: "about us", link: "/about" },
     { name: "contact us", link: "/contact" },
@@ -58,7 +58,7 @@ function NavBar() {
           placeHolder="search..."
           rightIcon={Search}
           name="search"
-          classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-36 md:left-32 md:w-4"
+          classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-40 md:left-36 md:w-4"
           value={searchValue}
           onChange={(e) => {
             setSearchValue(e.target.value);

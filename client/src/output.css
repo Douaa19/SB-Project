@@ -1263,6 +1263,14 @@ body {
     left: 8rem;
   }
 
+  .md\:left-3 {
+    left: 0.75rem;
+  }
+
+  .md\:left-36 {
+    left: 9rem;
+  }
+
   .md\:mt-3 {
     margin-top: 0.75rem;
   }
@@ -1349,6 +1357,10 @@ body {
 @media (min-width: 950px) {
   .lg\:left-36 {
     left: 9rem;
+  }
+
+  .lg\:left-40 {
+    left: 10rem;
   }
 
   .lg\:block {

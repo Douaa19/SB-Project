@@ -95,7 +95,7 @@ function Home() {
         items={newProductsItems}
         title="new products"
         buttonText="View more"
-        page="newProducts"
+        page="products"
       />
     </div>
   );
