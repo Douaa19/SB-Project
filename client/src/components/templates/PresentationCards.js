@@ -1,6 +1,5 @@
 import React from "react";
 import Icon from "../../assets/icons/box-svgrepo-com.svg";
-import EcoFriendly from "../../assets/icons/eco-friendly-svgrepo-com.svg";
 import Embroidery from "../../assets/icons/craft-embroidery-crafts-svgrepo-com.svg";
 
 import PresentationCard from "../organismes/PresentationCard";
@@ -13,9 +12,9 @@ function PresentationCards() {
       desc: "Each piece is meticulously handcrafted by skilled artisans, from the design to the final stitches.",
     },
     {
-      icon: EcoFriendly,
-      title: "Eco friendly",
-      desc: "Made with high-quality natural linen fabric and thread for a rustic and timeless appeal.",
+      icon: Icon,
+      title: "Ico Friendly",
+      desc: "Each piece is meticulously handcrafted by skilled artisans, from the design to the final stitches.",
     },
     {
       icon: Embroidery,

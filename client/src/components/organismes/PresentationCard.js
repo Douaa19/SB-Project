@@ -2,9 +2,9 @@ import React from "react";
 
 function PresentationCard({ item }) {
   return (
-    <div className="bg-gray ssm:p-4 sm:p-6 w-400 max-w-500 min-w-300 gap-6 border rounded-lg border-main flex justify-between items-center">
+    <div className="ssm:p-4 sm:p-6 w-400 max-w-500 min-w-300 gap-6 border rounded-lg border-main flex justify-between items-center">
       <div className="sm:w-20 sm:max-w-20 sm:min-w-20 ssm:max-w-16 ssm:min-w-16">
-      <img
+        <img
           src={item.icon}
           alt="img"
           className="w-16 max-w-16 min-w-16 ssm:w-12 ssm:maw-w-12"
