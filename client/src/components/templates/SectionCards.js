@@ -33,24 +33,17 @@ function SectionCards({ items, title, buttonText, page }) {
           initialSlide: 2,
         },
       },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
     ],
   };
 
   return (
     <div
-      className={`sm:px-10 ssm:px-6 ssm:pb-6 sm:pb-7 flex flex-col justify-center items-center w-full`}>
-      <div className="title capitalize text-32 font-extrabold text-main">
+      className={`sm:px-10 ssm:px-6 ssm:pb-4 sm:pb-7 flex flex-col justify-center items-center w-full`}>
+      <div className="capitalize sm:text-32 ssm:text-24 font-extrabold text-main">
         {title}
       </div>
       <div className="w-[90%]">
-        <div className="mt-10">
+        <div className="sm:mt-10 ssm:mt-5">
           <Slider {...settings}>
             {items.map((i) => (
               <ItemCard
@@ -65,7 +58,7 @@ function SectionCards({ items, title, buttonText, page }) {
       </div>
       <div className="w-max mt-10">
         <button
-          className="text-center text-14 font-bold border border-main text-main px-6 py-3 rounded-5 hover:text-white hover:bg-main"
+          className="text-center sm:text-14 ssm:text-12 font-bold border border-main text-main px-6 py-3 rounded-5 hover:text-white hover:bg-main"
           onClick={() => (window.location = `/${page}`)}>
           {buttonText}
         </button>

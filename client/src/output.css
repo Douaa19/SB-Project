@@ -623,10 +623,6 @@ video {
   z-index: 1;
 }
 
-.m-auto {
-  margin: auto;
-}
-
 .mt-10 {
   margin-top: 2.5rem;
 }
@@ -677,10 +673,6 @@ video {
   width: 4rem;
 }
 
-.w-3\/4 {
-  width: 75%;
-}
-
 .w-400 {
   width: 400px;
 }
@@ -693,6 +685,10 @@ video {
   width: 15px;
 }
 
+.w-\[90\%\] {
+  width: 90%;
+}
+
 .w-full {
   width: 100%;
 }
@@ -700,22 +696,6 @@ video {
 .w-max {
   width: -webkit-max-content;
   width: max-content;
-}
-
-.w-4\/5 {
-  width: 80%;
-}
-
-.w-5\/6 {
-  width: 83.333333%;
-}
-
-.w-\[\] {
-  width: ;
-}
-
-.w-\[90\%\] {
-  width: 90%;
 }
 
 .origin-center {
@@ -825,11 +805,6 @@ video {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
-.bg-gray {
-  --tw-bg-opacity: 1;
-  background-color: rgb(240 240 240 / var(--tw-bg-opacity));
-}
-
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -871,39 +846,17 @@ video {
   padding-bottom: 4px;
 }
 
-.px-5 {
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-.py-4 {
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
-
 .py-3 {
   padding-top: 8px;
   padding-bottom: 8px;
-}
-
-.pb-6 {
-  padding-bottom: 1.5rem;
 }
 
 .text-center {
   text-align: center;
 }
 
-.text-14 {
-  font-size: 14px;
-}
-
 .text-18 {
   font-size: 18px;
-}
-
-.text-32 {
-  font-size: 32px;
 }
 
 .font-bold {
@@ -1048,17 +1001,13 @@ body {
   cursor: pointer;
 }
 
-.hover\:border-none:hover {
-  border-style: none;
+.hover\:bg-main:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(218 184 138 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-white\/20:hover {
   background-color: rgb(255 255 255 / 0.2);
-}
-
-.hover\:bg-main:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(218 184 138 / var(--tw-bg-opacity));
 }
 
 .hover\:text-white:hover {
@@ -1105,6 +1054,10 @@ body {
 
   .ssm\:mt-0 {
     margin-top: 0px;
+  }
+
+  .ssm\:mt-5 {
+    margin-top: 1.25rem;
   }
 
   .ssm\:flex {
@@ -1171,6 +1124,11 @@ body {
     padding: 12px;
   }
 
+  .ssm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
   .ssm\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -1181,13 +1139,12 @@ body {
     padding-bottom: 1.5rem;
   }
 
-  .ssm\:px-6 {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
   .ssm\:pb-1 {
     padding-bottom: 2px;
+  }
+
+  .ssm\:pb-6 {
+    padding-bottom: 1.5rem;
   }
 
   .ssm\:pr-8 {
@@ -1202,8 +1159,8 @@ body {
     padding-top: 0.625rem;
   }
 
-  .ssm\:pb-6 {
-    padding-bottom: 1.5rem;
+  .ssm\:pb-4 {
+    padding-bottom: 12px;
   }
 
   .ssm\:text-10 {
@@ -1212,6 +1169,10 @@ body {
 
   .ssm\:text-12 {
     font-size: 12px;
+  }
+
+  .ssm\:text-24 {
+    font-size: 24px;
   }
 
   .ssm\:text-dark {
@@ -1225,6 +1186,10 @@ body {
 }
 
 @media (min-width: 640px) {
+  .sm\:mt-10 {
+    margin-top: 2.5rem;
+  }
+
   .sm\:h-2 {
     height: 0.5rem;
   }
@@ -1253,19 +1218,14 @@ body {
     padding: 1.5rem;
   }
 
-  .sm\:py-14 {
-    padding-top: 3.5rem;
-    padding-bottom: 3.5rem;
-  }
-
   .sm\:px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
   }
 
-  .sm\:py-7 {
-    padding-top: 1.75rem;
-    padding-bottom: 1.75rem;
+  .sm\:py-14 {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
   }
 
   .sm\:pb-2 {
@@ -1282,6 +1242,10 @@ body {
 
   .sm\:text-16 {
     font-size: 16px;
+  }
+
+  .sm\:text-32 {
+    font-size: 32px;
   }
 
   .sm\:text-white {
