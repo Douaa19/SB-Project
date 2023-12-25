@@ -7,7 +7,7 @@ function ItemCard({ description, price, id }) {
         <img
           src={`http://localhost:8008/api/items/${id}/image`}
           alt=""
-          className="w-full rounded-lg"
+          className="w-full h-[300px] rounded-lg"
         />
       </div>
 

@@ -667,6 +667,10 @@ video {
   height: 2px;
 }
 
+.h-\[300px\] {
+  height: 300px;
+}
+
 .h-\[366px\] {
   height: 366px;
 }
@@ -678,18 +682,6 @@ video {
 .h-max {
   height: -webkit-max-content;
   height: max-content;
-}
-
-.h-\[\] {
-  height: ;
-}
-
-.h-\[400px\] {
-  height: 400px;
-}
-
-.h-\[300px\] {
-  height: 300px;
 }
 
 .max-h-full {

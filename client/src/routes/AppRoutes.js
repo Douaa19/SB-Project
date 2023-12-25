@@ -3,14 +3,19 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Basket from "../pages/Basket";
 
-function AppRoutes({ bestSellingProducts }) {
+function AppRoutes({ bestSellingItems, newestItems }) {
   return (
     <>
       <Router>
         <Routes>
           <Route
             path="/"
-            element={<Home bestSellingProducts={bestSellingProducts} />}
+            element={
+              <Home
+                bestSellingItems={bestSellingItems}
+                newestItems={newestItems}
+              />
+            }
           />
           <Route path="/basket" element={<Basket />} />
         </Routes>
