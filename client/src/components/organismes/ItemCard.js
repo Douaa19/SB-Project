@@ -1,8 +1,8 @@
 import React from "react";
 
-function ItemCard({description, price, id }) {
+function ItemCard({ description, price, id }) {
   return (
-    <div className="bg-white h-max text-dark">
+    <div className="bg-white h-max  text-dark">
       <div className="flex justify-center items-center">
         <img
           src={`http://localhost:8008/api/items/${id}/image`}
