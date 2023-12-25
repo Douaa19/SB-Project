@@ -3,8 +3,10 @@ import { ReactComponent as Next } from "../../assets/icons/arrow-next-small-svgr
 import { ReactComponent as Prev } from "../../assets/icons/arrow-prev-small-svgrepo-com.svg";
 import ItemCard from "../organismes/ItemCard";
 import Slider from "react-slick";
+import LoadingCard from "../organismes/LoadingCard";
 
 function SectionCards({ items, title, buttonText, page }) {
+  const myArr = [0, 1, 2, 3, 4, 5];
   const settings = {
     dots: true,
     infinite: true,
@@ -44,9 +46,9 @@ function SectionCards({ items, title, buttonText, page }) {
       </div>
       <div className="w-[90%]">
         <div className="sm:mt-10 ssm:mt-5">
-          <Slider {...settings}>
-            {items.length > 0 ? (
-              items.map((i, index) => (
+          {items.length > 0 ? (
+            <Slider {...settings}>
+              {items.map((i, index) => (
                 <>
                   <ItemCard
                     key={index}
@@ -55,11 +57,15 @@ function SectionCards({ items, title, buttonText, page }) {
                     id={i._id}
                   />
                 </>
-              ))
-            ) : (
-              <></>
-            )}
-          </Slider>
+              ))}
+            </Slider>
+          ) : (
+            <Slider {...settings}>
+              {myArr.map((i, index) => (
+                <LoadingCard />
+              ))}
+            </Slider>
+          )}
         </div>
       </div>
       <div className="w-max mt-10">
