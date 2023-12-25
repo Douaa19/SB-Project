@@ -47,4 +47,7 @@ router
 // get best selling items
 router.route("/best-selling").get(Item.getBestSelling);
 
+// get item images
+router.route("/:item_id/image").get(Item.getItemImages);
+
 module.exports = router;

@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 body {
@@ -39,6 +42,6 @@ body {
   transition: 400ms ease all;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.slick-slide > div {
+  margin: 0 10px;
+}

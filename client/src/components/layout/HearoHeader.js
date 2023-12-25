@@ -9,7 +9,7 @@ const slides = [Bg1, Bg2, Bg3, Bg4];
 
 function HearoHeader() {
   return (
-    <div className="w-full mt-3 ssm:hidden sm:block">
+    <div className="w-full max-h-full md:mt-3 ssm:mt-0 block">
       <Slider autoSlide={true} autoSlideInterval={5000}>
         {slides.map((s) => (
           <img src={s} alt="slide" />

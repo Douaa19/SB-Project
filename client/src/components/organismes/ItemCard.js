@@ -1,9 +1,22 @@
-import React from 'react'
+import React from "react";
 
-function ItemCard() {
+function ItemCard({ image, description, price, id }) {
   return (
-    <div>ItemCard</div>
-  )
+    <div className="bg-white h-max text-dark">
+      <div className=" flex justify-center items-center">
+        <img
+          src={`http://localhost:8008/api/items/${id}/image`}
+          alt=""
+          className="w-full rounded-lg"
+        />
+      </div>
+
+      <div className="sm:text-14 ssm:text-10 flex flex-col justify-center items-start gap-4 p-4">
+        <p className="font-normale">{description}</p>
+        <span>{price}</span>
+      </div>
+    </div>
+  );
 }
 
-export default ItemCard
+export default ItemCard;
