@@ -50,4 +50,7 @@ router.route("/best-selling").get(Item.getBestSelling);
 // get item images
 router.route("/:item_id/image").get(Item.getItemImages);
 
+// get newest items
+router.route("/newest-items").get(Item.getNewestItems);
+
 module.exports = router;

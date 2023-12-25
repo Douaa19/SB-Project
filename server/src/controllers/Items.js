@@ -59,7 +59,8 @@ const getItemsByCategory = async (req, res) => {
 // create item
 const createItem = async (req, res) => {
   try {
-    const { title, description, color, size, price, category_id } = req.body;
+    const { title, description, color, size, price, category_id, bestSelling } =
+      req.body;
     const images = [];
     req.files.map((file, index) => {
       images.push(file.filename);
@@ -75,6 +76,7 @@ const createItem = async (req, res) => {
         color,
         size,
         price,
+        bestSelling,
         category_id,
         images: images,
       });
@@ -185,7 +187,9 @@ const updateItem = async (req, res) => {
 // get best selling products
 const getBestSelling = async (req, res) => {
   try {
-    const bestSellingItems = await Item.find({ bestSelling: true });
+    const bestSellingItems = await Item.find({ bestSelling: true }).sort({
+      createdAt: "desc",
+    });
     if (bestSellingItems.length == 0) {
       res.status(200).send({ messageError: "Best selling list is empty!" });
     } else {
@@ -205,7 +209,6 @@ const getItemImages = async (req, res) => {
     await Item.findById(req.params.item_id)
       .exec()
       .then((result) => {
-        console.log(result);
         res
           .status(200)
           .sendFile(
@@ -223,6 +226,23 @@ const getItemImages = async (req, res) => {
   }
 };
 
+// get newest items
+const getNewestItems = async (req, res) => {
+  try {
+    const newestItems = await Item.find({})
+      .sort({ createdAt: "desc" })
+      .limit(6);
+
+    if (newestItems.length > 0) {
+      res.status(200).send(newestItems);
+    } else {
+      res.send(newestItems.length);
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 module.exports = {
   getItems,
   getItem,
@@ -232,4 +252,5 @@ module.exports = {
   updateItem,
   getBestSelling,
   getItemImages,
+  getNewestItems,
 };
