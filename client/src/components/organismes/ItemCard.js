@@ -1,10 +1,14 @@
 import React from "react";
 
-function ItemCard({ image, description, price }) {
+function ItemCard({ image, description, price, id }) {
   return (
     <div className="bg-white h-max text-dark">
       <div className=" flex justify-center items-center">
-        <img src={image} alt="" className="w-full rounded-lg" />
+        <img
+          src={`http://localhost:8008/api/items/${id}/image`}
+          alt=""
+          className="w-full rounded-lg"
+        />
       </div>
 
       <div className="sm:text-14 ssm:text-10 flex flex-col justify-center items-start gap-4 p-4">

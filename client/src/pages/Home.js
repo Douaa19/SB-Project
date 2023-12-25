@@ -5,7 +5,7 @@ import SectionCards from "../components/layout/SectionCards";
 import Footer from "../components/layout/Footer";
 import Product from "../assets/images/eniko-kis-KsLPTsYaqIQ-unsplash.jpg";
 
-function Home() {
+function Home({ bestSellingProducts }) {
   const bestSellingItems = [
     {
       image: Product,
@@ -87,7 +87,7 @@ function Home() {
       <Header />
       <PresentationCards />
       <SectionCards
-        items={bestSellingItems}
+        items={bestSellingProducts}
         title="best selling"
         buttonText="View more"
         page="bestSelling"

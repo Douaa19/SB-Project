@@ -26,7 +26,7 @@ function PresentationCards() {
     <div className="w-full ssm:py-6 sm:py-14 px-10 flex justify-center items-center">
       <div className="w-full max-h-max h-max flex flex-wrap justify-center items-center gap-6 transition-all duration-300 ease">
         {items.map((item, index) => (
-          <PresentationCard item={item} />
+          <PresentationCard item={item} key={index} />
         ))}
       </div>
     </div>

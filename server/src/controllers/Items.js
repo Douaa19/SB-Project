@@ -40,16 +40,13 @@ const getItem = async (req, res) => {
 const getItemsByCategory = async (req, res) => {
   try {
     const { category_id } = req.params;
-    const items = await Item.find({ category_id: category_id }).populate(
-      "category_id",
-      "name"
-    );
-    if (!items) {
+    const items = await Item.find({ category_id });
+    if (items.length > 0) {
+      res.status(200).send(items);
+    } else {
       res
         .status(400)
         .send({ messageError: "This category doesn't countain any items" });
-    } else {
-      res.status(200).send(items);
     }
   } catch (error) {
     res.status(500).send({
@@ -185,6 +182,7 @@ const updateItem = async (req, res) => {
   }
 };
 
+// get best selling products
 const getBestSelling = async (req, res) => {
   try {
     const bestSellingItems = await Item.find({ bestSelling: true });
@@ -201,6 +199,30 @@ const getBestSelling = async (req, res) => {
   }
 };
 
+// get item images
+const getItemImages = async (req, res) => {
+  try {
+    await Item.findById(req.params.item_id)
+      .exec()
+      .then((result) => {
+        console.log(result);
+        res
+          .status(200)
+          .sendFile(
+            path.join(
+              path.dirname(__dirname),
+              "public",
+              "img",
+              "items",
+              result.images[0]
+            )
+          );
+      });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 module.exports = {
   getItems,
   getItem,
@@ -209,4 +231,5 @@ module.exports = {
   deleteItem,
   updateItem,
   getBestSelling,
+  getItemImages,
 };

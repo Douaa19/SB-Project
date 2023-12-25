@@ -45,14 +45,20 @@ function SectionCards({ items, title, buttonText, page }) {
       <div className="w-[90%]">
         <div className="sm:mt-10 ssm:mt-5">
           <Slider {...settings}>
-            {items.map((i) => (
-              <ItemCard
-                key={i}
-                image={i.image}
-                description={i.description}
-                price={i.price}
-              />
-            ))}
+            {items.length > 0 ? (
+              items.map((i, index) => (
+                <>
+                  <ItemCard
+                    key={index}
+                    description={i.description}
+                    price={i.price}
+                    id={i._id}
+                  />
+                </>
+              ))
+            ) : (
+              <></>
+            )}
           </Slider>
         </div>
       </div>
