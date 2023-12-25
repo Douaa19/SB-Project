@@ -58,6 +58,7 @@ module.exports = {
         "slate-500": "rgb(100 116 139)",
         "slate-600": "rgb(71 85 105)",
         "slate-700": "rgb(30 41 59)",
+        "gray-300": "rgb(209 213 219)",
       },
       borderWidth: {
         1: "1px",
