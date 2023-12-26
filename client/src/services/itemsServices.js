@@ -7,8 +7,14 @@ export const getBestSellingProducts = async () => {
   return result.data;
 };
 
-// get item's image
+// get item's first image
 export const getItemImage = async (id) => {
   const res = await axios.get(`${BACKEND_URL}${id}/image`);
   return res.data;
+};
+
+// get newest items
+export const getNewestItems = async () => {
+  const result = await axios.get(`${BACKEND_URL}newest-items`);
+  return result.data;
 };

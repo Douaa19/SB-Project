@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const routes = require("./src/routes");
 const morgan = require("morgan");
 const PORT = process.env.PORT || 8000;
 
@@ -26,17 +27,9 @@ app.use(
 );
 app.use(express.json());
 
-app.get("/api", (req, res) => {
-  res.json({
-    message: "Welcom to Saba Embrodery",
-  });
-});
+app.use(routes);
 
 // use routes
-app.use("/api/auth", auth);
-app.use("/api/categories", categories);
-app.use("/api/items", items);
-app.use("/api/orders", orders);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

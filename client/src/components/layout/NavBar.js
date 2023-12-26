@@ -5,11 +5,12 @@ import Logo from "../../assets/icons/Logo_White.png";
 import Input from "../atoms/Input";
 
 function NavBar() {
+  const location = window.location.href;
   const [searchValue, setSearchValue] = useState("");
 
   let links = [
     { name: "home", link: "/" },
-    { name: "best selling", link: "/besstSelling" },
+    { name: "best selling", link: "/best-selling" },
     { name: "our products", link: "/products" },
     { name: "about us", link: "/about" },
     { name: "contact us", link: "/contact" },
@@ -53,23 +54,28 @@ function NavBar() {
         </ul>
       </div>
       <div className="btns md:static flex justify-between items-center md:gap-2 w-max ssm:gap-2 ssm:absolute ssm:right-8">
-        <Input
-          className="border rounded-5 border-main lg:text-14 lg:block px-3 py-2 outline-none md:block md:text-12 ssm:hidden"
-          placeHolder="search..."
-          rightIcon={Search}
-          name="search"
-          classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-40 md:left-36 md:w-4"
-          value={searchValue}
-          onChange={(e) => {
-            setSearchValue(e.target.value);
-          }}
-          onIconClick={handleSubmit}
-        />
-        <img
-          src={Search}
-          alt=""
-          className="md:hidden ssm:w-4 hover:cursor-pointer"
-        />
+        {location.slice(22) !== "best-selling" &&
+          location.slice(22) !== "products" && (
+            <>
+              <Input
+                className="border rounded-5 border-main lg:text-14 lg:block px-3 py-2 outline-none md:block md:text-12 ssm:hidden"
+                placeHolder="search..."
+                rightIcon={Search}
+                name="search"
+                classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-40 md:left-36 md:w-4"
+                value={searchValue}
+                onChange={(e) => {
+                  setSearchValue(e.target.value);
+                }}
+                onIconClick={handleSubmit}
+              />
+              <img
+                src={Search}
+                alt=""
+                className="md:hidden ssm:w-4 hover:cursor-pointer"
+              />
+            </>
+          )}
         <img
           src={Basket}
           alt="basket"

@@ -233,10 +233,10 @@ const getNewestItems = async (req, res) => {
       .sort({ createdAt: "desc" })
       .limit(6);
 
-    if (newestItems.length > 0) {
-      res.status(200).send(newestItems);
+    if (newestItems.length == 0) {
+      res.status(200).send({ messageError: "Newest list is empty!" });
     } else {
-      res.send(newestItems.length);
+      res.status(200).send(newestItems);
     }
   } catch (error) {
     res.status(500).send(error.message);
