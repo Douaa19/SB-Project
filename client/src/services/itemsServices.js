@@ -4,7 +4,6 @@ const BACKEND_URL = "http://localhost:8008/api/items/";
 // get best selling products
 export const getBestSellingProducts = async () => {
   const result = await axios.get(`${BACKEND_URL}/best-selling`);
-  console.log(result.data.length);
   return result.data;
 };
 

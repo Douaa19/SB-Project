@@ -3,9 +3,11 @@ import Header from "../components/layout/Header";
 import PresentationCards from "../components/layout/PresentationCards";
 import SectionCards from "../components/layout/SectionCards";
 import Footer from "../components/layout/Footer";
-import Product from "../assets/images/eniko-kis-KsLPTsYaqIQ-unsplash.jpg";
+import { useSelector } from "react-redux";
 
-function Home({ bestSellingItems, newestItems }) {
+function Home() {
+  const bestSellingItems = useSelector((state) => state.bestSellingItems);
+  const newestItems = useSelector((state) => state.newestItems);
   return (
     <div>
       <Header />

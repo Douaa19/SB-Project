@@ -1,17 +1,34 @@
-import React, { StrictMode } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./output.css";
-import { Provider } from "react-redux";
 import App from "./App";
-import { store } from "./app/store";
+import allReducers from "./redux/reducers";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/lib/integration/react";
 
 const rootElement = document.getElementById("root");
 
-ReactDOM.render(
-  <StrictMode>
-    <Provider store={store}>
+const root = ReactDOM.createRoot(rootElement);
+
+const persistedReducer = persistReducer(
+  { key: "persist-key", storage },
+  allReducers
+);
+
+const store = createStore(
+  persistedReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+const persistor = persistStore(store);
+
+root.render(
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
       <App />
-    </Provider>
-  </StrictMode>,
-  rootElement
+    </PersistGate>
+  </Provider>
 );

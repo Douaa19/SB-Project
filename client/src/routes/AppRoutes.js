@@ -4,20 +4,12 @@ import Home from "../pages/Home";
 import Basket from "../pages/Basket";
 import Products from "../pages/Products";
 
-function AppRoutes({ bestSellingItems, newestItems, categories }) {
+function AppRoutes() {
   return (
     <>
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                bestSellingItems={bestSellingItems}
-                newestItems={newestItems}
-              />
-            }
-          />
+          <Route path="/" element={<Home />} />
           <Route
             path="/best-selling"
             element={<Products title="best selling" categories />}
