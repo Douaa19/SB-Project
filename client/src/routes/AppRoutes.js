@@ -2,8 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Basket from "../pages/Basket";
+import Products from "../pages/Products";
 
-function AppRoutes({ bestSellingItems, newestItems }) {
+function AppRoutes({ bestSellingItems, newestItems, categories }) {
   return (
     <>
       <Router>
@@ -16,6 +17,10 @@ function AppRoutes({ bestSellingItems, newestItems }) {
                 newestItems={newestItems}
               />
             }
+          />
+          <Route
+            path="/best-selling"
+            element={<Products title="best selling" categories />}
           />
           <Route path="/basket" element={<Basket />} />
         </Routes>

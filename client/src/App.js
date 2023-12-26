@@ -10,6 +10,8 @@ import {
 function App() {
   const [bestSellingItems, setBestSellingItems] = useState({});
   const [newestItems, setNewestItems] = useState({});
+  const [bestSelling, setBestSelling] = useState({});
+  const [categories, setCategories] = useState({});
   // get best selling products
   useEffect(() => {
     getBestSellingProducts().then((result) => {
@@ -25,6 +27,7 @@ function App() {
       <AppRoutes
         bestSellingItems={bestSellingItems}
         newestItems={newestItems}
+        categories={categories}
       />
     </React.Fragment>
   );

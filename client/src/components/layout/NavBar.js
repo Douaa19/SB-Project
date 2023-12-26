@@ -9,7 +9,7 @@ function NavBar() {
 
   let links = [
     { name: "home", link: "/" },
-    { name: "best selling", link: "/besstSelling" },
+    { name: "best selling", link: "/best-selling" },
     { name: "our products", link: "/products" },
     { name: "about us", link: "/about" },
     { name: "contact us", link: "/contact" },

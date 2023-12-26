@@ -1,9 +1,9 @@
 import React from 'react'
 
-function cardGrid() {
+function CardGrid() {
   return (
-    <div>cardGrid</div>
+    <div>CardGrid</div>
   )
 }
 
-export default cardGrid
+export default CardGrid

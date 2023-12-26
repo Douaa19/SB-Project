@@ -942,6 +942,10 @@ video {
   font-size: 18px;
 }
 
+.text-32 {
+  font-size: 32px;
+}
+
 .font-bold {
   font-weight: 600;
 }
@@ -1456,6 +1460,16 @@ body {
   .md\:px-6 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+
+  .md\:py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .md\:py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 
   .md\:pr-0 {
