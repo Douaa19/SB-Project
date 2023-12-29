@@ -7,13 +7,21 @@ import { useSelector } from "react-redux";
 
 function Products({ title }) {
   const categories = useSelector((state) => state.categories);
+  const url = window.location.href;
+  const bestSellingItems = useSelector((state) => state.bestSellingItems);
+  const newestItems = useSelector((state) => state.newestItems);
 
   return (
     <>
       <NavBar />
       <div className="lg:px-28 md:py-10">
         <HeaderProducts title={title} categories={categories} type="category" />
-        <CardGrid />
+        <CardGrid
+          type="products"
+          items={
+            url.slice(22) === "best-selling" ? bestSellingItems : newestItems
+          }
+        />
       </div>
       <Footer />
     </>

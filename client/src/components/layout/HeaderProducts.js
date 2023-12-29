@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../atoms/Input";
 import CardGrid from "../templates/CardGrid";
 import Search from "../../assets/icons/search-svgrepo-com.svg";
 
 function HeaderProducts({ title, categories }) {
+  const [searchValue, setSearchValue] = useState("");
+  const handleSubmit = () => {
+    if (searchValue.length > 0) {
+      console.log(searchValue);
+    }
+  };
+
   return (
     <div>
       <div className="capitalize sm:text-32 ssm:text-24 font-extrabold text-main text-start">
@@ -17,10 +24,11 @@ function HeaderProducts({ title, categories }) {
           rightIcon={Search}
           name="search"
           classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-40 md:left-36 md:w-4"
-          // value={searchValue}
-          // onChange={(e) => {
-          //   setSearchValue(e.target.value);
-          // }}
+          value={searchValue}
+          onChange={(e) => {
+            setSearchValue(e.target.value);
+          }}
+          onIconClick={handleSubmit}
         />
       </div>
     </div>
