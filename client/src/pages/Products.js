@@ -14,7 +14,7 @@ function Products({ title }) {
   return (
     <>
       <NavBar />
-      <div className="lg:px-28 md:py-10">
+      <div className="md:px-[4.5rem] lg:px-32 ssm:px-8 ssm:pt-4 w-full">
         <HeaderProducts title={title} categories={categories} type="category" />
         <CardGrid
           type="products"
@@ -23,7 +23,7 @@ function Products({ title }) {
           }
         />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

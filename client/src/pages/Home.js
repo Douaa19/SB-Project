@@ -16,7 +16,7 @@ function Home() {
         items={bestSellingItems}
         title="best selling"
         buttonText="View more"
-        page="bestSelling"
+        page="best-selling"
       />
       <SectionCards
         items={newestItems}
