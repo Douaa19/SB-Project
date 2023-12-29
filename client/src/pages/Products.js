@@ -23,7 +23,7 @@ function Products({ title }) {
           }
         />
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

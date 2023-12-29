@@ -14,6 +14,10 @@ function AppRoutes() {
             path="/best-selling"
             element={<Products title="best selling" categories />}
           />
+          <Route
+            path="/products"
+            element={<Products title="our products" categories />}
+          />
           <Route path="/basket" element={<Basket />} />
         </Routes>
       </Router>
