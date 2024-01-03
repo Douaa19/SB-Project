@@ -46,7 +46,7 @@ function CardGrid({ type, categories, items }) {
   return (
     <>
       {type === "category" ? (
-        <div className="md:w-9/12 ssm:w-full">
+        <div className="md:w-9/12 ssm:w-full my-4">
           <Slider {...settings}>
             {categories.map((c, key) => (
               <div className="flex items-center justify-between w-1/2 py-2">
