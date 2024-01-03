@@ -31,6 +31,7 @@ module.exports = {
         28: "28px",
         32: "32px",
         42: "42px",
+        48: "48px",
       },
       textColor: {
         main: "#DAB88A",

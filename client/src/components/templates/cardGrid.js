@@ -2,8 +2,9 @@ import React from "react";
 import Slider from "react-slick";
 import CategoryCard from "../organismes/CategoryCard";
 import ItemCard from "../organismes/ItemCard";
+import AboutCard from "../organismes/AboutCard";
 
-function CardGrid({ type, categories, items }) {
+function CardGrid({ type, categories, items, aboutItems }) {
   const settings = {
     dots: false,
     infinite: true,
@@ -56,16 +57,32 @@ function CardGrid({ type, categories, items }) {
           </Slider>
         </div>
       ) : (
-        <div className="grid xl:grid-cols-4 gap-6 mt-10 md:grid-cols-3 ssm:grid-cols-2">
-          {items.map((item, key) => (
-            <ItemCard
-              description={item.description}
-              id={item._id}
-              price={item.price}
-              key={key}
-            />
-          ))}
-        </div>
+        <>
+          {type === "products" ? (
+            <>
+              <div className="grid xl:grid-cols-4 gap-6 mt-10 md:grid-cols-3 ssm:grid-cols-2">
+                {items.map((item, key) => (
+                  <ItemCard
+                    description={item.description}
+                    id={item._id}
+                    price={item.price}
+                    key={key}
+                  />
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              {aboutItems.map((item, key) => (
+                <AboutCard
+                  title={item.title}
+                  text={item.text}
+                  image={item.image}
+                />
+              ))}
+            </>
+          )}
+        </>
       )}
     </>
   );

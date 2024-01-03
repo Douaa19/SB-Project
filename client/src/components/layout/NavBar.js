@@ -44,7 +44,11 @@ function NavBar() {
                 href={link.link}
                 className={`costum-list list ${
                   open
-                    ? "sm:text-white ssm:text-dark"
+                    ? `${
+                        location.slice(22) !== "home"
+                          ? "text-dark"
+                          : "sm:text-white ssm:text-dark"
+                      }`
                     : "sm:text-white ssm:text-dark md:text-dark"
                 }`}>
                 {link.name}
