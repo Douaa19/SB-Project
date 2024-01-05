@@ -7,11 +7,16 @@ function Input({
   onIconClick,
   value,
   onChange,
+  type,
+  error,
 }) {
   return (
-    <div className="flex flex-row relative items-center">
+    <div
+      className={`flex relative w-full ${
+        error ? "text-red" : "flex-row items-center"
+      }`}>
       <input
-        type="text"
+        type={type}
         name={name}
         value={value}
         className={className}
@@ -26,6 +31,13 @@ function Input({
             className={classIcon}
             onClick={onIconClick}
           />
+        </>
+      )}
+      {error && (
+        <>
+          <span className="md:text-12 ssm:text-10 absolute md:top-10 ssm:top-9 left-3">
+            {error}
+          </span>
         </>
       )}
     </div>

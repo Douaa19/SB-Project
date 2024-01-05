@@ -1,13 +1,16 @@
 import React from "react";
 
-function Button({ className, rightIcon, type, text }) {
+function Button({ className, rightIcon, type, text, onClick }) {
   return (
-    <div>
-      <button type={type} className="">
+    <>
+      <button
+        type={type}
+        className={className}
+        onClick={onClick}>
         {text}
-        {rightIcon}
+        {rightIcon ? rightIcon : ""}
       </button>
-    </div>
+    </>
   );
 }
 
