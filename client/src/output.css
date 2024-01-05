@@ -1272,6 +1272,14 @@ body {
     top: 2.25rem;
   }
 
+  .ssm\:top-\[7\.8rem\] {
+    top: 7.8rem;
+  }
+
+  .ssm\:top-\[7rem\] {
+    top: 7rem;
+  }
+
   .ssm\:mt-0 {
     margin-top: 0px;
   }
@@ -1573,6 +1581,22 @@ body {
 
   .md\:top-10 {
     top: 2.5rem;
+  }
+
+  .md\:top-32 {
+    top: 8rem;
+  }
+
+  .md\:top-28 {
+    top: 7rem;
+  }
+
+  .md\:top-\[7\.5rem\] {
+    top: 7.5rem;
+  }
+
+  .md\:top-\[7\.8rem\] {
+    top: 7.8rem;
   }
 
   .md\:mt-3 {
