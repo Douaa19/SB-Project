@@ -114,8 +114,17 @@ const forgetPassword = async (req, res) => {
   }
 };
 
+// contact admin
+const sendMessage = async (req, res) => {
+  try {
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 module.exports = {
   handleRegister,
   hendleLogin,
   forgetPassword,
+  sendMessage,
 };
