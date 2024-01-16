@@ -5,6 +5,8 @@ import { sendMessage } from "../../services/userServices";
 function Form({ className, type }) {
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
+  const [done, setDone] = useState(false);
+  console.log(done)
 
   const handleChange = async (element, value) => {
     const newData = { ...data, [`${element}`]: value };
@@ -15,7 +17,12 @@ function Form({ className, type }) {
     let errors = validationForm(data);
 
     if (Object.keys(errors).length === 0) {
-      sendMessage(data);
+      sendMessage(data).then((res) => {
+        if (res.status === 200) {
+          setDone(true);
+          console.log(done)
+        }
+      });
     } else {
       console.log("Error!!");
     }
@@ -59,9 +66,7 @@ function Form({ className, type }) {
   };
 
   const isPhoneNumber = (phone) => {
-    return /^\+\d{12}$/.test(
-      phone
-    );
+    return /^\+\d{12}$/.test(phone);
   };
 
   return (
@@ -76,7 +81,7 @@ function Form({ className, type }) {
           }`}
           placeHolder="name"
           name="name"
-          value={data.name}
+          value={done === true ? "" : data.name}
           onChange={(e) => handleChange("name", e.target.value)}
           error={errors.name}
         />
@@ -89,7 +94,7 @@ function Form({ className, type }) {
           }`}
           placeHolder="example@email.com"
           name="email"
-          value={data.email}
+          value={done === true ? "" : data.email}
           onChange={(e) => handleChange("email", e.target.value)}
           error={errors.email}
         />
@@ -103,7 +108,7 @@ function Form({ className, type }) {
         }`}
         placeHolder="phone number"
         name="phone"
-        value={data.phone}
+        value={done === true ? "" : data.phone}
         onChange={(e) => handleChange("phone", e.target.value)}
         error={errors.phone}
       />
@@ -112,7 +117,7 @@ function Form({ className, type }) {
         id="message"
         rows="5"
         name="message"
-        value={data.message}
+        value={done === true ? "" : data.message}
         onChange={(e) => handleChange("message", e.target.value)}
         error={errors.message}
         className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
