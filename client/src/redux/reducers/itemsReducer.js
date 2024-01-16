@@ -16,4 +16,13 @@ const newestItemsReducer = (state = {}, action) => {
   }
 };
 
-export { bestSellingItemsReducer, newestItemsReducer };
+const categoryItems = (state = {}, action) => {
+  switch (action.type) {
+    case "SETCATEGORYITEMS":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+export { bestSellingItemsReducer, newestItemsReducer, categoryItems };

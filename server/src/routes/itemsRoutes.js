@@ -17,7 +17,7 @@ router.route("/get-items").get(Item.getItems);
 router.route("/get-item/:item_id").get(Item.getItem);
 
 // get items by category
-router.route("/get-items/:category_id").get(Item.getItemsByCategory);
+router.route("/get-items/:category_id/:type").get(Item.getItemsByCategory);
 
 // create item
 router

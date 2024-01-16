@@ -1,5 +1,9 @@
 import { combineReducers } from "redux";
-import { bestSellingItemsReducer, newestItemsReducer } from "./itemsReducer";
+import {
+  bestSellingItemsReducer,
+  newestItemsReducer,
+  categoryItems,
+} from "./itemsReducer";
 import { categoriesReducer } from "./categoriesReducer";
 import contactDonePopup from "./contactDonePopupReducer";
 
@@ -8,6 +12,7 @@ const allReducers = combineReducers({
   newestItems: newestItemsReducer,
   categories: categoriesReducer,
   contactDonePopup,
+  categoryItems,
 });
 
 export default allReducers;

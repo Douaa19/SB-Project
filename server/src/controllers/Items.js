@@ -39,14 +39,19 @@ const getItem = async (req, res) => {
 // get items by category
 const getItemsByCategory = async (req, res) => {
   try {
-    const { category_id } = req.params;
-    const items = await Item.find({ category_id });
+    const { category_id, type } = req.params;
+    let items;
+    if (type === "best-selling") {
+      items = await Item.find({ category_id, bestSelling: true });
+    } else {
+      items = await Item.find({ category_id });
+    }
     if (items.length > 0) {
       res.status(200).send(items);
     } else {
       res
-        .status(400)
-        .send({ messageError: "This category doesn't countain any items" });
+        .status(200)
+        .send({ message: "This category doesn't countain any items" });
     }
   } catch (error) {
     res.status(500).send({

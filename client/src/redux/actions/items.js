@@ -11,3 +11,10 @@ export const setNewestItems = (items) => {
     payload: items,
   };
 };
+
+export const setCategoryItems = (items) => {
+  return {
+    type: "SETCATEGORYITEMS",
+    payload: items,
+  };
+};
