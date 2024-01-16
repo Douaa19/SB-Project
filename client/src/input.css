@@ -45,3 +45,7 @@ body {
 .slick-slide > div {
   margin: 0 10px;
 }
+
+.category-card {
+  background-image: url("./assets/images/image1.jpg");
+}

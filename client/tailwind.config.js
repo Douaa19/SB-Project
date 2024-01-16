@@ -13,6 +13,7 @@ module.exports = {
       "3xl": "1536px",
     },
     extend: {
+      backgroundImage: {},
       fontWeight: {
         normale: "400",
         medium: "500",
@@ -30,12 +31,14 @@ module.exports = {
         28: "28px",
         32: "32px",
         42: "42px",
+        48: "48px",
       },
       textColor: {
         main: "#DAB88A",
         white: "#FFFFFF",
         dark: "#000000",
         gray: "#CCCCCC",
+        red: "#FF004D",
       },
       padding: {
         1: "2px",
@@ -68,6 +71,7 @@ module.exports = {
         main: "#DAB88A",
         white: "#FFFFFF",
         dark: "#000000",
+        red: "#FF004D",
       },
       borderRadius: {
         2: "2px",

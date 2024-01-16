@@ -2,6 +2,7 @@ const { User } = require("../models");
 const jwt = require("jsonwebtoken");
 const moment = require("moment");
 const uuid = require("node-uuid");
+const nodemailer = require("nodemailer");
 
 // hendle register
 const handleRegister = async (req, res) => {
@@ -114,8 +115,194 @@ const forgetPassword = async (req, res) => {
   }
 };
 
+// contact admin
+const sendMessage = async (req, res) => {
+  try {
+    const data = {
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
+      message: req.body.message,
+      to: "sabalarif97@gmail.com",
+    };
+
+    const transporter = nodemailer.createTransport({
+      service: "Gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: "sabalarif97@gmail.com",
+        pass: "bjnzseuzjmzvomlv",
+      },
+    });
+    const mailOption = {
+      from: data.email,
+      to: data.to,
+      subject: "Contact message",
+      html: `<!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta name="viewport" content="width=device-width" />
+          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+            rel="stylesheet" />
+          <title>Saba Embroidery - Contact Message</title>
+          <style>
+          @font-face {
+            font-family: Montserrat;
+            src: url('../fonts/Montserrat-Regular.ttf') format('woff2'),
+                  url('../fonts/Montserrat-Bold.ttf') format('woff')
+            font-weight: normal;
+            font-style: normal;
+          }
+            body {
+              margin: 0;
+              font-family: Montserrat, sans-serif;
+            }
+            table {
+              border-spacing: 0;
+            }
+            td {
+              padding: 0;
+            }
+            img {
+              border: 0;
+            }
+            .wrapper {
+              width: 100%;
+              table-layout: fixed;
+              padding-bottom: 60px;
+            }
+            .main {
+              background-color: #ffffff;
+              margin: 0 auto;
+              width: 100%;
+              max-width: 600px;
+              border-spacing: 0;
+              font-family: Montserrat;
+              color: black;
+            }
+            
+          </style>
+        </head>
+        <body>
+          <center class="wrapper">
+            <table
+              class="main"
+              width="100%"
+              style="border: 1px solid #dab88a; border-radius: 8px">
+              <!-- LOGO SECTION -->
+              <tr>
+                <td>
+                  <table width="100%">
+                    <tr>
+                      <td style="text-align: center; padding: 1rem 0 0; width: 100%; max-width: 300px;">
+                        <a href="sabaembroidery.ma">
+                          <img
+                            src="https://drive.google.com/uc?export=download&id=1NNBtsCyJXXH2cPm68vt8edNNZguDYHH5"
+                            alt="Saba Embroidery LOGO"
+                            width="14%" />
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+      
+              <!-- TEXT -->
+              <tr>
+                <td>
+                  <table style="width: 100%">
+                    <tr>
+                      <td
+                        style="
+                          font-size: 16px;
+                          font-weight: bold;
+                          width: 100%;
+                          padding: 0 2rem 1rem;
+                          text-align: center;
+                        ">
+                        <span>You have received a new message</span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- TEXT -->
+      
+              <!-- BODY SECTION -->
+              <tr>
+                <td>
+                  <table width="100%">
+                    <tr>
+                      <td class="tree-rows">
+                        <table
+                          class="row"
+                          style="font-size: 18px; padding: 0 2rem; width: 100%">
+                          <tr class="data" style="display: flex; padding: 0.4rem 0; width: 100%; text-decoration: none; color: #000;">
+                            <td style="width: 6rem; color: #dab88a; font-weight: bold; font-size: 16px;">
+                              <span>Name</span>
+                            </td>
+                            <td style="font-size: 16px; width: 100%; text-decoration: none; color: black; margin-left: 1rem;">
+                              <span>${data.name}</span>
+                            </td>
+                          </tr>
+                          <tr class="data" style="display: flex; padding: 0.4rem 0; width: 100%; text-decoration: none; color: #000;">
+                            <td style="width: 6rem; color: #dab88a; font-weight: bold; font-size: 16px;">
+                              <span>Email</span>
+                            </td>
+                            <td style="font-size: 16px; width: 100%; text-decoration: none; color: black; margin-left: 1rem;">
+                              <span>${data.email}</span>
+                            </td>
+                          </tr>
+                          <tr class="data" style="display: flex; padding: 0.4rem 0; width: 100%; text-decoration: none; color: #000;">
+                            <td style="width: 6rem; color: #dab88a; font-weight: bold; font-size: 16px;">
+                              <span>Phone</span>
+                            </td>
+                            <td style="font-size: 16px; width: 100%; text-decoration: none; color: black; margin-left: 1rem;">
+                              <span>${data.phone}</span>
+                            </td>
+                          </tr>
+                          <tr class="data" style="display: flex; padding: 0.4rem 0; width: 100%; text-decoration: none; color: #000;">
+                            <td style="width: 6rem; color: #dab88a; font-weight: bold; font-size: 16px;">
+                              <span>Message</span>
+                            </td>
+                            <td style="font-size: 16px; width: 100%; text-decoration: none; color: black; margin-left: 1rem;">
+                              <span>${data.message}</span>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </center>
+        </body>
+      </html>
+      `,
+    };
+
+    transporter.sendMail(mailOption, (error, info) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.status(200).send("Message sent!");
+      }
+    });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 module.exports = {
   handleRegister,
   hendleLogin,
   forgetPassword,
+  sendMessage,
 };

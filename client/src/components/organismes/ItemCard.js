@@ -1,6 +1,6 @@
 import React from "react";
 
-function ItemCard({ description, price, id }) {
+function ItemCard({ description, price, id, color }) {
   return (
     <div className="bg-white h-max  text-dark">
       <div className="flex justify-center items-center">

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function PageTitle() {
-  return (
-    <div>PageTitle</div>
-  )
+function PageTitle({ title, className }) {
+  return <div className={className}>{title}</div>;
 }
 
-export default PageTitle
+export default PageTitle;
