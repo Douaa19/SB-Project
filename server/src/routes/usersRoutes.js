@@ -11,6 +11,6 @@ const {
 const { Users } = require("../controllers");
 
 // contact admin
-router.route("/contct").post(Users.handleRegister);
+router.route("/contact").post(Users.sendMessage);
 
 module.exports = router;
