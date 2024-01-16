@@ -1,9 +1,20 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { PageTitle } from "../components/atoms";
 import { NavBar, Footer } from "../components/layout";
 import { Form } from "../components/templates";
+import Popup from "../components/organismes/Popup";
+import ContactDonePopup from "../components/molecules/ContactDonePopup";
+import { setContactDone } from "../redux/actions/popups";
 
 function Contact() {
+  const dispatch = useDispatch();
+  const contactPopup = useSelector((state) => state.contactDonePopup);
+
+  const closePopup = () => {
+    dispatch(setContactDone(false));
+  };
+
   return (
     <>
       <NavBar />
@@ -25,6 +36,15 @@ function Contact() {
         </div>
       </div>
       <Footer />
+      {contactPopup && (
+        <div
+          onClick={closePopup}
+          className="min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
+          <Popup>
+            <ContactDonePopup />
+          </Popup>
+        </div>
+      )}
     </>
   );
 }

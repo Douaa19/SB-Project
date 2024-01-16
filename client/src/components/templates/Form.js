@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Input, TextArea } from "../atoms";
 import { sendMessage } from "../../services/userServices";
+import { setContactDone } from "../../redux/actions/popups";
 
 function Form({ className, type }) {
+  const dispatch = useDispatch();
+  const done = useSelector((state) => state.contactDonePopup);
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
-  const [done, setDone] = useState(false);
-  console.log(done)
 
   const handleChange = async (element, value) => {
     const newData = { ...data, [`${element}`]: value };
@@ -19,8 +21,8 @@ function Form({ className, type }) {
     if (Object.keys(errors).length === 0) {
       sendMessage(data).then((res) => {
         if (res.status === 200) {
-          setDone(true);
-          console.log(done)
+          dispatch(setContactDone(true));
+          setData({ name: "", email: "", phone: "", message: "" });
         }
       });
     } else {
@@ -81,7 +83,7 @@ function Form({ className, type }) {
           }`}
           placeHolder="name"
           name="name"
-          value={done === true ? "" : data.name}
+          value={data.name}
           onChange={(e) => handleChange("name", e.target.value)}
           error={errors.name}
         />
@@ -94,7 +96,7 @@ function Form({ className, type }) {
           }`}
           placeHolder="example@email.com"
           name="email"
-          value={done === true ? "" : data.email}
+          value={data.email}
           onChange={(e) => handleChange("email", e.target.value)}
           error={errors.email}
         />
@@ -108,7 +110,7 @@ function Form({ className, type }) {
         }`}
         placeHolder="phone number"
         name="phone"
-        value={done === true ? "" : data.phone}
+        value={data.phone}
         onChange={(e) => handleChange("phone", e.target.value)}
         error={errors.phone}
       />
@@ -117,7 +119,7 @@ function Form({ className, type }) {
         id="message"
         rows="5"
         name="message"
-        value={done === true ? "" : data.message}
+        value={data.message}
         onChange={(e) => handleChange("message", e.target.value)}
         error={errors.message}
         className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${

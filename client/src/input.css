@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animation-fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
 
 body {
   margin: 0;
