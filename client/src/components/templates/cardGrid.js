@@ -3,8 +3,11 @@ import Slider from "react-slick";
 import CategoryCard from "../organismes/CategoryCard";
 import ItemCard from "../organismes/ItemCard";
 import AboutCard from "../organismes/AboutCard";
+import { useSelector } from "react-redux";
 
 function CardGrid({ type, categories, items, aboutItems }) {
+  const categoryItems = useSelector((state) => state.categoryItems);
+  console.log(categoryItems);
   const settings = {
     dots: false,
     infinite: true,

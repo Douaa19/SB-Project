@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Input, TextArea } from "../atoms";
 import { sendMessage } from "../../services/userServices";
+import { setContactDone } from "../../redux/actions/popups";
 
 function Form({ className, type }) {
+  const dispatch = useDispatch();
+  const done = useSelector((state) => state.contactDonePopup);
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -15,7 +19,12 @@ function Form({ className, type }) {
     let errors = validationForm(data);
 
     if (Object.keys(errors).length === 0) {
-      sendMessage(data);
+      sendMessage(data).then((res) => {
+        if (res.status === 200) {
+          dispatch(setContactDone(true));
+          setData({ name: "", email: "", phone: "", message: "" });
+        }
+      });
     } else {
       console.log("Error!!");
     }
@@ -59,9 +68,7 @@ function Form({ className, type }) {
   };
 
   const isPhoneNumber = (phone) => {
-    return /^\+\d{12}$/.test(
-      phone
-    );
+    return /^\+\d{12}$/.test(phone);
   };
 
   return (

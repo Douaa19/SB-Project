@@ -18,3 +18,11 @@ export const getNewestItems = async () => {
   const result = await axios.get(`${BACKEND_URL}newest-items`);
   return result.data;
 };
+
+// get category items
+export const getItemsByCategory = async (category_id, type) => {
+  const result = await axios.get(
+    `${BACKEND_URL}get-items/${category_id}/${type}`
+  );
+  return result.data;
+};

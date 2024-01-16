@@ -119,10 +119,10 @@ const forgetPassword = async (req, res) => {
 const sendMessage = async (req, res) => {
   try {
     const data = {
-      name: req.body.name,
-      email: req.body.email,
-      phone: req.body.phone,
-      message: req.body.message,
+      name: req.body.data.name,
+      email: req.body.data.email,
+      phone: req.body.data.phone,
+      message: req.body.data.message,
       to: "sabalarif97@gmail.com",
     };
 
