@@ -1,8 +1,14 @@
 import React from "react";
 
 function ItemCard({ description, price, id, color }) {
+  const openProduct = (item_id) => {
+    console.log(item_id);
+  };
+
   return (
-    <div className="bg-white h-max  text-dark">
+    <div
+      className="bg-white h-max text-dark hover:cursor-pointer hover:shadow-md rounded-b-md opacity-img"
+      onClick={() => openProduct(id)}>
       <div className="flex justify-center items-center">
         <img
           src={`http://localhost:8008/api/items/${id}/image`}
