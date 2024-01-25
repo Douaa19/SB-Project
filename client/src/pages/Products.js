@@ -21,6 +21,7 @@ function Products({ title }) {
           items={
             url.slice(22) === "best-selling" ? bestSellingItems : newestItems
           }
+          url={url.slice(22)}
         />
       </div>
       <Footer />

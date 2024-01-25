@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, Products, About, Basket, Contact } from "../pages";
+import { Home, Products, About, Basket, Contact, Product } from "../pages";
 
 function AppRoutes() {
   return (
@@ -11,6 +11,10 @@ function AppRoutes() {
           <Route
             path="/best-selling"
             element={<Products title="best selling" categories />}
+          />
+          <Route
+            path="/best-selling/item/:itemId"
+            element={<Product />}
           />
           <Route
             path="/products"

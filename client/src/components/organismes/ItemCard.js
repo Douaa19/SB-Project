@@ -1,8 +1,9 @@
 import React from "react";
 
-function ItemCard({ description, price, id, color }) {
+function ItemCard({ description, price, id, color, url }) {
+  console.log(url);
   const openProduct = (item_id) => {
-    console.log(item_id);
+    window.location = `/${url}/item/${item_id}`;
   };
 
   return (
