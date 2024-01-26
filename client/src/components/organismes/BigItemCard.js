@@ -6,7 +6,7 @@ function BigItemCard({ url, item }) {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 1000,
+    speed: 2000,
     autoplay: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -14,7 +14,6 @@ function BigItemCard({ url, item }) {
     prevArrow: null,
     useTransform: true,
   };
-  console.log(item.color);
 
   useEffect(() => {
     const fetchItemImages = async () => {
@@ -34,30 +33,35 @@ function BigItemCard({ url, item }) {
   }, []);
 
   return (
-    <div className="lg:py-8 ssm:py-6 sm:px-10 ssm:px-6">
+    <div className="lg:py-8 ssm:py-6 sm:px-24 ssm:px-6">
       <div className="flex flex-col gap-3">
         <div className="capitalize text-16">
           <p>
-            <a href="/" className="hover:underline hover:text-main">
+            <a
+              href="/"
+              className="hover:underline hover:text-main lg:text-16 sm:text-14 ssm:text-12">
               home
             </a>{" "}
             /{" "}
             <a
               href={`/${url.slice(22, -30)}`}
-              className="hover:underline hover:text-main">
+              className="hover:underline hover:text-main lg:text-16 sm:text-14 ssm:text-12">
               {url.slice(22, -30)}
             </a>{" "}
-            / <span className="text-main">{item.title}</span>
+            /{" "}
+            <span className="text-main lg:text-16 sm:text-14 ssm:text-12">
+              {item.title}
+            </span>
           </p>
         </div>
-        <div className="flex justify-between items-center gap-16">
-          <div className="flex justify-start w-1/2">
+        <div className="flex md:flex-row md:justify-between items-center ssm:flex-col ssm:justify-start md:gap-28 ssm:gap-12">
+          <div className="flex justify-start md:w-1/2 ssm:w-full">
             <div className="w-full">
               {item.images.length > 0 ? (
                 <>
                   <Slider {...settings}>
                     {images.map((imageData, index) => (
-                      <div className="w-full max-h-[500px]">
+                      <div className="w-auto max-h-[500px]">
                         <img
                           key={index}
                           src={`data:image/png;base64,${imageData}`}
@@ -73,12 +77,14 @@ function BigItemCard({ url, item }) {
             </div>
           </div>
           <div className="flex justify-start w-full">
-            <div className="text-start">
+            <div className="text-start w-full">
               <div className="">
-                <h3>{item.title}</h3>
-                <span>{item.price}</span>
+                <h3 className="lg:text-24 md:text-18 font-bold">
+                  {item.title}
+                </h3>
+                <span className="lg:text-24 md:text-18">{item.price}</span>
               </div>
-              <div className="">
+              <div className="md:mt-10 ssm:mt-2 md:gap-3 ssm:gap-1 flex flex-col md:text-16 ssm:text-14">
                 <p>{item.description}</p>
                 <span>{item.size}</span>
                 <div
@@ -95,11 +101,11 @@ function BigItemCard({ url, item }) {
                   ))}
                 </div> */}
               </div>
-              <div className="flex flex-col gap-4 mt-56">
-                <button className="border border-main font-bold text-18 hover:bg-main hover:text-white text-main rounded-md py-3 capitalize">
+              <div className="flex flex-col gap-4 md:mt-40 ssm:mt-10 ssm:items-center">
+                <button className="ssm:min-w-[75%] md:w-1/2 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-main hover:text-white text-main rounded-md py-3 capitalize">
                   add to card
                 </button>
-                <button className="border border-main font-bold text-18 hover:bg-white hover:text-main bg-main text-white rounded-md py-3 capitalize">
+                <button className="ssm:min-w-[75%] md:w-1/2 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-white hover:text-main bg-main text-white rounded-md py-3 capitalize">
                   buy now
                 </button>
               </div>

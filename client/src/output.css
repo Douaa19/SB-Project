@@ -674,24 +674,8 @@ video {
   margin-top: 2.5rem;
 }
 
-.mt-36 {
-  margin-top: 9rem;
-}
-
 .mt-40 {
   margin-top: 10rem;
-}
-
-.mt-48 {
-  margin-top: 12rem;
-}
-
-.mt-52 {
-  margin-top: 13rem;
-}
-
-.mt-56 {
-  margin-top: 14rem;
 }
 
 .block {
@@ -704,6 +688,10 @@ video {
 
 .grid {
   display: grid;
+}
+
+.h-4 {
+  height: 1rem;
 }
 
 .h-5 {
@@ -747,14 +735,6 @@ video {
   height: 100vh;
 }
 
-.h-4 {
-  height: 1rem;
-}
-
-.h-full {
-  height: 100%;
-}
-
 .max-h-\[500px\] {
   max-height: 500px;
 }
@@ -778,6 +758,10 @@ video {
 
 .w-20 {
   width: 5rem;
+}
+
+.w-4 {
+  width: 1rem;
 }
 
 .w-400 {
@@ -808,6 +792,10 @@ video {
   width: 90%;
 }
 
+.w-auto {
+  width: auto;
+}
+
 .w-full {
   width: 100%;
 }
@@ -815,10 +803,6 @@ video {
 .w-max {
   width: -webkit-max-content;
   width: max-content;
-}
-
-.w-4 {
-  width: 1rem;
 }
 
 .max-w-\[64px\] {
@@ -910,12 +894,12 @@ video {
   gap: 0.25rem;
 }
 
-.gap-16 {
-  gap: 4rem;
-}
-
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-28 {
+  gap: 7rem;
 }
 
 .gap-3 {
@@ -975,10 +959,6 @@ video {
   border-width: 1px;
 }
 
-.border-b {
-  border-bottom-width: 1px;
-}
-
 .border-main {
   --tw-border-opacity: 1;
   border-color: rgb(218 184 138 / var(--tw-border-opacity));
@@ -992,11 +972,6 @@ video {
 .border-white {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
-.border-dark {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
 .bg-dark {
@@ -1091,11 +1066,6 @@ video {
   padding-bottom: 1.5rem;
 }
 
-.py-1 {
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
-
 .pb-2 {
   padding-bottom: 4px;
 }
@@ -1122,6 +1092,10 @@ video {
 
 .text-18 {
   font-size: 18px;
+}
+
+.text-24 {
+  font-size: 24px;
 }
 
 .text-sm {
@@ -1205,6 +1179,10 @@ video {
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.outline {
+  outline-style: solid;
 }
 
 .transition {
@@ -1368,13 +1346,13 @@ body {
   background-color: rgb(218 184 138 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-white\/20:hover {
-  background-color: rgb(255 255 255 / 0.2);
-}
-
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-white\/20:hover {
+  background-color: rgb(255 255 255 / 0.2);
 }
 
 .hover\:text-main:hover {
@@ -1467,6 +1445,14 @@ body {
     margin-top: 1.25rem;
   }
 
+  .ssm\:mt-2 {
+    margin-top: 0.5rem;
+  }
+
+  .ssm\:mt-10 {
+    margin-top: 2.5rem;
+  }
+
   .ssm\:flex {
     display: flex;
   }
@@ -1523,6 +1509,18 @@ body {
     width: 100%;
   }
 
+  .ssm\:w-4\/5 {
+    width: 80%;
+  }
+
+  .ssm\:min-w-\[\] {
+    min-width: ;
+  }
+
+  .ssm\:min-w-\[75\%\] {
+    min-width: 75%;
+  }
+
   .ssm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1541,6 +1539,14 @@ body {
 
   .ssm\:items-end {
     align-items: flex-end;
+  }
+
+  .ssm\:items-center {
+    align-items: center;
+  }
+
+  .ssm\:justify-start {
+    justify-content: flex-start;
   }
 
   .ssm\:justify-center {
@@ -1565,6 +1571,14 @@ body {
 
   .ssm\:gap-6 {
     gap: 1.5rem;
+  }
+
+  .ssm\:gap-10 {
+    gap: 2.5rem;
+  }
+
+  .ssm\:gap-12 {
+    gap: 3rem;
   }
 
   .ssm\:p-1 {
@@ -1635,6 +1649,10 @@ body {
 
   .ssm\:pt-4 {
     padding-top: 12px;
+  }
+
+  .ssm\:text-center {
+    text-align: center;
   }
 
   .ssm\:text-10 {
@@ -1709,6 +1727,11 @@ body {
     padding-right: 2.5rem;
   }
 
+  .sm\:px-24 {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+
   .sm\:py-14 {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
@@ -1770,6 +1793,14 @@ body {
     margin-top: 2rem;
   }
 
+  .md\:mt-10 {
+    margin-top: 2.5rem;
+  }
+
+  .md\:mt-40 {
+    margin-top: 10rem;
+  }
+
   .md\:block {
     display: block;
   }
@@ -1820,6 +1851,10 @@ body {
     width: 100%;
   }
 
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1854,6 +1889,14 @@ body {
 
   .md\:gap-4 {
     gap: 1rem;
+  }
+
+  .md\:gap-28 {
+    gap: 7rem;
+  }
+
+  .md\:gap-3 {
+    gap: 0.75rem;
   }
 
   .md\:px-10 {
@@ -2009,6 +2052,14 @@ body {
 
   .lg\:text-18 {
     font-size: 18px;
+  }
+
+  .lg\:text-24 {
+    font-size: 24px;
+  }
+
+  .lg\:text-16 {
+    font-size: 16px;
   }
 }
 
