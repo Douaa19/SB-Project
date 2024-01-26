@@ -12,8 +12,9 @@ function BigItemCard({ url, item }) {
     slidesToScroll: 1,
     nextArrow: null,
     prevArrow: null,
-    // useTransform: true,
+    useTransform: true,
   };
+  console.log(item.color);
 
   useEffect(() => {
     const fetchItemImages = async () => {
@@ -31,8 +32,6 @@ function BigItemCard({ url, item }) {
 
     fetchItemImages();
   }, []);
-
-  console.log(images);
 
   return (
     <div className="lg:py-8 ssm:py-6 sm:px-10 ssm:px-6">
@@ -74,7 +73,37 @@ function BigItemCard({ url, item }) {
             </div>
           </div>
           <div className="flex justify-start w-full">
-            <div className="">Hello</div>
+            <div className="text-start">
+              <div className="">
+                <h3>{item.title}</h3>
+                <span>{item.price}</span>
+              </div>
+              <div className="">
+                <p>{item.description}</p>
+                <span>{item.size}</span>
+                <div
+                  className={`border h-4 w-4 rounded-full ${
+                    item.color === "black"
+                      ? "bg-dark"
+                      : item.color === "white"
+                      ? "bg-white"
+                      : "bg-main"
+                  }`}></div>
+                {/* <div className="">
+                  {item.colors.map((color, index) => (
+                    <div>{color}</div>
+                  ))}
+                </div> */}
+              </div>
+              <div className="flex flex-col gap-4 mt-56">
+                <button className="border border-main font-bold text-18 hover:bg-main hover:text-white text-main rounded-md py-3 capitalize">
+                  add to card
+                </button>
+                <button className="border border-main font-bold text-18 hover:bg-white hover:text-main bg-main text-white rounded-md py-3 capitalize">
+                  buy now
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
