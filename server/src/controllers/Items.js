@@ -209,7 +209,7 @@ const getBestSelling = async (req, res) => {
 };
 
 // get item images
-const getItemImages = async (req, res) => {
+const getItemImage = async (req, res) => {
   try {
     await Item.findById(req.params.item_id)
       .exec()
@@ -226,6 +226,35 @@ const getItemImages = async (req, res) => {
             )
           );
       });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+// get item's images
+const getItemImages = async (req, res) => {
+  try {
+    const item = await Item.findById(req.params.item_id).exec();
+
+    if (!item) {
+      return res.status(404).send("Item not found");
+    }
+
+    const imagesPath = path.join(
+      path.dirname(__dirname),
+      "public",
+      "img",
+      "items"
+    );
+
+    const imagePromises = item.images.map(async (imageName) => {
+      const imagePath = path.join(imagesPath, imageName);
+      return fs.promises.readFile(imagePath, { encoding: "base64" });
+    });
+
+    const imagesData = await Promise.all(imagePromises);
+
+    res.status(200).json({ images: imagesData });
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -256,6 +285,7 @@ module.exports = {
   deleteItem,
   updateItem,
   getBestSelling,
+  getItemImage,
   getItemImages,
   getNewestItems,
 };

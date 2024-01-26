@@ -27,11 +27,13 @@ function NavBar() {
   return (
     <div className="h-max bg-white md:flex md:flex-row md:items-center md:justify-around gap-4 md:w-full md:pt-6 ssm:pt-2 font-normal md:gap-1 md:px-6 ssm:flex ssm:flex-col ssm:items-start ssm:px-8 ssm:gap-1 ssm:justify-center">
       <div className="logo flex justify-center items-center">
-        <img
-          src={Logo}
-          alt="logo"
-          className="text-main lg:w-20 text-center p-2 text-18 hover:cursor-pointer md:w-16 ssm:w-12"
-        />
+        <a href="/">
+          <img
+            src={Logo}
+            alt="logo"
+            className="text-main lg:w-20 text-center p-2 text-18 hover:cursor-pointer md:w-16 ssm:w-12"
+          />
+        </a>
       </div>
       <div className="menu lg:block lg:text-18 lg:w-640 flex justify-center md:block md:text-14 ssm:text-10 md:w-500 ssm:w-full">
         <ul

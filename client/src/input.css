@@ -59,5 +59,11 @@ body {
 }
 
 .category-card {
-  background-image: url("./assets/images/image1.jpg");
+  background-image: url("./assets/images/blue_view.jpg");
+}
+
+.opacity-img:hover img {
+  opacity: 0.9;
+  transform: scale(0.9);
+  transition: opacity 1s, transform 250ms;
 }

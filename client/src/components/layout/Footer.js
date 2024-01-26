@@ -9,7 +9,9 @@ function Footer() {
     <div className="mt-10 bg-dark lg:py-8 ssm:py-6 lg:px-28 ssm:px-16 h-max text-white">
       <div className="flex justify-between flex-col items-start">
         <div className="w-full mb-4 flex items-center lg:justify-start ssm:justify-center">
-          <img src={Logo} alt="logo" className="w-20" />
+          <a href="/">
+            <img src={Logo} alt="logo" className="w-20" />
+          </a>
         </div>
         <div className="flex lg:justify-between lg:flex-row w-full pt-4 mb-6 gap-2 ssm:flex-col-reverse">
           <div className="flex flex-col justify-start items-start md:w-fit ssm:w-1/2 ssm:mt-4 lg:mt-0">
@@ -25,7 +27,7 @@ function Footer() {
               </h6>
               <ul className="md:text-14 ssm:text-12">
                 <li className="pb-2 capitalize hover:text-main hover:cursor-pointer">
-                  <a href="/bestSelling">best selling</a>
+                  <a href="/best-selling">best selling</a>
                 </li>
                 <li className="pb-2 capitalize hover:text-main hover:cursor-pointer">
                   <a href="/products">newest products</a>
