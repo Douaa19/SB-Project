@@ -7,19 +7,15 @@ import { getItemById } from "../redux/selectors/selectors";
 
 function Product({}) {
   const params = useParams();
-  const bestItems = useSelector((state) => state.bestSellingItems);
   const newestItems = useSelector((state) => state.newestItems);
   const url = window.location.href;
-  const bestSellingURL = url.includes("best-selling");
-  const item = useSelector((state) =>
-    getItemById(state.newestItems, params.itemId)
-  );
+  const item = useSelector((state) => getItemById(newestItems, params.itemId));
   console.log(item);
 
   return (
     <>
       <NavBar />
-      <BigItemCard itemId={params.itemId} url={url} />
+      <BigItemCard url={url} item={item} />
       <Footer />
     </>
   );

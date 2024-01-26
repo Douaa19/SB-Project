@@ -47,8 +47,11 @@ router
 // get best selling items
 router.route("/best-selling").get(Item.getBestSelling);
 
+// get item image
+router.route("/:item_id/image").get(Item.getItemImage);
+
 // get item images
-router.route("/:item_id/image").get(Item.getItemImages);
+router.route("/:item_id/images").get(Item.getItemImages);
 
 // get newest items
 router.route("/newest-items").get(Item.getNewestItems);
