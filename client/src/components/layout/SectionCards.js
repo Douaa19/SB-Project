@@ -5,7 +5,8 @@ import ItemCard from "../organismes/ItemCard";
 import Slider from "react-slick";
 import LoadingCard from "../organismes/LoadingCard";
 
-function SectionCards({ items, title, buttonText, page }) {
+function SectionCards({ items, title, buttonText, page, limit }) {
+  console.log(limit)
   const myArr = [0, 1, 2, 3, 4, 5];
   const settings = {
     dots: true,
@@ -48,7 +49,7 @@ function SectionCards({ items, title, buttonText, page }) {
         <div className="sm:mt-10 ssm:mt-5">
           {items.length > 0 ? (
             <Slider {...settings}>
-              {items.map((i, index) => (
+              {items.slice(0, limit).map((i, index) => (
                 <>
                   <ItemCard
                     key={index}

@@ -10,7 +10,7 @@ function Home() {
   const dispatch = useDispatch();
   const bestSellingItems = useSelector((state) => state.bestSellingItems);
   const newestItems = useSelector((state) => state.newestItems);
-  const limit = useSelector((state) => state.loadMoreItems);
+  const limit = useSelector((state) => state.loadMoreItems.limit);
 
   const [displayLimit, setDisplayLimit] = useState(limit);
 
@@ -27,12 +27,14 @@ function Home() {
         title="best selling"
         buttonText="View more"
         page="best-selling"
+        limit={displayLimit}
       />
       <SectionCards
         items={newestItems}
         title="new products"
         buttonText="View more"
         page="products"
+        limit={displayLimit}
       />
       <Footer />
     </div>
