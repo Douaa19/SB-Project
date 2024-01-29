@@ -12,7 +12,6 @@ function Product({}) {
   const url = window.location.href;
   const item = useSelector((state) => getItemById(newestItems, params.itemId));
   const items = useSelector((state) => state.bestSellingItems);
-  console.log(item);
 
   // filter items based on category_id
   const mismatchedCategories = items.filter(
