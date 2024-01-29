@@ -22,11 +22,14 @@ function Product({}) {
     <>
       <NavBar />
       <BigItemCard url={url} item={item} />
-      <SectionCards
-        items={mismatchedCategories}
-        page={url.slice(22, -30)}
-        buttonText="view more"
-      />
+      <div className="mt-8">
+        <SectionCards
+          title="Other categories"
+          items={mismatchedCategories}
+          page={url.slice(22, -30)}
+          buttonText="view more"
+        />
+      </div>
       <Footer />
     </>
   );
