@@ -16,6 +16,14 @@ function BigItemCard({ url, item }) {
     useTransform: true,
   };
 
+  const buyNow = () => {
+    // navigate directly to the basket
+  };
+
+  const addToCard = () => {
+    // add item to redux store basket
+  };
+
   useEffect(() => {
     const fetchItemImages = async () => {
       try {
@@ -106,12 +114,12 @@ function BigItemCard({ url, item }) {
                 <Button
                   className="ssm:min-w-[75%] md:w-1/2 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-main hover:text-white text-main rounded-md py-3 capitalize"
                   text="buy now"
-                  // onClick={}
+                  onClick={buyNow}
                 />
                 <Button
                   className="ssm:min-w-[75%] md:w-1/2 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-white hover:text-main bg-main text-white rounded-md py-3 capitalize"
                   text="add to card"
-                  // onClick={}
+                  onClick={addToCard}
                 />
               </div>
             </div>
