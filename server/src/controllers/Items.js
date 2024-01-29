@@ -268,7 +268,7 @@ const getNewestItems = async (req, res) => {
     const newestItems = await Item.find({})
       .populate("category_id")
       .sort({ createdAt: "desc" })
-      .limit(6);
+      // .limit(6);
 
     if (newestItems.length == 0) {
       res.status(200).send({ messageError: "Newest list is empty!" });

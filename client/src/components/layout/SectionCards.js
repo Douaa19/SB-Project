@@ -55,6 +55,7 @@ function SectionCards({ items, title, buttonText, page }) {
                     description={i.description}
                     price={i.price}
                     id={i._id}
+                    url={page}
                   />
                 </>
               ))}
