@@ -56,4 +56,9 @@ router.route("/:item_id/images").get(Item.getItemImages);
 // get newest items
 router.route("/newest-items").get(Item.getNewestItems);
 
+// get mismatched category items
+router
+  .route("/mismatch/:category_id")
+  .get(Item.getMismatchedCategoriesItems);
+
 module.exports = router;

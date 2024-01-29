@@ -277,6 +277,23 @@ const getNewestItems = async (req, res) => {
   }
 };
 
+// get other categories items
+const getMismatchedCategoriesItems = async (req, res) => {
+  try {
+    const { category_id } = req.params;
+    const items = await Item.find({
+      category_id: { $ne: category_id },
+    }).populate("category_id");
+    if (items.length > 0) {
+      res.status(200).send(items);
+    } else {
+      res.status(404).send("Emthy categories");
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 module.exports = {
   getItems,
   getItem,
@@ -288,4 +305,5 @@ module.exports = {
   getItemImage,
   getItemImages,
   getNewestItems,
+  getMismatchedCategoriesItems,
 };
