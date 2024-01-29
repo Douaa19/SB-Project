@@ -25,4 +25,31 @@ const categoryItems = (state = {}, action) => {
   }
 };
 
-export { bestSellingItemsReducer, newestItemsReducer, categoryItems };
+const initialState = {
+  items: [],
+  limit: 6,
+};
+
+const loadItems = (state = initialState, action) => {
+  switch (action.type) {
+    case "LOADITEMS":
+      return {
+        ...state,
+        items: action.payload,
+      };
+    case "LOADMOREITEMS":
+      return {
+        ...state,
+        limit: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export {
+  bestSellingItemsReducer,
+  newestItemsReducer,
+  categoryItems,
+  loadItems,
+};

@@ -5,9 +5,9 @@ import ItemCard from "../organismes/ItemCard";
 import AboutCard from "../organismes/AboutCard";
 import { useSelector } from "react-redux";
 
-function CardGrid({ type, categories, items, aboutItems, url }) {
+function CardGrid({ type, categories, items, aboutItems, url, limit }) {
   const categoryItems = useSelector((state) => state.categoryItems);
-  console.log(categoryItems);
+  // console.log(categoryItems);
   const settings = {
     dots: false,
     infinite: true,
@@ -64,7 +64,7 @@ function CardGrid({ type, categories, items, aboutItems, url }) {
           {type === "products" ? (
             <>
               <div className="grid xl:grid-cols-4 gap-6 mt-10 md:grid-cols-3 ssm:grid-cols-2">
-                {items.map((item, key) => (
+                {items.slice(0, limit).map((item, key) => (
                   <ItemCard
                     description={item.description}
                     id={item._id}

@@ -18,3 +18,8 @@ export const setCategoryItems = (items) => {
     payload: items,
   };
 };
+
+export const loadMoreItems = (newLimit) => ({
+  type: "LOADMOREITEMS",
+  payload : newLimit,
+});
