@@ -26,3 +26,9 @@ export const getItemsByCategory = async (category_id, type) => {
   );
   return result.data;
 };
+
+// get mismatched category items
+export const getMismatchedCategoryItems = async (category_id) => {
+  const result = await axios.get(`${BACKEND_URL}mismatch/${category_id}`);
+  return result.data;
+};
