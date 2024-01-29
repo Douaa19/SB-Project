@@ -70,7 +70,7 @@ function SectionCards({ items, title, buttonText, page }) {
       </div>
       <div className="w-max mt-10">
         <button
-          className="text-center sm:text-14 ssm:text-12 font-bold border border-main text-main px-6 py-3 rounded-5 hover:text-white hover:bg-main"
+          className="text-center capitalize sm:text-14 ssm:text-12 font-bold border border-main text-main px-6 py-3 rounded-5 hover:text-white hover:bg-main"
           onClick={() => (window.location = `/${page}`)}>
           {buttonText}
         </button>

@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { BigItemCard } from "../components/organismes";
 import { useSelector } from "react-redux";
 import { getItemById } from "../redux/selectors/selectors";
+import { SectionCards } from "../components/layout";
 
 function Product({}) {
   const params = useParams();
@@ -14,13 +15,18 @@ function Product({}) {
 
   //   filter items based on category_id
   const mismatchedCategories = items.filter(
-    (i) => i.category_id !== item.category_id
+    (i) => i.category_id._id !== item.category_id._id
   );
 
   return (
     <>
       <NavBar />
       <BigItemCard url={url} item={item} />
+      <SectionCards
+        items={mismatchedCategories}
+        page={url.slice(22, -30)}
+        buttonText="view more"
+      />
       <Footer />
     </>
   );
