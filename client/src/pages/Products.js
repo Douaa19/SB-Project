@@ -4,6 +4,8 @@ import HeaderProducts from "../components/layout/HeaderProducts";
 import CardGrid from "../components/templates/CardGrid";
 import Footer from "../components/layout/Footer";
 import { useDispatch, useSelector } from "react-redux";
+import { loadMoreItems } from "../redux/actions/items";
+import { Button } from "../components/atoms";
 
 function Products({ title }) {
   const dispatch = useDispatch();
@@ -14,10 +16,23 @@ function Products({ title }) {
 
   const limit = useSelector((state) => state.loadMoreItems.limit);
   const [displayLimit, setDisplayLimit] = useState(limit);
+  console.log(limit);
 
   useEffect(() => {
     setDisplayLimit(limit);
   }, [limit]);
+
+  useEffect(() => {
+    setDisplayLimit(10);
+  }, []);
+
+  const handleLoadMore = () => {
+    const newLimit = displayLimit + 10;
+
+    dispatch(loadMoreItems(newLimit));
+
+    setDisplayLimit(newLimit);
+  };
 
   return (
     <>
@@ -30,7 +45,15 @@ function Products({ title }) {
             url.slice(22) === "best-selling" ? bestSellingItems : newestItems
           }
           url={url.slice(22)}
+          limit={displayLimit}
         />
+        <div className="flex justify-center items-center">
+          <Button
+            className="mt-8 w-1/5 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-main hover:text-white text-main rounded-md py-3 capitalize"
+            text="load more"
+            onClick={handleLoadMore}
+          />
+        </div>
       </div>
       <Footer />
     </>

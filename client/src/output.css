@@ -674,6 +674,10 @@ video {
   margin-top: 2.5rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .mt-8 {
   margin-top: 2rem;
 }
@@ -803,6 +807,14 @@ video {
 .w-max {
   width: -webkit-max-content;
   width: max-content;
+}
+
+.w-1\/4 {
+  width: 25%;
+}
+
+.w-1\/5 {
+  width: 20%;
 }
 
 .max-w-\[64px\] {
