@@ -10,7 +10,12 @@ function Product({}) {
   const newestItems = useSelector((state) => state.newestItems);
   const url = window.location.href;
   const item = useSelector((state) => getItemById(newestItems, params.itemId));
-  console.log(item);
+  const items = useSelector((state) => state.bestSellingItems);
+
+  //   filter items based on category_id
+  const mismatchedCategories = items.filter(
+    (i) => i.category_id !== item.category_id
+  );
 
   return (
     <>
