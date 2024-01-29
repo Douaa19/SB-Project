@@ -192,9 +192,11 @@ const updateItem = async (req, res) => {
 // get best selling products
 const getBestSelling = async (req, res) => {
   try {
-    const bestSellingItems = await Item.find({ bestSelling: true }).sort({
-      createdAt: "desc",
-    });
+    const bestSellingItems = await Item.find({ bestSelling: true })
+      .sort({
+        createdAt: "desc",
+      })
+      .populate("category_id");
     if (bestSellingItems.length == 0) {
       res.status(200).send({ messageError: "Best selling list is empty!" });
     } else {
@@ -264,6 +266,7 @@ const getItemImages = async (req, res) => {
 const getNewestItems = async (req, res) => {
   try {
     const newestItems = await Item.find({})
+      .populate("category_id")
       .sort({ createdAt: "desc" })
       .limit(6);
 
