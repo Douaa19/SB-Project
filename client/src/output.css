@@ -674,10 +674,6 @@ video {
   margin-top: 2.5rem;
 }
 
-.mt-4 {
-  margin-top: 1rem;
-}
-
 .mt-8 {
   margin-top: 2rem;
 }
@@ -1126,10 +1122,6 @@ video {
 
 .font-normale {
   font-weight: 400;
-}
-
-.uppercase {
-  text-transform: uppercase;
 }
 
 .capitalize {

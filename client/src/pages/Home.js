@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Header from "../components/layout/Header";
 import PresentationCards from "../components/layout/PresentationCards";
 import SectionCards from "../components/layout/SectionCards";
 import Footer from "../components/layout/Footer";
-import { useSelector } from "react-redux";
+import { loadMoreItems } from "../redux/actions/items";
 
 function Home() {
+  const dispatch = useDispatch();
   const bestSellingItems = useSelector((state) => state.bestSellingItems);
   const newestItems = useSelector((state) => state.newestItems);
+  const limit = useSelector((state) => state.loadMoreItems);
+
+  const [displayLimit, setDisplayLimit] = useState(limit);
+
+  useEffect(() => {
+    setDisplayLimit(limit);
+  }, [limit]);
+
   return (
     <div>
       <Header />

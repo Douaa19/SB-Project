@@ -27,7 +27,7 @@ const categoryItems = (state = {}, action) => {
 
 const initialState = {
   items: [],
-  limit: 10,
+  limit: 6,
 };
 
 const loadItems = (state = initialState, action) => {
