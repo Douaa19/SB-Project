@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { Button } from "../atoms";
 
 function BigItemCard({ url, item }) {
   const [images, setImages] = useState([]);
@@ -102,12 +103,16 @@ function BigItemCard({ url, item }) {
                 </div> */}
               </div>
               <div className="flex flex-col gap-4 md:mt-40 ssm:mt-10 ssm:items-center">
-                <button className="ssm:min-w-[75%] md:w-1/2 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-main hover:text-white text-main rounded-md py-3 capitalize">
-                  add to card
-                </button>
-                <button className="ssm:min-w-[75%] md:w-1/2 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-white hover:text-main bg-main text-white rounded-md py-3 capitalize">
-                  buy now
-                </button>
+                <Button
+                  className="ssm:min-w-[75%] md:w-1/2 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-main hover:text-white text-main rounded-md py-3 capitalize"
+                  text="buy now"
+                  // onClick={}
+                />
+                <Button
+                  className="ssm:min-w-[75%] md:w-1/2 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-white hover:text-main bg-main text-white rounded-md py-3 capitalize"
+                  text="add to card"
+                  // onClick={}
+                />
               </div>
             </div>
           </div>
