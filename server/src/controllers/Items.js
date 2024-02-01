@@ -46,12 +46,10 @@ const getItemsByCategory = async (req, res) => {
     } else {
       items = await Item.find({ category_id });
     }
-    if (items.length > 0) {
+    if (items) {
       res.status(200).send(items);
     } else {
-      res
-        .status(200)
-        .send({ message: "This category doesn't countain any items" });
+      res.status(200).send("There is an error in this method.");
     }
   } catch (error) {
     res.status(500).send({
@@ -267,8 +265,8 @@ const getNewestItems = async (req, res) => {
   try {
     const newestItems = await Item.find({})
       .populate("category_id")
-      .sort({ createdAt: "desc" })
-      // .limit(6);
+      .sort({ createdAt: "desc" });
+    // .limit(6);
 
     if (newestItems.length == 0) {
       res.status(200).send({ messageError: "Newest list is empty!" });

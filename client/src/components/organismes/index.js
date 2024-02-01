@@ -5,6 +5,7 @@ import ItemCard from "./ItemCard";
 import LoadingCard from "./LoadingCard";
 import Popup from "./Popup";
 import PresentationCard from "./PresentationCard";
+import NoDataCard from "./NoDataCard";
 
 export {
   AboutCard,
@@ -14,4 +15,5 @@ export {
   LoadingCard,
   Popup,
   PresentationCard,
+  NoDataCard,
 };
