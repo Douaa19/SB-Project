@@ -16,7 +16,7 @@ const newestItemsReducer = (state = {}, action) => {
   }
 };
 
-const categoryItems = (state = {}, action) => {
+const categoryItems = (state = null, action) => {
   switch (action.type) {
     case "SETCATEGORYITEMS":
       return action.payload;

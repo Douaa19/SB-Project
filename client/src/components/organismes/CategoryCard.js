@@ -7,15 +7,11 @@ function CategoryCard({ name, id }) {
   const location = window.location.href.slice(22);
   const dispatch = useDispatch();
   const [emptyData, setEmptyData] = useState(false);
+
   const categoryItems = async () => {
     const type = location === "best-selling" ? "best-selling" : "all";
     getItemsByCategory(id, type).then((result) => {
-      if (result.message) {
-        setEmptyData(true);
-      } else {
-        console.log(result);
-        setCategoryItems(result);
-      }
+      dispatch(setCategoryItems(result));
     });
   };
 

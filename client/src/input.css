@@ -64,6 +64,13 @@ body {
 
 .opacity-img:hover img {
   opacity: 0.9;
-  transform: scale(0.9);
-  transition: opacity 1s, transform 250ms;
+  /* transition: opacity 1s, transform 250ms; */
+}
+
+.card-item {
+  transition: all 0.08s ease-in-out;
+}
+
+.card-item:hover {
+  transform: translateY(-5px);
 }

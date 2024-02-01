@@ -7,7 +7,7 @@ function ItemCard({ description, price, id, color, url }) {
 
   return (
     <div
-      className="bg-white h-max text-dark hover:cursor-pointer hover:shadow-md rounded-b-md opacity-img"
+      className="card-item bg-white h-max text-dark hover:cursor-pointer hover:shadow-md rounded-b-md opacity-img"
       onClick={() => openProduct(id)}>
       <div className="flex justify-center items-center">
         <img
