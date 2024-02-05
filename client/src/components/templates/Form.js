@@ -126,17 +126,41 @@ function Form({ className, type }) {
         <>
           <Select
             options={cities}
-            // type="select"
-            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
-              errors.phone
-                ? "border-red text-red placeholder:text-red"
-                : "border-main"
+            classNamePrefix="dropdown-select"
+            className={`${
+              errors.phone ? "input-error dropdown-select" : "dropdown-select"
             }`}
             placeholder="city"
             // name="city"
             // value={data.phone}
-            // onChange={(e) => handleChange("phone", e.target.value)}
-            // error={errors.phone}
+            onChange={(e) => handleChange("city", e.target.value)}
+            error={errors.city}
+          />
+          <Input
+            type="text"
+            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
+              errors.address
+                ? "border-red text-red placeholder:text-red"
+                : "border-main"
+            }`}
+            placeHolder="address"
+            name="address"
+            value={data.address}
+            onChange={(e) => handleChange("address", e.target.value)}
+            error={errors.address}
+          />
+          <Input
+            type="text"
+            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
+              errors.code
+                ? "border-red text-red placeholder:text-red"
+                : "border-main"
+            }`}
+            placeHolder="postal code"
+            name="postalCode"
+            value={data.postalCode}
+            onChange={(e) => handleChange("postalCode", e.target.value)}
+            error={errors.postalCode}
           />
         </>
       )}

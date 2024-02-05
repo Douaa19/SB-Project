@@ -7,6 +7,7 @@ import Popup from "./Popup";
 import PresentationCard from "./PresentationCard";
 import NoDataCard from "./NoDataCard";
 import BasketTable from "./BasketTable";
+import CheckOutCard from "./CheckOutCard";
 
 export {
   AboutCard,
@@ -18,4 +19,5 @@ export {
   PresentationCard,
   NoDataCard,
   BasketTable,
+  CheckOutCard,
 };

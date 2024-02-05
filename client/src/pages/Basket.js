@@ -1,6 +1,6 @@
 import React from "react";
 import { NavBar, Footer } from "../components/layout";
-import { BasketTable } from "../components/organismes";
+import { BasketTable, CheckOutCard } from "../components/organismes";
 import { PageTitle } from "../components/atoms";
 import { ShippingForm } from "../components/molecules";
 
@@ -16,6 +16,7 @@ function Basket() {
         <BasketTable />
         <div className="mt-6 w-full flex items-start justify-between gap-4">
           <ShippingForm />
+          <CheckOutCard />
         </div>
       </div>
       <Footer />

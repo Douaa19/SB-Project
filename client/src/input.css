@@ -80,3 +80,17 @@ body {
 .item-img {
   border-radius: 6px 6px 0 0;
 }
+
+.dropdown-select {
+  border: #dab88a 1px solid;
+  border-radius: 5px;
+  outline: none;
+}
+
+.dropdow-select__control {
+  border-radius: 0 8px 18px 0;
+  padding-left: 0;
+  border: none;
+  height: 100%;
+  outline: none;
+}
