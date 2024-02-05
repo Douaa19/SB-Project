@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Input, TextArea } from "../atoms";
 import { sendMessage } from "../../services/userServices";
 import { setContactDone } from "../../redux/actions/popups";
+import Select from "react-select";
+import { cities } from "morocco-cities";
 
 function Form({ className, type }) {
   const dispatch = useDispatch();
   const done = useSelector((state) => state.contactDonePopup);
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
+
+  // cities
+  const cities = useSelector((state) => state.cities);
 
   const handleChange = async (element, value) => {
     const newData = { ...data, [`${element}`]: value };
@@ -73,7 +78,10 @@ function Form({ className, type }) {
 
   return (
     <div className={className}>
-      <div className="flex md:flex-row w-full md:justify-between ssm:flex-col ssm:justify-center items-center md:gap-4 ssm:gap-6">
+      <div
+        className={`flex ${
+          type !== "contact" ? "flex-col" : "md:flex-row ssm:flex-col"
+        }  w-full md:justify-between ssm:justify-center items-center md:gap-4 ssm:gap-6`}>
         <Input
           type="text"
           className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
@@ -81,7 +89,7 @@ function Form({ className, type }) {
               ? "border-red text-red placeholder:text-red"
               : "border-main"
           }`}
-          placeHolder="name"
+          placeHolder={`${type === "contact" ? "name" : "full name"}`}
           name="name"
           value={data.name}
           onChange={(e) => handleChange("name", e.target.value)}
@@ -114,27 +122,73 @@ function Form({ className, type }) {
         onChange={(e) => handleChange("phone", e.target.value)}
         error={errors.phone}
       />
-      <TextArea
-        text="write your message here"
-        id="message"
-        rows="5"
-        name="message"
-        value={data.message}
-        onChange={(e) => handleChange("message", e.target.value)}
-        error={errors.message}
-        className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
-          errors.message
-            ? "border-red text-red placeholder:text-red"
-            : "border-main"
-        }`}
-      />
-      <div className="flex items-center justify-start w-full">
-        <Button
-          className="border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-main md:text-16 ssm:text-12 outline-none hover:bg-main hover:text-white font-bold"
-          text="submit"
-          onClick={() => handleSubmit()}
-        />
-      </div>
+      {type !== "contact" && (
+        <>
+          <Select
+            options={cities}
+            classNamePrefix="dropdown-select"
+            className={`${
+              errors.phone ? "input-error dropdown-select" : "dropdown-select"
+            }`}
+            placeholder="city"
+            // name="city"
+            // value={data.phone}
+            onChange={(e) => handleChange("city", e.target.value)}
+            error={errors.city}
+          />
+          <Input
+            type="text"
+            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
+              errors.address
+                ? "border-red text-red placeholder:text-red"
+                : "border-main"
+            }`}
+            placeHolder="address"
+            name="address"
+            value={data.address}
+            onChange={(e) => handleChange("address", e.target.value)}
+            error={errors.address}
+          />
+          <Input
+            type="text"
+            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
+              errors.code
+                ? "border-red text-red placeholder:text-red"
+                : "border-main"
+            }`}
+            placeHolder="postal code"
+            name="postalCode"
+            value={data.postalCode}
+            onChange={(e) => handleChange("postalCode", e.target.value)}
+            error={errors.postalCode}
+          />
+        </>
+      )}
+      {type === "contact" && (
+        <>
+          <TextArea
+            text="write your message here"
+            id="message"
+            rows="5"
+            name="message"
+            value={data.message}
+            onChange={(e) => handleChange("message", e.target.value)}
+            error={errors.message}
+            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
+              errors.message
+                ? "border-red text-red placeholder:text-red"
+                : "border-main"
+            }`}
+          />
+          <div className="flex items-center justify-start w-full">
+            <Button
+              className="border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-main md:text-16 ssm:text-12 outline-none hover:bg-main hover:text-white font-bold"
+              text="submit"
+              onClick={() => handleSubmit()}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }
