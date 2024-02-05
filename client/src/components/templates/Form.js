@@ -73,7 +73,10 @@ function Form({ className, type }) {
 
   return (
     <div className={className}>
-      <div className="flex md:flex-row w-full md:justify-between ssm:flex-col ssm:justify-center items-center md:gap-4 ssm:gap-6">
+      <div
+        className={`flex ${
+          type !== "contact" ? "flex-col" : "md:flex-row ssm:flex-col"
+        }  w-full md:justify-between ssm:justify-center items-center md:gap-4 ssm:gap-6`}>
         <Input
           type="text"
           className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
@@ -81,7 +84,7 @@ function Form({ className, type }) {
               ? "border-red text-red placeholder:text-red"
               : "border-main"
           }`}
-          placeHolder="name"
+          placeHolder={`${type === "contact" ? "name" : "full name"}`}
           name="name"
           value={data.name}
           onChange={(e) => handleChange("name", e.target.value)}
@@ -114,27 +117,48 @@ function Form({ className, type }) {
         onChange={(e) => handleChange("phone", e.target.value)}
         error={errors.phone}
       />
-      <TextArea
-        text="write your message here"
-        id="message"
-        rows="5"
-        name="message"
-        value={data.message}
-        onChange={(e) => handleChange("message", e.target.value)}
-        error={errors.message}
-        className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
-          errors.message
-            ? "border-red text-red placeholder:text-red"
-            : "border-main"
-        }`}
-      />
-      <div className="flex items-center justify-start w-full">
-        <Button
-          className="border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-main md:text-16 ssm:text-12 outline-none hover:bg-main hover:text-white font-bold"
-          text="submit"
-          onClick={() => handleSubmit()}
-        />
-      </div>
+      {type !== "contact" && (
+        <>
+          <Input
+            type="select"
+            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
+              errors.phone
+                ? "border-red text-red placeholder:text-red"
+                : "border-main"
+            }`}
+            placeHolder="city"
+            name="city"
+            value={data.phone}
+            onChange={(e) => handleChange("phone", e.target.value)}
+            error={errors.phone}
+          />
+        </>
+      )}
+      {type === "contact" && (
+        <>
+          <TextArea
+            text="write your message here"
+            id="message"
+            rows="5"
+            name="message"
+            value={data.message}
+            onChange={(e) => handleChange("message", e.target.value)}
+            error={errors.message}
+            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
+              errors.message
+                ? "border-red text-red placeholder:text-red"
+                : "border-main"
+            }`}
+          />
+          <div className="flex items-center justify-start w-full">
+            <Button
+              className="border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-main md:text-16 ssm:text-12 outline-none hover:bg-main hover:text-white font-bold"
+              text="submit"
+              onClick={() => handleSubmit()}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }

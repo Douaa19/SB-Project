@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Input from "../atoms/Input";
 import CardGrid from "../templates/CardGrid";
 import Search from "../../assets/icons/search-svgrepo-com.svg";
+import { PageTitle } from "../atoms";
 
 function HeaderProducts({ title, categories }) {
   const [searchValue, setSearchValue] = useState("");
@@ -14,9 +15,10 @@ function HeaderProducts({ title, categories }) {
 
   return (
     <div className="">
-      <div className="capitalize md:text-32 ssm:text-24 font-extrabold text-main text-start">
-        {title}
-      </div>
+      <PageTitle
+        title={title}
+        className="capitalize md:text-32 ssm:text-24 font-extrabold text-main text-start md:mt-8 ssm:mt-4"
+      />
       <div className="flex md:justify-between md:items-center md:flex-row md:gap-4 ssm:flex-col-reverse ssm:gap-2 sm:py-6 ssm:py-4">
         <CardGrid type="category" categories={categories} />
         <Input
