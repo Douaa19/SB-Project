@@ -10,9 +10,11 @@ import {
   getNewestItems,
 } from "./services/itemsServices";
 import { getCategories } from "./services/categoriesServices";
+import { cities } from "morocco-cities";
 
 function App() {
   const dispatch = useDispatch();
+  
 
   // get best selling products
   useEffect(() => {
@@ -25,6 +27,7 @@ function App() {
     getCategories().then((result) => {
       dispatch(setCategories(result));
     });
+    
   }, []);
 
   return (

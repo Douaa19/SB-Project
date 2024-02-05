@@ -4,16 +4,13 @@ import { Button, Input, TextArea } from "../atoms";
 import { sendMessage } from "../../services/userServices";
 import { setContactDone } from "../../redux/actions/popups";
 import Select from "react-select";
+import { cities } from "morocco-cities";
 
 function Form({ className, type }) {
   const dispatch = useDispatch();
   const done = useSelector((state) => state.contactDonePopup);
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
-
-  // morocco cities
-  const { moroccoCities } = require("morocco-cities");
-  const [cities, setCities] = useState({});
 
   const handleChange = async (element, value) => {
     const newData = { ...data, [`${element}`]: value };
@@ -76,8 +73,6 @@ function Form({ className, type }) {
     return /^\+\d{12}$/.test(phone);
   };
 
-  useEffect(() => {}, []);
-
   return (
     <div className={className}>
       <div
@@ -127,14 +122,14 @@ function Form({ className, type }) {
       {type !== "contact" && (
         <>
           <Select
-            options={cities}
+            // options={city}
             // type="select"
-            // className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
-            //   errors.phone
-            //     ? "border-red text-red placeholder:text-red"
-            //     : "border-main"
-            // }`}
-            // placeHolder="city"
+            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
+              errors.phone
+                ? "border-red text-red placeholder:text-red"
+                : "border-main"
+            }`}
+            placeholder="city"
             // name="city"
             // value={data.phone}
             // onChange={(e) => handleChange("phone", e.target.value)}

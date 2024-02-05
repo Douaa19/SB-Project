@@ -7,6 +7,7 @@ import {
 } from "./itemsReducer";
 import { categoriesReducer } from "./categoriesReducer";
 import contactDonePopup from "./contactDonePopupReducer";
+import cities from "./citiesReducer";
 
 const allReducers = combineReducers({
   bestSellingItems: bestSellingItemsReducer,
@@ -15,6 +16,7 @@ const allReducers = combineReducers({
   contactDonePopup,
   categoryItems,
   loadMoreItems: loadItems,
+  cities,
 });
 
 export default allReducers;
