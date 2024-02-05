@@ -12,6 +12,9 @@ function Form({ className, type }) {
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
 
+  // cities
+  const cities = useSelector((state) => state.cities);
+
   const handleChange = async (element, value) => {
     const newData = { ...data, [`${element}`]: value };
     setData(newData);
@@ -122,7 +125,7 @@ function Form({ className, type }) {
       {type !== "contact" && (
         <>
           <Select
-            // options={city}
+            options={cities}
             // type="select"
             className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
               errors.phone

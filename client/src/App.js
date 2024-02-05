@@ -10,11 +10,11 @@ import {
   getNewestItems,
 } from "./services/itemsServices";
 import { getCategories } from "./services/categoriesServices";
+import { setCities } from "./redux/actions/cities";
 import { cities } from "morocco-cities";
 
 function App() {
   const dispatch = useDispatch();
-  
 
   // get best selling products
   useEffect(() => {
@@ -27,7 +27,13 @@ function App() {
     getCategories().then((result) => {
       dispatch(setCategories(result));
     });
-    
+    dispatch(
+      setCities(
+        cities.map((city) => {
+          return { label: city.name, value: city.iso3 };
+        })
+      )
+    );
   }, []);
 
   return (
