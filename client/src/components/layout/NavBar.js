@@ -38,7 +38,7 @@ function NavBar() {
       <div className="menu lg:block lg:text-18 lg:w-640 flex justify-center items-center md:block md:text-14 ssm:text-10 md:w-500 ssm:w-full p-0">
         <ul
           className={`md:flex md:pr-0 md:justify-around md:flex-row w-full ssm:z-1 z-[1] capitalize ssm:flex ssm:flex-col ssm:items-end md:static ssm:absolute ssm:pr-8 transition-all duration-100 ease-in ${
-            open ? "top-22 opacity-100 z-[1]" : "top-[-480px]"
+            open ? "top-10 opacity-100 z-[1]" : "top-[-480px]"
           } ssm:opacity-100 opacity-0`}>
           {links.map((link) => (
             <li key={link.name} className="ssm:pt-2.5 md:pt-0">
