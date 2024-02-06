@@ -118,11 +118,11 @@ function BigItemCard({ url, item }) {
                 <h3 className="lg:text-24 md:text-18 font-bold">
                   {item.title}
                 </h3>
-                <span className="lg:text-24 md:text-18">{item.price}</span>
+                <span className="lg:text-24 md:text-18">{`${item.price}$`}</span>
               </div>
               <div className="md:mt-10 ssm:mt-2 md:gap-3 ssm:gap-1 flex flex-col md:text-16 ssm:text-14">
                 <p>{item.description}</p>
-                <span>{item.size}</span>
+                <span>{`${item.size} cm`}</span>
                 <div
                   className={`border h-4 w-4 rounded-full ${
                     item.color === "black"

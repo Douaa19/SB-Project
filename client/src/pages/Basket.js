@@ -17,7 +17,7 @@ function Basket() {
           title="my basket"
           className="capitalize md:text-32 ssm:text-24 font-extrabold text-main text-start"
         />
-        <BasketTable />
+        <BasketTable orders={orders} />
         <div className="mt-6 w-[100%] flex md:flex-row ssm:flex-col items-start justify-between gap-4">
           <ShippingForm />
           <CheckOutCard />
