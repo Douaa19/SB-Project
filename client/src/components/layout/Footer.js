@@ -81,7 +81,7 @@ function Footer() {
         <div className="h-[1px] bg-main w-full rounded-full"></div>
         <div className="">
           <span className="text-white md:text-12 ssm:text-10 text-start">
-            @ 2023 Saba Embroidery
+            @ 2024 Saba Embroidery
           </span>
         </div>
       </div>
