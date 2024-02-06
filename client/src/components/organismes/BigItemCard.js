@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { Button } from "../atoms";
+import { Button, Input } from "../atoms";
+import { setOrders } from "../../redux/actions/orders";
+import { useDispatch } from "react-redux";
 
 function BigItemCard({ url, item }) {
+  const dispatch = useDispatch();
   const [images, setImages] = useState([]);
   const settings = {
     dots: true,
@@ -15,9 +18,11 @@ function BigItemCard({ url, item }) {
     prevArrow: null,
     useTransform: true,
   };
+  const [errors, setErrors] = useState({});
+  const [order, setOrder] = useState({});
 
   const buyNow = () => {
-    // navigate directly to the basket
+    setOrder({});
   };
 
   const addToCard = () => {
@@ -109,6 +114,20 @@ function BigItemCard({ url, item }) {
                     <div>{color}</div>
                   ))}
                 </div> */}
+                <div className="">
+                  <Input
+                    type="number"
+                    className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-14 ssm:text-12 ${
+                      errors.name
+                        ? "border-red text-red placeholder:text-red"
+                        : "border-main"
+                    }`}
+                    name="name"
+                    value={order.quantity}
+                    // onChange={(e) => handleChange("quantity", e.target.value)}
+                    error={errors.name}
+                  />
+                </div>
               </div>
               <div className="flex flex-col gap-4 md:mt-40 ssm:mt-10 ssm:items-center">
                 <Button
