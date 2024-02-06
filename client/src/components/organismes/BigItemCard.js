@@ -27,7 +27,7 @@ function BigItemCard({ url, item }) {
   const handleError = (data) => {
     const errors = {};
 
-    if (data.quantity == 0 || data.quantity < 0) {
+    if (parseInt(data.quantity) === 0 || data.quantity < 0) {
       errors.quantity = "Minimum quantity is 1";
     }
 

@@ -29,7 +29,9 @@ function RowBasket({ data, deleteIcon }) {
         <td className={`${style.td} capitalize`}>{`${data.item.price} $`}</td>
         <td className={`${style.td} capitalize`}>{data.quantity}</td>
         <td className={`${style.td} capitalize`}>{data.item.color}</td>
-        <td className={`${style.td} capitalize`}>{data.item.price * data.quantity}</td>
+        <td className={`${style.td} capitalize`}>
+          {data.item.price * data.quantity}
+        </td>
         <td className={`${style.deleteIcon}`}>
           <div
             className="hover:border hover:rounded-full hover:cursor-pointer hover:border-gray-100 p-1"

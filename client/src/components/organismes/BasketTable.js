@@ -3,7 +3,6 @@ import { RowBasket } from "../atoms";
 import DeleteIcon from "../../assets/icons/close-svgrepo-com.svg";
 
 function BasketTable({ orders }) {
-  console.log(orders)
   const style = {
     th: "font-bold capitalize text-dark px-6 py-4 text-center md:text-sm ssm:text-12",
   };
@@ -35,9 +34,19 @@ function BasketTable({ orders }) {
           </tr>
         </thead>
         <tbody>
-          {orders.orders.map((item) => (
-            <RowBasket data={item} key={item.title} deleteIcon={DeleteIcon} />
-          ))}
+          {orders.orders.length > 0 ? (
+            <>
+              {orders.orders.map((item) => (
+                <RowBasket
+                  data={item}
+                  key={item.title}
+                  deleteIcon={DeleteIcon}
+                />
+              ))}
+            </>
+          ) : (
+            <></>
+          )}
         </tbody>
       </table>
     </div>
