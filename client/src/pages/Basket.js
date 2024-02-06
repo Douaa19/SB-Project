@@ -3,8 +3,12 @@ import { NavBar, Footer } from "../components/layout";
 import { BasketTable, CheckOutCard } from "../components/organismes";
 import { PageTitle } from "../components/atoms";
 import { ShippingForm } from "../components/molecules";
+import { useSelector } from "react-redux";
 
 function Basket() {
+  const orders = useSelector((state) => state.orders);
+  console.log(orders);
+
   return (
     <>
       <NavBar />

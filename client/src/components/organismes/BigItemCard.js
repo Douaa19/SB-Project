@@ -19,10 +19,32 @@ function BigItemCard({ url, item }) {
     useTransform: true,
   };
   const [errors, setErrors] = useState({});
-  const [order, setOrder] = useState({});
+  const [order, setOrder] = useState({
+    quantity: 1,
+    item,
+  });
+
+  const handleError = (data) => {
+    const errors = {};
+
+    if (data.quantity == 0 || data.quantity < 0) {
+      errors.quantity = "Minimum quantity is 1";
+    }
+
+    setErrors(errors);
+    return errors;
+  };
 
   const buyNow = () => {
-    setOrder({});
+    // validation
+    let errors = handleError(order);
+
+    if (Object.keys(errors).length === 0) {
+      dispatch(setOrders(order));
+      window.location = `/basket`;
+    } else {
+      console.log("Error!!");
+    }
   };
 
   const addToCard = () => {
@@ -114,18 +136,20 @@ function BigItemCard({ url, item }) {
                     <div>{color}</div>
                   ))}
                 </div> */}
-                <div className="">
+                <div className="mt-2">
                   <Input
                     type="number"
-                    className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-14 ssm:text-12 ${
-                      errors.name
+                    className={`border rounded-5 lg:text-14 lg:block px-2 py-2 outline-none md:text-12 w-10 ssm:text-12 ${
+                      errors.quantity
                         ? "border-red text-red placeholder:text-red"
                         : "border-main"
                     }`}
                     name="name"
                     value={order.quantity}
-                    // onChange={(e) => handleChange("quantity", e.target.value)}
-                    error={errors.name}
+                    onChange={(e) =>
+                      setOrder({ ...order, quantity: e.target.value })
+                    }
+                    error={errors.quantity}
                   />
                 </div>
               </div>

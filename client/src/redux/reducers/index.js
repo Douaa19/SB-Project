@@ -8,6 +8,7 @@ import {
 import { categoriesReducer } from "./categoriesReducer";
 import contactDonePopup from "./contactDonePopupReducer";
 import cities from "./citiesReducer";
+import orders from "./ordersReducer";
 
 const allReducers = combineReducers({
   bestSellingItems: bestSellingItemsReducer,
@@ -17,6 +18,7 @@ const allReducers = combineReducers({
   categoryItems,
   loadMoreItems: loadItems,
   cities,
+  orders,
 });
 
 export default allReducers;
