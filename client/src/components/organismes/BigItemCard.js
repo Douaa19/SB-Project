@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { Button } from "../atoms";
+import { Button, Input } from "../atoms";
+import { setOrders } from "../../redux/actions/orders";
+import { useDispatch } from "react-redux";
 
 function BigItemCard({ url, item }) {
+  const dispatch = useDispatch();
   const [images, setImages] = useState([]);
   const settings = {
     dots: true,
@@ -15,9 +18,33 @@ function BigItemCard({ url, item }) {
     prevArrow: null,
     useTransform: true,
   };
+  const [errors, setErrors] = useState({});
+  const [order, setOrder] = useState({
+    quantity: 1,
+    item,
+  });
+
+  const handleError = (data) => {
+    const errors = {};
+
+    if (parseInt(data.quantity) === 0 || data.quantity < 0) {
+      errors.quantity = "Minimum quantity is 1";
+    }
+
+    setErrors(errors);
+    return errors;
+  };
 
   const buyNow = () => {
-    // navigate directly to the basket
+    // validation
+    let errors = handleError(order);
+
+    if (Object.keys(errors).length === 0) {
+      dispatch(setOrders(order));
+      window.location = `/basket`;
+    } else {
+      console.log("Error!!");
+    }
   };
 
   const addToCard = () => {
@@ -91,11 +118,11 @@ function BigItemCard({ url, item }) {
                 <h3 className="lg:text-24 md:text-18 font-bold">
                   {item.title}
                 </h3>
-                <span className="lg:text-24 md:text-18">{item.price}</span>
+                <span className="lg:text-24 md:text-18">{`${item.price}$`}</span>
               </div>
               <div className="md:mt-10 ssm:mt-2 md:gap-3 ssm:gap-1 flex flex-col md:text-16 ssm:text-14">
                 <p>{item.description}</p>
-                <span>{item.size}</span>
+                <span>{`${item.size} cm`}</span>
                 <div
                   className={`border h-4 w-4 rounded-full ${
                     item.color === "black"
@@ -109,6 +136,22 @@ function BigItemCard({ url, item }) {
                     <div>{color}</div>
                   ))}
                 </div> */}
+                <div className="mt-2">
+                  <Input
+                    type="number"
+                    className={`border rounded-5 lg:text-14 lg:block px-2 py-2 outline-none md:text-12 w-10 ssm:text-12 ${
+                      errors.quantity
+                        ? "border-red text-red placeholder:text-red"
+                        : "border-main"
+                    }`}
+                    name="name"
+                    value={order.quantity}
+                    onChange={(e) =>
+                      setOrder({ ...order, quantity: e.target.value })
+                    }
+                    error={errors.quantity}
+                  />
+                </div>
               </div>
               <div className="flex flex-col gap-4 md:mt-40 ssm:mt-10 ssm:items-center">
                 <Button

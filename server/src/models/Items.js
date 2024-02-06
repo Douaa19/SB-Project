@@ -10,10 +10,12 @@ const Items = new mongoose.Schema(
       type: String,
       required: true,
     },
-    color: {
-      type: String,
-      required: true,
-    },
+    color: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     images: [
       {
         type: String,
@@ -22,11 +24,11 @@ const Items = new mongoose.Schema(
       },
     ],
     size: {
-      type: String,
+      type: Number,
       required: true,
     },
     price: {
-      type: String,
+      type: Number,
       required: true,
     },
     bestSelling: {
