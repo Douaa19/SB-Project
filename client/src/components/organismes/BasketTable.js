@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { RowBasket } from "../atoms";
+import DeleteIcon from "../../assets/icons/close-svgrepo-com.svg";
 
 function BasketTable() {
   const [data, setData] = useState([
@@ -72,11 +73,12 @@ function BasketTable() {
             <th scope="col" className={`${style.th}`}>
               total
             </th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           {data.map((item) => (
-            <RowBasket data={item} key={item.title} />
+            <RowBasket data={item} key={item.title} deleteIcon={DeleteIcon} />
           ))}
         </tbody>
       </table>
