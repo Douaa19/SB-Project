@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { RowBasket } from "../atoms";
+import { RowBasket, EmptyRowBasket } from "../atoms";
 import DeleteIcon from "../../assets/icons/close-svgrepo-com.svg";
 
 function BasketTable({ orders }) {
@@ -33,9 +33,9 @@ function BasketTable({ orders }) {
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>
-          {orders.orders.length > 0 ? (
-            <>
+        {orders.orders.length > 0 ? (
+          <>
+            <tbody>
               {orders.orders.map((item) => (
                 <RowBasket
                   data={item}
@@ -43,11 +43,11 @@ function BasketTable({ orders }) {
                   deleteIcon={DeleteIcon}
                 />
               ))}
-            </>
-          ) : (
-            <></>
-          )}
-        </tbody>
+            </tbody>
+          </>
+        ) : (
+          <EmptyRowBasket />
+        )}
       </table>
     </div>
   );
