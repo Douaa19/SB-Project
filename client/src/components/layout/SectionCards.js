@@ -5,8 +5,7 @@ import ItemCard from "../organismes/ItemCard";
 import Slider from "react-slick";
 import LoadingCard from "../organismes/LoadingCard";
 
-function SectionCards({ items, title, buttonText, page, limit }) {
-  console.log(limit)
+function SectionCards({ items, title, buttonText, page, limit, transition }) {
   const myArr = [0, 1, 2, 3, 4, 5];
   const settings = {
     dots: true,
@@ -57,6 +56,7 @@ function SectionCards({ items, title, buttonText, page, limit }) {
                     price={i.price}
                     id={i._id}
                     url={page}
+                    transition={false}
                   />
                 </>
               ))}

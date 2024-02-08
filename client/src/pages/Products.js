@@ -55,6 +55,7 @@ function Products({ title }) {
           }
           url={url.slice(22)}
           limit={displayLimit}
+          transition={true}
         />
         <div className="flex justify-center items-center">
           <Button

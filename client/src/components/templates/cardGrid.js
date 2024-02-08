@@ -4,7 +4,15 @@ import CategoryCard from "../organismes/CategoryCard";
 import AboutCard from "../organismes/AboutCard";
 import { ItemCard } from "../organismes";
 
-function CardGrid({ type, categories, items, aboutItems, url, limit }) {
+function CardGrid({
+  type,
+  categories,
+  items,
+  aboutItems,
+  url,
+  limit,
+  transition,
+}) {
   const settings = {
     dots: false,
     infinite: true,
@@ -68,6 +76,7 @@ function CardGrid({ type, categories, items, aboutItems, url, limit }) {
                     price={item.price}
                     key={key}
                     url={url}
+                    transition={transition}
                   />
                 ))}
               </div>

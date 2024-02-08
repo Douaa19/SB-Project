@@ -1,13 +1,15 @@
 import React from "react";
 
-function ItemCard({ description, price, id, color, url }) {
+function ItemCard({ description, price, id, color, url, transition }) {
   const openProduct = (item_id) => {
     window.location = `/${url}/item/${item_id}`;
   };
 
   return (
     <div
-      className="card-item bg-white h-max text-dark hover:cursor-pointer rounded-md opacity-img"
+      className={`${
+        transition === true ? "card-item" : ""
+      } bg-white h-max text-dark hover:cursor-pointer rounded-md opacity-img`}
       onClick={() => openProduct(id)}>
       <div className="flex justify-center items-center">
         <img
