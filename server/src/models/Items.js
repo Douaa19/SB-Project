@@ -24,7 +24,7 @@ const Items = new mongoose.Schema(
       },
     ],
     size: {
-      type: Number,
+      type: String,
       required: true,
     },
     price: {
