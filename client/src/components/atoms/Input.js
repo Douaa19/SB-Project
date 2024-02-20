@@ -22,6 +22,7 @@ function Input({
         className={className}
         placeholder={placeHolder}
         onChange={onChange}
+        min={type === "number" && "0"}
       />
       {rightIcon && (
         <>

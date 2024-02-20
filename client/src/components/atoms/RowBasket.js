@@ -14,7 +14,7 @@ function RowBasket({ data, deleteIcon }) {
     <>
       <tr className="bg-white border-b border-gray-100 transition duration-300 ease-in-out">
         <td
-          onClick={() => openProduct(data._id)}
+          onClick={() => openProduct(data.item._id)}
           className={`${style.td} flex lg:flex-row ssm:flex-col lg:gap-3 ssm:gap-1 items-center justify-around capitalize hover:cursor-pointer hover:text-main hover:underline`}>
           <div className={`w-[100px]`}>
             <img

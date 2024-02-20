@@ -18,6 +18,11 @@ function NavBar() {
 
   let [open, setOpen] = useState(false);
 
+  const handleInputChange = (e) => {
+    setSearchValue(e.target.value);
+    console.log(searchValue);
+  };
+
   const handleSubmit = () => {
     if (searchValue.length > 0) {
       console.log(searchValue);
@@ -70,9 +75,7 @@ function NavBar() {
                 name="search"
                 classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-40 pr-2 md:left-36 md:w-4"
                 value={searchValue}
-                onChange={(e) => {
-                  setSearchValue(e.target.value);
-                }}
+                onChange={handleInputChange}
                 onIconClick={handleSubmit}
               />
               <img
