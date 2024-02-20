@@ -1,18 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../atoms/Input";
 import CardGrid from "../templates/CardGrid";
 import Search from "../../assets/icons/search-svgrepo-com.svg";
 import { PageTitle } from "../atoms";
+import { useSelector } from "react-redux";
 
 function HeaderProducts({ title, categories }) {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const allItems = useSelector((state) => state.newestItems);
 
-  const handleSubmit = () => {
-    if (searchValue.length > 0) {
-      console.log(searchValue);
-    }
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    // Filter items initially on component mount
+    handleSearch(searchQuery);
+  }, [allItems]); // Trigger filter when items change
+
+  const handleSearch = (query) => {
+    const filteredResults = allItems.filter((item) => {
+      const { title, description } = item;
+      const lowercaseQuery = query.toLowerCase();
+
+      return (
+        title.toLowerCase().includes(lowercaseQuery) ||
+        description.toLowerCase().includes(lowercaseQuery) ||
+        item.price.toString().includes(lowercaseQuery)
+      );
+    });
+    setSearchResults(filteredResults);
   };
 
+  const handleChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    handleSearch(query);
+  };
+  console.log(searchResults);
   return (
     <div className="">
       <PageTitle
@@ -27,11 +50,9 @@ function HeaderProducts({ title, categories }) {
           rightIcon={Search}
           name="search"
           classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-38 ssm:left-36 ssm:w-4"
-          value={searchValue}
-          onChange={(e) => {
-            setSearchValue(e.target.value);
-          }}
-          onIconClick={handleSubmit}
+          value={searchQuery}
+          onChange={handleChange}
+          onIconClick={Search}
         />
       </div>
     </div>
