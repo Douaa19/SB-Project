@@ -3,10 +3,12 @@ import Basket from "../../assets/icons/basket-svgrepo-com.svg";
 import Search from "../../assets/icons/search-svgrepo-com.svg";
 import Logo from "../../assets/icons/Logo_White.png";
 import Input from "../atoms/Input";
+import { useSelector } from "react-redux";
 
 function NavBar() {
   const location = window.location.href;
   const [searchValue, setSearchValue] = useState("");
+  const orders = useSelector((state) => state.orders.orders);
 
   let links = [
     { name: "home", link: "/" },
@@ -85,12 +87,19 @@ function NavBar() {
               />
             </>
           )}
-        <img
-          src={Basket}
-          alt="basket"
-          className="lg:w-6 hover:cursor-pointer md:w-5 ssm:w-4"
-          onClick={() => (window.location = "/basket")}
-        />
+        <div className="relative">
+          <img
+            src={Basket}
+            alt="basket"
+            className="lg:w-6 hover:cursor-pointer md:w-5 ssm:w-4"
+            onClick={() => (window.location = "/basket")}
+          />
+          {orders.length > 0 && (
+            <div className="length text-white w-4 text-center text-8 border border-red bg-red rounded-full absolute bottom-3 left-3 p-1">
+              <span className="">{orders.length}</span>
+            </div>
+          )}
+        </div>
         <div className="md:hidden">
           <button
             className="relative group flex items-center outline-none"
