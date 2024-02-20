@@ -28,6 +28,7 @@ function Home() {
         buttonText="View more"
         page="best-selling"
         limit={displayLimit}
+        transition={false}
       />
       <SectionCards
         items={newestItems}
@@ -35,6 +36,7 @@ function Home() {
         buttonText="View more"
         page="products"
         limit={displayLimit}
+        transition={false}
       />
       <Footer />
     </div>

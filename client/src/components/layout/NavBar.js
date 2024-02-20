@@ -3,10 +3,12 @@ import Basket from "../../assets/icons/basket-svgrepo-com.svg";
 import Search from "../../assets/icons/search-svgrepo-com.svg";
 import Logo from "../../assets/icons/Logo_White.png";
 import Input from "../atoms/Input";
+import { useSelector } from "react-redux";
 
 function NavBar() {
   const location = window.location.href;
   const [searchValue, setSearchValue] = useState("");
+  const orders = useSelector((state) => state.orders.orders);
 
   let links = [
     { name: "home", link: "/" },
@@ -17,6 +19,11 @@ function NavBar() {
   ];
 
   let [open, setOpen] = useState(false);
+
+  const handleInputChange = (e) => {
+    setSearchValue(e.target.value);
+    console.log(searchValue);
+  };
 
   const handleSubmit = () => {
     if (searchValue.length > 0) {
@@ -70,9 +77,7 @@ function NavBar() {
                 name="search"
                 classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-40 pr-2 md:left-36 md:w-4"
                 value={searchValue}
-                onChange={(e) => {
-                  setSearchValue(e.target.value);
-                }}
+                onChange={handleInputChange}
                 onIconClick={handleSubmit}
               />
               <img
@@ -82,12 +87,19 @@ function NavBar() {
               />
             </>
           )}
-        <img
-          src={Basket}
-          alt="basket"
-          className="lg:w-6 hover:cursor-pointer md:w-5 ssm:w-4"
-          onClick={() => (window.location = "/basket")}
-        />
+        <div className="relative">
+          <img
+            src={Basket}
+            alt="basket"
+            className="lg:w-6 hover:cursor-pointer md:w-5 ssm:w-4"
+            onClick={() => (window.location = "/basket")}
+          />
+          {orders.length > 0 && (
+            <div className="length text-white w-4 text-center text-8 border border-red bg-red rounded-full absolute bottom-3 left-3 p-1">
+              <span className="">{orders.length}</span>
+            </div>
+          )}
+        </div>
         <div className="md:hidden">
           <button
             className="relative group flex items-center outline-none"

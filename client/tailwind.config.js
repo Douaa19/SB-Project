@@ -54,6 +54,7 @@ module.exports = {
         dark: "#000000",
         white: "#FFFFFF",
         gray: "#F0F0F0",
+        red: "#FF004D",
         "slate-50": "rgb(248 250 252)",
         "slate-100": "rgb(241 245 249)",
         "slate-200": "rgb(226 232 240)",

@@ -1,8 +1,16 @@
 import React, { useState } from "react";
+import { removeOrder } from "../../redux/actions/orders";
+import { useDispatch } from "react-redux";
 
 function RowBasket({ data, deleteIcon }) {
+  const dispatch = useDispatch();
+
   const openProduct = (item_id) => {
     window.location = `/products/item/${item_id}`;
+  };
+
+  const handleDelete = () => {
+    dispatch(removeOrder(data.item._id));
   };
 
   const style = {
@@ -14,7 +22,7 @@ function RowBasket({ data, deleteIcon }) {
     <>
       <tr className="bg-white border-b border-gray-100 transition duration-300 ease-in-out">
         <td
-          onClick={() => openProduct(data._id)}
+          onClick={() => openProduct(data.item._id)}
           className={`${style.td} flex lg:flex-row ssm:flex-col lg:gap-3 ssm:gap-1 items-center justify-around capitalize hover:cursor-pointer hover:text-main hover:underline`}>
           <div className={`w-[100px]`}>
             <img
@@ -35,7 +43,7 @@ function RowBasket({ data, deleteIcon }) {
         <td className={`${style.deleteIcon}`}>
           <div
             className="hover:border hover:rounded-full hover:cursor-pointer hover:border-gray-100 p-1"
-            onClick={() => console.log("delete")}>
+            onClick={handleDelete}>
             <img src={deleteIcon} alt="delete" className="w-full" />
           </div>
         </td>

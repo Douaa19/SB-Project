@@ -14,8 +14,6 @@ function Basket() {
   useEffect(() => {
     let total = 0;
     for (let index = 0; index < orders.orders.length; index++) {
-      console.log(orders.orders[1]);
-
       if (
         typeof orders.orders[index].item.price === "number" &&
         typeof orders.orders[index].quantity === "number"
