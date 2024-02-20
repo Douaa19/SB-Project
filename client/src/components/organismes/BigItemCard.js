@@ -147,7 +147,7 @@ function BigItemCard({ url, item }) {
                     name="name"
                     value={order.quantity}
                     onChange={(e) =>
-                      setOrder({ ...order, quantity: e.target.value })
+                      setOrder({ ...order, quantity: parseInt(e.target.value) })
                     }
                     error={errors.quantity}
                   />
