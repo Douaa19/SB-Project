@@ -34,11 +34,11 @@ function RowBasket({ data, deleteIcon }) {
           <span>{data.item.title}</span>
         </td>
         <td className={`${style.td}`}>{`${data.item.size} cm`}</td>
-        <td className={`${style.td} capitalize`}>{`${data.item.price} $`}</td>
+        <td className={`${style.td} capitalize`}>{`${data.item.price}DH`}</td>
         <td className={`${style.td} capitalize`}>{data.quantity}</td>
         <td className={`${style.td} capitalize`}>{data.item.color}</td>
         <td className={`${style.td} capitalize`}>
-          {data.item.price * data.quantity}
+          {data.item.price * data.quantity}DH
         </td>
         <td className={`${style.deleteIcon}`}>
           <div

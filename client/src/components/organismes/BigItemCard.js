@@ -118,7 +118,7 @@ function BigItemCard({ url, item }) {
                 <h3 className="lg:text-24 md:text-18 font-bold">
                   {item.title}
                 </h3>
-                <span className="lg:text-24 md:text-18">{`${item.price}$`}</span>
+                <span className="lg:text-24 md:text-18">{`${item.price}DH`}</span>
               </div>
               <div className="md:mt-10 ssm:mt-2 md:gap-3 ssm:gap-1 flex flex-col md:text-16 ssm:text-14">
                 <p>{item.description}</p>

@@ -80,25 +80,6 @@ function Products({ title }) {
       </>
     );
   }
-  // else if (itemsCategory.length > 0) {
-  //   contentToDisplay = (
-  //     <>
-  //       <CardGrid
-  //         type="products"
-  //         items={itemsCategory}
-  //         url={url.slice(22)}
-  //         limit={displayLimit}
-  //       />
-  //       <div className="flex justify-center items-center">
-  //         <Button
-  //           className="mt-8 w-1/5 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-main hover:text-white text-main rounded-md py-3 capitalize"
-  //           text="load more"
-  //           onClick={handleLoadMore}
-  //         />
-  //       </div>
-  //     </>
-  //   );
-  // }
   else {
     contentToDisplay = contentToDisplay = <NoDataCard />;
   }

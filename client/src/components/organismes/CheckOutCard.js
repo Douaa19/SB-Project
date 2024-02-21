@@ -13,15 +13,15 @@ function CheckOutCard({ subtotal, shipping, grandTotal }) {
     <div className="md:w-full ssm:w-[80%] border  border-gray-100 p-8 rounded-md flex flex-col items-between gap-4">
       <div className={`${style.group}`}>
         <span className={`${style.title}`}>subtotal</span>
-        <span className={`${style.amount}`}>{`${subtotal}$`}</span>
+        <span className={`${style.amount}`}>{`${subtotal}DH`}</span>
       </div>
       <div className={`${style.group}`}>
         <span className={`${style.title}`}>shipping</span>
-        <span className={`${style.amount}`}>{`${shipping}$`}</span>
+        <span className={`${style.amount}`}>{`${shipping}DH`}</span>
       </div>
       <div className={`${style.group}`}>
         <span className={`${style.title}`}>grand total</span>
-        <span className={`${style.amount}`}>{`${grandTotal}$`}</span>
+        <span className={`${style.amount}`}>{`${grandTotal}DH`}</span>
       </div>
       <Button
         className="border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold"
