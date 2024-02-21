@@ -3,18 +3,17 @@ import Input from "../atoms/Input";
 import CardGrid from "../templates/CardGrid";
 import Search from "../../assets/icons/search-svgrepo-com.svg";
 import { PageTitle } from "../atoms";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchResults } from "../../redux/actions/items";
 
 function HeaderProducts({ title, categories }) {
+  const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const allItems = useSelector((state) => state.newestItems);
 
-  const [searchResults, setSearchResults] = useState([]);
-
   useEffect(() => {
-    // Filter items initially on component mount
     handleSearch(searchQuery);
-  }, [allItems]); // Trigger filter when items change
+  }, [allItems]);
 
   const handleSearch = (query) => {
     const filteredResults = allItems.filter((item) => {
@@ -27,7 +26,11 @@ function HeaderProducts({ title, categories }) {
         item.price.toString().includes(lowercaseQuery)
       );
     });
-    setSearchResults(filteredResults);
+    if (searchQuery !== "") {
+      dispatch(setSearchResults(filteredResults));
+    } else {
+      dispatch(setSearchResults(""));
+    }
   };
 
   const handleChange = (e) => {
@@ -35,7 +38,6 @@ function HeaderProducts({ title, categories }) {
     setSearchQuery(query);
     handleSearch(query);
   };
-  console.log(searchResults);
   return (
     <div className="">
       <PageTitle

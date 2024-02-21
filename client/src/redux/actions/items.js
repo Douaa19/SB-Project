@@ -23,3 +23,8 @@ export const loadMoreItems = (newLimit) => ({
   type: "LOADMOREITEMS",
   payload : newLimit,
 });
+
+export const setSearchResults = (result) => ({
+  type: "SETSEARCHRESULTS",
+  payload : result,
+});

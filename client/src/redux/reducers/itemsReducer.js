@@ -47,9 +47,18 @@ const loadItems = (state = initialState, action) => {
   }
 };
 
+const searchResults = (state = null, action) => {
+  switch (action.type) {
+    case "SETSEARCHRESULTS":
+      return action.payload;
+    default:
+      return state;
+  }
+};
 export {
   bestSellingItemsReducer,
   newestItemsReducer,
   categoryItems,
   loadItems,
+  searchResults,
 };
