@@ -10,12 +10,11 @@ function HearoHeader() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 100,
+    speed: 300,
     autoplay: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: false,
-    prevArrow: false,
+    arrows: false,
     appendDots: (dots) => (
       <div style={{ display: "flex", justifyContent: "center" }}>
         <ul
@@ -33,13 +32,15 @@ function HearoHeader() {
     customPaging: (i) => (
       <div
         style={{
-          width: "30px",
+          width: "3rem",
+          height: "4px",
           color: "blue",
           border: "2px #DAB88A solid",
           borderRadius: "8px",
           position: "absolute",
           bottom: "2rem",
           margin: "0 1rem",
+          backgroundColor: "#DAB88A",
         }}></div>
     ),
   };
