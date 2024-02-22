@@ -47,7 +47,7 @@ const loadItems = (state = initialState, action) => {
   }
 };
 
-const searchResults = (state = null, action) => {
+const searchResults = (state = [], action) => {
   switch (action.type) {
     case "SETSEARCHRESULTS":
       return action.payload;

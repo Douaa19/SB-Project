@@ -3,11 +3,14 @@ import Basket from "../../assets/icons/basket-svgrepo-com.svg";
 import Search from "../../assets/icons/search-svgrepo-com.svg";
 import Logo from "../../assets/icons/Logo_White.png";
 import Input from "../atoms/Input";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchResults } from "../../redux/actions/items";
 
 function NavBar() {
+  const dispatch = useDispatch();
   const location = window.location.href;
-  const [searchValue, setSearchValue] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const allItems = useSelector((state) => state.newestItems);
   const orders = useSelector((state) => state.orders.orders);
 
   let links = [
@@ -20,14 +23,22 @@ function NavBar() {
 
   let [open, setOpen] = useState(false);
 
-  const handleInputChange = (e) => {
-    setSearchValue(e.target.value);
-    console.log(searchValue);
-  };
+  const handleSearch = () => {
+    const queryString = String(searchQuery).trim();
 
-  const handleSubmit = () => {
-    if (searchValue.length > 0) {
-      console.log(searchValue);
+    if (queryString !== "") {
+      const lowercaseQuery = queryString.toLowerCase();
+      const filteredResults = allItems.filter((item) => {
+        const { title, description } = item;
+
+        return (
+          title.toLowerCase().includes(lowercaseQuery) ||
+          description.toLowerCase().includes(lowercaseQuery) ||
+          item.price.toString().includes(lowercaseQuery)
+        );
+      });
+      dispatch(setSearchResults(filteredResults));
+      window.location = "http://localhost:3000/products";
     }
   };
 
@@ -76,9 +87,12 @@ function NavBar() {
                 rightIcon={Search}
                 name="search"
                 classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-40 pr-2 md:left-36 md:w-4"
-                value={searchValue}
-                onChange={handleInputChange}
-                onIconClick={handleSubmit}
+                value={searchQuery}
+                onChange={(e) => {
+                  const query = e.target.value.toString();
+                  setSearchQuery(query);
+                }}
+                onIconClick={() => handleSearch()}
               />
               <img
                 src={Search}
