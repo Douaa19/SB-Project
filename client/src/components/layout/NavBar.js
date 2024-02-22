@@ -57,13 +57,14 @@ function NavBar() {
         <ul
           className={`md:flex md:pr-0 md:justify-around md:flex-row w-full ssm:z-1 z-[1] capitalize ssm:flex ssm:flex-col ssm:items-end md:static ssm:absolute ssm:pr-8 transition-all duration-100 ease-in ${
             open
-              ? "top-12 opacity-100 z-[1] h-screen right-0 bg-white w-[50%]"
+              ? "top-12 opacity-100 z-[1] h-[100vh] sticky right-0 bg-white w-[50%]"
               : "top-[-480px]"
           } ssm:opacity-100 opacity-0`}>
-          {links.map((link) => (
+          {links.map((link, index) => (
             <li key={link.name} className="ssm:pt-2.5 md:pt-0">
               <a
                 href={link.link}
+                style={{ animationDelay: `0.${index + 1}s` }}
                 className={`costum-list list sm:text-16 ssm:text-14 ${
                   open
                     ? `${
@@ -113,7 +114,7 @@ function NavBar() {
         </div>
         <div className="md:hidden">
           <button
-            className="relative group flex items-center outline-none"
+            className="relative group flex items-center outline-none burger"
             onClick={() => setOpen(!open)}>
             <div
               className={`relative flex items-center justify-center w-5 h-5 transform transition-all bg-none duration-200`}>
@@ -124,7 +125,7 @@ function NavBar() {
                 <div
                   className={`bg-dark h-[2px] w-1/2 rounded transform transition-all duration-300 ${
                     open
-                      ? "group-focus:-rotate-90 group-focus:h-[1px] origin-right delay-75 group-focus:-translate-y-[1px]"
+                      ? `group-focus:-rotate-90 group-focus:h-[1px] origin-right delay-75 group-focus:-translate-y-[1px] ${open}`
                       : ""
                   }`}></div>
                 <div className={`bg-dark h-[1px] rounded`}></div>
@@ -137,6 +138,7 @@ function NavBar() {
               </div>
             </div>
           </button>
+          <div className={`background ${open}`}></div>
         </div>
       </div>
     </div>

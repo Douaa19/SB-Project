@@ -591,6 +591,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.static {
+  position: static;
+}
+
 .fixed {
   position: fixed;
 }
@@ -601,6 +605,11 @@ video {
 
 .relative {
   position: relative;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
 }
 
 .inset-0 {
@@ -756,6 +765,14 @@ video {
 }
 
 .h-screen {
+  height: 100vh;
+}
+
+.h-\[1\] {
+  height: 1;
+}
+
+.h-\[100vh\] {
   height: 100vh;
 }
 
