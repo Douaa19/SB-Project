@@ -23,6 +23,7 @@ function Input({
         placeholder={placeHolder}
         onChange={onChange}
         min={type === "number" && "0"}
+        autoComplete="off"
       />
       {rightIcon && (
         <>
