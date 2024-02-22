@@ -94,3 +94,7 @@ body {
   height: 100%;
   outline: none;
 }
+
+.arrow {
+  display: none !important;
+}

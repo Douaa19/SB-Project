@@ -21,7 +21,7 @@ function ItemCard({ description, price, id, color, url, transition }) {
 
       <div className="sm:text-14 ssm:text-10 flex flex-col justify-center items-start gap-4 p-4">
         <p className="font-normale">{description}</p>
-        <span>{price} $</span>
+        <span>{price}DH</span>
       </div>
     </div>
   );

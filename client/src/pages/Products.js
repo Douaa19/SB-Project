@@ -4,12 +4,7 @@ import HeaderProducts from "../components/layout/HeaderProducts";
 import CardGrid from "../components/templates/CardGrid";
 import Footer from "../components/layout/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  loadMoreItems,
-  setBestSellingItems,
-  setCategoryItems,
-  setNewestItems,
-} from "../redux/actions/items";
+import { loadMoreItems, setCategoryItems } from "../redux/actions/items";
 import { Button } from "../components/atoms";
 import { NoDataCard } from "../components/organismes";
 
@@ -21,6 +16,9 @@ function Products({ title }) {
   const newestItems = useSelector((state) => state.newestItems);
   // get items's category
   let itemsCategory = useSelector((state) => state.categoryItems);
+  // search reasults items
+  const searchResults = useSelector((state) => state.searchResults);
+  console.log(searchResults.length);
 
   const limit = useSelector((state) => state.loadMoreItems.limit);
   const [displayLimit, setDisplayLimit] = useState(limit);
@@ -45,14 +43,12 @@ function Products({ title }) {
 
   let contentToDisplay;
 
-  if (itemsCategory == null) {
+  if (searchResults.length > 0) {
     contentToDisplay = (
       <>
         <CardGrid
           type="products"
-          items={
-            url.slice(22) === "best-selling" ? bestSellingItems : newestItems
-          }
+          items={searchResults}
           url={url.slice(22)}
           limit={displayLimit}
           transition={true}
@@ -66,7 +62,7 @@ function Products({ title }) {
         </div>
       </>
     );
-  } else if (itemsCategory.length > 0) {
+  } else if (itemsCategory != null && itemsCategory.length > 0) {
     contentToDisplay = (
       <>
         <CardGrid
@@ -74,6 +70,27 @@ function Products({ title }) {
           items={itemsCategory}
           url={url.slice(22)}
           limit={displayLimit}
+        />
+        <div className="flex justify-center items-center">
+          <Button
+            className="mt-8 w-1/5 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-main hover:text-white text-main rounded-md py-3 capitalize"
+            text="load more"
+            onClick={handleLoadMore}
+          />
+        </div>
+      </>
+    );
+  } else if (itemsCategory == null && searchResults.length === 0) {
+    contentToDisplay = (
+      <>
+        <CardGrid
+          type="products"
+          items={
+            url.slice(22) === "best-selling" ? bestSellingItems : newestItems
+          }
+          url={url.slice(22)}
+          limit={displayLimit}
+          transition={true}
         />
         <div className="flex justify-center items-center">
           <Button

@@ -4,6 +4,7 @@ import {
   newestItemsReducer,
   categoryItems,
   loadItems,
+  searchResults,
 } from "./itemsReducer";
 import { categoriesReducer } from "./categoriesReducer";
 import contactDonePopup from "./contactDonePopupReducer";
@@ -19,6 +20,7 @@ const allReducers = combineReducers({
   loadMoreItems: loadItems,
   cities,
   orders,
+  searchResults,
 });
 
 export default allReducers;

@@ -3,11 +3,14 @@ import Basket from "../../assets/icons/basket-svgrepo-com.svg";
 import Search from "../../assets/icons/search-svgrepo-com.svg";
 import Logo from "../../assets/icons/Logo_White.png";
 import Input from "../atoms/Input";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchResults } from "../../redux/actions/items";
 
 function NavBar() {
+  const dispatch = useDispatch();
   const location = window.location.href;
-  const [searchValue, setSearchValue] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const allItems = useSelector((state) => state.newestItems);
   const orders = useSelector((state) => state.orders.orders);
 
   let links = [
@@ -20,20 +23,28 @@ function NavBar() {
 
   let [open, setOpen] = useState(false);
 
-  const handleInputChange = (e) => {
-    setSearchValue(e.target.value);
-    console.log(searchValue);
-  };
+  const handleSearch = () => {
+    const queryString = String(searchQuery).trim();
 
-  const handleSubmit = () => {
-    if (searchValue.length > 0) {
-      console.log(searchValue);
+    if (queryString !== "") {
+      const lowercaseQuery = queryString.toLowerCase();
+      const filteredResults = allItems.filter((item) => {
+        const { title, description } = item;
+
+        return (
+          title.toLowerCase().includes(lowercaseQuery) ||
+          description.toLowerCase().includes(lowercaseQuery) ||
+          item.price.toString().includes(lowercaseQuery)
+        );
+      });
+      dispatch(setSearchResults(filteredResults));
+      window.location = "http://localhost:3000/products";
     }
   };
 
   return (
-    <div className="h-max bg-white md:flex md:flex-row md:items-center md:justify-around gap-4 md:w-full md:pt-6 ssm:pt-2 font-normal md:gap-1 md:px-6 ssm:flex ssm:flex-col ssm:items-start ssm:px-8 ssm:gap-1 ssm:justify-center">
-      <div className="logo flex justify-center items-center">
+    <div className="h-max relative bg-white md:flex md:flex-row md:items-center md:justify-around gap-4 md:w-full md:pt-6 ssm:pt-2 font-normal md:gap-1 md:px-6 ssm:flex ssm:flex-col ssm:items-start ssm:px-8 ssm:gap-1 ssm:justify-center">
+      <div className="logo flex justify-center items-center md:ml-0 ssm:ml-[2rem]">
         <a href="/">
           <img
             src={Logo}
@@ -42,16 +53,19 @@ function NavBar() {
           />
         </a>
       </div>
-      <div className="menu lg:block lg:text-18 lg:w-640 flex justify-center items-center md:block md:text-14 ssm:text-10 md:w-500 ssm:w-full p-0">
+      <div className="menu lg:block lg:text-18 lg:w-640 flex justify-center items-center md:block md:text-16 ssm:text-10 md:w-500 ssm:w-full p-0">
         <ul
           className={`md:flex md:pr-0 md:justify-around md:flex-row w-full ssm:z-1 z-[1] capitalize ssm:flex ssm:flex-col ssm:items-end md:static ssm:absolute ssm:pr-8 transition-all duration-100 ease-in ${
-            open ? "top-10 opacity-100 z-[1]" : "top-[-480px]"
+            open
+              ? "top-12 opacity-100 z-[1] h-[100vh] sticky right-0 bg-white w-[50%]"
+              : "top-[-480px]"
           } ssm:opacity-100 opacity-0`}>
-          {links.map((link) => (
+          {links.map((link, index) => (
             <li key={link.name} className="ssm:pt-2.5 md:pt-0">
               <a
                 href={link.link}
-                className={`costum-list list ${
+                style={{ animationDelay: `0.${index + 1}s` }}
+                className={`costum-list list sm:text-16 ssm:text-14 ${
                   open
                     ? `${
                         location.slice(22) !== "home"
@@ -75,37 +89,35 @@ function NavBar() {
                 placeHolder="search..."
                 rightIcon={Search}
                 name="search"
-                classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-40 pr-2 md:left-36 md:w-4"
-                value={searchValue}
-                onChange={handleInputChange}
-                onIconClick={handleSubmit}
-              />
-              <img
-                src={Search}
-                alt=""
-                className="md:hidden ssm:w-4 hover:cursor-pointer"
+                classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-40 pr-2 md:left-36 md:w-4 ssm:w-6"
+                value={searchQuery}
+                onChange={(e) => {
+                  const query = e.target.value.toString();
+                  setSearchQuery(query);
+                }}
+                onIconClick={() => handleSearch()}
               />
             </>
           )}
-        <div className="relative">
+        <div className="relative lg:w-6 md:w-5 ssm:w-12 ssm:mr-2 md:mr-0">
           <img
             src={Basket}
             alt="basket"
-            className="lg:w-6 hover:cursor-pointer md:w-5 ssm:w-4"
+            className="hover:cursor-pointer w-full"
             onClick={() => (window.location = "/basket")}
           />
           {orders.length > 0 && (
-            <div className="length text-white w-4 text-center text-8 border border-red bg-red rounded-full absolute bottom-3 left-3 p-1">
+            <div className="length text-white w-4 text-center text-8 border border-red bg-red rounded-full absolute bottom-3 left-3 md:p-1 ssm:p-1">
               <span className="">{orders.length}</span>
             </div>
           )}
         </div>
         <div className="md:hidden">
           <button
-            className="relative group flex items-center outline-none"
+            className="relative group flex items-center outline-none burger"
             onClick={() => setOpen(!open)}>
             <div
-              className={`relative flex items-center justify-center w-5 h-5 transform transition-all bg-white duration-200`}>
+              className={`relative flex items-center justify-center w-5 h-5 transform transition-all bg-none duration-200`}>
               <div
                 className={`flex flex-col justify-between w-[15px] h-[15px] transform transition-all duration-300 ${
                   open ? "group-focus:-rotate-[45deg] origin-center" : ""
@@ -113,7 +125,7 @@ function NavBar() {
                 <div
                   className={`bg-dark h-[2px] w-1/2 rounded transform transition-all duration-300 ${
                     open
-                      ? "group-focus:-rotate-90 group-focus:h-[1px] origin-right delay-75 group-focus:-translate-y-[1px]"
+                      ? `group-focus:-rotate-90 group-focus:h-[1px] origin-right delay-75 group-focus:-translate-y-[1px] ${open}`
                       : ""
                   }`}></div>
                 <div className={`bg-dark h-[1px] rounded`}></div>
@@ -126,6 +138,7 @@ function NavBar() {
               </div>
             </div>
           </button>
+          <div className={`background ${open}`}></div>
         </div>
       </div>
     </div>
