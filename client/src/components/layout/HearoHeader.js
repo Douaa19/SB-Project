@@ -10,20 +10,26 @@ function HearoHeader() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 300,
+    autoplaySpeed: 6000,
+    speed: 3000,
     autoplay: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     appendDots: (dots) => (
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
         <ul
           style={{
-            margin: "0px",
+            margin: "1rem 0",
             potion: "absolute",
             display: "flex",
             justifyContent: "space-around",
-            width: "10%",
+            width: "12%",
           }}>
           {dots}
         </ul>
@@ -31,9 +37,10 @@ function HearoHeader() {
     ),
     customPaging: (i) => (
       <div
+        className="hover:opacity-75"
         style={{
           width: "3rem",
-          height: "4px",
+          height: "0.2rem",
           color: "blue",
           border: "2px #DAB88A solid",
           borderRadius: "8px",
@@ -46,24 +53,22 @@ function HearoHeader() {
   };
 
   return (
-    <div className="w-[100%] max-h-full md:mt-3 ssm:mt-0 block">
+    <div className="w-[100%] md:max-h-full ssm:max-h-[50vh] md:mt-3 ssm:mt-0 block">
       <Slider {...settings}>
         {images.map((image, index) => (
-          <>
+          <div className="relative">
+            <div className="shadow z-10 h-[100vh] w-full bg-dark opacity-10 fixed top-0 left-0 text-dark">
+              HELLO
+            </div>
             <img
               key={index}
               src={image}
               alt="slide"
               className="h-[100vh] w-full"
             />
-          </>
+          </div>
         ))}
       </Slider>
-      {/* <Slider autoSlide={true} autoSlideInterval={5000}>
-        {slides.map((s) => (
-          <img src={s} alt="slide" />
-        ))}
-      </Slider> */}
     </div>
   );
 }
