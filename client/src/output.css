@@ -620,10 +620,6 @@ video {
   bottom: 1rem;
 }
 
-.bottom-5 {
-  bottom: 1.25rem;
-}
-
 .left-0 {
   left: 0px;
 }
@@ -662,10 +658,6 @@ video {
 
 .z-\[1\] {
   z-index: 1;
-}
-
-.m-0 {
-  margin: 0px;
 }
 
 .mx-auto {
@@ -725,10 +717,6 @@ video {
 
 .grid {
   display: grid;
-}
-
-.h-12 {
-  height: 3rem;
 }
 
 .h-4 {
@@ -805,10 +793,6 @@ video {
   width: 2.5rem;
 }
 
-.w-12 {
-  width: 3rem;
-}
-
 .w-16 {
   width: 4rem;
 }
@@ -835,10 +819,6 @@ video {
 
 .w-8 {
   width: 2rem;
-}
-
-.w-\[10\%\] {
-  width: 10%;
 }
 
 .w-\[100\%\] {
@@ -1220,6 +1200,10 @@ video {
   font-size: 18px;
 }
 
+.text-36 {
+  font-size: 36px;
+}
+
 .text-8 {
   font-size: 8px;
 }
@@ -1232,6 +1216,10 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-24 {
+  font-size: 24px;
 }
 
 .font-bold {
@@ -1301,26 +1289,6 @@ video {
 
 .opacity-80 {
   opacity: 0.8;
-}
-
-.opacity-75 {
-  opacity: 0.75;
-}
-
-.opacity-70 {
-  opacity: 0.7;
-}
-
-.opacity-90 {
-  opacity: 0.9;
-}
-
-.opacity-25 {
-  opacity: 0.25;
-}
-
-.opacity-10 {
-  opacity: 0.1;
 }
 
 .shadow {
@@ -1575,12 +1543,12 @@ body {
   text-decoration-line: underline;
 }
 
-.hover\:opacity-80:hover {
-  opacity: 0.8;
-}
-
 .hover\:opacity-75:hover {
   opacity: 0.75;
+}
+
+.hover\:opacity-80:hover {
+  opacity: 0.8;
 }
 
 .focus\:outline-none:focus {
