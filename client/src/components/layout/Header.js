@@ -5,7 +5,7 @@ import HearoHeader from "./HearoHeader";
 function Header() {
   return (
     <>
-      {/* <NavBar /> */}
+      <NavBar />
       <HearoHeader />
     </>
   );
