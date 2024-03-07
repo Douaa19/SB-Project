@@ -23,6 +23,8 @@ function NavBar() {
 
   let [open, setOpen] = useState(false);
 
+  const isOpen = open ? "open" : "";
+
   const handleSearch = () => {
     const queryString = String(searchQuery).trim();
 
@@ -55,9 +57,9 @@ function NavBar() {
       </div>
       <div className="menu lg:block lg:text-18 lg:w-640 flex justify-center items-center md:block md:text-16 ssm:text-10 md:w-500 ssm:w-full p-0">
         <ul
-          className={`md:flex md:pr-0 md:justify-around md:flex-row w-full ssm:z-1 z-[1] capitalize ssm:flex ssm:flex-col ssm:items-end md:static ssm:absolute ssm:pr-8 transition-all duration-100 ease-in ${
+          className={`menu ${isOpen} md:flex md:pr-0 md:justify-around md:flex-row w-full ssm:z-1 z-[1] capitalize ssm:flex ssm:flex-col ssm:items-end md:static ssm:absolute ssm:pr-8 transition-all duration-100 ease-in ${
             open
-              ? "top-12 opacity-100 z-[1] h-[100vh] sticky right-0 bg-white w-[50%]"
+              ? "top-12 opacity-100 z-10 h-[50vh] sticky right-0 bg-white bg-transparent w-[50%]"
               : "top-[-480px]"
           } ssm:opacity-100 opacity-0`}>
           {links.map((link, index) => (
@@ -66,6 +68,8 @@ function NavBar() {
                 href={link.link}
                 style={{ animationDelay: `0.${index + 1}s` }}
                 className={`costum-list list sm:text-16 ssm:text-14 ${
+                  open ? "appear" : ""
+                } ${
                   open
                     ? `${
                         location.slice(22) !== "home"
@@ -114,7 +118,7 @@ function NavBar() {
         </div>
         <div className="md:hidden">
           <button
-            className="relative group flex items-center outline-none burger"
+            className={`relative group flex items-center outline-none burger ${isOpen}`}
             onClick={() => setOpen(!open)}>
             <div
               className={`relative flex items-center justify-center w-5 h-5 transform transition-all bg-none duration-200`}>
@@ -125,20 +129,23 @@ function NavBar() {
                 <div
                   className={`bg-dark h-[2px] w-1/2 rounded transform transition-all duration-300 ${
                     open
-                      ? `group-focus:-rotate-90 group-focus:h-[1px] origin-right delay-75 group-focus:-translate-y-[1px] ${open}`
+                      ? `bg-white group-focus:-rotate-90 group-focus:h-[1px] origin-right delay-75 group-focus:-translate-y-[1px] ${open}`
                       : ""
                   }`}></div>
-                <div className={`bg-dark h-[1px] rounded`}></div>
+                <div
+                  className={`h-[1px] rounded ${
+                    open ? "bg-white" : "bg-dark"
+                  }`}></div>
                 <div
                   className={`bg-dark h-[2px] w-1/2 rounded self-end transform transition-all duration-300 ${
                     open
-                      ? "group-focus:-rotate-90 group-focus:h-[1px] origin-left delay-75 group-focus:translate-y-[1px]"
+                      ? "bg-white group-focus:-rotate-90 group-focus:h-[1px] origin-left delay-75 group-focus:translate-y-[1px]"
                       : ""
                   }`}></div>
               </div>
             </div>
           </button>
-          <div className={`background ${open}`}></div>
+          <div className={`background ${isOpen}`}></div>
         </div>
       </div>
     </div>
