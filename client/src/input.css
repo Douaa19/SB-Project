@@ -244,7 +244,7 @@ h2.frame-5 span:nth-child(4) {
   opacity: 0.85;
 }
 
-.menu {
+.menu ul {
   z-index: 3;
   top: 0;
   left: 0;
@@ -257,7 +257,7 @@ h2.frame-5 span:nth-child(4) {
   transition: 0.05s;
 }
 
-.menu li {
+.menu ul li {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -265,20 +265,20 @@ h2.frame-5 span:nth-child(4) {
   padding-left: 100px;
 }
 
-.menu.open {
+.menu ul.open {
   opacity: 1;
   visibility: visible;
 }
 
-body .menu li:hover > a {
+body .menu ul li:hover > a {
   opacity: 0.25;
 }
 
-body .menu li > a:hover {
+body .menu ul li > a:hover {
   opacity: 1;
 }
 
-.menu li a {
+.menu ul li a {
   color: #f9f9f9;
   font-size: 32px;
   font-family: "Euclid Circular A";
@@ -290,7 +290,7 @@ body .menu li > a:hover {
   transition: 0.4s;
 }
 
-.menu.open li a {
+.menu ul.open li a {
   opacity: 1;
 }
 
