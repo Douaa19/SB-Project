@@ -118,7 +118,7 @@ function NavBar() {
         </div>
         <div className="md:hidden">
           <button
-            className={`relative group flex items-center outline-none burger ${isOpen}`}
+            className={`relative group flex items-center outline-none burger w-10 h-10 ${isOpen}`}
             onClick={() => setOpen(!open)}>
             <div
               className={`relative flex items-center justify-center w-5 h-5 transform transition-all bg-none duration-200`}>

@@ -660,26 +660,6 @@ video {
   z-index: 1;
 }
 
-.z-\[\] {
-  z-index: ;
-}
-
-.z-\[5\] {
-  z-index: 5;
-}
-
-.z-\[10\] {
-  z-index: 10;
-}
-
-.z-\[9\] {
-  z-index: 9;
-}
-
-.z-\[0\] {
-  z-index: 0;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -737,6 +717,10 @@ video {
 
 .grid {
   display: grid;
+}
+
+.h-10 {
+  height: 2.5rem;
 }
 
 .h-4 {
@@ -1607,21 +1591,21 @@ h2.frame-5 span:nth-child(4) {
 
 .burger {
   z-index: 5;
-  top: 0;
-  left: 0;
+  top: 0.5rem;
+  right: 0;
   display: grid;
   place-items: center;
-  width: 88px;
-  height: 88px;
+  /* width: 88px;
+  height: 88px; */
 }
 
 .background {
   position: fixed;
   z-index: 2;
-  top: 44px;
-  left: 44px;
+  top: 0px;
+  right: 0px;
   aspect-ratio: 1 / 1;
-  translate: -50% -50%;
+  translate: 50% -50%;
   height: 88px;
   background: #07030a;
   border-radius: 50%;
