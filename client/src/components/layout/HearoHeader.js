@@ -18,6 +18,7 @@ function HearoHeader() {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
+    adaptiveHeight: true,
     appendDots: (dots) => (
       <div
         style={{
@@ -27,12 +28,12 @@ function HearoHeader() {
         }}>
         <ul
           style={{
-            margin: "1rem 0",
+            margin: "0px",
             potion: "absolute",
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "center",
             alignItems: "center",
-            width: "12%",
+            width: "100%",
           }}>
           {dots}
         </ul>
@@ -40,16 +41,13 @@ function HearoHeader() {
     ),
     customPaging: (i) => (
       <div
-        className="hover:opacity-75"
+        className="hover:opacity-75 sm:w-2 sm:h-2 ssm:w-1 ssm:h-1"
         style={{
-          width: "3rem",
-          height: "0.2rem",
           border: "1px #DAB88A solid",
           borderRadius: "8px",
           position: "relative",
           top: "0",
           left: "0",
-          // bottom: "2rem",
           margin: "0",
           backgroundColor: "#DAB88A",
         }}></div>
@@ -57,32 +55,36 @@ function HearoHeader() {
   };
 
   return (
-    <div className="w-[100%] md:max-h-full ssm:max-h-[50vh] md:mt-3 ssm:mt-0 block">
-      <div className="z-10 h-[100vh] absolute w-full top-0 left-0 flex justify-center items-center">
-        <div className="flex flex-col items-center">
-          <span className="text-center text-white font-normale text-24">
-            Stitching stories, creating memories
-          </span>
-          <span className="text-36 font-bold text-white">Saba Ebroidery</span>
+    <div className="w-[100%] md:h-[80vh] sm:h-[60vh] ssm:h-[40vh] ssm:mt-0 block">
+      <div className="z-10 md:h-[80vh] sm:h-[60vh] ssm:h-[40vh] absolute w-full top-0 left-0 flex justify-center items-center">
+        <div className="flex flex-col items-center justify-center">
+          <h2 className="frame-5 text-center text-white font-normale md:text-24 sm:text-16 ssm:text-12">
+            <span>Stitching</span>
+            <span> stories,</span>
+            <span> creating</span>
+            <span> memories</span>
+          </h2>
+          <h1 className="frame-5 md:mt-2 ssm:mt-1">
+            <span className=" md:text-36 sm:text-24 ssm:text-18 font-bold text-white">
+              Saba Embroidery
+            </span>
+          </h1>
         </div>
       </div>
 
-      <Slider {...settings}>
+      <Slider {...settings} className="slider-image">
         {images.map((image, index) => (
           <>
-            <div className="z-10 h-[100vh] absolute bg-dark opacity-5 w-full top-0 left-0 flex justify-center items-center"></div>
+            <div className="z-10 h-full absolute bg-dark opacity-5 w-full top-0 left-0 flex justify-center items-center"></div>
             <img
               key={index}
               src={image}
               alt="slide"
-              className="h-[100vh] w-full"
+              className="object-cover md:h-[80vh] sm:h-[60vh] ssm:h-[40vh] w-full"
             />
           </>
         ))}
       </Slider>
-      <div className="">
-        
-      </div>
     </div>
   );
 }
