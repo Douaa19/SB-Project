@@ -221,8 +221,6 @@ h2.frame-5 span:nth-child(4) {
   right: 0;
   display: grid;
   place-items: center;
-  /* width: 88px;
-  height: 88px; */
 }
 
 .background {
@@ -282,7 +280,6 @@ body .menu ul li > a:hover {
 .menu li a {
   color: #f9f9f9;
   opacity: 0;
-  cursor: pointer;
   transition: 0.4s;
   margin-right: 1rem;
   padding-bottom: 0.5rem;
@@ -306,3 +303,7 @@ body .menu ul li > a:hover {
   animation: appear 0.35s backwards;
 }
 /* menu */
+
+/* search input */
+
+/* search input */
