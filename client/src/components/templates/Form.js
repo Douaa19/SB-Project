@@ -4,7 +4,7 @@ import { Button, Input, TextArea } from "../atoms";
 import { sendMessage } from "../../services/userServices";
 import { setContactDone } from "../../redux/actions/popups";
 import { SelectComponent } from "../atoms";
-import { cities } from "morocco-cities";
+// import { cities } from "morocco-cities";
 
 function Form(props) {
   const dispatch = useDispatch();
@@ -20,23 +20,20 @@ function Form(props) {
     setData(newData);
   };
 
-  const hadleSelect = (name, value) => {
-    setData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
   const handleSubmit = () => {
     let errors = validationForm(data);
 
     if (Object.keys(errors).length === 0) {
-      sendMessage(data).then((res) => {
-        if (res.status === 200) {
-          dispatch(setContactDone(true));
-          setData({ name: "", email: "", phone: "", message: "" });
-        }
-      });
+      if (props.type === "contact") {
+        sendMessage(data).then((res) => {
+          if (res.status === 200) {
+            dispatch(setContactDone(true));
+            setData({ name: "", email: "", phone: "", message: "" });
+          }
+        });
+      } else if (props.type === "shipping") {
+        console.log(data);
+      }
     } else {
       console.log("Error!!");
     }
@@ -63,14 +60,26 @@ function Form(props) {
       errors.phone = "Invalid phone number";
     }
 
-    if (!data.city) {
-      errors.city = "City is required";
+    if (props.type === "contact") {
+      if (!data.message) {
+        errors.message = "Message is required";
+      } else if (data.message.length < 10 || data.message.length > 100) {
+        errors.message = "Message must be between 10 and 50 characters";
+      }
     }
 
-    if (!data.message) {
-      errors.message = "Message is required";
-    } else if (data.message.length < 10 || data.message.length > 100) {
-      errors.message = "Message must be between 10 and 50 characters";
+    if (props.type === "shipping") {
+      if (!data.city) {
+        errors.city = "City is required";
+      }
+
+      if (!data.address) {
+        errors.address = "Address is required";
+      }
+
+      if (!data.postalCode) {
+        errors.postalCode = "Postal code is required";
+      }
     }
 
     setErrors(errors);
@@ -87,12 +96,22 @@ function Form(props) {
     return /^\+\d{12}$/.test(phone);
   };
 
+  const hadleSelect = (name, value) => {
+    setData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    console.log(data.city);
+  };
+
   return (
     <div className={props.className}>
       <div
         className={`flex ${
-          props.type !== "contact" ? "flex-col" : "md:flex-row ssm:flex-col"
-        }  w-full md:justify-between ssm:justify-center items-center md:gap-4 ssm:gap-6`}>
+          props.type !== "contact"
+            ? "flex-col ssm:gap-4"
+            : "md:flex-row ssm:flex-col ssm:gap-6"
+        }  w-full md:justify-between ssm:justify-center items-center md:gap-4 `}>
         <Input
           type="text"
           className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
@@ -136,7 +155,7 @@ function Form(props) {
       {props.type !== "contact" && (
         <>
           <SelectComponent
-            cities={cities}
+            data={cities}
             name="city"
             error={errors.city}
             className=""
@@ -161,7 +180,7 @@ function Form(props) {
           <Input
             type="text"
             className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
-              errors.code
+              errors.postalCode
                 ? "border-red text-red placeholder:text-red"
                 : "border-main"
             }`}
