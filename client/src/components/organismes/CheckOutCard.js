@@ -23,11 +23,6 @@ function CheckOutCard({ subtotal, shipping, grandTotal }) {
         <span className={`${style.title}`}>grand total</span>
         <span className={`${style.amount}`}>{`${grandTotal}DH`}</span>
       </div>
-      <Button
-        className="border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold"
-        text="checkout"
-        // onClick={() => handleSubmit()}
-      />
     </div>
   );
 }
