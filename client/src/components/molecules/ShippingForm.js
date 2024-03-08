@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "../templates";
 
-function ShippingForm() {
+function ShippingForm(props) {
   return (
     <div className="border border-gray-100 rounded-md w-[100%] p-8">
       <h4 className="font-bold md:text-18 ssm:text-16 pb-4">

@@ -30,7 +30,7 @@ function App() {
     dispatch(
       setCities(
         cities.map((city) => {
-          return { label: city.name, value: city.iso3 };
+          return { label: city.name, value: city.name };
         })
       )
     );

@@ -21,8 +21,8 @@ function Home() {
   return (
     <div>
       <Header />
-      {/* <PresentationCards /> */}
-      {/* <SectionCards
+      <PresentationCards />
+      <SectionCards
         items={bestSellingItems}
         title="best selling"
         buttonText="View more"
@@ -38,7 +38,7 @@ function Home() {
         limit={displayLimit}
         transition={false}
       />
-      <Footer /> */}
+      <Footer />
     </div>
   );
 }

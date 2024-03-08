@@ -5,6 +5,7 @@ import PageTitle from "./PageTitle";
 import RowBasket from "./RowBasket";
 import EmptyRowBasket from "./EmptyRowBasket";
 import SliderArrow from "./SliderArrow";
+import SelectComponent from "./SelectComponent";
 
 export {
   Button,
@@ -14,4 +15,5 @@ export {
   RowBasket,
   EmptyRowBasket,
   SliderArrow,
+  SelectComponent,
 };

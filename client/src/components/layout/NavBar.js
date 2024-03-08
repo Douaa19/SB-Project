@@ -13,15 +13,42 @@ function NavBar() {
   const allItems = useSelector((state) => state.newestItems);
   const orders = useSelector((state) => state.orders.orders);
 
+  let inputContent = (
+    <>
+      {location.slice(22) !== "best-selling" &&
+        location.slice(22) !== "products" && (
+          <>
+            <Input
+              className="border rounded-5 border-main lg:text-14 lg:block px-3 py-2 outline-none md:block md:text-12 ssm:hidden"
+              placeHolder="search..."
+              rightIcon={Search}
+              name="search"
+              classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-40 pr-2 md:left-36 md:w-4 ssm:w-6 md:block ssm:hidden"
+              value={searchQuery}
+              onChange={(e) => {
+                const query = e.target.value.toString();
+                setSearchQuery(query);
+              }}
+              onIconClick={() => handleSearch()}
+            />
+          </>
+        )}
+    </>
+  );
+
   let links = [
     { name: "home", link: "/" },
     { name: "best selling", link: "/best-selling" },
     { name: "our products", link: "/products" },
     { name: "about us", link: "/about" },
     { name: "contact us", link: "/contact" },
+    { name: "search", content: inputContent },
   ];
 
   let [open, setOpen] = useState(false);
+
+  const isOpen = open ? "open" : "";
+  console.log(open, isOpen);
 
   const handleSearch = () => {
     const queryString = String(searchQuery).trim();
@@ -53,52 +80,55 @@ function NavBar() {
           />
         </a>
       </div>
-      <div className="menu lg:block lg:text-18 lg:w-640 flex justify-center items-center md:block md:text-16 ssm:text-10 md:w-500 ssm:w-full p-0">
+      <div
+        className={`lg:block lg:text-18 lg:w-640 flex justify-center items-center md:block md:text-16 ssm:text-10 md:w-500 ssm:w-full p-0`}>
         <ul
-          className={`md:flex md:pr-0 md:justify-around md:flex-row w-full ssm:z-1 z-[1] capitalize ssm:flex ssm:flex-col ssm:items-end md:static ssm:absolute ssm:pr-8 transition-all duration-100 ease-in ${
-            open
-              ? "top-12 opacity-100 z-[1] h-[100vh] sticky right-0 bg-white w-[50%]"
-              : "top-[-480px]"
-          } ssm:opacity-100 opacity-0`}>
+          className={`${
+            open ? `menu ${isOpen}` : "ssm:hidden"
+          } md:flex md:pr-0 md:justify-around md:flex-row w-full ssm:z-1 z-[1] capitalize ssm:flex ssm:flex-col ssm:items-end md:static ssm:pr-8 transition-all duration-100 ease-in ssm:opacity-100 opacity-0`}>
           {links.map((link, index) => (
             <li key={link.name} className="ssm:pt-2.5 md:pt-0">
-              <a
-                href={link.link}
-                style={{ animationDelay: `0.${index + 1}s` }}
-                className={`costum-list list sm:text-16 ssm:text-14 ${
-                  open
-                    ? `${
-                        location.slice(22) !== "home"
-                          ? "text-dark"
-                          : "sm:text-white ssm:text-dark"
-                      }`
-                    : "sm:text-white ssm:text-dark md:text-dark"
-                }`}>
-                {link.name}
-              </a>
+              {link.name !== "search" ? (
+                <a
+                  href={link.link}
+                  style={{ animationDelay: `0.${index + 1}s` }}
+                  className={`costum-list list sm:text-16 ssm:text-14 cursor-pointer ${
+                    open ? `appear text-white opacity-1` : "md:text-dark"
+                  }`}>
+                  {link.name}
+                </a>
+              ) : (
+                <a
+                  style={{ animationDelay: `0.${index + 1}s` }}
+                  className={`mt-1 ${
+                    open ? `appear text-white opacity-1` : "md:text-dark"
+                  }`}>
+                  {location.slice(22) !== "best-selling" &&
+                    location.slice(22) !== "products" && (
+                      <>
+                        <Input
+                          className="border rounded-5 border-main px-3 py-2 sm:text-16 ssm:text-14 outline-none text-dark md:hidden"
+                          placeHolder="search..."
+                          rightIcon={Search}
+                          name="search"
+                          classIcon="hover:cursor-pointer absolute pr-2 ssm:w-5 right-1"
+                          value={searchQuery}
+                          onChange={(e) => {
+                            const query = e.target.value.toString();
+                            setSearchQuery(query);
+                          }}
+                          onIconClick={() => handleSearch()}
+                        />
+                      </>
+                    )}
+                </a>
+              )}
             </li>
           ))}
         </ul>
       </div>
       <div className="btns md:static flex justify-between items-center md:gap-2 w-max ssm:gap-2 ssm:absolute ssm:right-8">
-        {location.slice(22) !== "best-selling" &&
-          location.slice(22) !== "products" && (
-            <>
-              <Input
-                className="border rounded-5 border-main lg:text-14 lg:block px-3 py-2 outline-none md:block md:text-12 ssm:hidden"
-                placeHolder="search..."
-                rightIcon={Search}
-                name="search"
-                classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-40 pr-2 md:left-36 md:w-4 ssm:w-6"
-                value={searchQuery}
-                onChange={(e) => {
-                  const query = e.target.value.toString();
-                  setSearchQuery(query);
-                }}
-                onIconClick={() => handleSearch()}
-              />
-            </>
-          )}
+        {inputContent}
         <div className="relative lg:w-6 md:w-5 ssm:w-12 ssm:mr-2 md:mr-0">
           <img
             src={Basket}
@@ -114,7 +144,7 @@ function NavBar() {
         </div>
         <div className="md:hidden">
           <button
-            className="relative group flex items-center outline-none burger"
+            className={`relative group flex items-center outline-none burger w-10 h-10 ${isOpen}`}
             onClick={() => setOpen(!open)}>
             <div
               className={`relative flex items-center justify-center w-5 h-5 transform transition-all bg-none duration-200`}>
@@ -125,20 +155,23 @@ function NavBar() {
                 <div
                   className={`bg-dark h-[2px] w-1/2 rounded transform transition-all duration-300 ${
                     open
-                      ? `group-focus:-rotate-90 group-focus:h-[1px] origin-right delay-75 group-focus:-translate-y-[1px] ${open}`
+                      ? `bg-white group-focus:-rotate-90 group-focus:h-[1px] origin-right delay-75 group-focus:-translate-y-[1px] ${open}`
                       : ""
                   }`}></div>
-                <div className={`bg-dark h-[1px] rounded`}></div>
+                <div
+                  className={`h-[1px] rounded ${
+                    open ? "bg-white" : "bg-dark"
+                  }`}></div>
                 <div
                   className={`bg-dark h-[2px] w-1/2 rounded self-end transform transition-all duration-300 ${
                     open
-                      ? "group-focus:-rotate-90 group-focus:h-[1px] origin-left delay-75 group-focus:translate-y-[1px]"
+                      ? "bg-white group-focus:-rotate-90 group-focus:h-[1px] origin-left delay-75 group-focus:translate-y-[1px]"
                       : ""
                   }`}></div>
               </div>
             </div>
           </button>
-          <div className={`background ${open}`}></div>
+          <div className={`background ${isOpen}`}></div>
         </div>
       </div>
     </div>

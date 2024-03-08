@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Input, TextArea } from "../atoms";
 import { sendMessage } from "../../services/userServices";
 import { setContactDone } from "../../redux/actions/popups";
-import Select from "react-select";
-import { cities } from "morocco-cities";
+import { SelectComponent } from "../atoms";
+// import { cities } from "morocco-cities";
 
-function Form({ className, type }) {
+function Form(props) {
   const dispatch = useDispatch();
   const done = useSelector((state) => state.contactDonePopup);
   const [data, setData] = useState({});
@@ -24,12 +24,16 @@ function Form({ className, type }) {
     let errors = validationForm(data);
 
     if (Object.keys(errors).length === 0) {
-      sendMessage(data).then((res) => {
-        if (res.status === 200) {
-          dispatch(setContactDone(true));
-          setData({ name: "", email: "", phone: "", message: "" });
-        }
-      });
+      if (props.type === "contact") {
+        sendMessage(data).then((res) => {
+          if (res.status === 200) {
+            dispatch(setContactDone(true));
+            setData({ name: "", email: "", phone: "", message: "" });
+          }
+        });
+      } else if (props.type === "shipping") {
+        console.log(data);
+      }
     } else {
       console.log("Error!!");
     }
@@ -56,10 +60,26 @@ function Form({ className, type }) {
       errors.phone = "Invalid phone number";
     }
 
-    if (!data.message) {
-      errors.message = "Message is required";
-    } else if (data.message.length < 10 || data.message.length > 100) {
-      errors.message = "Message must be between 10 and 50 characters";
+    if (props.type === "contact") {
+      if (!data.message) {
+        errors.message = "Message is required";
+      } else if (data.message.length < 10 || data.message.length > 100) {
+        errors.message = "Message must be between 10 and 50 characters";
+      }
+    }
+
+    if (props.type === "shipping") {
+      if (!data.city) {
+        errors.city = "City is required";
+      }
+
+      if (!data.address) {
+        errors.address = "Address is required";
+      }
+
+      if (!data.postalCode) {
+        errors.postalCode = "Postal code is required";
+      }
     }
 
     setErrors(errors);
@@ -76,12 +96,22 @@ function Form({ className, type }) {
     return /^\+\d{12}$/.test(phone);
   };
 
+  const hadleSelect = (name, value) => {
+    setData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    console.log(data.city);
+  };
+
   return (
-    <div className={className}>
+    <div className={props.className}>
       <div
         className={`flex ${
-          type !== "contact" ? "flex-col" : "md:flex-row ssm:flex-col"
-        }  w-full md:justify-between ssm:justify-center items-center md:gap-4 ssm:gap-6`}>
+          props.type !== "contact"
+            ? "flex-col ssm:gap-4"
+            : "md:flex-row ssm:flex-col ssm:gap-6"
+        }  w-full md:justify-between ssm:justify-center items-center md:gap-4 `}>
         <Input
           type="text"
           className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
@@ -89,7 +119,7 @@ function Form({ className, type }) {
               ? "border-red text-red placeholder:text-red"
               : "border-main"
           }`}
-          placeHolder={`${type === "contact" ? "name" : "full name"}`}
+          placeHolder={`${props.type === "contact" ? "name" : "full name"}`}
           name="name"
           value={data.name}
           onChange={(e) => handleChange("name", e.target.value)}
@@ -122,19 +152,17 @@ function Form({ className, type }) {
         onChange={(e) => handleChange("phone", e.target.value)}
         error={errors.phone}
       />
-      {type !== "contact" && (
+      {props.type !== "contact" && (
         <>
-          <Select
-            options={cities}
-            classNamePrefix="dropdown-select"
-            className={`${
-              errors.phone ? "input-error dropdown-select" : "dropdown-select"
-            }`}
-            placeholder="city"
-            // name="city"
-            // value={data.phone}
-            onChange={(e) => handleChange("city", e.target.value)}
+          <SelectComponent
+            data={cities}
+            name="city"
             error={errors.city}
+            className=""
+            city={data.city}
+            onChange={(value) => {
+              hadleSelect("city", value);
+            }}
           />
           <Input
             type="text"
@@ -152,7 +180,7 @@ function Form({ className, type }) {
           <Input
             type="text"
             className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
-              errors.code
+              errors.postalCode
                 ? "border-red text-red placeholder:text-red"
                 : "border-main"
             }`}
@@ -164,7 +192,7 @@ function Form({ className, type }) {
           />
         </>
       )}
-      {type === "contact" && (
+      {props.type === "contact" && (
         <>
           <TextArea
             text="write your message here"
@@ -180,15 +208,15 @@ function Form({ className, type }) {
                 : "border-main"
             }`}
           />
-          <div className="flex items-center justify-start w-full">
-            <Button
-              className="border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-main md:text-16 ssm:text-12 outline-none hover:bg-main hover:text-white font-bold"
-              text="submit"
-              onClick={() => handleSubmit()}
-            />
-          </div>
         </>
       )}
+      <div className="flex items-center justify-start w-full">
+        <Button
+          className="border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold"
+          text="checkout"
+          onClick={() => handleSubmit()}
+        />
+      </div>
     </div>
   );
 }
