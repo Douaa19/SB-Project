@@ -603,11 +603,6 @@ video {
   position: relative;
 }
 
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-}
-
 .inset-0 {
   inset: 0px;
 }
@@ -634,14 +629,6 @@ video {
 
 .top-0 {
   top: 0px;
-}
-
-.top-12 {
-  top: 3rem;
-}
-
-.top-\[-480px\] {
-  top: -480px;
 }
 
 .z-0 {
@@ -835,10 +822,6 @@ video {
 
 .w-\[15px\] {
   width: 15px;
-}
-
-.w-\[50\%\] {
-  width: 50%;
 }
 
 .w-\[80\%\] {
@@ -1279,10 +1262,6 @@ video {
   opacity: 0;
 }
 
-.opacity-100 {
-  opacity: 1;
-}
-
 .opacity-5 {
   opacity: 0.05;
 }
@@ -1642,26 +1621,24 @@ h2.frame-5 span:nth-child(4) {
 .menu.open {
   opacity: 1;
   visibility: visible;
+  margin-top: 3rem;
 }
 
-body .menu li:hover > a {
+body .menu ul li:hover > a {
   opacity: 0.25;
 }
 
-body .menu li > a:hover {
+body .menu ul li > a:hover {
   opacity: 1;
 }
 
 .menu li a {
   color: #f9f9f9;
-  font-size: 32px;
-  font-family: "Euclid Circular A";
-  padding: 20px 0 20px 20px;
-  text-decoration: none;
-  text-transform: capitalize;
   opacity: 0;
   cursor: pointer;
   transition: 0.4s;
+  margin-right: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 .menu.open li a {
@@ -2075,11 +2052,6 @@ body .menu li > a:hover {
     font-size: 32px;
   }
 
-  .ssm\:text-dark {
-    --tw-text-opacity: 1;
-    color: rgb(0 0 0 / var(--tw-text-opacity));
-  }
-
   .ssm\:opacity-100 {
     opacity: 1;
   }
@@ -2168,11 +2140,6 @@ body .menu li > a:hover {
 
   .sm\:text-32 {
     font-size: 32px;
-  }
-
-  .sm\:text-white {
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
   }
 }
 

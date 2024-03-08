@@ -24,6 +24,7 @@ function NavBar() {
   let [open, setOpen] = useState(false);
 
   const isOpen = open ? "open" : "";
+  console.log(open, isOpen);
 
   const handleSearch = () => {
     const queryString = String(searchQuery).trim();
@@ -56,24 +57,18 @@ function NavBar() {
         </a>
       </div>
       <div
-        className={`menu ${isOpen} lg:block lg:text-18 lg:w-640 flex justify-center items-center md:block md:text-16 ssm:text-10 md:w-500 ssm:w-full p-0`}>
+        className={`lg:block lg:text-18 lg:w-640 flex justify-center items-center md:block md:text-16 ssm:text-10 md:w-500 ssm:w-full p-0`}>
         <ul
-          className={`md:flex md:pr-0 md:justify-around md:flex-row w-full ssm:z-1 z-[1] capitalize ssm:flex ssm:flex-col ssm:items-end md:static ssm:absolute ssm:pr-8 transition-all duration-100 ease-in ssm:opacity-100 opacity-0`}>
+          className={`${
+            open ? `menu ${isOpen}` : "ssm:hidden"
+          } md:flex md:pr-0 md:justify-around md:flex-row w-full ssm:z-1 z-[1] capitalize ssm:flex ssm:flex-col ssm:items-end md:static ssm:pr-8 transition-all duration-100 ease-in ssm:opacity-100 opacity-0`}>
           {links.map((link, index) => (
             <li key={link.name} className="ssm:pt-2.5 md:pt-0">
               <a
                 href={link.link}
                 style={{ animationDelay: `0.${index + 1}s` }}
                 className={`costum-list list sm:text-16 ssm:text-14 ${
-                  open ? "appear" : ""
-                } ${
-                  open
-                    ? `${
-                        location.slice(22) !== "home"
-                          ? "text-dark"
-                          : "sm:text-white ssm:text-dark"
-                      }`
-                    : "sm:text-white ssm:text-dark md:text-dark"
+                  open ? `appear text-white opacity-1` : "md:text-dark"
                 }`}>
                 {link.name}
               </a>
