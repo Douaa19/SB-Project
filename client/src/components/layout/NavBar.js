@@ -48,7 +48,6 @@ function NavBar() {
   let [open, setOpen] = useState(false);
 
   const isOpen = open ? "open" : "";
-  console.log(open, isOpen);
 
   const handleSearch = () => {
     const queryString = String(searchQuery).trim();

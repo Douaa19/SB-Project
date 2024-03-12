@@ -8,6 +8,7 @@ function ShippingForm(props) {
         Shipping information
       </h4>
       <Form
+        setShowPopup={props.setShowPopup}
         type="shipping"
         className="flex flex-col items-between w-full gap-4 justify-center px-10"
       />

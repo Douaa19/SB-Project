@@ -4,12 +4,18 @@ import { BasketTable, CheckOutCard } from "../components/organismes";
 import { PageTitle } from "../components/atoms";
 import { ShippingForm } from "../components/molecules";
 import { useSelector } from "react-redux";
+import { Popup } from "../components/organismes";
 
 function Basket() {
   const orders = useSelector((state) => state.orders);
   const [subtotal, setSubTotal] = useState(null);
   const [grandtotal, setGrandTotal] = useState(null);
   const [shipping, setShipping] = useState(10);
+  const [showPopup, setShowPopup] = useState(true);
+
+  const isShowed = showPopup ? "open" : "";
+
+  console.log(showPopup, isShowed);
 
   useEffect(() => {
     let total = 0;
@@ -31,7 +37,7 @@ function Basket() {
       const grandTotal = subtotal + shipping;
       setGrandTotal(grandTotal);
     }
-  }, [subtotal]);
+  }, [subtotal, shipping]);
 
   return (
     <>
@@ -44,7 +50,7 @@ function Basket() {
         <BasketTable orders={orders} />
         {orders.orders.length > 0 && (
           <div className="mt-6 w-[100%] flex md:flex-row ssm:flex-col items-start justify-between gap-4">
-            <ShippingForm />
+            <ShippingForm setShowPopup={setShowPopup} />
             <CheckOutCard
               subtotal={subtotal}
               grandTotal={grandtotal}
@@ -54,6 +60,7 @@ function Basket() {
         )}
       </div>
       <Footer />
+      {showPopup && <Popup />}
     </>
   );
 }

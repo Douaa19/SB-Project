@@ -32,7 +32,7 @@ function Form(props) {
           }
         });
       } else if (props.type === "shipping") {
-        console.log(data);
+        props.setShowPopup(true);
       }
     } else {
       console.log("Error!!");
@@ -101,7 +101,6 @@ function Form(props) {
       ...prevState,
       [name]: value,
     }));
-    console.log(data.city);
   };
 
   return (
