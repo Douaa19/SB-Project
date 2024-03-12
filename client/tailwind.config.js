@@ -41,6 +41,7 @@ module.exports = {
         gray: "#CCCCCC",
         "gray-100": "#CECECE",
         red: "#FF004D",
+        "dark-gray": "#333333",
       },
       padding: {
         1: "2px",
