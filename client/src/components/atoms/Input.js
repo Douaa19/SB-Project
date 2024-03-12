@@ -12,8 +12,8 @@ function Input({
 }) {
   return (
     <div
-      className={`flex relative w-full ${
-        error ? "text-red" : "flex-row items-center"
+      className={`flex relative w-full flex-start ${
+        error ? "flex-col" : "flex-row"
       }`}>
       <input
         type={type}
@@ -37,7 +37,7 @@ function Input({
       )}
       {error && (
         <>
-          <span className="md:text-12 ssm:text-10 absolute md:top-10 ssm:top-9 left-3">
+          <span className="text-red md:text-12 ssm:text-10 relative left-3">
             {error}
           </span>
         </>

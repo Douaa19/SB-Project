@@ -32,7 +32,7 @@ function Form(props) {
           }
         });
       } else if (props.type === "shipping") {
-        console.log(data);
+        props.setShowPopup(true);
       }
     } else {
       console.log("Error!!");
@@ -101,7 +101,6 @@ function Form(props) {
       ...prevState,
       [name]: value,
     }));
-    console.log(data.city);
   };
 
   return (
@@ -109,16 +108,12 @@ function Form(props) {
       <div
         className={`flex ${
           props.type !== "contact"
-            ? "flex-col ssm:gap-4"
+            ? "flex-col ssm:gap-2"
             : "md:flex-row ssm:flex-col ssm:gap-6"
-        }  w-full md:justify-between ssm:justify-center items-center md:gap-4 `}>
+        }  w-full md:justify-between ssm:justify-center items-center md:gap-2`}>
         <Input
           type="text"
-          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
-            errors.name
-              ? "border-red text-red placeholder:text-red"
-              : "border-main"
-          }`}
+          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
           placeHolder={`${props.type === "contact" ? "name" : "full name"}`}
           name="name"
           value={data.name}
@@ -127,11 +122,7 @@ function Form(props) {
         />
         <Input
           type="email"
-          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
-            errors.email
-              ? "border-red text-red placeholder:text-red"
-              : "border-main"
-          }`}
+          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
           placeHolder="example@email.com"
           name="email"
           value={data.email}
@@ -141,11 +132,7 @@ function Form(props) {
       </div>
       <Input
         type="phone"
-        className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
-          errors.phone
-            ? "border-red text-red placeholder:text-red"
-            : "border-main"
-        }`}
+        className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
         placeHolder="phone number"
         name="phone"
         value={data.phone}
@@ -166,11 +153,7 @@ function Form(props) {
           />
           <Input
             type="text"
-            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
-              errors.address
-                ? "border-red text-red placeholder:text-red"
-                : "border-main"
-            }`}
+            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
             placeHolder="address"
             name="address"
             value={data.address}
@@ -179,11 +162,7 @@ function Form(props) {
           />
           <Input
             type="text"
-            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
-              errors.postalCode
-                ? "border-red text-red placeholder:text-red"
-                : "border-main"
-            }`}
+            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
             placeHolder="postal code"
             name="postalCode"
             value={data.postalCode}
@@ -202,11 +181,7 @@ function Form(props) {
             value={data.message}
             onChange={(e) => handleChange("message", e.target.value)}
             error={errors.message}
-            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 ${
-              errors.message
-                ? "border-red text-red placeholder:text-red"
-                : "border-main"
-            }`}
+            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
           />
         </>
       )}

@@ -4,12 +4,19 @@ import { BasketTable, CheckOutCard } from "../components/organismes";
 import { PageTitle } from "../components/atoms";
 import { ShippingForm } from "../components/molecules";
 import { useSelector } from "react-redux";
+import { Popup } from "../components/organismes";
+import { CheckoutPopupContent } from "../components/molecules";
 
 function Basket() {
   const orders = useSelector((state) => state.orders);
   const [subtotal, setSubTotal] = useState(null);
   const [grandtotal, setGrandTotal] = useState(null);
   const [shipping, setShipping] = useState(10);
+  const [showPopup, setShowPopup] = useState(true);
+
+  const isShowed = showPopup ? "open" : "";
+
+  console.log(showPopup, isShowed);
 
   useEffect(() => {
     let total = 0;
@@ -31,11 +38,11 @@ function Basket() {
       const grandTotal = subtotal + shipping;
       setGrandTotal(grandTotal);
     }
-  }, [subtotal]);
+  }, [subtotal, shipping]);
 
   return (
     <>
-      <NavBar />
+      {/* <NavBar />
       <div className="md:px-[4.5rem] lg:px-32 ssm:px-8 ssm:pt-4 w-full">
         <PageTitle
           title="my basket"
@@ -44,7 +51,7 @@ function Basket() {
         <BasketTable orders={orders} />
         {orders.orders.length > 0 && (
           <div className="mt-6 w-[100%] flex md:flex-row ssm:flex-col items-start justify-between gap-4">
-            <ShippingForm />
+            <ShippingForm setShowPopup={setShowPopup} />
             <CheckOutCard
               subtotal={subtotal}
               grandTotal={grandtotal}
@@ -53,7 +60,16 @@ function Basket() {
           </div>
         )}
       </div>
-      <Footer />
+      <Footer /> */}
+      {showPopup && (
+        <Popup>
+          <div className="popup">
+            <div className="popup-background">
+              <CheckoutPopupContent />
+            </div>
+          </div>
+        </Popup>
+      )}
     </>
   );
 }
