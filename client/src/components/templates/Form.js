@@ -108,7 +108,7 @@ function Form(props) {
       <div
         className={`flex ${
           props.type !== "contact"
-            ? "flex-col ssm:gap-4"
+            ? "flex-col ssm:gap-2"
             : "md:flex-row ssm:flex-col ssm:gap-6"
         }  w-full md:justify-between ssm:justify-center items-center md:gap-4 `}>
         <Input

@@ -40,10 +40,8 @@ function SelectComponent(props) {
         options={props.data}
         components={{ Option: customOptionRenderer }}
         classNamePrefix="dropdown-select-inner"
-        className={`${
-          props.error
-            ? "input-error dropdown-select-inner"
-            : "dropdown-select-inner"
+        className={`flex relative w-full flex-start ${
+          props.error ? "flex-col" : "flex-row"
         }`}
         placeholder="city"
         onChange={handleChange}
@@ -56,7 +54,7 @@ function SelectComponent(props) {
           <span
             className={`
               text-red
-             md:text-12 ssm:text-10 absolute md:top-10 ssm:top-10 left-3`}>
+             md:text-12 ssm:text-10 relative left-3`}>
             {props.error}
           </span>
         </>

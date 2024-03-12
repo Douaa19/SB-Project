@@ -10,7 +10,7 @@ function ShippingForm(props) {
       <Form
         setShowPopup={props.setShowPopup}
         type="shipping"
-        className="flex flex-col items-between w-full gap-4 justify-center px-10"
+        className="flex flex-col items-between w-full gap-2 justify-center px-10"
       />
     </div>
   );
