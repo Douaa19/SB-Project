@@ -41,7 +41,9 @@ function SelectComponent(props) {
         components={{ Option: customOptionRenderer }}
         classNamePrefix="dropdown-select-inner"
         className={`${
-          props.error ? "input-error dropdown-select" : "dropdown-select"
+          props.error
+            ? "input-error dropdown-select-inner"
+            : "dropdown-select-inner"
         }`}
         placeholder="city"
         onChange={handleChange}
@@ -51,7 +53,10 @@ function SelectComponent(props) {
       />
       {props.error && (
         <>
-          <span className="md:text-12 ssm:text-10 absolute md:top-10 ssm:top-1 left-3">
+          <span
+            className={`
+              text-red
+             md:text-12 ssm:text-10 absolute md:top-10 ssm:top-10 left-3`}>
             {props.error}
           </span>
         </>
