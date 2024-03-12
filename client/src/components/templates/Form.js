@@ -110,7 +110,7 @@ function Form(props) {
           props.type !== "contact"
             ? "flex-col ssm:gap-2"
             : "md:flex-row ssm:flex-col ssm:gap-6"
-        }  w-full md:justify-between ssm:justify-center items-center md:gap-4 `}>
+        }  w-full md:justify-between ssm:justify-center items-center md:gap-2`}>
         <Input
           type="text"
           className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
