@@ -5,6 +5,7 @@ import { PageTitle } from "../components/atoms";
 import { ShippingForm } from "../components/molecules";
 import { useSelector } from "react-redux";
 import { Popup } from "../components/organismes";
+import { CheckoutPopupContent } from "../components/molecules";
 
 function Basket() {
   const orders = useSelector((state) => state.orders);
@@ -41,7 +42,7 @@ function Basket() {
 
   return (
     <>
-      <NavBar />
+      {/* <NavBar />
       <div className="md:px-[4.5rem] lg:px-32 ssm:px-8 ssm:pt-4 w-full">
         <PageTitle
           title="my basket"
@@ -59,8 +60,16 @@ function Basket() {
           </div>
         )}
       </div>
-      <Footer />
-      {showPopup && <Popup />}
+      <Footer /> */}
+      {showPopup && (
+        <Popup>
+          <div className="popup">
+            <div className="popup-background">
+              <CheckoutPopupContent />
+            </div>
+          </div>
+        </Popup>
+      )}
     </>
   );
 }
