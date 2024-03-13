@@ -635,6 +635,10 @@ video {
   top: 0px;
 }
 
+.top-2 {
+  top: 0.5rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -678,6 +682,14 @@ video {
   margin-bottom: 1.5rem;
 }
 
+.ml-1 {
+  margin-left: 0.25rem;
+}
+
+.ml-3 {
+  margin-left: 0.75rem;
+}
+
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -706,10 +718,6 @@ video {
   display: flex;
 }
 
-.table {
-  display: table;
-}
-
 .grid {
   display: grid;
 }
@@ -724,6 +732,10 @@ video {
 
 .h-5 {
   height: 1.25rem;
+}
+
+.h-\[100vh\] {
+  height: 100vh;
 }
 
 .h-\[15px\] {
@@ -844,6 +856,12 @@ video {
   width: auto;
 }
 
+.w-fit {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .w-full {
   width: 100%;
 }
@@ -942,10 +960,6 @@ video {
   justify-content: space-between;
 }
 
-.justify-around {
-  justify-content: space-around;
-}
-
 .gap-1 {
   gap: 0.25rem;
 }
@@ -1034,9 +1048,19 @@ video {
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
+.bg-\[\#07030a\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(7 3 10 / var(--tw-bg-opacity));
+}
+
 .bg-dark {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.bg-gray {
+  --tw-bg-opacity: 1;
+  background-color: rgb(240 240 240 / var(--tw-bg-opacity));
 }
 
 .bg-gray-300 {
@@ -1167,6 +1191,11 @@ video {
   padding-bottom: 2rem;
 }
 
+.py-5 {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
 .pb-2 {
   padding-bottom: 4px;
 }
@@ -1221,16 +1250,16 @@ video {
   font-weight: 700;
 }
 
-.font-medium {
-  font-weight: 500;
-}
-
 .font-normal {
   font-weight: 400;
 }
 
 .font-normale {
   font-weight: 400;
+}
+
+.lowercase {
+  text-transform: lowercase;
 }
 
 .capitalize {
@@ -1458,6 +1487,7 @@ body {
 
 .dropdown-select-inner__control {
   border-color: #dab88a !important;
+  width: 100%;
 }
 
 .input-error.dropdown-select-inner__control {
@@ -1786,23 +1816,6 @@ body .menu ul li > a:hover {
 
 /* popup */
 
-.popup {
-  position: fixed;
-}
-
-.popup-open {
-  position: absolute;
-  z-index: 2;
-  top: 0px;
-  left: 0px;
-  height: 100vh;
-  background: #07030a;
-  border-radius: 8px;
-  opacity: 0;
-  color: black;
-  /* transition: 0.6s; */
-}
-
 /* popup */
 
 .placeholder\:text-red::-webkit-input-placeholder {
@@ -1826,19 +1839,6 @@ body .menu ul li > a:hover {
   cursor: pointer;
 }
 
-.hover\:rounded-full:hover {
-  border-radius: 9999px;
-}
-
-.hover\:border:hover {
-  border-width: 1px;
-}
-
-.hover\:border-gray-100:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(206 206 206 / var(--tw-border-opacity));
-}
-
 .hover\:bg-main:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(218 184 138 / var(--tw-bg-opacity));
@@ -1856,6 +1856,11 @@ body .menu ul li > a:hover {
 .hover\:text-main:hover {
   --tw-text-opacity: 1;
   color: rgb(218 184 138 / var(--tw-text-opacity));
+}
+
+.hover\:text-red:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 0 77 / var(--tw-text-opacity));
 }
 
 .hover\:text-white:hover {
@@ -2335,6 +2340,10 @@ body .menu ul li > a:hover {
     height: 5rem;
   }
 
+  .md\:h-5 {
+    height: 1.25rem;
+  }
+
   .md\:h-\[80vh\] {
     height: 80vh;
   }
@@ -2568,10 +2577,6 @@ body .menu ul li > a:hover {
 
   .lg\:justify-between {
     justify-content: space-between;
-  }
-
-  .lg\:gap-3 {
-    gap: 0.75rem;
   }
 
   .lg\:px-28 {

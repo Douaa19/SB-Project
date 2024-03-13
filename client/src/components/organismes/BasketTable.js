@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { RowBasket, EmptyRowBasket } from "../atoms";
-import DeleteIcon from "../../assets/icons/close-svgrepo-com.svg";
+import DeleteIcon from "../../assets/icons/delete.png";
+import EditIcon from "../../assets/icons/edit-text.png";
 
 function BasketTable({ orders }) {
   const style = {
@@ -9,46 +10,24 @@ function BasketTable({ orders }) {
 
   return (
     <div className="md:mt-6 ssm:mt4">
-      <table className="min-w-full">
-        <thead class="border-gray-100 border-b">
-          <tr>
-            <th scope="col" className={`${style.th}`}>
-              product
-            </th>
-            <th scope="col" className={`${style.th}`}>
-              size
-            </th>
-            <th scope="col" className={`${style.th}`}>
-              price
-            </th>
-            <th scope="col" className={`${style.th}`}>
-              quantity
-            </th>
-            <th scope="col" className={`${style.th}`}>
-              color
-            </th>
-            <th scope="col" className={`${style.th}`}>
-              total
-            </th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
+      <div className="min-w-full">
         {orders.orders.length > 0 ? (
           <>
-            <tbody>
+            <div>
               {orders.orders.map((item) => (
                 <RowBasket
                   data={item}
                   key={item.title}
                   deleteIcon={DeleteIcon}
+                  editIcon={EditIcon}
                 />
               ))}
-            </tbody>
+            </div>
           </>
         ) : (
           <EmptyRowBasket />
         )}
-      </table>
+      </div>
     </div>
   );
 }
