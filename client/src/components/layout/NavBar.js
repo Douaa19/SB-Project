@@ -98,6 +98,7 @@ function NavBar() {
                 </a>
               ) : (
                 <a
+                  href=""
                   style={{ animationDelay: `0.${index + 1}s` }}
                   className={`mt-1 ${
                     open ? `appear text-white opacity-1` : "md:text-dark"
@@ -110,7 +111,7 @@ function NavBar() {
                           placeHolder="search..."
                           rightIcon={Search}
                           name="search"
-                          classIcon="hover:cursor-pointer absolute pr-2 ssm:w-5 right-1"
+                          classIcon="hover:cursor-pointer absolute pr-2 ssm:w-5 right-1 top-2"
                           value={searchQuery}
                           onChange={(e) => {
                             const query = e.target.value.toString();
