@@ -51,12 +51,12 @@ function Basket() {
         <BasketTable orders={orders} />
         {orders.orders.length > 0 && (
           <div className="mt-6 w-[100%] flex md:flex-row ssm:flex-col items-start justify-between gap-4">
-            <ShippingForm setShowPopup={setShowPopup} />
             <CheckOutCard
               subtotal={subtotal}
               grandTotal={grandtotal}
               shipping={shipping}
             />
+            <ShippingForm setShowPopup={setShowPopup} />
           </div>
         )}
       </div>
