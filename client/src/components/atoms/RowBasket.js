@@ -38,7 +38,7 @@ function RowBasket(props) {
             </div>
           </div>
         </div>
-        <div className={`py-2 capitalize flex md:text-14 ssm:text-12`}>
+        <div className={`py-5 capitalize flex md:text-14 ssm:text-12 px-6`}>
           <div
             className="hover:cursor-pointer hover:text-main flex justify-between ml-3"
             onClick={handleEdit}>
