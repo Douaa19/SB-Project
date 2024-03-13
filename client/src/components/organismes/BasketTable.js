@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { RowBasket, EmptyRowBasket } from "../atoms";
-import DeleteIcon from "../../assets/icons/close-svgrepo-com.svg";
+import DeleteIcon from "../../assets/icons/delete.png";
+import EditIcon from "../../assets/icons/edit-text.png";
 
 function BasketTable({ orders }) {
   const style = {
@@ -9,23 +10,24 @@ function BasketTable({ orders }) {
 
   return (
     <div className="md:mt-6 ssm:mt4">
-      <table className="min-w-full">
+      <div className="min-w-full">
         {orders.orders.length > 0 ? (
           <>
-            <tbody>
+            <div>
               {orders.orders.map((item) => (
                 <RowBasket
                   data={item}
                   key={item.title}
                   deleteIcon={DeleteIcon}
+                  editIcon={EditIcon}
                 />
               ))}
-            </tbody>
+            </div>
           </>
         ) : (
           <EmptyRowBasket />
         )}
-      </table>
+      </div>
     </div>
   );
 }
