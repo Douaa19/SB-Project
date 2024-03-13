@@ -726,6 +726,10 @@ video {
   height: 1.25rem;
 }
 
+.h-\[100vh\] {
+  height: 100vh;
+}
+
 .h-\[15px\] {
   height: 15px;
 }
@@ -842,6 +846,12 @@ video {
 
 .w-auto {
   width: auto;
+}
+
+.w-fit {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .w-full {
@@ -1034,9 +1044,19 @@ video {
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
+.bg-\[\#07030a\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(7 3 10 / var(--tw-bg-opacity));
+}
+
 .bg-dark {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.bg-gray {
+  --tw-bg-opacity: 1;
+  background-color: rgb(240 240 240 / var(--tw-bg-opacity));
 }
 
 .bg-gray-300 {
@@ -1057,6 +1077,11 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(206 206 206 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-50 {
@@ -1458,6 +1483,7 @@ body {
 
 .dropdown-select-inner__control {
   border-color: #dab88a !important;
+  width: 100%;
 }
 
 .input-error.dropdown-select-inner__control {
@@ -1785,23 +1811,6 @@ body .menu ul li > a:hover {
 /* menu */
 
 /* popup */
-
-.popup {
-  position: fixed;
-}
-
-.popup-open {
-  position: absolute;
-  z-index: 2;
-  top: 0px;
-  left: 0px;
-  height: 100vh;
-  background: #07030a;
-  border-radius: 8px;
-  opacity: 0;
-  color: black;
-  /* transition: 0.6s; */
-}
 
 /* popup */
 

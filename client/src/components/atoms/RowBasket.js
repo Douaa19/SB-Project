@@ -14,16 +14,14 @@ function RowBasket({ data, deleteIcon }) {
   };
 
   const style = {
-    td: "px-6 py-4 whitespace-nowrap md:text-sm ssm:text-12 font-medium text-center text-gray-900 font-normal",
+    td: "px-6 w-fit py-4 whitespace-nowrap md:text-sm ssm:text-12 font-medium text-start text-gray-900 font-normal",
     deleteIcon: "md:w-5 ssm:w-4",
   };
 
   return (
     <>
       <tr className="bg-white border-b border-gray-100 transition duration-300 ease-in-out">
-        <td
-          onClick={() => openProduct(data.item._id)}
-          className={`${style.td} flex lg:flex-row ssm:flex-col lg:gap-3 ssm:gap-1 items-center justify-around capitalize hover:cursor-pointer hover:text-main hover:underline`}>
+        <td className={`${style.td}`}>
           <div className={`w-[100px]`}>
             <img
               src={`http://localhost:8008/api/items/${data.item._id}/image`}
@@ -31,12 +29,18 @@ function RowBasket({ data, deleteIcon }) {
               className="w-full rounded-md"
             />
           </div>
-          <span>{data.item.title}</span>
         </td>
-        <td className={`${style.td}`}>{`${data.item.size} cm`}</td>
-        <td className={`${style.td} capitalize`}>{`${data.item.price}DH`}</td>
-        <td className={`${style.td} capitalize`}>{data.quantity}</td>
-        <td className={`${style.td} capitalize`}>{data.item.color}</td>
+        <td>
+          <div className="title">
+            <span>{data.item.title}</span>
+          </div>
+          <div className="details">
+            <span>{data.item.color}</span>
+            <span>
+              {data.quantity} X ${data.item.price}
+            </span>
+          </div>
+        </td>
         <td className={`${style.td} capitalize`}>
           {data.item.price * data.quantity}DH
         </td>

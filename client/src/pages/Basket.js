@@ -42,7 +42,7 @@ function Basket() {
 
   return (
     <>
-      {/* <NavBar />
+      <NavBar />
       <div className="md:px-[4.5rem] lg:px-32 ssm:px-8 ssm:pt-4 w-full">
         <PageTitle
           title="my basket"
@@ -60,16 +60,16 @@ function Basket() {
           </div>
         )}
       </div>
-      <Footer /> */}
-      {showPopup && (
-        <Popup>
-          <div className="popup">
-            <div className="popup-background">
-              <CheckoutPopupContent />
-            </div>
-          </div>
+      <Footer />
+      {/* {showPopup && (
+        <Popup className="w-full">
+          <CheckoutPopupContent
+            subtotal={subtotal}
+            shipping={shipping}
+            orders={orders.orders}
+          />
         </Popup>
-      )}
+      )} */}
     </>
   );
 }

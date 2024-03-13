@@ -10,29 +10,6 @@ function BasketTable({ orders }) {
   return (
     <div className="md:mt-6 ssm:mt4">
       <table className="min-w-full">
-        <thead class="border-gray-100 border-b">
-          <tr>
-            <th scope="col" className={`${style.th}`}>
-              product
-            </th>
-            <th scope="col" className={`${style.th}`}>
-              size
-            </th>
-            <th scope="col" className={`${style.th}`}>
-              price
-            </th>
-            <th scope="col" className={`${style.th}`}>
-              quantity
-            </th>
-            <th scope="col" className={`${style.th}`}>
-              color
-            </th>
-            <th scope="col" className={`${style.th}`}>
-              total
-            </th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
         {orders.orders.length > 0 ? (
           <>
             <tbody>
