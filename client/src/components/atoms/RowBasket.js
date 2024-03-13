@@ -29,6 +29,7 @@ function RowBasket(props) {
               <span>{props.data.item.title}</span>
             </div>
             <div className="capitalize details md:text-14 ssm:text-12 flex flex-col">
+              <span className="lowercase">{props.data.item.size}cm</span>
               <span>{props.data.item.color}</span>
               <span>
                 {props.data.quantity}{" "}
