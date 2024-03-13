@@ -8,8 +8,8 @@ function RowBasket(props) {
   const handleDelete = () => {
     dispatch(removeOrder(props.data.item._id));
   };
-  const handleEdit = (item_id) => {
-    window.location = `/products/item/${item_id}`;
+  const handleEdit = () => {
+    window.location = `/products/item/${props.data.item._id}`;
   };
 
   return (
