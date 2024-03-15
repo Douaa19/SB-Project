@@ -51,7 +51,7 @@ function HeaderProducts({ title, categories }) {
           placeHolder="search..."
           rightIcon={Search}
           name="search"
-          classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-38 ssm:left-36 ssm:w-4"
+          classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-38 top-[0.35rem] ssm:left-36 ssm:w-4"
           value={searchQuery}
           onChange={handleChange}
           onIconClick={Search}

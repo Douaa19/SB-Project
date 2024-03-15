@@ -23,7 +23,7 @@ function NavBar() {
               placeHolder="search..."
               rightIcon={Search}
               name="search"
-              classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-40 pr-2 md:left-36 md:w-4 ssm:w-6 md:block ssm:hidden"
+              classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-40 pr-2 top-2 md:left-36 md:w-4 ssm:w-6 md:block ssm:hidden"
               value={searchQuery}
               onChange={(e) => {
                 const query = e.target.value.toString();
@@ -111,7 +111,7 @@ function NavBar() {
                           placeHolder="search..."
                           rightIcon={Search}
                           name="search"
-                          classIcon="hover:cursor-pointer absolute pr-2 ssm:w-5 right-1 top-2"
+                          classIcon="hover:cursor-pointer absolute pr-2 top-2 ssm:w-5 right-1 top-2"
                           value={searchQuery}
                           onChange={(e) => {
                             const query = e.target.value.toString();

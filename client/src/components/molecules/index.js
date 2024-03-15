@@ -1,6 +1,6 @@
 import ContactDonePopup from "./ContactDonePopup";
 import ShippingForm from "./ShippingForm";
-import SigninForm from "./SigninForm";
+import LoginCard from "./LoginCard";
 import CheckoutPopupContent from "./CheckoutPopupContent";
 
-export { ContactDonePopup, ShippingForm, SigninForm, CheckoutPopupContent };
+export { ContactDonePopup, ShippingForm, LoginCard, CheckoutPopupContent };
