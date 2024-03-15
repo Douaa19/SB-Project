@@ -639,34 +639,6 @@ video {
   top: 0.5rem;
 }
 
-.top-6 {
-  top: 1.5rem;
-}
-
-.top-3 {
-  top: 0.75rem;
-}
-
-.top-1 {
-  top: 0.25rem;
-}
-
-.top-\[\] {
-  top: ;
-}
-
-.top-\[0\.5rem\] {
-  top: 0.5rem;
-}
-
-.top-\[0\.25rem\] {
-  top: 0.25rem;
-}
-
-.top-\[0\.30rem\] {
-  top: 0.30rem;
-}
-
 .top-\[0\.35rem\] {
   top: 0.35rem;
 }
@@ -1738,7 +1710,15 @@ h2.frame-5 span:nth-child(4) {
 
 /* menu */
 
-.burger,
+.burger {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+.burger.open {
+  position: fixed;
+}
+
 .menu {
   position: fixed;
 }
@@ -1768,6 +1748,7 @@ h2.frame-5 span:nth-child(4) {
 .background.open {
   height: 300vh;
   opacity: 0.85;
+  padding-right: 2rem;
 }
 
 .menu {
@@ -1792,6 +1773,7 @@ h2.frame-5 span:nth-child(4) {
 }
 
 .menu.open {
+  position: fixed;
   opacity: 1;
   visibility: visible;
   margin-top: 3rem;
