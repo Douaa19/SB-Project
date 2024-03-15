@@ -111,15 +111,17 @@ function Form(props) {
             ? "flex-col ssm:gap-2"
             : "md:flex-row ssm:flex-col ssm:gap-6"
         }  w-full md:justify-between ssm:justify-center items-center md:gap-2`}>
-        <Input
-          type="text"
-          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
-          placeHolder={`${props.type === "contact" ? "name" : "full name"}`}
-          name="name"
-          value={data.name}
-          onChange={(e) => handleChange("name", e.target.value)}
-          error={errors.name}
-        />
+        {props.type !== "login" && (
+          <Input
+            type="text"
+            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+            placeHolder={`${props.type === "contact" ? "name" : "full name"}`}
+            name="name"
+            value={data.name}
+            onChange={(e) => handleChange("name", e.target.value)}
+            error={errors.name}
+          />
+        )}
         <Input
           type="email"
           className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
@@ -130,47 +132,61 @@ function Form(props) {
           error={errors.email}
         />
       </div>
-      <Input
-        type="phone"
-        className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
-        placeHolder="phone number"
-        name="phone"
-        value={data.phone}
-        onChange={(e) => handleChange("phone", e.target.value)}
-        error={errors.phone}
-      />
-      {props.type !== "contact" && (
-        <>
-          <SelectComponent
-            data={cities}
-            name="city"
-            error={errors.city}
-            className=""
-            city={data.city}
-            onChange={(value) => {
-              hadleSelect("city", value);
-            }}
-          />
-          <Input
-            type="text"
-            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
-            placeHolder="address"
-            name="address"
-            value={data.address}
-            onChange={(e) => handleChange("address", e.target.value)}
-            error={errors.address}
-          />
-          <Input
-            type="text"
-            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
-            placeHolder="postal code"
-            name="postalCode"
-            value={data.postalCode}
-            onChange={(e) => handleChange("postalCode", e.target.value)}
-            error={errors.postalCode}
-          />
-        </>
+      {props.type === "login" && (
+        <Input
+          type="password"
+          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+          placeHolder="password"
+          name="password"
+          value={data.password}
+          onChange={(e) => handleChange("password", e.target.value)}
+          error={errors.password}
+        />
       )}
+      {props.type !== "login" && (
+        <Input
+          type="phone"
+          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+          placeHolder="phone number"
+          name="phone"
+          value={data.phone}
+          onChange={(e) => handleChange("phone", e.target.value)}
+          error={errors.phone}
+        />
+      )}
+      {props.type !== "contact" ||
+        (props.type !== "login" && (
+          <>
+            <SelectComponent
+              data={cities}
+              name="city"
+              error={errors.city}
+              className=""
+              city={data.city}
+              onChange={(value) => {
+                hadleSelect("city", value);
+              }}
+            />
+            <Input
+              type="text"
+              className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+              placeHolder="address"
+              name="address"
+              value={data.address}
+              onChange={(e) => handleChange("address", e.target.value)}
+              error={errors.address}
+            />
+            <Input
+              type="text"
+              className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+              placeHolder="postal code"
+              name="postalCode"
+              value={data.postalCode}
+              onChange={(e) => handleChange("postalCode", e.target.value)}
+              error={errors.postalCode}
+            />
+          </>
+        ))}
       {props.type === "contact" && (
         <>
           <TextArea
@@ -188,7 +204,15 @@ function Form(props) {
       <div className="flex items-center justify-start w-full">
         <Button
           className="border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold"
-          text="checkout"
+          text={
+            props.type === "contact"
+              ? "submit"
+              : props.type === "login"
+              ? "login"
+              : props.type === "signup"
+              ? "signup"
+              : "checkout"
+          }
           onClick={() => handleSubmit()}
         />
       </div>
