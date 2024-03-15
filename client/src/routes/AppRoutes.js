@@ -1,6 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, Products, About, Basket, Contact, Product } from "../pages";
+import {
+  Home,
+  Products,
+  About,
+  Basket,
+  Contact,
+  Product,
+  Login,
+  Signup,
+} from "../pages";
 
 function AppRoutes() {
   return (
@@ -21,6 +30,7 @@ function AppRoutes() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/basket" element={<Basket />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </>
