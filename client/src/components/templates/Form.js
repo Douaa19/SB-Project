@@ -33,31 +33,36 @@ function Form(props) {
         });
       } else if (props.type === "shipping") {
         props.setShowPopup(true);
+      } else if (props.type === "login") {
+        props.login();
       }
     } else {
       console.log("Error!!");
+      console.log(errors);
     }
   };
 
   const validationForm = (data) => {
     const errors = {};
 
-    if (!data.name) {
-      errors.name = "Name is required";
-    } else if (data.name.length < 5 || data.name.length > 12) {
-      errors.name = "Name must be between 5 and 12 characters";
+    if (props.type !== "login") {
+      if (!data.name) {
+        errors.name = "Name is required";
+      } else if (data.name.length < 5 || data.name.length > 12) {
+        errors.name = "Name must be between 5 and 12 characters";
+      }
+
+      if (!data.phone) {
+        errors.phone = "Phone is required";
+      } else if (!isPhoneNumber(data.phone)) {
+        errors.phone = "Invalid phone number";
+      }
     }
 
     if (!data.email) {
       errors.email = "Email is required";
     } else if (!isValidEmail(data.email)) {
       errors.email = "Invalid email address";
-    }
-
-    if (!data.phone) {
-      errors.phone = "Phone is required";
-    } else if (!isPhoneNumber(data.phone)) {
-      errors.phone = "Invalid phone number";
     }
 
     if (props.type === "contact") {
@@ -79,6 +84,11 @@ function Form(props) {
 
       if (!data.postalCode) {
         errors.postalCode = "Postal code is required";
+      }
+    }
+    if (props.type === "login") {
+      if (!data.password) {
+        errors.password = "password is required";
       }
     }
 
