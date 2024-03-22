@@ -1,19 +1,12 @@
 import React, { useState } from "react";
 import { Form } from "../templates";
 import { ReactComponent as LoginImg } from "../../assets/images/Mobile-login-pana.svg";
-import { login } from "../../services/auth";
 
 function LoginCard() {
   const [signIn, setSignIn] = useState(true);
 
   const toggleSignIn = () => {
     setSignIn(!signIn);
-  };
-
-  const login = (data) => {
-    if (data) {
-      login(data);
-    }
   };
 
   return (
@@ -63,7 +56,6 @@ function LoginCard() {
             <Form
               type="login"
               className="flex flex-col justify-center items-start gap-4 py-8 px-4 w-full"
-              login={login}
               buttonClass="w-full mt-4"
             />
           </div>

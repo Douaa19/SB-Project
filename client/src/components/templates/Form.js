@@ -6,6 +6,7 @@ import { setContactDone } from "../../redux/actions/popups";
 import { SelectComponent } from "../atoms";
 import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
 import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
+import { login } from "../../services/auth";
 
 function Form(props) {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function Form(props) {
   const [passwordIcon, setPasswordIcon] = useState(<CloseEye />);
 
   const [forgetPassword, setForgetPassword] = useState(false);
+  const [errorResponse, setErrorResponse] = useState("");
 
   const forgetPasswordPopup = () => {
     setForgetPassword(true);
@@ -54,7 +56,15 @@ function Form(props) {
       } else if (props.type === "shipping") {
         props.setShowPopup(true);
       } else if (props.type === "login") {
-        props.login(data);
+        login(data).then(async (response) => {
+          if (!response.data.myToken) {
+            alert("Credentials are invalid");
+            setErrorResponse("Credentials are invalid");
+            return errors;
+          } else {
+            
+          }
+        });
       }
     } else {
       console.log("Error!!");
@@ -159,7 +169,7 @@ function Form(props) {
           name="email"
           value={data.email}
           onChange={(e) => handleChange("email", e.target.value)}
-          error={errors.email}
+          error={errors.email || errorResponse}
         />
       </div>
       {props.type === "login" && (
@@ -174,7 +184,7 @@ function Form(props) {
             name="password"
             value={data.password}
             onChange={(e) => handleChange("password", e.target.value)}
-            error={errors.password}
+            error={errors.password || errorResponse}
             iconStyle="absolute right-2 top-[0.40rem]"
           />
           <span
