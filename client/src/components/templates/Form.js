@@ -168,6 +168,7 @@ function Form(props) {
           value={data.password}
           onChange={(e) => handleChange("password", e.target.value)}
           error={errors.password}
+          iconStyle="absolute right-2 top-[0.40rem]"
         />
       )}
       {props.type !== "login" && (

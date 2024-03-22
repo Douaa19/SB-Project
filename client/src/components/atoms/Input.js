@@ -26,10 +26,10 @@ function Input(props) {
       )}
       {props.passwordIcon && (
         <button
-          className="w-1"
+          className={`${props.iconStyle ? props.iconStyle : ""}`}
           type="button"
           onClick={props.IconClickEvent ? props.IconClickEvent : () => {}}>
-          <div className="w-1">{props.passwordIcon}</div>
+          <div className="">{props.passwordIcon}</div>
         </button>
       )}
       {props.error && (
