@@ -5,7 +5,9 @@ import { ReactComponent as LoginImg } from "../../assets/images/Mobile-login-pan
 function LoginCard() {
   const [hover, setHover] = useState(false);
 
-  const login = () => {};
+  const login = (data) => {
+    console.log(data);
+  };
 
   return (
     <div className="bg-gray h-screen flex justify-center items-center">

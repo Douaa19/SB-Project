@@ -4,13 +4,27 @@ import { Button, Input, TextArea } from "../atoms";
 import { sendMessage } from "../../services/userServices";
 import { setContactDone } from "../../redux/actions/popups";
 import { SelectComponent } from "../atoms";
-// import { cities } from "morocco-cities";
+import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
+import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
 
 function Form(props) {
   const dispatch = useDispatch();
   const done = useSelector((state) => state.contactDonePopup);
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
+
+  const [passwordType, setPasswordType] = useState("password");
+  const [passwordIcon, setPasswordIcon] = useState(<OpenEye />);
+
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      setPasswordIcon(<CloseEye />);
+      return;
+    }
+    setPasswordType("password");
+    setPasswordIcon(<OpenEye />);
+  };
 
   // cities
   const cities = useSelector((state) => state.cities);
@@ -34,7 +48,7 @@ function Form(props) {
       } else if (props.type === "shipping") {
         props.setShowPopup(true);
       } else if (props.type === "login") {
-        props.login();
+        props.login(data);
       }
     } else {
       console.log("Error!!");
@@ -144,7 +158,10 @@ function Form(props) {
       </div>
       {props.type === "login" && (
         <Input
-          type="password"
+          type={passwordType}
+          passwordIcon={passwordIcon}
+          clickableIcon="clickable-icon"
+          IconClickEvent={togglePassword}
           className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
           placeHolder="password"
           name="password"

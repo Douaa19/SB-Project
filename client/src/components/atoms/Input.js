@@ -1,44 +1,41 @@
-function Input({
-  className,
-  placeHolder,
-  rightIcon,
-  classIcon,
-  name,
-  onIconClick,
-  value,
-  onChange,
-  type,
-  error,
-}) {
+function Input(props) {
   return (
     <div
       className={`flex relative w-full flex-start ${
-        error ? "flex-col" : "flex-row"
+        props.error ? "flex-col" : "flex-row"
       }`}>
       <input
-        type={type}
-        name={name}
-        value={value}
-        className={className}
-        placeholder={placeHolder}
-        onChange={onChange}
-        min={type === "number" && "0"}
+        type={props.type}
+        name={props.name}
+        value={props.value}
+        className={props.className}
+        placeholder={props.placeHolder}
+        onChange={props.onChange}
+        min={props.type === "number" && "0"}
         autoComplete="off"
       />
-      {rightIcon && (
+      {props.rightIcon && (
         <>
           <img
-            src={rightIcon}
+            src={props.rightIcon}
             alt="icon"
-            className={classIcon}
-            onClick={onIconClick}
+            className={props.classIcon}
+            onClick={props.onIconClick}
           />
         </>
       )}
-      {error && (
+      {props.passwordIcon && (
+        <button
+          className=""
+          type="button"
+          onClick={props.IconClickEvent ? props.IconClickEvent : () => {}}>
+          <div className="">{props.passwordIcon}</div>
+        </button>
+      )}
+      {props.error && (
         <>
           <span className="text-red md:text-12 ssm:text-10 relative left-3">
-            {error}
+            {props.error}
           </span>
         </>
       )}
