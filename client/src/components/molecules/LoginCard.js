@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "../templates";
 import { ReactComponent as LoginImg } from "../../assets/images/Mobile-login-pana.svg";
+import { login } from "../../services/auth";
 
 function LoginCard() {
   const [signIn, setSignIn] = useState(true);
@@ -10,18 +11,22 @@ function LoginCard() {
   };
 
   const login = (data) => {
-    console.log(data);
+    if (data) {
+      login(data);
+    }
   };
 
   return (
     <div className="bg-gray h-screen flex justify-center items-center">
-      <div className="w-[60rem] flex justify-between items-center bg-white rounded-md shadow-md px-4 py-5">
-        <div className="background-img h-full w-full">
+      <div className="md:min-w-[50rem] sm:min-w-[40rem] ssm:min-w-[25rem] flex justify-between items-center bg-white rounded-md shadow-md px-4 py-5 m-2">
+        <div className="background-img h-full w-full sm:block ssm:hidden">
           <LoginImg />
         </div>
         <div className="w-full flex flex-col justify-around p-8">
           <div className="pb-6">
-            <h4 className="font-bold text-32 text-center py-2">Login</h4>
+            <h4 className="font-bold md:text-32 ssm:text-24 text-center py-2">
+              Login
+            </h4>
           </div>
           <div className="capitalize flex justify-around w-full items-center text-16 font-semibold pb-10">
             <div
@@ -30,7 +35,7 @@ function LoginCard() {
               <span
                 className={`${
                   signIn ? "text-gray" : "text-dark"
-                } hover:cursor-pointer pb-2 md:text-16 ssm:text-14 transition-all`}>
+                } hover:cursor-pointer pb-2 md:text-16 ssm:text-12 transition-all`}>
                 Sign in
               </span>
               <span
@@ -44,7 +49,7 @@ function LoginCard() {
               <span
                 className={`${
                   signIn !== true ? "text-gray" : "text-dark"
-                } hover:cursor-pointer pb-2 md:text-16 ssm:text-14 transition-all`}>
+                } hover:cursor-pointer pb-2 md:text-16 ssm:text-12 transition-all`}>
                 Create account
               </span>
               <span

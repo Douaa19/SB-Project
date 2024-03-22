@@ -178,7 +178,7 @@ function Form(props) {
             iconStyle="absolute right-2 top-[0.40rem]"
           />
           <span
-            className="mt-2 md:text-12 capitalize hover:text-main hover:underline hover:cursor-pointer"
+            className="mt-2 text-12 capitalize hover:text-main hover:underline hover:cursor-pointer"
             onClick={forgetPasswordPopup}>
             forget password
           </span>
@@ -245,7 +245,7 @@ function Form(props) {
       <div className="flex items-center justify-start w-full">
         <Button
           className={`${
-            props.buttonClass ? props.buttonClass : ""
+            props.buttonClass ? `${props.buttonClass} ssm:m-0 md:mt-3` : ""
           } border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
           text={
             props.type === "contact"
