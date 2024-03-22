@@ -4,13 +4,35 @@ import { Button, Input, TextArea } from "../atoms";
 import { sendMessage } from "../../services/userServices";
 import { setContactDone } from "../../redux/actions/popups";
 import { SelectComponent } from "../atoms";
-// import { cities } from "morocco-cities";
+import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
+import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
+import { login } from "../../services/auth";
 
 function Form(props) {
   const dispatch = useDispatch();
   const done = useSelector((state) => state.contactDonePopup);
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
+
+  const [passwordType, setPasswordType] = useState("password");
+  const [passwordIcon, setPasswordIcon] = useState(<CloseEye />);
+
+  const [forgetPassword, setForgetPassword] = useState(false);
+  const [errorResponse, setErrorResponse] = useState("");
+
+  const forgetPasswordPopup = () => {
+    setForgetPassword(true);
+  };
+
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      setPasswordIcon(<OpenEye />);
+      return;
+    }
+    setPasswordType("password");
+    setPasswordIcon(<CloseEye />);
+  };
 
   // cities
   const cities = useSelector((state) => state.cities);
@@ -33,31 +55,44 @@ function Form(props) {
         });
       } else if (props.type === "shipping") {
         props.setShowPopup(true);
+      } else if (props.type === "login") {
+        login(data).then(async (response) => {
+          if (!response.data.myToken) {
+            alert("Credentials are invalid");
+            setErrorResponse("Credentials are invalid");
+            return errors;
+          } else {
+            
+          }
+        });
       }
     } else {
       console.log("Error!!");
+      console.log(errors);
     }
   };
 
   const validationForm = (data) => {
     const errors = {};
 
-    if (!data.name) {
-      errors.name = "Name is required";
-    } else if (data.name.length < 5 || data.name.length > 12) {
-      errors.name = "Name must be between 5 and 12 characters";
+    if (props.type !== "login") {
+      if (!data.name) {
+        errors.name = "Name is required";
+      } else if (data.name.length < 5 || data.name.length > 12) {
+        errors.name = "Name must be between 5 and 12 characters";
+      }
+
+      if (!data.phone) {
+        errors.phone = "Phone is required";
+      } else if (!isPhoneNumber(data.phone)) {
+        errors.phone = "Invalid phone number";
+      }
     }
 
     if (!data.email) {
       errors.email = "Email is required";
     } else if (!isValidEmail(data.email)) {
       errors.email = "Invalid email address";
-    }
-
-    if (!data.phone) {
-      errors.phone = "Phone is required";
-    } else if (!isPhoneNumber(data.phone)) {
-      errors.phone = "Invalid phone number";
     }
 
     if (props.type === "contact") {
@@ -79,6 +114,11 @@ function Form(props) {
 
       if (!data.postalCode) {
         errors.postalCode = "Postal code is required";
+      }
+    }
+    if (props.type === "login") {
+      if (!data.password) {
+        errors.password = "password is required";
       }
     }
 
@@ -129,19 +169,30 @@ function Form(props) {
           name="email"
           value={data.email}
           onChange={(e) => handleChange("email", e.target.value)}
-          error={errors.email}
+          error={errors.email || errorResponse}
         />
       </div>
       {props.type === "login" && (
-        <Input
-          type="password"
-          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
-          placeHolder="password"
-          name="password"
-          value={data.password}
-          onChange={(e) => handleChange("password", e.target.value)}
-          error={errors.password}
-        />
+        <div className="w-full flex flex-col items-end">
+          <Input
+            type={passwordType}
+            passwordIcon={passwordIcon}
+            clickableIcon="clickable-icon"
+            IconClickEvent={togglePassword}
+            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+            placeHolder="password"
+            name="password"
+            value={data.password}
+            onChange={(e) => handleChange("password", e.target.value)}
+            error={errors.password || errorResponse}
+            iconStyle="absolute right-2 top-[0.40rem]"
+          />
+          <span
+            className="mt-2 text-12 capitalize hover:text-main hover:underline hover:cursor-pointer"
+            onClick={forgetPasswordPopup}>
+            forget password
+          </span>
+        </div>
       )}
       {props.type !== "login" && (
         <Input
@@ -203,7 +254,9 @@ function Form(props) {
       )}
       <div className="flex items-center justify-start w-full">
         <Button
-          className="border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold"
+          className={`${
+            props.buttonClass ? `${props.buttonClass} ssm:m-0 md:mt-3` : ""
+          } border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
           text={
             props.type === "contact"
               ? "submit"
