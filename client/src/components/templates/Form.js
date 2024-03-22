@@ -16,6 +16,12 @@ function Form(props) {
   const [passwordType, setPasswordType] = useState("password");
   const [passwordIcon, setPasswordIcon] = useState(<CloseEye />);
 
+  const [forgetPassword, setForgetPassword] = useState(false);
+
+  const forgetPasswordPopup = () => {
+    setForgetPassword(true);
+  };
+
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
@@ -157,19 +163,26 @@ function Form(props) {
         />
       </div>
       {props.type === "login" && (
-        <Input
-          type={passwordType}
-          passwordIcon={passwordIcon}
-          clickableIcon="clickable-icon"
-          IconClickEvent={togglePassword}
-          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
-          placeHolder="password"
-          name="password"
-          value={data.password}
-          onChange={(e) => handleChange("password", e.target.value)}
-          error={errors.password}
-          iconStyle="absolute right-2 top-[0.40rem]"
-        />
+        <div className="w-full flex flex-col items-end">
+          <Input
+            type={passwordType}
+            passwordIcon={passwordIcon}
+            clickableIcon="clickable-icon"
+            IconClickEvent={togglePassword}
+            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+            placeHolder="password"
+            name="password"
+            value={data.password}
+            onChange={(e) => handleChange("password", e.target.value)}
+            error={errors.password}
+            iconStyle="absolute right-2 top-[0.40rem]"
+          />
+          <span
+            className="mt-2 md:text-12 capitalize hover:text-main hover:underline hover:cursor-pointer"
+            onClick={forgetPasswordPopup}>
+            forget password
+          </span>
+        </div>
       )}
       {props.type !== "login" && (
         <Input

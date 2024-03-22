@@ -739,6 +739,10 @@ video {
   margin-top: 2rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .block {
   display: block;
 }
@@ -983,6 +987,10 @@ video {
 
 .items-start {
   align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 .items-center {
@@ -1265,6 +1273,10 @@ video {
   padding-top: 12px;
 }
 
+.pt-2 {
+  padding-top: 4px;
+}
+
 .text-center {
   text-align: center;
 }
@@ -1297,6 +1309,10 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-14 {
+  font-size: 14px;
 }
 
 .font-bold {
