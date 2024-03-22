@@ -213,7 +213,9 @@ function Form(props) {
       )}
       <div className="flex items-center justify-start w-full">
         <Button
-          className="border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold"
+          className={`${
+            props.buttonClass ? props.buttonClass : ""
+          } border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
           text={
             props.type === "contact"
               ? "submit"
