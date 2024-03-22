@@ -14,16 +14,16 @@ function Form(props) {
   const [errors, setErrors] = useState({});
 
   const [passwordType, setPasswordType] = useState("password");
-  const [passwordIcon, setPasswordIcon] = useState(<OpenEye />);
+  const [passwordIcon, setPasswordIcon] = useState(<CloseEye />);
 
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
-      setPasswordIcon(<CloseEye />);
+      setPasswordIcon(<OpenEye />);
       return;
     }
     setPasswordType("password");
-    setPasswordIcon(<OpenEye />);
+    setPasswordIcon(<CloseEye />);
   };
 
   // cities
