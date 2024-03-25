@@ -34,6 +34,23 @@ function Form(props) {
     setPasswordIcon(<CloseEye />);
   };
 
+  // password input
+  const passwordInput = (
+    <Input
+      type={passwordType}
+      passwordIcon={passwordIcon}
+      clickableIcon="clickable-icon"
+      IconClickEvent={togglePassword}
+      className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+      placeHolder="password"
+      name="password"
+      value={data.password}
+      onChange={(e) => handleChange("password", e.target.value)}
+      error={errors.password || errorResponse}
+      iconStyle="absolute right-2 top-[0.40rem]"
+    />
+  );
+
   // cities
   const cities = useSelector((state) => state.cities);
 
@@ -62,7 +79,6 @@ function Form(props) {
             setErrorResponse("Credentials are invalid");
             return errors;
           } else {
-            
           }
         });
       }
@@ -172,28 +188,18 @@ function Form(props) {
           error={errors.email || errorResponse}
         />
       </div>
-      {props.type === "login" && (
+      {props.type === "login" ? (
         <div className="w-full flex flex-col items-end">
-          <Input
-            type={passwordType}
-            passwordIcon={passwordIcon}
-            clickableIcon="clickable-icon"
-            IconClickEvent={togglePassword}
-            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
-            placeHolder="password"
-            name="password"
-            value={data.password}
-            onChange={(e) => handleChange("password", e.target.value)}
-            error={errors.password || errorResponse}
-            iconStyle="absolute right-2 top-[0.40rem]"
-          />
+          {passwordInput}
           <span
             className="mt-2 text-12 capitalize hover:text-main hover:underline hover:cursor-pointer"
             onClick={forgetPasswordPopup}>
             forget password
           </span>
         </div>
-      )}
+      ) : props.type === "createAccount" ? (
+        <div className="w-full flex flex-col items-end">{passwordInput}</div>
+      ) : null}
       {props.type !== "login" && (
         <Input
           type="phone"
@@ -205,39 +211,42 @@ function Form(props) {
           error={errors.phone}
         />
       )}
-      {props.type !== "contact" ||
-        (props.type !== "login" && (
-          <>
-            <SelectComponent
-              data={cities}
-              name="city"
-              error={errors.city}
-              className=""
-              city={data.city}
-              onChange={(value) => {
-                hadleSelect("city", value);
-              }}
-            />
-            <Input
-              type="text"
-              className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
-              placeHolder="address"
-              name="address"
-              value={data.address}
-              onChange={(e) => handleChange("address", e.target.value)}
-              error={errors.address}
-            />
-            <Input
-              type="text"
-              className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
-              placeHolder="postal code"
-              name="postalCode"
-              value={data.postalCode}
-              onChange={(e) => handleChange("postalCode", e.target.value)}
-              error={errors.postalCode}
-            />
-          </>
-        ))}
+      {props.type === "shipping" && (
+        <>
+          <SelectComponent
+            data={cities}
+            name="city"
+            error={errors.city}
+            className=""
+            city={data.city}
+            onChange={(value) => {
+              hadleSelect("city", value);
+            }}
+          />
+        </>
+      )}
+      {props.type === "createAccount" || props.type === "shipping" ? (
+        <Input
+          type="text"
+          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+          placeHolder="address"
+          name="address"
+          value={data.address}
+          onChange={(e) => handleChange("address", e.target.value)}
+          error={errors.address}
+        />
+      ) : null}
+      {props.type === "shipping" && (
+        <Input
+          type="text"
+          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+          placeHolder="postal code"
+          name="postalCode"
+          value={data.postalCode}
+          onChange={(e) => handleChange("postalCode", e.target.value)}
+          error={errors.postalCode}
+        />
+      )}
       {props.type === "contact" && (
         <>
           <TextArea
@@ -262,8 +271,8 @@ function Form(props) {
               ? "submit"
               : props.type === "login"
               ? "login"
-              : props.type === "signup"
-              ? "signup"
+              : props.type === "createAccount"
+              ? "create account"
               : "checkout"
           }
           onClick={() => handleSubmit()}

@@ -3,11 +3,7 @@ import { Form } from "../templates";
 import { ReactComponent as LoginImg } from "../../assets/images/Mobile-login-pana.svg";
 
 function LoginCard() {
-  const [signIn, setSignIn] = useState(true);
-
-  const toggleSignIn = () => {
-    setSignIn(!signIn);
-  };
+  const [signIn, setSignIn] = useState("login");
 
   return (
     <div className="bg-gray h-screen flex justify-center items-center">
@@ -24,37 +20,37 @@ function LoginCard() {
           <div className="capitalize flex justify-around w-full items-center text-16 font-semibold pb-10">
             <div
               className={`w-full flex flex-col justify-center items-center`}
-              onClick={toggleSignIn}>
+              onClick={() => setSignIn("login")}>
               <span
                 className={`${
-                  signIn ? "text-gray" : "text-dark"
+                  signIn !== "login" ? "text-gray" : "text-dark"
                 } hover:cursor-pointer pb-2 md:text-16 ssm:text-12 transition-all`}>
                 Sign in
               </span>
               <span
                 className={`${
-                  signIn ? "bg-gray" : "bg-dark"
+                  signIn !== "login" ? "bg-gray" : "bg-dark"
                 }  h-1 w-full rounded-md transition-all`}></span>
             </div>
             <div
               className={`w-full flex flex-col justify-center items-center`}
-              onClick={toggleSignIn}>
+              onClick={() => setSignIn("createAccount")}>
               <span
                 className={`${
-                  signIn !== true ? "text-gray" : "text-dark"
+                  signIn !== "createAccount" ? "text-gray" : "text-dark"
                 } hover:cursor-pointer pb-2 md:text-16 ssm:text-12 transition-all`}>
                 Create account
               </span>
               <span
                 className={`${
-                  signIn !== true ? "bg-gray" : "bg-dark"
+                  signIn !== "createAccount" ? "bg-gray" : "bg-dark"
                 }  h-1 w-full rounded-md transition-all`}></span>
             </div>
           </div>
 
-          <div className="">
+          <div className="signIn">
             <Form
-              type="login"
+              type={signIn}
               className="flex flex-col justify-center items-start gap-4 py-8 px-4 w-full"
               buttonClass="w-full mt-4"
             />
