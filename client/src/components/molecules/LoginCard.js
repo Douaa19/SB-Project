@@ -51,7 +51,7 @@ function LoginCard() {
           <div className="signIn">
             <Form
               type={signIn}
-              className="flex flex-col justify-center items-start gap-4 py-8 px-4 w-full"
+              className="flex flex-col justify-center items-start gap-2 py-8 px-4 w-full"
               buttonClass="w-full mt-4"
             />
           </div>
