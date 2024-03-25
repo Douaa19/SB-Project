@@ -52,7 +52,7 @@ const hendleLogin = async (req, res) => {
       username = req.body.email;
     }
 
-    const user = await User.findOne(username ? { username } : { email });
+    const user = await User.findOne(email ? { email } : { username });
     if (!user) {
       res.status(400).send({ messageError: "Credentials are invalid" });
     } else {

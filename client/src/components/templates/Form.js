@@ -7,6 +7,13 @@ import { SelectComponent } from "../atoms";
 import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
 import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
 import { login } from "../../services/auth";
+import {
+  loginAction,
+  logoutAction,
+  setIdAction,
+  setRoleAction,
+} from "../../redux/actions/auth";
+import { jwtDecode } from "jwt-decode";
 
 function Form(props) {
   const dispatch = useDispatch();
@@ -74,11 +81,18 @@ function Form(props) {
         props.setShowPopup(true);
       } else if (props.type === "login") {
         login(data).then(async (response) => {
-          if (!response.data.myToken) {
+          if (!response.data.token) {
             alert("Credentials are invalid");
             setErrorResponse("Credentials are invalid");
             return errors;
           } else {
+            await dispatch(loginAction());
+            await dispatch(setRoleAction(jwtDecode(response.data.token).role));
+            await dispatch(setIdAction(jwtDecode(response.data.token).id));
+            console.log(response.data.token);
+            setTimeout(() => {
+              window.location = "/";
+            });
           }
         });
       }
