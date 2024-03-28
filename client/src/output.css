@@ -730,6 +730,14 @@ video {
   margin-top: 2rem;
 }
 
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
 .block {
   display: block;
 }
@@ -893,6 +901,10 @@ video {
 .w-max {
   width: -webkit-max-content;
   width: max-content;
+}
+
+.w-1 {
+  width: 0.25rem;
 }
 
 .min-w-full {

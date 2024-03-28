@@ -5,9 +5,17 @@ import Logo from "../../assets/icons/Logo_White.png";
 import Input from "../atoms/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchResults } from "../../redux/actions/items";
+import { ReactComponent as Person } from "../../assets/icons/person-fill-svgrepo-com.svg";
+import { ReactComponent as Logout } from "../../assets/icons/logout-svgrepo-com.svg";
+import {
+  setIdAction,
+  setRoleAction,
+  logoutAction,
+} from "../../redux/actions/auth";
 
 function NavBar() {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const location = window.location.href;
   const [searchQuery, setSearchQuery] = useState("");
   const allItems = useSelector((state) => state.newestItems);
@@ -66,6 +74,13 @@ function NavBar() {
       dispatch(setSearchResults(filteredResults));
       window.location = "http://localhost:3000/products";
     }
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    dispatch(setRoleAction(""));
+    dispatch(setIdAction(""));
+    dispatch(logoutAction(""));
   };
 
   return (
@@ -128,6 +143,22 @@ function NavBar() {
         </ul>
       </div>
       <div className="btns md:static flex justify-between items-center md:gap-2 w-max ssm:gap-2 ssm:absolute ssm:right-8">
+        <div className="">
+          {isLoggedIn !== true ? (
+            <button
+              onIconClick="/login"
+              className="flex items-center justify-center mr-1 outline-none">
+              <Person />
+            </button>
+          ) : (
+            <button
+              onClick={logout}
+              className="flex items-center justify-center mr-1 outline-none">
+              <Logout />
+            </button>
+          )}
+        </div>
+
         {inputContent}
         <div className="relative lg:w-6 md:w-5 ssm:w-12 ssm:mr-2 md:mr-0">
           <img

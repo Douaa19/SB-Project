@@ -9,6 +9,8 @@ try {
 
 user = token ? token : null;
 
+console.log(user);
+
 const initialState = user
   ? { isLoggedIn: true, user }
   : { isLoggedIn: false, user: null };
@@ -19,8 +21,8 @@ const authReducer = (state = initialState, action) => {
     case "LOGIN":
       return {
         ...state,
-        isLoggedI: true,
-        user,
+        isLoggedIn: true,
+        user: user,
       };
     case "LOGOUT":
       return {
