@@ -48,7 +48,14 @@ function BigItemCard({ url, item }) {
   };
 
   const addToCard = () => {
-    // add item to redux store basket
+    // validation
+    let errors = handleError(order);
+
+    if (Object.keys(errors).length === 0) {
+      dispatch(setOrders(order));
+    } else {
+      console.log("Error!!");
+    }
   };
 
   useEffect(() => {
