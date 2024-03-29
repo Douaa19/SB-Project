@@ -10,7 +10,9 @@ import { categoriesReducer } from "./categoriesReducer";
 import contactDonePopup from "./contactDonePopupReducer";
 import cities from "./citiesReducer";
 import orders from "./ordersReducer";
-import auth from "./authReducer";
+import authReducer from "./authReducer";
+import roleReducer from "./roleReducer";
+import idUserReducer from "./idUserReducer";
 
 const allReducers = combineReducers({
   bestSellingItems: bestSellingItemsReducer,
@@ -22,7 +24,9 @@ const allReducers = combineReducers({
   cities,
   orders,
   searchResults,
-  auth,
+  auth: authReducer,
+  role: roleReducer,
+  user_id: idUserReducer,
 });
 
 export default allReducers;

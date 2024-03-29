@@ -1,13 +1,7 @@
-let token;
 let user;
 
-try {
-  token = localStorage.getItem("token");
-} catch (error) {
-  user = null;
-}
-
-user = token ? token : null;
+// user = localStorage.getItem("token") ? localStorage.getItem("token") : null;
+// console.log(user);
 
 const initialState = user
   ? { isLoggedIn: true, user }
@@ -19,8 +13,10 @@ const authReducer = (state = initialState, action) => {
     case "LOGIN":
       return {
         ...state,
-        isLoggedI: true,
-        user,
+        isLoggedIn: true,
+        user: localStorage.getItem("token")
+          ? localStorage.getItem("token")
+          : null,
       };
     case "LOGOUT":
       return {

@@ -9,7 +9,6 @@ import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrep
 import { login } from "../../services/auth";
 import {
   loginAction,
-  logoutAction,
   setIdAction,
   setRoleAction,
 } from "../../redux/actions/auth";
@@ -26,6 +25,9 @@ function Form(props) {
 
   const [forgetPassword, setForgetPassword] = useState(false);
   const [errorResponse, setErrorResponse] = useState("");
+
+  const loginStatus = useSelector((state) => state.auth);
+  // console.log(loginStatus);
 
   const forgetPasswordPopup = () => {
     setForgetPassword(true);
@@ -89,7 +91,6 @@ function Form(props) {
             await dispatch(loginAction());
             await dispatch(setRoleAction(jwtDecode(response.data.token).role));
             await dispatch(setIdAction(jwtDecode(response.data.token).id));
-            console.log(response.data.token);
             setTimeout(() => {
               window.location = "/";
             });
