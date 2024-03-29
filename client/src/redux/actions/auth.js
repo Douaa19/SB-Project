@@ -13,11 +13,13 @@ export const logoutAction = () => {
 export const setRoleAction = (role) => {
   return {
     type: "SETUSERROLE",
+    payload: role,
   };
 };
 
 export const setIdAction = (id) => {
   return {
     type: "SETID",
+    payload: id,
   };
 };

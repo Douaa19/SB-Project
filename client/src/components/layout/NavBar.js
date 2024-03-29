@@ -11,6 +11,7 @@ import {
   setIdAction,
   setRoleAction,
   logoutAction,
+  loginAction,
 } from "../../redux/actions/auth";
 
 function NavBar() {
@@ -81,6 +82,7 @@ function NavBar() {
     dispatch(setRoleAction(""));
     dispatch(setIdAction(""));
     dispatch(logoutAction(""));
+    window.location = "/";
   };
 
   return (
@@ -146,8 +148,8 @@ function NavBar() {
         <div className="">
           {isLoggedIn !== true ? (
             <button
-              onIconClick="/login"
-              className="flex items-center justify-center mr-1 outline-none">
+              onClick={() => (window.location = "/login")}
+              className="flex items-center justify-center mr-1 outline-none md:w-[24px] ssm:w-[18px]">
               <Person />
             </button>
           ) : (
