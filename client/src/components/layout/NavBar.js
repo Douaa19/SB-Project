@@ -51,6 +51,9 @@ function NavBar() {
     { name: "our products", link: "/products" },
     { name: "about us", link: "/about" },
     { name: "contact us", link: "/contact" },
+    isLoggedIn !== true
+      ? { name: "login", link: "/login" }
+      : { name: "logout", link: "/" },
     { name: "search", content: inputContent },
   ];
 
@@ -108,6 +111,7 @@ function NavBar() {
                 <a
                   href={link.link}
                   style={{ animationDelay: `0.${index + 1}s` }}
+                  onClick={link.name === "logout" ? logout : () => {}}
                   className={`costum-list list sm:text-16 ssm:text-14 cursor-pointer ${
                     open ? `appear text-white opacity-1` : "md:text-dark"
                   }`}>
@@ -149,13 +153,13 @@ function NavBar() {
           {isLoggedIn !== true ? (
             <button
               onClick={() => (window.location = "/login")}
-              className="flex items-center justify-center mr-1 outline-none md:w-[24px] ssm:w-[18px]">
+              className="flex items-center justify-center mr-1 outline-none md:w-[24px] ssm:hidden">
               <Person />
             </button>
           ) : (
             <button
               onClick={logout}
-              className="flex items-center justify-center mr-1 outline-none">
+              className="flex items-center justify-center mr-1 outline-none md:w-[24px] ssm:hidden">
               <Logout />
             </button>
           )}
