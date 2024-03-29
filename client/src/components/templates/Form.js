@@ -17,6 +17,7 @@ import { jwtDecode } from "jwt-decode";
 function Form(props) {
   const dispatch = useDispatch();
   const done = useSelector((state) => state.contactDonePopup);
+  const isLoggedIn = useSelector((state) => state.auth.isLogedIn);
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -80,7 +81,11 @@ function Form(props) {
           }
         });
       } else if (props.type === "shipping") {
-        props.setShowPopup(true);
+        if(isLoggedIn !== false) {
+          props.setShowPopup(true);
+        } else {
+          window.location = "/login"
+        }
       } else if (props.type === "login") {
         login(data).then(async (response) => {
           if (!response.data.token) {

@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { Button, Input } from "../atoms";
 import { setOrders } from "../../redux/actions/orders";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function BigItemCard({ url, item }) {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [images, setImages] = useState([]);
   const settings = {
     dots: true,

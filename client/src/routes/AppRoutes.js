@@ -10,8 +10,11 @@ import {
   Login,
   Signup,
 } from "../pages";
+import { useSelector } from "react-redux";
 
 function AppRoutes() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   return (
     <>
       <Router>
@@ -29,7 +32,7 @@ function AppRoutes() {
           />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/basket" element={<Basket />} />
+          <Route path="/basket" element={isLoggedIn ? <Basket /> : <Login />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
