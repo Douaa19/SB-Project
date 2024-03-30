@@ -6,3 +6,7 @@ export const login = async (data) => {
   localStorage.setItem("token", JSON.stringify(res.data.token));
   return res;
 };
+
+export const register = async (data) => {
+  return;
+};
