@@ -9,7 +9,6 @@ const handleRegister = async (req, res) => {
   try {
     const { email, username, password, phoneNum, address, role } = req.body;
     const userExists = await User.find({ email, phoneNum });
-
     if (userExists.length == 0) {
       const newUser = await User.create({
         email,

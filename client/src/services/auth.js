@@ -8,5 +8,19 @@ export const login = async (data) => {
 };
 
 export const register = async (data) => {
-  return;
+  const infos = {
+    email: data.email,
+    username: data.name,
+    password: data.password,
+    phoneNum: data.phone,
+    address: data.address,
+    role: "client",
+  };
+
+  const res = await axios.post(`${BACK_URL}register`, infos, {
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  });
+  if (res) {
+    console.log(res);
+  }
 };
