@@ -4,7 +4,6 @@ import { Form } from "../templates";
 import { Input, Button } from "../atoms";
 import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
 import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
-import { ReactComponent as LoginImg } from "../../assets/images/Mobile-login-pana.svg";
 import {
   loginAction,
   setIdAction,
@@ -15,16 +14,11 @@ import { jwtDecode } from "jwt-decode";
 
 function LoginCard(props) {
   const dispatch = useDispatch();
-
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
   const [passwordType, setPasswordType] = useState("password");
   const [passwordIcon, setPasswordIcon] = useState(<CloseEye />);
-  const [forgetPassword, setForgetPassword] = useState(false);
   const [errorResponse, setErrorResponse] = useState({});
-  const forgetPasswordPopup = () => {
-    setForgetPassword(true);
-  };
 
   const togglePassword = () => {
     if (passwordType === "password") {
@@ -35,10 +29,12 @@ function LoginCard(props) {
     setPasswordType("password");
     setPasswordIcon(<CloseEye />);
   };
+
   const handleChange = async (element, value) => {
     const newData = { ...data, [`${element}`]: value };
     setData(newData);
   };
+
   const handleSubmit = async () => {
     let errors = validationForm(data);
 
@@ -119,8 +115,10 @@ function LoginCard(props) {
       />
 
       <span
-        className="mt-2 text-12 capitalize hover:text-main hover:underline hover:cursor-pointer"
-        onClick={forgetPasswordPopup}>
+        className="mt-0 text-12 capitalize hover:text-main hover:underline hover:cursor-pointer text-end w-full"
+        onClick={() => {
+          props.setForgetPassword(true);
+        }}>
         forget password
       </span>
       <div className="flex items-center justify-start w-full">

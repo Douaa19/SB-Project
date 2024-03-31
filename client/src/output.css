@@ -651,6 +651,10 @@ video {
   top: 0.40rem;
 }
 
+.top-10 {
+  top: 2.5rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -732,6 +736,10 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mt-0 {
+  margin-top: 0px;
 }
 
 .block {
@@ -1266,6 +1274,10 @@ video {
 
 .text-start {
   text-align: start;
+}
+
+.text-end {
+  text-align: end;
 }
 
 .text-12 {
