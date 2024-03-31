@@ -15,15 +15,13 @@ import { jwtDecode } from "jwt-decode";
 
 function LoginCard(props) {
   const dispatch = useDispatch();
-  const [signIn, setSignIn] = useState("login");
-  const [resetInputs, setResetInputs] = useState(false);
 
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
   const [passwordType, setPasswordType] = useState("password");
   const [passwordIcon, setPasswordIcon] = useState(<CloseEye />);
   const [forgetPassword, setForgetPassword] = useState(false);
-  const [errorResponse, setErrorResponse] = useState("");
+  const [errorResponse, setErrorResponse] = useState({});
   const forgetPasswordPopup = () => {
     setForgetPassword(true);
   };
@@ -47,8 +45,14 @@ function LoginCard(props) {
     if (Object.keys(errors).length === 0) {
       login(data).then(async (response) => {
         if (!response.data.token) {
-          alert("Credentials are invalid");
-          setErrorResponse("Credentials are invalid");
+          setErrorResponse({
+            email: "Email is wrong",
+            password: "Password is wrong",
+          });
+          setTimeout(() => {
+            alert("Credentials are invalid");
+          });
+
           return errors;
         } else {
           await dispatch(loginAction());
@@ -57,6 +61,7 @@ function LoginCard(props) {
           setTimeout(() => {
             window.location = "/";
           });
+          setErrors({});
         }
       });
     } else {
@@ -64,6 +69,7 @@ function LoginCard(props) {
       console.log(errors);
     }
   };
+
   const validationForm = (data) => {
     const errors = {};
 
@@ -73,10 +79,8 @@ function LoginCard(props) {
       errors.email = "Invalid email address";
     }
 
-    if (props.type === "login") {
-      if (!data.password) {
-        errors.password = "password is required";
-      }
+    if (!data.password) {
+      errors.password = "password is required";
     }
 
     setErrors(errors);
@@ -89,40 +93,34 @@ function LoginCard(props) {
     );
   };
 
-  useEffect(() => {
-    setResetInputs(true);
-    setTimeout(() => {
-      setResetInputs(false);
-    }, 1000);
-  }, [signIn]);
-
   return (
     <div className="login flex flex-col justify-center items-start gap-2 py-8 px-4 w-full">
       <Input
-        type="text"
+        type="email"
         className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
-        placeHolder="name"
-        name="name"
-        // value={data.name}
-        // onChange={(e) => handleChange("name", e.target.value)}
-        // error={errors.name}
+        placeHolder="example@email.com"
+        name="email"
+        value={data.email}
+        onChange={(e) => handleChange("email", e.target.value)}
+        error={errors.email || errorResponse.email}
       />
       <Input
-        // passwordIcon={passwordIcon}
+        type={passwordType}
+        passwordIcon={passwordIcon}
         clickableIcon="clickable-icon"
-        // IconClickEvent={togglePassword}
+        IconClickEvent={togglePassword}
         className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
         placeHolder="password"
         name="password"
-        // value={data.password}
-        // onChange={(e) => handleChange("password", e.target.value)}
-        // error={errors.password || errorResponse}
+        value={data.password}
+        onChange={(e) => handleChange("password", e.target.value)}
+        error={errors.password || errorResponse.password}
         iconStyle="absolute right-2 top-[0.40rem]"
       />
+
       <span
         className="mt-2 text-12 capitalize hover:text-main hover:underline hover:cursor-pointer"
-        // onClick={forgetPasswordPopup}
-      >
+        onClick={forgetPasswordPopup}>
         forget password
       </span>
       <div className="flex items-center justify-start w-full">
@@ -133,12 +131,6 @@ function LoginCard(props) {
           onClick={() => handleSubmit()}
         />
       </div>
-      {/* <Form
-        type={signIn}
-        resetInputs={resetInputs}
-        className="flex flex-col justify-center items-start gap-2 py-8 px-4 w-full"
-        buttonClass="w-full mt-4"
-      /> */}
     </div>
   );
 }

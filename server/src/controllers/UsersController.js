@@ -53,7 +53,7 @@ const hendleLogin = async (req, res) => {
 
     const user = await User.findOne(email ? { email } : { username });
     if (!user) {
-      res.status(400).send({ messageError: "Credentials are invalid" });
+      res.send({ messageError: "Credentials are invalid" });
     } else {
       await user.comparePasswords(password).then(async (result) => {
         if (result) {
