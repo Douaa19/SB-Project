@@ -141,13 +141,15 @@ function Form(props) {
       }
     }
 
+    if (props.type === "shipping" || props.type === "createAccount") {
+      if (!data.address) {
+        errors.address = "Address is required";
+      }
+    }
+
     if (props.type === "shipping") {
       if (!data.city) {
         errors.city = "City is required";
-      }
-
-      if (!data.address) {
-        errors.address = "Address is required";
       }
 
       if (!data.postalCode) {
