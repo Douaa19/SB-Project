@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Input, Button } from "../atoms";
+import { ReactComponent as Close } from "../../assets/icons/close.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { setForgetPassword } from "../../redux/actions/popups";
 
 function ForgetPasswordPopup() {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
 
@@ -36,6 +40,15 @@ function ForgetPasswordPopup() {
     <>
       <div class="absolute bg-white opacity-80 inset-0 z-0"></div>
       <div class="w-500 max-w-xl p-5 relative bg-white mx-auto my-auto rounded-xl shadow-lg animation-fadeIn">
+        <div className="flex justify-end items-center">
+          <button
+            className="outline-none"
+            onClick={() => {
+              dispatch(setForgetPassword(false));
+            }}>
+            <Close />
+          </button>
+        </div>
         <div class="">
           <div class="text-center p-5 flex-auto justify-center">
             <h4>Please write your email</h4>
@@ -53,7 +66,7 @@ function ForgetPasswordPopup() {
                 className={`w-1/2 mt-4 ssm:m-0 md:mt-3 
           border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
                 text="send"
-                //   onClick={() => handleSubmit()}
+                onClick={() => handleSubmit()}
               />
             </div>
           </div>

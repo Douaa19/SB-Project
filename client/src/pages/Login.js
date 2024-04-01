@@ -11,10 +11,6 @@ function Login() {
   const forgetPasswordPopup = useSelector((state) => state.forgetPasswordPopup);
   const [signIn, setSignIn] = useState("login");
 
-  const closePopup = () => {
-    dispatch(setForgetPassword(false));
-  };
-
   return (
     <>
       <div className="bg-gray h-screen flex justify-center items-center">
@@ -70,9 +66,7 @@ function Login() {
             )}
 
             {forgetPasswordPopup && (
-              <div
-                onClick={closePopup}
-                className="min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
+              <div className="min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
                 <Popup>
                   <ForgetPasswordPopup />
                 </Popup>
