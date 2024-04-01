@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { Input, Button } from "../atoms";
 import { ReactComponent as Close } from "../../assets/icons/close.svg";
-import { useDispatch, useSelector } from "react-redux";
+import { ReactComponent as Lock } from "../../assets/icons/lock-keyhole-minimalistic-svgrepo-com.svg";
+import { useDispatch } from "react-redux";
 import { setForgetPassword } from "../../redux/actions/popups";
 
 function ForgetPasswordPopup() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+
+  const closePopup = () => {
+    dispatch(setForgetPassword(false));
+  };
 
   const handleSubmit = () => {
     let error = validationForm(email);
@@ -39,36 +44,55 @@ function ForgetPasswordPopup() {
   return (
     <>
       <div class="absolute bg-white opacity-80 inset-0 z-0"></div>
-      <div class="w-500 max-w-xl p-5 relative bg-white mx-auto my-auto rounded-xl shadow-lg animation-fadeIn">
-        <div className="flex justify-end items-center">
+      <div class="w-400 max-w-xl px-5 py-10 flex justify-center relative bg-white mx-auto my-auto rounded-xl shadow-lg animation-fadeIn">
+        <div className="absolute top-2 right-2">
           <button
-            className="outline-none"
-            onClick={() => {
-              dispatch(setForgetPassword(false));
-            }}>
+            className="border border-2 border-[#5F6165] rounded-full outline-none"
+            onClick={closePopup}>
             <Close />
           </button>
         </div>
-        <div class="">
-          <div class="text-center p-5 flex-auto justify-center">
-            <h4>Please write your email</h4>
-            <div className="relative">
-              <Input
-                type="email"
-                className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
-                placeHolder="example@email.com"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                error={emailError}
-              />
-              <Button
-                className={`w-1/2 mt-4 ssm:m-0 md:mt-3 
-          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
-                text="send"
-                onClick={() => handleSubmit()}
-              />
+        <div className="flex flex-col items-center gap-4 w-[70%]">
+          <div className="bg-[#FEF2F6] w-fit rounded-full p-4 flex justify-center items-center">
+            <div className="bg-[#FCDAE4] rounded-full p-3 flex justify-center items-center">
+              <Lock />
             </div>
+          </div>
+          <div className="text-center">
+            <div className="">
+              <h4 className="capitalize text-[#5F6165] font-medium">
+                forgot password
+              </h4>
+              <p className="text-[#A1A3A7] text-14">
+                Provide your eamil in the form below to begin.
+              </p>
+            </div>
+          </div>
+          <div className="w-full">
+            <Input
+              type="email"
+              className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+              placeHolder="example@email.com"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              error={emailError}
+            />
+          </div>
+          <div className="w-full">
+            <Button
+              className={`w-full
+          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
+              text="send"
+              onClick={() => handleSubmit()}
+            />
+          </div>
+          <div className="">
+            <span
+              className="md:text-14 ssm:text-12 capitalize text-main underline hover:cursor-pointer"
+              onClick={closePopup}>
+              login
+            </span>
           </div>
         </div>
       </div>
