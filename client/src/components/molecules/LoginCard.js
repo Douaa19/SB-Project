@@ -94,7 +94,7 @@ function LoginCard(props) {
     <div className="login flex flex-col justify-center items-start gap-2 py-8 px-4 w-full">
       <Input
         type="email"
-        className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+        className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
         placeHolder="example@email.com"
         name="email"
         value={data.email}
@@ -106,7 +106,7 @@ function LoginCard(props) {
         passwordIcon={passwordIcon}
         clickableIcon="clickable-icon"
         IconClickEvent={togglePassword}
-        className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+        className={`border rounded-5 lg:block px-4 py-3 outline-none text-12 w-full border-main`}
         placeHolder="password"
         name="password"
         value={data.password}
@@ -125,7 +125,7 @@ function LoginCard(props) {
       <div className="flex items-center justify-start w-full">
         <Button
           className={`w-full mt-4 ssm:m-0 md:mt-3
-          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
+          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
           text="sign in"
           onClick={() => handleSubmit()}
         />

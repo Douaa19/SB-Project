@@ -21,7 +21,7 @@ function Login() {
           <div className="w-full p-8">
             <div className="">
               <div className="pb-6">
-                <h4 className="font-bold md:text-32 ssm:text-24 text-center py-2">
+                <h4 className="font-bold md:text-24 ssm:text-18 text-center py-2">
                   Login
                 </h4>
               </div>
@@ -32,7 +32,7 @@ function Login() {
                   <span
                     className={`${
                       signIn !== "login" ? "text-gray" : "text-dark"
-                    } hover:cursor-pointer pb-2 md:text-16 ssm:text-12 transition-all`}>
+                    } hover:cursor-pointer pb-2 md:text-14 ssm:text-12 transition-all`}>
                     Sign in
                   </span>
                   <span
@@ -46,7 +46,7 @@ function Login() {
                   <span
                     className={`${
                       signIn !== "createAccount" ? "text-gray" : "text-dark"
-                    } hover:cursor-pointer pb-2 md:text-16 ssm:text-12 transition-all`}>
+                    } hover:cursor-pointer pb-2 md:text-14 ssm:text-12 transition-all`}>
                     Create account
                   </span>
                   <span
