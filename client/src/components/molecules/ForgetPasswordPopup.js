@@ -60,11 +60,11 @@ function ForgetPasswordPopup() {
           </div>
           <div className="text-center">
             <div className="">
-              <h4 className="capitalize text-[#5F6165] font-medium">
+              <h4 className="capitalize text-[#5F6165] font-medium md:text-16 ssm:text-14">
                 forgot password
               </h4>
-              <p className="text-[#A1A3A7] text-14">
-                Provide your eamil in the form below to begin.
+              <p className="text-[#A1A3A7] md:text-14 ssm:text-12">
+                Provide your email in the form below to begin.
               </p>
             </div>
           </div>
@@ -82,14 +82,14 @@ function ForgetPasswordPopup() {
           <div className="w-full">
             <Button
               className={`w-full
-          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
+          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
               text="send"
               onClick={() => handleSubmit()}
             />
           </div>
           <div className="">
             <span
-              className="md:text-14 ssm:text-12 capitalize text-main underline hover:cursor-pointer"
+              className="text-12 capitalize text-main underline hover:cursor-pointer"
               onClick={closePopup}>
               login
             </span>
