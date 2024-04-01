@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form } from "../components/templates";
-import { LoginCard } from "../components/molecules";
+import { LoginCard, ForgetPasswordPopup } from "../components/molecules";
 import { ReactComponent as LoginImg } from "../assets/images/Mobile-login-pana.svg";
 import { Popup } from "../components/organismes";
 
@@ -66,7 +66,7 @@ function Login() {
                 // onClick={closePopup}
                 className="min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
                 <Popup>
-                  {/* <ContactDonePopup /> */}
+                  <ForgetPasswordPopup />
                 </Popup>
               </div>
             )}
