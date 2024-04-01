@@ -4,3 +4,10 @@ export const setContactDone = (popupStatus) => {
     payload: popupStatus,
   };
 };
+
+export const setForgetPassword = (popupStatus) => {
+  return {
+    type: "SETFORGETPASSWORD",
+    payload: popupStatus,
+  };
+};

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { removeOrder } from "../../redux/actions/orders";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function RowBasket(props) {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const handleDelete = () => {
     dispatch(removeOrder(props.data.item._id));

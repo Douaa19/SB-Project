@@ -6,7 +6,7 @@ import { setContactDone } from "../../redux/actions/popups";
 import { SelectComponent } from "../atoms";
 import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
 import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
-import { login } from "../../services/auth";
+import { login, register } from "../../services/auth";
 import {
   loginAction,
   setIdAction,
@@ -17,6 +17,7 @@ import { jwtDecode } from "jwt-decode";
 function Form(props) {
   const dispatch = useDispatch();
   const done = useSelector((state) => state.contactDonePopup);
+  const isLoggedIn = useSelector((state) => state.auth.isLogedIn);
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -25,9 +26,6 @@ function Form(props) {
 
   const [forgetPassword, setForgetPassword] = useState(false);
   const [errorResponse, setErrorResponse] = useState("");
-
-  const loginStatus = useSelector((state) => state.auth);
-  // console.log(loginStatus);
 
   const forgetPasswordPopup = () => {
     setForgetPassword(true);
@@ -68,7 +66,7 @@ function Form(props) {
     setData(newData);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     let errors = validationForm(data);
 
     if (Object.keys(errors).length === 0) {
@@ -80,7 +78,11 @@ function Form(props) {
           }
         });
       } else if (props.type === "shipping") {
-        props.setShowPopup(true);
+        if (isLoggedIn !== false) {
+          props.setShowPopup(true);
+        } else {
+          window.location = "/login";
+        }
       } else if (props.type === "login") {
         login(data).then(async (response) => {
           if (!response.data.token) {
@@ -96,6 +98,11 @@ function Form(props) {
             });
           }
         });
+      } else if (props.type === "createAccount") {
+        await register(data);
+        // .then(async (response) => {
+        //   if(response) console.log(response)
+        // })
       }
     } else {
       console.log("Error!!");
@@ -134,13 +141,15 @@ function Form(props) {
       }
     }
 
+    if (props.type === "shipping" || props.type === "createAccount") {
+      if (!data.address) {
+        errors.address = "Address is required";
+      }
+    }
+
     if (props.type === "shipping") {
       if (!data.city) {
         errors.city = "City is required";
-      }
-
-      if (!data.address) {
-        errors.address = "Address is required";
       }
 
       if (!data.postalCode) {

@@ -171,7 +171,13 @@ function NavBar() {
         <div className="relative lg:w-6 md:w-5 ssm:w-12 ssm:mr-2 md:mr-0">
           <button
             className="hover:cursor-pointer w-full flex items-center justify-center"
-            onClick={() => (window.location = "/basket")}>
+            onClick={() => {
+              if (isLoggedIn) {
+                window.location = "/basket";
+              } else {
+                window.location = "/login";
+              }
+            }}>
             <Basket />
           </button>
           {orders.length > 0 && (
@@ -180,6 +186,7 @@ function NavBar() {
             </div>
           )}
         </div>
+
         <div className="md:hidden">
           <button
             className={`relative group flex items-center outline-none burger w-10 h-10 ${isOpen}`}
