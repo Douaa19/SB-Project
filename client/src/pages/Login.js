@@ -3,10 +3,18 @@ import { Form } from "../components/templates";
 import { LoginCard, ForgetPasswordPopup } from "../components/molecules";
 import { ReactComponent as LoginImg } from "../assets/images/Mobile-login-pana.svg";
 import { Popup } from "../components/organismes";
+import { setForgetPassword } from "../redux/actions/popups";
+import { useDispatch, useSelector } from "react-redux";
 
 function Login() {
+  const dispatch = useDispatch();
+  const forgetPasswordPopup = useSelector((state) => state.forgetPasswordPopup);
   const [signIn, setSignIn] = useState("login");
-  const [forgetPassword, setForgetPassword] = useState(false);
+
+  const closePopup = () => {
+    dispatch(setForgetPassword(false));
+  };
+
   return (
     <>
       <div className="bg-gray h-screen flex justify-center items-center">
@@ -55,15 +63,15 @@ function Login() {
 
             {signIn === "login" ? (
               <div className="login">
-                <LoginCard setForgetPassword={setForgetPassword} />
+                <LoginCard />
               </div>
             ) : (
               <div className="signup"></div>
             )}
 
-            {forgetPassword && (
+            {forgetPasswordPopup && (
               <div
-                // onClick={closePopup}
+                onClick={closePopup}
                 className="min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
                 <Popup>
                   <ForgetPasswordPopup />

@@ -11,6 +11,7 @@ import {
 } from "../../redux/actions/auth";
 import { login } from "../../services/auth";
 import { jwtDecode } from "jwt-decode";
+import { setForgetPassword } from "../../redux/actions/popups";
 
 function LoginCard(props) {
   const dispatch = useDispatch();
@@ -117,7 +118,7 @@ function LoginCard(props) {
       <span
         className="mt-0 text-12 capitalize hover:text-main hover:underline hover:cursor-pointer text-end w-full"
         onClick={() => {
-          props.setForgetPassword(true);
+          dispatch(setForgetPassword(true));
         }}>
         forget password
       </span>
