@@ -7,7 +7,7 @@ import {
 } from "../components/molecules";
 import { ReactComponent as LoginImg } from "../assets/images/Mobile-login-pana.svg";
 import { Popup } from "../components/organismes";
-import { setForgetPassword } from "../redux/actions/popups";
+import { setForgetPassword, setResetPassword } from "../redux/actions/popups";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 
@@ -15,13 +15,14 @@ function Login() {
   const dispatch = useDispatch();
   const params = useParams();
   const forgetPasswordPopup = useSelector((state) => state.forgetPasswordPopup);
+  const resetPasswordPopup = useSelector((state) => state.resetPasswordPopup);
   const [signIn, setSignIn] = useState("login");
-  const [resetPassword, setResetPassword] = useState(false);
 
   useEffect(() => {
     dispatch(setForgetPassword(false));
+    dispatch(setResetPassword(false));
     if (params.resetToken) {
-      setResetPassword(true);
+      dispatch(setResetPassword(true));
     }
   }, []);
 
@@ -86,7 +87,7 @@ function Login() {
                 </Popup>
               </div>
             )}
-            {resetPassword && (
+            {resetPasswordPopup && (
               <div className="min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
                 <Popup>
                   <ResetPasswordPopup />
