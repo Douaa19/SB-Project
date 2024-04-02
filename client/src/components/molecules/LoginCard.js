@@ -89,6 +89,7 @@ function LoginCard(props) {
       email
     );
   };
+  
 
   return (
     <div className="login flex flex-col justify-center items-start gap-2 py-8 px-4 w-full">
@@ -114,7 +115,6 @@ function LoginCard(props) {
         error={errors.password || errorResponse.password}
         iconStyle="absolute right-2 top-[0.40rem]"
       />
-
       <span
         className="mt-0 text-12 capitalize hover:text-main hover:underline hover:cursor-pointer text-end w-full"
         onClick={() => {

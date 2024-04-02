@@ -95,9 +95,9 @@ const hendleLogin = async (req, res) => {
 const forgetPassword = async (req, res) => {
   try {
     const { email } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select("-password");
     if (!user) {
-      res.status(404).send({ messageError: "This email is wrong" });
+      res.send({ messageError: "This email is wrong" });
     } else {
       const token = uuid.v4();
 
