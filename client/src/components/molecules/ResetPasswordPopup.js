@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { Input, Button } from "../atoms";
 import { ReactComponent as NewPassword } from "../../assets/icons/new-password-svgrepo-com.svg";
 import { ReactComponent as Close } from "../../assets/icons/close.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { setResetPassword } from "../../redux/actions/popups";
 
 function ResetPasswordPopup() {
+  const dispatch = useDispatch();
+  const resetPasswordPopup = useSelector((state) => state.resetPasswordPopup);
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -22,7 +26,9 @@ function ResetPasswordPopup() {
     return errors;
   };
 
-  const closePopup = () => {};
+  const closePopup = () => {
+    dispatch(setResetPassword(false));
+  };
 
   return (
     <>
