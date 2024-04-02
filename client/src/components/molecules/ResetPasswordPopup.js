@@ -42,13 +42,18 @@ function ResetPasswordPopup() {
           </button>
         </div>
         <div className="flex flex-col items-center gap-4 w-[70%]">
+          <div className="bg-[#FBF8EE] w-fit rounded-full p-4 flex justify-center items-center">
+            <div className="bg-[#F3EACE] rounded-full p-3 flex justify-center items-center">
+              <NewPassword />
+            </div>
+          </div>
           <div className="text-center">
             <div className="">
               <h4 className="capitalize text-[#5F6165] font-medium md:text-16 ssm:text-14">
                 reset password
               </h4>
               <p className="text-[#A1A3A7] md:text-14 ssm:text-12">
-                Recreate your new password
+                Recreate new password
               </p>
             </div>
           </div>
