@@ -2772,10 +2772,6 @@ body .menu ul li > a:hover {
   .lg\:text-24 {
     font-size: 24px;
   }
-
-  .lg\:text-12 {
-    font-size: 12px;
-  }
 }
 
 @media (min-width: 1024px) {

@@ -24,3 +24,8 @@ export const register = async (data) => {
     console.log(res);
   }
 };
+
+export const forgetPassword = async (email) => {
+  const res = await axios.post(`${BACK_URL}forget-password`, { email });
+  return res;
+};

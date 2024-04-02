@@ -4,6 +4,7 @@ import { ReactComponent as Close } from "../../assets/icons/close.svg";
 import { ReactComponent as Lock } from "../../assets/icons/lock-keyhole-minimalistic-svgrepo-com.svg";
 import { useDispatch } from "react-redux";
 import { setForgetPassword } from "../../redux/actions/popups";
+import { forgetPassword } from "../../services/auth";
 
 function ForgetPasswordPopup() {
   const dispatch = useDispatch();
@@ -20,7 +21,13 @@ function ForgetPasswordPopup() {
     if (error) {
       console.log(error);
     } else {
-      console.log("Continue");
+      forgetPassword(email).then((response) => {
+        if(response.data) {
+          
+        } else {
+
+        }
+      });
     }
   };
 
