@@ -83,21 +83,6 @@ function Form(props) {
         } else {
           window.location = "/login";
         }
-      } else if (props.type === "login") {
-        login(data).then(async (response) => {
-          if (!response.data.token) {
-            alert("Credentials are invalid");
-            setErrorResponse("Credentials are invalid");
-            return errors;
-          } else {
-            await dispatch(loginAction());
-            await dispatch(setRoleAction(jwtDecode(response.data.token).role));
-            await dispatch(setIdAction(jwtDecode(response.data.token).id));
-            setTimeout(() => {
-              window.location = "/";
-            });
-          }
-        });
       } else if (props.type === "createAccount") {
         await register(data);
         // .then(async (response) => {
