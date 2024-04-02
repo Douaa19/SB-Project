@@ -27,6 +27,9 @@ function ForgetPasswordPopup() {
       forgetPassword(email).then((response) => {
         if (response.data) {
           setDone(true);
+          setTimeout(() => {
+            closePopup();
+          }, 3000);
         } else {
           setEmailError("Please try again");
           console.log(response.data.errorMassage);
@@ -56,13 +59,15 @@ function ForgetPasswordPopup() {
     <>
       <div class="absolute bg-white opacity-80 inset-0 z-0"></div>
       <div class="w-400 max-w-xl px-5 py-10 flex justify-center relative bg-white mx-auto my-auto rounded-xl shadow-lg animation-fadeIn">
-        <div className="absolute top-2 right-2">
-          <button
-            className="border border-2 border-[#5F6165] rounded-full outline-none"
-            onClick={closePopup}>
-            <Close />
-          </button>
-        </div>
+        {done !== true && (
+          <div className="absolute top-2 right-2">
+            <button
+              className="border border-2 border-[#5F6165] rounded-full outline-none"
+              onClick={closePopup}>
+              <Close />
+            </button>
+          </div>
+        )}
         <div className="flex flex-col items-center gap-4 w-[70%]">
           {done !== true ? (
             <div className="bg-[#FEF2F6] w-fit rounded-full p-4 flex justify-center items-center">
