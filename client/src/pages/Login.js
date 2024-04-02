@@ -11,6 +11,10 @@ function Login() {
   const forgetPasswordPopup = useSelector((state) => state.forgetPasswordPopup);
   const [signIn, setSignIn] = useState("login");
 
+  useEffect(() => {
+    dispatch(setForgetPassword(false));
+  }, []);
+
   return (
     <>
       <div className="bg-gray h-screen flex justify-center items-center">
