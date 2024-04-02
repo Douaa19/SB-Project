@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Input, Button } from "../atoms";
 import { ReactComponent as Close } from "../../assets/icons/close.svg";
 import { ReactComponent as Lock } from "../../assets/icons/lock-keyhole-minimalistic-svgrepo-com.svg";
+import { ReactComponent as Email } from "../../assets/icons/email-8-svgrepo-com.svg";
 import { useDispatch } from "react-redux";
 import { setForgetPassword } from "../../redux/actions/popups";
 import { forgetPassword } from "../../services/auth";
@@ -10,9 +11,11 @@ function ForgetPasswordPopup() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [done, setDone] = useState(false);
 
   const closePopup = () => {
     dispatch(setForgetPassword(false));
+    setDone(false);
   };
 
   const handleSubmit = () => {
@@ -22,10 +25,11 @@ function ForgetPasswordPopup() {
       console.log(error);
     } else {
       forgetPassword(email).then((response) => {
-        if(response.data) {
-          
+        if (response.data) {
+          setDone(true);
         } else {
-
+          setEmailError("Please try again");
+          console.log(response.data.errorMassage);
         }
       });
     }
@@ -60,47 +64,66 @@ function ForgetPasswordPopup() {
           </button>
         </div>
         <div className="flex flex-col items-center gap-4 w-[70%]">
-          <div className="bg-[#FEF2F6] w-fit rounded-full p-4 flex justify-center items-center">
-            <div className="bg-[#FCDAE4] rounded-full p-3 flex justify-center items-center">
-              <Lock />
+          {done !== true ? (
+            <div className="bg-[#FEF2F6] w-fit rounded-full p-4 flex justify-center items-center">
+              <div className="bg-[#FCDAE4] rounded-full p-3 flex justify-center items-center">
+                <Lock />
+              </div>
             </div>
-          </div>
-          <div className="text-center">
-            <div className="">
-              <h4 className="capitalize text-[#5F6165] font-medium md:text-16 ssm:text-14">
-                forgot password
+          ) : (
+            <div className="bg-[#F0F9F9] w-fit rounded-full p-4 flex justify-center items-center">
+              <div className="bg-[#C5E8E6] rounded-full p-3 flex justify-center items-center">
+                <Email />
+              </div>
+            </div>
+          )}
+
+          {done !== true ? (
+            <>
+              <div className="text-center">
+                <div className="">
+                  <h4 className="capitalize text-[#5F6165] font-medium md:text-16 ssm:text-14">
+                    forgot password
+                  </h4>
+                  <p className="text-[#A1A3A7] md:text-14 ssm:text-12">
+                    Provide your email in the form below to begin.
+                  </p>
+                </div>
+              </div>
+              <div className="w-full">
+                <Input
+                  type="email"
+                  className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+                  placeHolder="example@email.com"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  error={emailError}
+                />
+              </div>
+              <div className="w-full">
+                <Button
+                  className={`w-full
+        border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
+                  text="send"
+                  onClick={() => handleSubmit()}
+                />
+              </div>
+              <div className="">
+                <span
+                  className="text-12 capitalize text-main underline hover:cursor-pointer"
+                  onClick={closePopup}>
+                  login
+                </span>
+              </div>
+            </>
+          ) : (
+            <div>
+              <h4 className="text-[#5F6165] font-medium md:text-16 ssm:text-14">
+                Please check your email
               </h4>
-              <p className="text-[#A1A3A7] md:text-14 ssm:text-12">
-                Provide your email in the form below to begin.
-              </p>
             </div>
-          </div>
-          <div className="w-full">
-            <Input
-              type="email"
-              className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
-              placeHolder="example@email.com"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              error={emailError}
-            />
-          </div>
-          <div className="w-full">
-            <Button
-              className={`w-full
-          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
-              text="send"
-              onClick={() => handleSubmit()}
-            />
-          </div>
-          <div className="">
-            <span
-              className="text-12 capitalize text-main underline hover:cursor-pointer"
-              onClick={closePopup}>
-              login
-            </span>
-          </div>
+          )}
         </div>
       </div>
     </>
