@@ -8,7 +8,6 @@ import {
   Contact,
   Product,
   Login,
-  Signup,
 } from "../pages";
 import { useSelector } from "react-redux";
 
@@ -34,6 +33,7 @@ function AppRoutes() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/basket" element={isLoggedIn ? <Basket /> : <Login />} />
           <Route path="/login" element={<Login />} />
+          <Route path={`/reset-password/:resetToken`} element={<Login />} />
         </Routes>
       </Router>
     </>

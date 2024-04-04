@@ -14,6 +14,7 @@ import authReducer from "./authReducer";
 import roleReducer from "./roleReducer";
 import idUserReducer from "./idUserReducer";
 import forgetPasswordPopup from "./forgetPasswordPopupReducer";
+import resetPasswordPopup from "./resetPasswordPopupReducer";
 
 const allReducers = combineReducers({
   bestSellingItems: bestSellingItemsReducer,
@@ -29,6 +30,7 @@ const allReducers = combineReducers({
   role: roleReducer,
   user_id: idUserReducer,
   forgetPasswordPopup,
+  resetPasswordPopup,
 });
 
 export default allReducers;

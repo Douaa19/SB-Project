@@ -11,3 +11,10 @@ export const setForgetPassword = (popupStatus) => {
     payload: popupStatus,
   };
 };
+
+export const setResetPassword = (popupStatus) => {
+  return {
+    type: "SETRESETPASSWORD",
+    payload: popupStatus,
+  };
+};
