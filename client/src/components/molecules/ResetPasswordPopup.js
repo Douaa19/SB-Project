@@ -11,15 +11,35 @@ function ResetPasswordPopup() {
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
 
+  const handleChange = async (element, value) => {
+    const newData = { ...data, [`${element}`]: value };
+    setData(newData);
+  };
+
+  const handleSubmit = async () => {
+    let errors = validationForm(data);
+
+    if (Object.keys(errors).length === 0) {
+      console.log("Continu");
+    } else {
+      console.log("Error!!");
+      console.log(errors);
+    }
+  };
+
   const validationForm = (data) => {
     const errors = {};
 
     if (!data.newPassword) {
-      errors.email = "Ender your new password";
+      errors.newPassword = "Enter your new password";
     }
 
     if (!data.repeatedPassword) {
-      errors.repeatedPassword = "Repeat your password";
+      errors.repeatedPassword = "Repeat your new password";
+    }
+
+    if (data.newPassword !== data.repeatedPassword) {
+      errors.repeatedPassword = "Your password is wrong!";
     }
 
     setErrors(errors);
@@ -62,24 +82,24 @@ function ResetPasswordPopup() {
             className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
             placeHolder="new password"
             name="newPassword"
-            // value={email}
-            // onChange={(e) => setEmail(e.target.value)}
-            // error={emailError}
+            value={data.newPassword}
+            onChange={(e) => handleChange("newPassword", e.target.value)}
+            error={errors.newPassword}
           />
           <Input
             type="text"
             className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
             placeHolder="repeat  password"
             name="repeatedPassword"
-            // value={email}
-            // onChange={(e) => setEmail(e.target.value)}
-            // error={emailError}
+            value={data.repeatedPassword}
+            onChange={(e) => handleChange("repeatedPassword", e.target.value)}
+            error={errors.repeatedPassword}
           />
           <Button
             className={`w-full
         border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
             text="send"
-            // onClick={() => handleSubmit()}
+            onClick={() => handleSubmit()}
           />
         </div>
       </div>
