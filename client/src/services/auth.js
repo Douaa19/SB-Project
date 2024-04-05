@@ -29,3 +29,7 @@ export const forgetPassword = async (email) => {
   const res = await axios.post(`${BACK_URL}forget-password`, { email });
   return res;
 };
+
+export const recreatPassword = async (data, user_id) => {
+  const res = axios.post(`${BACK_URL}recreat-password/${user_id}`, { data });
+};
