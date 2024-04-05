@@ -46,10 +46,6 @@ const uploadImages = multer({
   ),
 });
 
-const recreatPassword = async (req, res) => {
-  
-}
-
 module.exports = {
   Users,
   Categories,

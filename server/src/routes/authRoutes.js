@@ -20,6 +20,6 @@ router.route("/login").post(Users.hendleLogin);
 router.route("/forget-password").post(Users.forgetPassword);
 
 // recreat password
-router.route("/recreat-password").post(Users.recreatPassword);
+router.route("/recreat-password/:user_id").post(Users.recreatPassword);
 
 module.exports = router;

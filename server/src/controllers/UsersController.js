@@ -231,7 +231,7 @@ const forgetPassword = async (req, res) => {
                             
                             <tr class="data" style="display: flex; padding: 0.4rem 0; width: 100%; text-decoration: none; color: #000;">
                               <td style="font-size: 16px; width: 100%; text-decoration: none; color: black; margin-left: 1rem;">
-                                <a href="http://localhost:3000/reset-password/${user.resetToken}">localhost:3000/reset-password/${user.resetToken}</a>
+                                <a href="http://localhost:3000/reset-password/${user.resetToken}/${user._id}">localhost:3000/reset-password/${user.resetToken}</a>
                               </td>
                             </tr>
                           </table>
@@ -262,6 +262,10 @@ const forgetPassword = async (req, res) => {
       error: error.message,
     });
   }
+};
+
+// recreat new password
+const recreatPassword = async (req, res) => {
 };
 
 // contact admin
@@ -454,4 +458,5 @@ module.exports = {
   hendleLogin,
   forgetPassword,
   sendMessage,
+  recreatPassword,
 };

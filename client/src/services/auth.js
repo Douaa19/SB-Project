@@ -30,7 +30,6 @@ export const forgetPassword = async (email) => {
   return res;
 };
 
-export const recreatPassword = async (data) => {
-  console.log(data);
-  // const res = axios.post(`${BACK_URL}recreat-password`, { data });
+export const recreatPassword = async (data, user_id) => {
+  const res = axios.post(`${BACK_URL}recreat-password/${user_id}`, { data });
 };

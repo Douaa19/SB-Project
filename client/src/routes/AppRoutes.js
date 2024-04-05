@@ -33,7 +33,10 @@ function AppRoutes() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/basket" element={isLoggedIn ? <Basket /> : <Login />} />
           <Route path="/login" element={<Login />} />
-          <Route path={`/reset-password/:resetToken`} element={<Login />} />
+          <Route
+            path={`/reset-password/:resetToken/:user_id`}
+            element={<Login />}
+          />
         </Routes>
       </Router>
     </>

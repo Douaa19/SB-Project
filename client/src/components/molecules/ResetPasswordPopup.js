@@ -7,9 +7,11 @@ import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-c
 import { useDispatch } from "react-redux";
 import { setResetPassword } from "../../redux/actions/popups";
 import { recreatPassword } from "../../services/auth";
+import { useParams } from "react-router";
 
 function ResetPasswordPopup() {
   const dispatch = useDispatch();
+  const params = useParams();
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
   const [newPasswordType, setNewPasswordType] = useState("password");
@@ -49,7 +51,7 @@ function ResetPasswordPopup() {
     let errors = validationForm(data);
 
     if (Object.keys(errors).length === 0) {
-      recreatPassword(data);
+      recreatPassword(data, params.user_id);
     } else {
       console.log("Error!!");
       console.log(errors);
