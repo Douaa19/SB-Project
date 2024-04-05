@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Input, Button } from "../atoms";
 import { ReactComponent as NewPassword } from "../../assets/icons/new-password-svgrepo-com.svg";
 import { ReactComponent as Close } from "../../assets/icons/close.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { setResetPassword } from "../../redux/actions/popups";
 import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
 import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
+import { useDispatch } from "react-redux";
+import { setResetPassword } from "../../redux/actions/popups";
+import { recreatPassword } from "../../services/auth";
 
 function ResetPasswordPopup() {
   const dispatch = useDispatch();
-  const resetPasswordPopup = useSelector((state) => state.resetPasswordPopup);
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
   const [newPasswordType, setNewPasswordType] = useState("password");
@@ -49,7 +49,7 @@ function ResetPasswordPopup() {
     let errors = validationForm(data);
 
     if (Object.keys(errors).length === 0) {
-      console.log("Continu");
+      recreatPassword(data);
     } else {
       console.log("Error!!");
       console.log(errors);
