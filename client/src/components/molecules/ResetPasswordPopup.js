@@ -21,7 +21,7 @@ function ResetPasswordPopup() {
   const [repeatedPasswordIcon, setRepeatedPasswordIcon] = useState(
     <CloseEye />
   );
-  const [resetDone, setResetDone] = useState(true);
+  const [resetDone, setResetDone] = useState(false);
 
   const togglePassword = (param) => {
     if (param === "newPassword") {
@@ -55,7 +55,12 @@ function ResetPasswordPopup() {
     if (Object.keys(errors).length === 0) {
       recreatPassword(data, params.user_id).then((response) => {
         if (response.data) {
-            
+            setResetDone(true);
+          setTimeout(() => {
+            closePopup();
+            dispatch(setResetPassword(false));
+            window.location = "/login";
+          }, 3000);
         }
       });
     } else {
