@@ -125,6 +125,9 @@ function LoginCard(props) {
         className="mt-0 text-12 capitalize hover:text-main hover:underline hover:cursor-pointer text-end w-full"
         onClick={() => {
           dispatch(setForgetPassword(true));
+          setErrorResponse({});
+          setErrors({});
+          setData({});
         }}>
         forget password
       </span>

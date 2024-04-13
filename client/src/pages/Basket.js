@@ -20,13 +20,12 @@ function Basket() {
 
   useEffect(() => {
     let total = 0;
-    for (let index = 0; index < orders[userId].length; index++) {
+    for (let index = 0; index < userOrders.length; index++) {
       if (
-        typeof orders[userId][index].item.price === "number" &&
-        typeof orders[userId][index].quantity === "number"
+        typeof userOrders[index].item.price === "number" &&
+        typeof userOrders[index].quantity === "number"
       ) {
-        total +=
-          orders[userId][index].item.price * orders[userId][index].quantity;
+        total += userOrders[index].item.price * userOrders[index].quantity;
       }
     }
 
@@ -49,7 +48,7 @@ function Basket() {
           className="capitalize md:text-32 ssm:text-24 font-extrabold text-main text-start"
         />
         <BasketTable orders={userOrders} />
-        {orders[userId].length > 0 && (
+        {userOrders.length > 0 && (
           <div className="mt-6 w-[100%] flex md:flex-row ssm:flex-col items-start justify-between gap-4">
             <CheckOutCard
               subtotal={subtotal}
