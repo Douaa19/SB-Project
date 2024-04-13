@@ -10,7 +10,7 @@ export const login = async (data) => {
 export const register = async (data) => {
   const infos = {
     email: data.email,
-    username: data.name,
+    username: data.username,
     password: data.password,
     phoneNum: data.phone,
     address: data.address,

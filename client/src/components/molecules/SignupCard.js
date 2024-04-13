@@ -88,7 +88,7 @@ function SignupCard() {
     <div className="login flex flex-col justify-center items-start gap-2 py-8 px-4 w-full">
       <Input
         type="text"
-        className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+        className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
         placeHolder="full name"
         name="username"
         value={data.username}
@@ -109,7 +109,7 @@ function SignupCard() {
         passwordIcon={passwordIcon}
         clickableIcon="clickable-icon"
         IconClickEvent={togglePassword}
-        className={`border rounded-5 lg:block px-4 py-3 outline-none text-12 w-full border-main`}
+        className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
         placeHolder="password"
         name="password"
         value={data.password}
@@ -119,7 +119,7 @@ function SignupCard() {
       />
       <Input
         type="phone"
-        className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+        className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
         placeHolder="phone number"
         name="phone"
         value={data.phone}
@@ -128,7 +128,7 @@ function SignupCard() {
       />
       <Input
         type="text"
-        className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+        className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
         placeHolder="address"
         name="address"
         value={data.address}
