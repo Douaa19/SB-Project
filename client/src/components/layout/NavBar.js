@@ -11,7 +11,6 @@ import {
   setIdAction,
   setRoleAction,
   logoutAction,
-  loginAction,
 } from "../../redux/actions/auth";
 
 function NavBar() {
@@ -21,6 +20,9 @@ function NavBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const allItems = useSelector((state) => state.newestItems);
   const orders = useSelector((state) => state.orders.orders);
+  const userId = useSelector((state) => state.user_id);
+
+  const userOrders = orders[userId] || [];
 
   let inputContent = (
     <>
@@ -80,12 +82,12 @@ function NavBar() {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    window.location = "/";
     localStorage.removeItem("token");
     dispatch(setRoleAction(""));
     dispatch(setIdAction(""));
     dispatch(logoutAction(""));
-    window.location = "/";
   };
 
   return (
@@ -180,9 +182,9 @@ function NavBar() {
             }}>
             <Basket />
           </button>
-          {orders.length > 0 && (
+          {userOrders.length > 0 && (
             <div className="cursor-pointer length text-white w-4 text-center text-8 border border-red bg-red rounded-full absolute bottom-3 left-3 md:p-1 ssm:p-1">
-              <span className="">{orders.length}</span>
+              <span className="">{userOrders.length}</span>
             </div>
           )}
         </div>

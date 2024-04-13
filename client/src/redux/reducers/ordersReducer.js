@@ -1,24 +1,36 @@
-const ordersReducer = (state = { orders: [] }, action) => {
+const ordersReducer = (state = { orders: {} }, action) => {
   switch (action.type) {
     case "SETORDERS":
-      const newItem = action.payload;
-      const existingItemIndex = state.orders.findIndex(
-        (item) => item.item._id === newItem.item._id
-      );
-      if (existingItemIndex !== -1) {
-        const updateOrders = [...state.orders];
-        updateOrders[existingItemIndex].quantity += newItem.quantity;
-        return { ...state, orders: updateOrders };
-      } else {
-        return { ...state, orders: [...state.orders, newItem] };
+      const { user, item, quantity } = action.payload;
+      const userOrders = { ...state.orders };
+
+      if (!userOrders[user]) {
+        userOrders[user] = [];
       }
+
+      const existingItemIndex = userOrders[user].findIndex(
+        (order) => order.item._id === item._id
+      );
+
+      if (existingItemIndex !== -1) {
+        userOrders[user][existingItemIndex].quantity += quantity;
+      } else {
+        userOrders[user].push({ item, quantity });
+      }
+
+      return { ...state, orders: userOrders };
+
     case "REMOVEORDER":
-      return {
-        ...state,
-        orders: state.orders.filter(
-          (order) => order.item._id !== action.payload
-        ),
-      };
+      const { userId, itemId } = action.payload;
+      const updatedOrders = { ...state.orders };
+
+      if (updatedOrders[userId]) {
+        updatedOrders[userId] = updatedOrders[userId].filter(
+          (order) => order.item._id !== itemId
+        );
+      }
+
+      return { ...state, orders: updatedOrders };
     default:
       return state;
   }

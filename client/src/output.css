@@ -828,14 +828,6 @@ video {
   max-height: max-content;
 }
 
-.min-h-\[\] {
-  min-height: ;
-}
-
-.min-h-\[80rem\] {
-  min-height: 80rem;
-}
-
 .w-1\/2 {
   width: 50%;
 }
@@ -990,10 +982,6 @@ video {
 
 .items-start {
   align-items: flex-start;
-}
-
-.items-end {
-  align-items: flex-end;
 }
 
 .items-center {

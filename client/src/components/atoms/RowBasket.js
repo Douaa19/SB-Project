@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 function RowBasket(props) {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const userId = useSelector((state) => state.user_id);
 
   const handleDelete = () => {
-    dispatch(removeOrder(props.data.item._id));
+    dispatch(removeOrder(userId, props.data._id));
   };
   const handleEdit = () => {
-    window.location = `/products/item/${props.data.item._id}`;
+    window.location = `/products/item/${props.data._id}`;
   };
 
   return (
@@ -20,21 +21,21 @@ function RowBasket(props) {
           className={`flex gap-4 px-6 w-fit py-4 whitespace-nowrap md:text-sm ssm:text-12 text-start text-gray-900 font-normal`}>
           <div className={`w-[100px]`}>
             <img
-              src={`http://localhost:8008/api/items/${props.data.item._id}/image`}
+              src={`http://localhost:8008/api/items/${props.data._id}/image`}
               alt="Item"
               className="w-full rounded-md"
             />
           </div>
           <div className="flex flex-col justify-between items-start py-2">
             <div className="title md:text-16 font-bold ssm:text-14">
-              <span>{props.data.item.title}</span>
+              <span>{props.data.title}</span>
             </div>
             <div className="capitalize details md:text-14 ssm:text-12 flex flex-col">
-              <span className="lowercase">{props.data.item.size}cm</span>
-              <span>{props.data.item.color}</span>
+              <span className="lowercase">{props.data.size}cm</span>
+              <span>{props.data.color}</span>
               <span>
                 {props.data.quantity}{" "}
-                <span className="font-bold"> X ${props.data.item.price}</span>
+                <span className="font-bold"> X ${props.data.price}</span>
               </span>
             </div>
           </div>
