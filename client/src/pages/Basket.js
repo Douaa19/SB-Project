@@ -8,30 +8,30 @@ import { Popup } from "../components/organismes";
 import { CheckoutPopupContent } from "../components/molecules";
 
 function Basket() {
-  const orders = useSelector((state) => state.orders);
+  const orders = useSelector((state) => state.orders.orders);
   const [subtotal, setSubTotal] = useState(null);
   const [grandtotal, setGrandTotal] = useState(null);
   const [shipping, setShipping] = useState(10);
   const [showPopup, setShowPopup] = useState(true);
-
   const isShowed = showPopup ? "open" : "";
+  const userId = useSelector((state) => state.user_id);
 
-  console.log(showPopup, isShowed);
+  const userOrders = orders[userId] || [];
 
   useEffect(() => {
     let total = 0;
-    for (let index = 0; index < orders.orders.length; index++) {
+    for (let index = 0; index < orders[userId].length; index++) {
       if (
-        typeof orders.orders[index].item.price === "number" &&
-        typeof orders.orders[index].quantity === "number"
+        typeof orders[userId][index].item.price === "number" &&
+        typeof orders[userId][index].quantity === "number"
       ) {
         total +=
-          orders.orders[index].item.price * orders.orders[index].quantity;
+          orders[userId][index].item.price * orders[userId][index].quantity;
       }
     }
 
     setSubTotal(total);
-  }, [orders.orders]);
+  }, [orders]);
 
   useEffect(() => {
     if (subtotal !== null) {
@@ -48,8 +48,8 @@ function Basket() {
           title="my basket"
           className="capitalize md:text-32 ssm:text-24 font-extrabold text-main text-start"
         />
-        <BasketTable orders={orders} />
-        {orders.orders.length > 0 && (
+        <BasketTable orders={userOrders} />
+        {orders[userId].length > 0 && (
           <div className="mt-6 w-[100%] flex md:flex-row ssm:flex-col items-start justify-between gap-4">
             <CheckOutCard
               subtotal={subtotal}

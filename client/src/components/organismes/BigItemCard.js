@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 function BigItemCard({ url, item }) {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const userId = useSelector((state) => state.user_id);
   const [images, setImages] = useState([]);
   const settings = {
     dots: true,
@@ -41,7 +42,7 @@ function BigItemCard({ url, item }) {
     let errors = handleError(order);
 
     if (Object.keys(errors).length === 0) {
-      dispatch(setOrders(order));
+      dispatch(setOrders(userId, order.item, order.quantity));
       window.location = `/basket`;
     } else {
       console.log("Error!!");
