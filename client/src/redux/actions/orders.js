@@ -5,9 +5,9 @@ export const setOrders = (user, item, quantity) => {
   };
 };
 
-export const removeOrder = (itemId) => {
+export const removeOrder = (userId, itemId) => {
   return {
     type: "REMOVEORDER",
-    payload: itemId,
+    payload: { userId, itemId },
   };
 };
