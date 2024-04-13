@@ -48,7 +48,7 @@ function Form(props) {
       passwordIcon={passwordIcon}
       clickableIcon="clickable-icon"
       IconClickEvent={togglePassword}
-      className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+      className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
       placeHolder="password"
       name="password"
       value={data.password}
@@ -179,7 +179,7 @@ function Form(props) {
         {props.type !== "login" && (
           <Input
             type="text"
-            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+            className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
             placeHolder={`${props.type === "contact" ? "name" : "full name"}`}
             name="name"
             value={data.name}
@@ -189,7 +189,7 @@ function Form(props) {
         )}
         <Input
           type="email"
-          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+          className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
           placeHolder="example@email.com"
           name="email"
           value={data.email}
@@ -197,29 +197,15 @@ function Form(props) {
           error={errors.email || errorResponse}
         />
       </div>
-      {props.type === "login" ? (
-        <div className="w-full flex flex-col items-end">
-          {passwordInput}
-          <span
-            className="mt-2 text-12 capitalize hover:text-main hover:underline hover:cursor-pointer"
-            onClick={forgetPasswordPopup}>
-            forget password
-          </span>
-        </div>
-      ) : props.type === "createAccount" ? (
-        <div className="w-full flex flex-col items-end">{passwordInput}</div>
-      ) : null}
-      {props.type !== "login" && (
-        <Input
-          type="phone"
-          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
-          placeHolder="phone number"
-          name="phone"
-          value={data.phone}
-          onChange={(e) => handleChange("phone", e.target.value)}
-          error={errors.phone}
-        />
-      )}
+      <Input
+        type="phone"
+        className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
+        placeHolder="phone number"
+        name="phone"
+        value={data.phone}
+        onChange={(e) => handleChange("phone", e.target.value)}
+        error={errors.phone}
+      />
       {props.type === "shipping" && (
         <>
           <SelectComponent
@@ -234,10 +220,10 @@ function Form(props) {
           />
         </>
       )}
-      {props.type === "createAccount" || props.type === "shipping" ? (
+      {props.type === "shipping" ? (
         <Input
           type="text"
-          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+          className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
           placeHolder="address"
           name="address"
           value={data.address}
@@ -248,7 +234,7 @@ function Form(props) {
       {props.type === "shipping" && (
         <Input
           type="text"
-          className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+          className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
           placeHolder="postal code"
           name="postalCode"
           value={data.postalCode}
@@ -266,15 +252,14 @@ function Form(props) {
             value={data.message}
             onChange={(e) => handleChange("message", e.target.value)}
             error={errors.message}
-            className={`border rounded-5 lg:text-14 lg:block px-4 py-3 outline-none md:text-12 w-full ssm:text-12 border-main`}
+            className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
           />
         </>
       )}
       <div className="flex items-center justify-start w-full">
         <Button
-          className={`${
-            props.buttonClass ? `${props.buttonClass} ssm:m-0 md:mt-3` : ""
-          } border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
+          className={`w-full mt-4 ssm:m-0 md:mt-3
+          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
           text={
             props.type === "contact"
               ? "submit"

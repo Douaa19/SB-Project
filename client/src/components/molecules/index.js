@@ -4,6 +4,7 @@ import LoginCard from "./LoginCard";
 import CheckoutPopupContent from "./CheckoutPopupContent";
 import ForgetPasswordPopup from "./ForgetPasswordPopup";
 import ResetPasswordPopup from "./ResetPasswordPopup";
+import SignupCard from "./SignupCard";
 
 export {
   ContactDonePopup,
@@ -12,4 +13,5 @@ export {
   CheckoutPopupContent,
   ForgetPasswordPopup,
   ResetPasswordPopup,
+  SignupCard,
 };
