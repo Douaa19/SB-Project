@@ -42,13 +42,20 @@ function LoginCard(props) {
     if (Object.keys(errors).length === 0) {
       login(data).then(async (response) => {
         if (!response.data.token) {
-          setErrorResponse({
-            email: "Email is wrong",
-            password: "Password is wrong",
-          });
-          setTimeout(() => {
-            alert("Credentials are invalid");
-          });
+          if (response.data.messageError) {
+            setErrorResponse({
+              email: "Email is incorrect",
+              password: "Password is incorrect",
+            });
+            setTimeout(() => {
+              alert("Credentials are invalid");
+            });
+          }
+          if (response.data.passwordError) {
+            setErrorResponse({
+              password: response.data.passwordError,
+            });
+          }
 
           return errors;
         } else {
@@ -89,7 +96,6 @@ function LoginCard(props) {
       email
     );
   };
-  
 
   return (
     <div className="login flex flex-col justify-center items-start gap-2 py-8 px-4 w-full">

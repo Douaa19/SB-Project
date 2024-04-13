@@ -243,7 +243,7 @@ const hendleLogin = async (req, res) => {
             return res.json({ message: "Token not created" });
           }
         } else {
-          res.status(404).json({ message: "Password is incorrect" });
+          res.json({ passwordError: "Password is incorrect" });
         }
       });
     }
