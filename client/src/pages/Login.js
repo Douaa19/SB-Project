@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Form } from "../components/templates";
 import {
   LoginCard,
   ForgetPasswordPopup,
   ResetPasswordPopup,
+  SignupCard,
 } from "../components/molecules";
 import { ReactComponent as LoginImg } from "../assets/images/Mobile-login-pana.svg";
 import { Popup } from "../components/organismes";
@@ -31,7 +31,7 @@ function Login() {
       <div className="bg-gray h-screen flex justify-center items-center">
         <div className="md:min-w-[50rem] sm:min-w-[40rem] ssm:min-w-[25rem] flex justify-between items-center bg-white rounded-md shadow-md px-4 py-5 m-2">
           <div className="background-img h-full w-full sm:block ssm:hidden">
-            <LoginImg />
+            {signIn === "login" ? <LoginImg /> : <LoginImg />}
           </div>
           <div className="w-full p-8">
             <div className="">
@@ -77,7 +77,9 @@ function Login() {
                 <LoginCard />
               </div>
             ) : (
-              <div className="signup"></div>
+              <div className="signup">
+                <SignupCard />
+              </div>
             )}
 
             {forgetPasswordPopup && (

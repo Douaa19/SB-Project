@@ -10,7 +10,7 @@ export const login = async (data) => {
 export const register = async (data) => {
   const infos = {
     email: data.email,
-    username: data.name,
+    username: data.username,
     password: data.password,
     phoneNum: data.phone,
     address: data.address,
@@ -21,7 +21,7 @@ export const register = async (data) => {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
   });
   if (res) {
-    console.log(res);
+    return res;
   }
 };
 
@@ -32,4 +32,5 @@ export const forgetPassword = async (email) => {
 
 export const recreatPassword = async (data, user_id) => {
   const res = axios.post(`${BACK_URL}recreat-password/${user_id}`, { data });
+  return res;
 };

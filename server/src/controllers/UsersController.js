@@ -19,7 +19,7 @@ const handleRegister = async (req, res) => {
         address,
       });
       if (!newUser) {
-        res.satus(404).send({ messageError: "New user not created" });
+        res.send({ messageError: "New user not created" });
       } else {
         const transporter = nodemailer.createTransport({
           service: "Gmail",
@@ -190,9 +190,7 @@ const handleRegister = async (req, res) => {
         });
       }
     } else {
-      res
-        .status(400)
-        .send({ userExists, messageError: "User already exists!" });
+      res.send({ userExists, messageError: "User already exists!" });
     }
   } catch (error) {
     res.status(500).send({
