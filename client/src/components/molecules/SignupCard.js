@@ -32,10 +32,16 @@ function SignupCard() {
     let errors = validationForm(data);
 
     if (Object.keys(errors).length === 0) {
-      await register(data);
-      // .then(async (response) => {
-      //   if(response) console.log(response)
-      // })
+      await register(data).then(async (response) => {
+        if (response.data.messageError) {
+          setData({});
+          setTimeout(() => {
+            alert(response.data.messageError);
+          });
+        } else {
+            
+        }
+      });
     } else {
       console.log("Error!!");
       console.log(errors);

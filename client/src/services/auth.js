@@ -16,14 +16,13 @@ export const register = async (data) => {
     address: data.address,
     role: "client",
   };
-  console.log(infos);
 
-  // const res = await axios.post(`${BACK_URL}register`, infos, {
-  //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  // });
-  // if (res) {
-  //   console.log(res);
-  // }
+  const res = await axios.post(`${BACK_URL}register`, infos, {
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  });
+  if (res) {
+    return res;
+  }
 };
 
 export const forgetPassword = async (email) => {
