@@ -18,6 +18,8 @@ function Basket() {
 
   const userOrders = orders[userId] || [];
 
+  console.log(orders)
+
   useEffect(() => {
     let total = 0;
     for (let index = 0; index < userOrders.length; index++) {

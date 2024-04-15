@@ -54,7 +54,7 @@ function BigItemCard({ url, item }) {
     let errors = handleError(order);
 
     if (Object.keys(errors).length === 0) {
-      dispatch(setOrders(order));
+      dispatch(setOrders(userId, order.item, order.quantity));
     } else {
       console.log("Error!!");
     }
