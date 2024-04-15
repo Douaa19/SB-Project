@@ -36,6 +36,7 @@ function Form(props) {
           }
         });
       } else if (props.type === "shipping") {
+        console.log(data);
         sendOrder(data);
       }
     } else {
