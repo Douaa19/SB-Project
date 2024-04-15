@@ -6,13 +6,7 @@ import { setContactDone } from "../../redux/actions/popups";
 import { SelectComponent } from "../atoms";
 import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
 import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
-import { login, register } from "../../services/auth";
-import {
-  loginAction,
-  setIdAction,
-  setRoleAction,
-} from "../../redux/actions/auth";
-import { jwtDecode } from "jwt-decode";
+import { sendOrder } from "../../services/orders";
 
 function Form(props) {
   const dispatch = useDispatch();
@@ -20,43 +14,7 @@ function Form(props) {
   const isLoggedIn = useSelector((state) => state.auth.isLogedIn);
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
-
-  const [passwordType, setPasswordType] = useState("password");
-  const [passwordIcon, setPasswordIcon] = useState(<CloseEye />);
-
-  const [forgetPassword, setForgetPassword] = useState(false);
   const [errorResponse, setErrorResponse] = useState("");
-
-  const forgetPasswordPopup = () => {
-    setForgetPassword(true);
-  };
-
-  const togglePassword = () => {
-    if (passwordType === "password") {
-      setPasswordType("text");
-      setPasswordIcon(<OpenEye />);
-      return;
-    }
-    setPasswordType("password");
-    setPasswordIcon(<CloseEye />);
-  };
-
-  // password input
-  const passwordInput = (
-    <Input
-      type={passwordType}
-      passwordIcon={passwordIcon}
-      clickableIcon="clickable-icon"
-      IconClickEvent={togglePassword}
-      className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
-      placeHolder="password"
-      name="password"
-      value={data.password}
-      onChange={(e) => handleChange("password", e.target.value)}
-      error={errors.password || errorResponse}
-      iconStyle="absolute right-2 top-[0.40rem]"
-    />
-  );
 
   // cities
   const cities = useSelector((state) => state.cities);
@@ -78,16 +36,7 @@ function Form(props) {
           }
         });
       } else if (props.type === "shipping") {
-        if (isLoggedIn !== false) {
-          props.setShowPopup(true);
-        } else {
-          window.location = "/login";
-        }
-      } else if (props.type === "createAccount") {
-        await register(data);
-        // .then(async (response) => {
-        //   if(response) console.log(response)
-        // })
+        sendOrder(data);
       }
     } else {
       console.log("Error!!");
