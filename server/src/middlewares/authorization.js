@@ -3,9 +3,8 @@ const jwt = require("jsonwebtoken");
 
 const authorization = (req, res, next) => {
   const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
+  const token = authHeader && authHeader.split(" ")[1].replace(/^"|"$/g, "");
 
-  console.log(token);
   if (token == null) {
     res.json({ error: "No token found" });
   } else {

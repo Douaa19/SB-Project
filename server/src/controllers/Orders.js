@@ -3,19 +3,19 @@ const { Order } = require("../models");
 const createOrder = async (req, res) => {
   console.log(req.body, req.user);
   // try {
-    // const client_id = req.user.id;
-    // const { item_id } = req.body;
-    // let newOrder = await Order.create({ client_id, item_id });
-    // newOrder = await newOrder.populate(
-    //   "client_id",
-    //   "username email address phoneNum"
-    // );
-    // newOrder = await newOrder.populate(
-    //   "item_id",
-    //   "title description color images size price category_id"
-    // );
-    // send email to the admin includes newOrder variable
-    // send result
+  // const client_id = req.user.id;
+  // const { item_id } = req.body;
+  // let newOrder = await Order.create({ client_id, item_id });
+  // newOrder = await newOrder.populate(
+  //   "client_id",
+  //   "username email address phoneNum"
+  // );
+  // newOrder = await newOrder.populate(
+  //   "item_id",
+  //   "title description color images size price category_id"
+  // );
+  // send email to the admin includes newOrder variable
+  // send result
   //   res.status(200).send(newOrder);
   // } catch (error) {
   //   res.status(500).send({
