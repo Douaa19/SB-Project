@@ -18,12 +18,49 @@ const createOrder = async (req, res) => {
       if (!response) {
         console.log("Order doesn't created!");
       } else {
-        console.log(response);
         // Create arrays
         let products_id = [];
         let quantities = [];
         let prices = [];
         let totals = [];
+
+        items.forEach((item) => {
+          products_id.push(item.item._id);
+          quantities.push(item.quantity);
+          prices.push(item.item.price);
+          totals.push(item.quantity * item.item.price);
+        });
+
+        // create OredrProducts
+        OrderProducts.create(
+          {
+            order_id: response._id,
+            products_id,
+            quantities,
+            prices,
+            totals,
+          },
+          (err, result) => {
+            if (result) {
+              // calculate total without shipping fees
+              let Total = 0;
+              totals.forEach((t) => {
+                Total += t;
+              });
+              // add shipping fees
+              Total += 40
+
+              // Update total in order
+              Order.findByIdAndUpdate(
+                response._id,
+                { total: Total },
+                (err, order) => {
+                  
+                }
+              );
+            }
+          }
+        );
       }
     });
   } catch (error) {
