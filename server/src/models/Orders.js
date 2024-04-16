@@ -6,14 +6,26 @@ const Orders = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    address: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      require: true,
+    },
+    city: {
+      type: String,
+      require: true,
+    },
+    zipCode: {
+      type: String,
+      require: true,
+    },
     status: {
       type: String,
       enum: ["pending", "prepared", "delivered", "lunched"],
       default: "pending",
-    },
-    address: {
-      type: String,
-      required: true,
     },
     total: {
       type: Number,
