@@ -1,33 +1,14 @@
-const { Order, Item } = require("../models");
+const { Order, OrderProducts, Item } = require("../models");
+const nodmailer = require("nodemailer");
 
 const createOrder = async (req, res) => {
+  const shippingInfos = req.body.shippig;
+  const items = req.body.items;
+
   try {
-    const client_id = req.user.id;
-    const shipping = 10;
-    let totalPrices = [];
-    let order = [];
-
-    req.body.items.forEach((item) => {
-      const itemId = item.item._id;
-      // calculate the price (quantity * item.price)
-      const priceItemQuantity = product.price * item.quantity;
-      // push prices into totalPrices
-      totalPrices.push(priceItemQuantity);
+    await Order.create({
+      address: shippingInfos.address
     });
-
-    // const { item_id } = req.body;
-    // let newOrder = await Order.create({ client_id, item_id });
-    // newOrder = await newOrder.populate(
-    //   "client_id",
-    //   "username email address phoneNum"
-    // );
-    // newOrder = await newOrder.populate(
-    //   "item_id",
-    //   "title description color images size price category_id"
-    // );
-    // send email to the admin includes newOrder variable
-    // send result
-    //   res.status(200).send(newOrder);
   } catch (error) {
     res.status(500).send({
       messageError: "Somthing goes wrong in server side",
