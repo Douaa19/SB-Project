@@ -6,13 +6,18 @@ const Orders = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    item_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Item",
-    },
     status: {
       type: String,
+      enum: ["pending", "prepared", "delivered", "lunched"],
       default: "pending",
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    total: {
+      type: Number,
+      required: true,
     },
   },
   {
