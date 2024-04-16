@@ -12,7 +12,7 @@ const OrderProducts = new mongoose.Schema(
         ref: "Item",
       },
     ],
-    order_price: [
+    prices: [
       {
         type: Number,
       },

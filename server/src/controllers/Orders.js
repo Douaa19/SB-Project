@@ -2,12 +2,29 @@ const { Order, OrderProducts, Item } = require("../models");
 const nodmailer = require("nodemailer");
 
 const createOrder = async (req, res) => {
-  const shippingInfos = req.body.shippig;
+  const client_id = req.user.id;
+  const shippingInfos = req.body.shipping;
   const items = req.body.items;
 
   try {
     await Order.create({
-      address: shippingInfos.address
+      client_id,
+      address: shippingInfos.address,
+      phone: shippingInfos.phone,
+      city: shippingInfos.city,
+      zipCode: shippingInfos.postalCode,
+      total: 0,
+    }).then((response) => {
+      if (!response) {
+        console.log("Order doesn't created!");
+      } else {
+        console.log(response);
+        // Create arrays
+        let products_id = [];
+        let quantities = [];
+        let prices = [];
+        let totals = [];
+      }
     });
   } catch (error) {
     res.status(500).send({
