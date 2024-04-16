@@ -48,14 +48,18 @@ const createOrder = async (req, res) => {
                 Total += t;
               });
               // add shipping fees
-              Total += 40
+              Total += 40;
 
               // Update total in order
               Order.findByIdAndUpdate(
                 response._id,
                 { total: Total },
                 (err, order) => {
-                  
+                  if (order) {
+                    // Send message to admin
+                    // WhatsApp API
+                    // Send email to the client with the order information
+                  }
                 }
               );
             }
