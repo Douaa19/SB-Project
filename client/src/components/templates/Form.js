@@ -4,17 +4,17 @@ import { Button, Input, TextArea } from "../atoms";
 import { sendMessage } from "../../services/userServices";
 import { setContactDone } from "../../redux/actions/popups";
 import { SelectComponent } from "../atoms";
-import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
-import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
 import { sendOrder } from "../../services/orders";
 
 function Form(props) {
   const dispatch = useDispatch();
-  const done = useSelector((state) => state.contactDonePopup);
-  const isLoggedIn = useSelector((state) => state.auth.isLogedIn);
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
   const [errorResponse, setErrorResponse] = useState("");
+  const userId = useSelector((state) => state.user_id);
+  const orders = useSelector((state) => state.orders.orders);
+
+  const userOrders = orders[userId];
 
   // cities
   const cities = useSelector((state) => state.cities);
@@ -36,7 +36,8 @@ function Form(props) {
           }
         });
       } else if (props.type === "shipping") {
-        sendOrder(data);
+        console.log(data);
+        sendOrder(data, userOrders);
       }
     } else {
       console.log("Error!!");

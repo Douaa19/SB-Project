@@ -13,7 +13,7 @@ function BasketTable({ orders }) {
               {orders.map((order) => (
                 <>
                   <RowBasket
-                    data={order.item}
+                    data={order}
                     key={order}
                     deleteIcon={DeleteIcon}
                     editIcon={EditIcon}
