@@ -11,3 +11,10 @@ export const removeOrder = (userId, itemId) => {
     payload: { userId, itemId },
   };
 };
+
+export const clearUserOrders = (userId) => {
+  return {
+    type: "CLEARUSERORDERS",
+    payload: userId,
+  };
+};

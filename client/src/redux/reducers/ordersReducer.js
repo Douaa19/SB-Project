@@ -31,6 +31,13 @@ const ordersReducer = (state = { orders: {} }, action) => {
       }
 
       return { ...state, orders: updatedOrders };
+
+    case "CLEARUSERORDERS":
+      return {
+        ...state,
+        orders: state.orders.filter((order) => order.userId !== action.payload),
+      };
+
     default:
       return state;
   }

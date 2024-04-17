@@ -9,7 +9,6 @@ function ShippingForm(props) {
       </h4>
       <Form
         setShowPopup={props.setShowPopup}
-        setClearValues={props.setClearValues}
         type="shipping"
         className="flex flex-col items-between w-full gap-2 justify-center px-10"
       />
