@@ -6,6 +6,7 @@ import { setContactDone } from "../../redux/actions/popups";
 import { SelectComponent } from "../atoms";
 import { sendOrder } from "../../services/orders";
 import { setOrders } from "../../redux/actions/orders";
+import { setOrderSent } from "../../redux/actions/popups";
 
 function Form(props) {
   const dispatch = useDispatch();
@@ -41,9 +42,7 @@ function Form(props) {
           if (!response.data.messageSuccess) {
             alert("Your order doesn't sent");
           } else {
-            props.setShowPopup(true);
-            // dispatch(setOrders({}));
-            // props.setClearValues(true)
+            dispatch(setOrderSent(true));
           }
         });
       }
