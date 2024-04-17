@@ -1,5 +1,6 @@
 const { Order, OrderProducts, Item } = require("../models");
-const nodmailer = require("nodemailer");
+const nodemailer = require("nodemailer");
+const newOrderEmail = require("../emails/NewOrderEmail");
 
 const createOrder = async (req, res) => {
   const client_id = req.user.id;
@@ -56,8 +57,38 @@ const createOrder = async (req, res) => {
                 { total: Total },
                 (err, order) => {
                   if (order) {
-                    // Send message to admin
-                    // WhatsApp API
+                    // Send email to admin
+                    const transporter = nodemailer.createTransport({
+                      service: "Gmail",
+                      host: "smtp.gmail.com",
+                      port: 465,
+                      secure: true,
+                      auth: {
+                        user: "sabalarif97@gmail.com",
+                        pass: "bjnzseuzjmzvomlv",
+                      },
+                    });
+
+                    const mailOption = {
+                      from: '"Saba Embroidery" <sabalarif97@gmail.com>',
+                      to: `sabalarif97@gmail.com, ${shippingInfos.email}`,
+                      subject: "New order",
+                      html: `${newOrderEmail.newOrder("New order passed")}`,
+                    };
+
+                    transporter.sendMail(mailOption, (error, info) => {
+                      if (error) {
+                        res.send(error);
+                      } else {
+                        console.log("Order sent!");
+                        res
+                          .status(200)
+                          .send({
+                            messageSuccess: "Your order passed successfully",
+                          });
+                      }
+                    });
+
                     // Send email to the client with the order information
                   }
                 }
