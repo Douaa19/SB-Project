@@ -18,3 +18,10 @@ export const setResetPassword = (popupStatus) => {
     payload: popupStatus,
   };
 };
+
+export const setOrderSent = (popupStatus) => {
+  return {
+    type: "SETORDERSENT",
+    payload: popupStatus,
+  };
+};

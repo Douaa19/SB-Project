@@ -1,24 +1,56 @@
-import React from "react";
-import { Button } from "../atoms";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setOrderSent } from "../../redux/actions/popups";
+import { clearUserOrders } from "../../redux/actions/orders";
+// import { ReactComponent as Close } from "../../assets/icons/close.svg";
+import { ReactComponent as Done } from "../../assets/icons/success-tick-svgrepo-com.svg";
 
 function CheckoutPopupContent(props) {
+  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.user_id);
+
+  const closePopup = () => {
+    dispatch(setOrderSent(false));
+    dispatch(clearUserOrders(userId));
+    props.clearValues(true);
+    window.location = "/";
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      closePopup();
+    }, 3000);
+  }, []);
+
   return (
-    <div className="w-full bg-[#07030a] h-[100vh] flex justify-center items-center">
-      <div className=" bg-gray w-fit">
-        <div className="flex justify-center items-center flex-col">
-          <h1>Send my order</h1>
-          <span>{props.subtotal}</span>
-          <span>{props.shipping}</span>
-          <span>{props.subtotal + props.shipping}</span>
-          <span>{props.orders.length}</span>
-          <Button
-            text="send order"
-            type="submit"
-            className="border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-16 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold"
-          />
+    <>
+      <div class="absolute bg-white opacity-80 inset-0 z-0"></div>
+      <div class="w-400 max-w-xl px-5 py-10 flex justify-center relative bg-white mx-auto my-auto rounded-xl shadow-lg animation-fadeIn">
+        {/* <div className="absolute top-2 right-2">
+          <button
+            className="border border-2 border-[#5F6165] rounded-full outline-none"
+            onClick={closePopup}>
+            <Close />
+          </button>
+        </div> */}
+        <div className="flex flex-col items-center gap-4 w-[70%]">
+          <div className="bg-[#F3F9F1] w-fit rounded-full p-4 flex justify-center items-center">
+            <div className="bg-[#D0E8C5] rounded-full p-3 flex justify-center items-center">
+              <Done />
+            </div>
+          </div>
+
+          <div className="text-center gap-4 flex flex-col">
+            <h4 className="text-[#5F6165] font-medium md:text-16 ssm:text-14">
+              Done
+            </h4>
+            <h3 className="text-[#5F6165] font-normal md:text-16 ssm:text-14">
+              Your order sent
+            </h3>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

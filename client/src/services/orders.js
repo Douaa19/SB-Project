@@ -12,4 +12,9 @@ export const sendOrder = (shipping, items) => {
       },
     }
   );
+  if (res) {
+    return res;
+  } else {
+    console.log("Error!");
+  }
 };
