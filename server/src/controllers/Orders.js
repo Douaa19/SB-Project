@@ -1,6 +1,6 @@
 const { Order, OrderProducts, Item } = require("../models");
 const nodemailer = require("nodemailer");
-const newOrderAdminEmail = require("../emails/NewOrderAdminEmail");
+const newOrderEmail = require("../emails/NewOrderEmail");
 
 const createOrder = async (req, res) => {
   const client_id = req.user.id;
@@ -73,7 +73,7 @@ const createOrder = async (req, res) => {
                       from: '"Saba Embroidery" <sabalarif97@gmail.com>',
                       to: `sabalarif97@gmail.com, ${shippingInfos.email}`,
                       subject: "New order",
-                      html: `${newOrderAdminEmail.newOrder(
+                      html: `${newOrderEmail.newOrder(
                         "New order passed"
                       )}`,
                     };
