@@ -13,7 +13,6 @@ function RowBasket(props) {
   const handleEdit = () => {
     window.location = `/products/item/${props.data._id}`;
   };
-  console.log(props);
 
   return (
     <>
