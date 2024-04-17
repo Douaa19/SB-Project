@@ -5,6 +5,7 @@ import { sendMessage } from "../../services/userServices";
 import { setContactDone } from "../../redux/actions/popups";
 import { SelectComponent } from "../atoms";
 import { sendOrder } from "../../services/orders";
+import { setOrders } from "../../redux/actions/orders";
 
 function Form(props) {
   const dispatch = useDispatch();
@@ -36,7 +37,15 @@ function Form(props) {
           }
         });
       } else if (props.type === "shipping") {
-        sendOrder(data, userOrders);
+        sendOrder(data, userOrders).then((response) => {
+          if (!response.data.messageSuccess) {
+            alert("Your order doesn't sent");
+          } else {
+            props.setShowPopup(true);
+            // dispatch(setOrders({}));
+            props.setClearValues(true)
+          }
+        });
       }
     } else {
       console.log("Error!!");

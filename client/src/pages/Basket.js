@@ -11,9 +11,9 @@ function Basket() {
   const orders = useSelector((state) => state.orders.orders);
   const [subtotal, setSubTotal] = useState(null);
   const [grandtotal, setGrandTotal] = useState(null);
-  const [shipping, setShipping] = useState(10);
+  const [shipping, setShipping] = useState(40);
   const [showPopup, setShowPopup] = useState(true);
-  const isShowed = showPopup ? "open" : "";
+  const [clearValues, setClearValues] = useState(false);
   const userId = useSelector((state) => state.user_id);
 
   const userOrders = orders[userId] || [];
@@ -54,21 +54,21 @@ function Basket() {
               subtotal={subtotal}
               grandTotal={grandtotal}
               shipping={shipping}
+              clearValues={clearValues}
             />
-            <ShippingForm setShowPopup={setShowPopup} />
+            <ShippingForm
+              setShowPopup={setShowPopup}
+              setClearValues={setClearValues}
+            />
           </div>
         )}
       </div>
       <Footer />
-      {/* {showPopup && (
+      {showPopup && (
         <Popup className="w-full">
-          <CheckoutPopupContent
-            subtotal={subtotal}
-            shipping={shipping}
-            orders={orders.orders}
-          />
+          <CheckoutPopupContent />
         </Popup>
-      )} */}
+      )}
     </>
   );
 }
