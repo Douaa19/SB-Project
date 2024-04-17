@@ -73,9 +73,7 @@ const createOrder = async (req, res) => {
                       from: '"Saba Embroidery" <sabalarif97@gmail.com>',
                       to: `sabalarif97@gmail.com, ${shippingInfos.email}`,
                       subject: "New order",
-                      html: `${newOrderEmail.newOrder(
-                        "New order passed"
-                      )}`,
+                      html: `${newOrderEmail.newOrder("New order passed")}`,
                     };
 
                     transporter.sendMail(mailOption, (error, info) => {
@@ -83,6 +81,11 @@ const createOrder = async (req, res) => {
                         res.send(error);
                       } else {
                         console.log("Order sent!");
+                        res
+                          .status(200)
+                          .send({
+                            messageSuccess: "Your order passed successfully",
+                          });
                       }
                     });
 
