@@ -71,10 +71,10 @@ const createOrder = async (req, res) => {
 
                     const mailOption = {
                       from: '"Saba Embroidery" <sabalarif97@gmail.com>',
-                      to: `sabalarif97@gmail.com`,
+                      to: `sabalarif97@gmail.com, ${shippingInfos.email}`,
                       subject: "New order",
                       html: `${newOrderAdminEmail.newOrder(
-                        "You receive a new order"
+                        "New order passed"
                       )}`,
                     };
 
