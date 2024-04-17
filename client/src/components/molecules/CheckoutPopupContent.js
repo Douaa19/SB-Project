@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setOrderSent } from "../../redux/actions/popups";
-import { removeOrder } from "../../redux/actions/orders";
-import { ReactComponent as Close } from "../../assets/icons/close.svg";
+import { clearUserOrders } from "../../redux/actions/orders";
+// import { ReactComponent as Close } from "../../assets/icons/close.svg";
 import { ReactComponent as Done } from "../../assets/icons/success-tick-svgrepo-com.svg";
 
 function CheckoutPopupContent(props) {
@@ -11,7 +11,7 @@ function CheckoutPopupContent(props) {
 
   const closePopup = () => {
     dispatch(setOrderSent(false));
-    dispatch(removeOrder(userId));
+    dispatch(clearUserOrders(userId));
     props.clearValues(true);
     window.location = "/";
   };
