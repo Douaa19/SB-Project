@@ -42,6 +42,7 @@ module.exports = {
         "gray-100": "#CECECE",
         red: "#FF004D",
         "dark-gray": "#333333",
+        blue: "#192655",
       },
       padding: {
         1: "2px",
@@ -52,6 +53,7 @@ module.exports = {
       },
       backgroundColor: {
         "main-bg": "#F5F5F5",
+        blue: "#192655",
         "main-color": "#DAB88A",
         dark: "#000000",
         white: "#FFFFFF",

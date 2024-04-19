@@ -3,10 +3,12 @@ import Logo from "../../assets/icons/Logo_White.png";
 import FacebookIcon from "../../assets/icons/face-icon-png.png";
 import InstagramIcon from "../../assets/icons/instagram-icone.png";
 import PinterestIcon from "../../assets/icons/pinterest-icon-svg.png";
+import { ReactComponent as Phone } from "../../assets/icons/phone-rounded-svgrepo-com.svg";
+import { ReactComponent as Email } from "../../assets/icons/email-footer-8-svgrepo-com.svg";
 
 function Footer() {
   return (
-    <div className="mt-10 bg-dark lg:py-8 ssm:py-6 lg:px-28 ssm:px-16 h-max text-white">
+    <div className="mt-10 bg-blue lg:py-8 ssm:py-6 lg:px-28 ssm:px-16 h-max text-white">
       <div className="flex justify-between flex-col items-start">
         <div className="w-full mb-4 flex items-center lg:justify-start ssm:justify-center">
           <a href="/">
@@ -16,8 +18,18 @@ function Footer() {
         <div className="flex lg:justify-between lg:flex-row w-full pt-4 mb-6 gap-2 ssm:flex-col-reverse">
           <div className="flex flex-col justify-start items-start md:w-fit ssm:w-1/2 ssm:mt-4 lg:mt-0">
             <ul className="md:text-14 ssm:text-12 flex flex-col h-max">
-              <li className="pb-2">+212634242755</li>
-              <li className="pb-2">embroidery.saba12@gmail.com</li>
+              <li className="pb-2">
+                <div className="flex items-center gap-2">
+                  <Phone />
+                  <span>+212634242755</span>
+                </div>
+              </li>
+              <li className="pb-2">
+                <div className="flex items-center gap-2">
+                  <Email />
+                  <span>embroidery.saba12@gmail.com</span>
+                </div>
+              </li>
             </ul>
           </div>
           <div className="flex lg:justify-between items-center gap-2 lg:w-1/2 md:w-full ssm:justify-between">

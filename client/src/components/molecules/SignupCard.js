@@ -45,14 +45,9 @@ function SignupCard() {
             alert(response.data.messageError);
           });
         } else {
-          await setData({});
+          setData({});
           setErrors({});
-          await dispatch(loginAction());
-          await dispatch(setRoleAction(jwtDecode(response.data.token).role));
-          await dispatch(setIdAction(jwtDecode(response.data.token).id));
-          setTimeout(() => {
-            window.location = "/";
-          });
+          window.location = "/login";
         }
       });
     } else {
@@ -139,7 +134,7 @@ function SignupCard() {
       <Input
         type="phone"
         className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
-        placeHolder="phone number"
+        placeHolder="+212600000000"
         name="phone"
         value={data.phone}
         onChange={(e) => handleChange("phone", e.target.value)}
