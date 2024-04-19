@@ -161,31 +161,9 @@ const handleRegister = async (req, res) => {
           if (error) {
             res.send(error);
           } else {
-            console.log(info);
-            const id = newUser._id;
-            const username = newUser.username;
-            const email = newUser.email;
-            const role = newUser.role;
-            const token = jwt.sign(
-              {
-                id,
-                username,
-                email,
-                role,
-              },
-              process.env.JWT_ACCESS_SECRET
-            );
-
-            if (token) {
-              const dateStr = new Date();
-              const lastAccess = moment.utc(dateStr).format("DD.MM.YYY HH:mm");
-              User.findByIdAndUpdate(newUser._id, { lastAccess });
-              return res
-                .status(200)
-                .send({ messageSuccess: "User created successfully", token });
-            } else {
-              return res.json({ message: "Token not created" });
-            }
+            return res
+              .status(200)
+              .send({ messageSuccess: "User created successfully" });
           }
         });
       }
