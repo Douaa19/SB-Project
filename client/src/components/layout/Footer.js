@@ -8,7 +8,7 @@ import { ReactComponent as Email } from "../../assets/icons/email-footer-8-svgre
 
 function Footer() {
   return (
-    <div className="mt-10 bg-dark lg:py-8 ssm:py-6 lg:px-28 ssm:px-16 h-max text-white">
+    <div className="mt-10 bg-blue lg:py-8 ssm:py-6 lg:px-28 ssm:px-16 h-max text-white">
       <div className="flex justify-between flex-col items-start">
         <div className="w-full mb-4 flex items-center lg:justify-start ssm:justify-center">
           <a href="/">
