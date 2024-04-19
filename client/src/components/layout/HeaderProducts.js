@@ -11,9 +11,9 @@ function HeaderProducts({ title, categories }) {
   const [searchQuery, setSearchQuery] = useState("");
   const allItems = useSelector((state) => state.newestItems);
 
-  useEffect(() => {
-    handleSearch(searchQuery);
-  }, [allItems]);
+  // useEffect(() => {
+  //   handleSearch(searchQuery);
+  // }, [allItems]);
 
   const handleSearch = (query) => {
     const filteredResults = allItems.filter((item) => {
@@ -54,7 +54,6 @@ function HeaderProducts({ title, categories }) {
           classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-38 top-[0.35rem] ssm:left-36 ssm:w-4"
           value={searchQuery}
           onChange={handleChange}
-          onIconClick={Search}
         />
       </div>
     </div>

@@ -21,6 +21,7 @@ function NavBar() {
   const allItems = useSelector((state) => state.newestItems);
   const orders = useSelector((state) => state.orders.orders);
   const userId = useSelector((state) => state.user_id);
+  const searchResults = useSelector((state) => state.searchResults);
 
   const userOrders = orders[userId] || [];
 
@@ -64,21 +65,21 @@ function NavBar() {
   const isOpen = open ? "open" : "";
 
   const handleSearch = () => {
-    const queryString = String(searchQuery).trim();
+    const filteredResultes = allItems.filter((item) => {
+      const { title, description } = item;
+      const lowercaseQuery = searchQuery.toLowerCase();
 
-    if (queryString !== "") {
-      const lowercaseQuery = queryString.toLowerCase();
-      const filteredResults = allItems.filter((item) => {
-        const { title, description } = item;
-
-        return (
-          title.toLowerCase().includes(lowercaseQuery) ||
-          description.toLowerCase().includes(lowercaseQuery) ||
-          item.price.toString().includes(lowercaseQuery)
-        );
-      });
-      dispatch(setSearchResults(filteredResults));
-      window.location = "http://localhost:3000/products";
+      return (
+        title.toLowerCase().includes(lowercaseQuery) ||
+        description.toLowerCase().includes(lowercaseQuery) ||
+        item.price.toString().includes(lowercaseQuery)
+      );
+    });
+    if (searchQuery !== "") {
+      dispatch(setSearchResults(filteredResultes));
+      window.location = "/products";
+    } else {
+      dispatch(setSearchResults(""));
     }
   };
 
