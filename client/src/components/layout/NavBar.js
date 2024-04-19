@@ -133,7 +133,7 @@ function NavBar() {
                     location.slice(22) !== "products" && (
                       <>
                         <Input
-                          className="border rounded-5 border-main text-dark ssm:text-14 lg:block px-3 py-2 outline-none md:hidden md:text-12"
+                          className="border rounded-5 border-main text-dark ssm:text-14 px-3 py-2 outline-none md:hidden md:text-12"
                           placeHolder="search..."
                           rightIcon={Search}
                           name="search"

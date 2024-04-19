@@ -8,7 +8,7 @@ function RowBasket(props) {
   const userId = useSelector((state) => state.user_id);
 
   const handleDelete = () => {
-    dispatch(removeOrder(userId, props.data._id));
+    dispatch(removeOrder(userId, props.data.item._id));
   };
   const handleEdit = () => {
     window.location = `/products/item/${props.data._id}`;
