@@ -21,7 +21,6 @@ export const register = async (data) => {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
   });
   if (res) {
-    localStorage.setItem("token", JSON.stringify(res.data.token));
     return res;
   }
 };
