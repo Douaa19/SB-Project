@@ -35,6 +35,10 @@ function Form(props) {
           if (res.status === 200) {
             dispatch(setContactDone(true));
             setData({ name: "", email: "", phone: "", message: "" });
+            setTimeout(() => {
+              dispatch(setContactDone(false));
+              window.location = "/";
+            }, 3000);
           }
         });
       } else if (props.type === "shipping") {
