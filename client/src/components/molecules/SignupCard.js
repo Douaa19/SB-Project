@@ -45,14 +45,9 @@ function SignupCard() {
             alert(response.data.messageError);
           });
         } else {
-          await setData({});
+          setData({});
           setErrors({});
-          await dispatch(loginAction());
-          await dispatch(setRoleAction(jwtDecode(response.data.token).role));
-          await dispatch(setIdAction(jwtDecode(response.data.token).id));
-          setTimeout(() => {
-            window.location = "/";
-          });
+          window.location = "/login";
         }
       });
     } else {
