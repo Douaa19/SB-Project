@@ -123,7 +123,7 @@ function NavBar() {
                   {link.name}
                 </a>
               ) : (
-                <a
+                <div
                   href=""
                   style={{ animationDelay: `0.${index + 1}s` }}
                   className={`mt-1 ${
@@ -133,7 +133,7 @@ function NavBar() {
                     location.slice(22) !== "products" && (
                       <>
                         <Input
-                          className="border rounded-5 border-main px-3 py-2 sm:text-16 ssm:text-14 outline-none text-dark md:hidden"
+                          className="border rounded-5 border-main text-dark ssm:text-14 lg:block px-3 py-2 outline-none md:hidden md:text-12"
                           placeHolder="search..."
                           rightIcon={Search}
                           name="search"
@@ -147,7 +147,7 @@ function NavBar() {
                         />
                       </>
                     )}
-                </a>
+                </div>
               )}
             </li>
           ))}
