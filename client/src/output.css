@@ -907,6 +907,10 @@ video {
   width: max-content;
 }
 
+.w-\[\] {
+  width: ;
+}
+
 .min-w-full {
   min-width: 100%;
 }
