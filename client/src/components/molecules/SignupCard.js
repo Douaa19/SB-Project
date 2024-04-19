@@ -139,7 +139,7 @@ function SignupCard() {
       <Input
         type="phone"
         className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
-        placeHolder="phone number"
+        placeHolder="+212600000000"
         name="phone"
         value={data.phone}
         onChange={(e) => handleChange("phone", e.target.value)}
