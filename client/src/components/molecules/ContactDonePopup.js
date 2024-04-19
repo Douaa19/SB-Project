@@ -14,7 +14,14 @@ function ContactDonePopup() {
             </div>
           </div>
           <div className="text-center">
-            
+            <div className="">
+              <h4 className="capitalize text-[#5F6165] font-medium md:text-16 ssm:text-14">
+                done
+              </h4>
+              <p className="text-[#A1A3A7] md:text-14 ssm:text-12">
+                Thank you for your message
+              </p>
+            </div>
           </div>
         </div>
       </div>
