@@ -1,18 +1,10 @@
 import React, { useState } from "react";
 import { Input, Button } from "../atoms";
-import { useDispatch } from "react-redux";
 import { register } from "../../services/auth";
 import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
 import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
-import { jwtDecode } from "jwt-decode";
-import {
-  setRoleAction,
-  loginAction,
-  setIdAction,
-} from "../../redux/actions/auth";
 
 function SignupCard() {
-  const dispatch = useDispatch();
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
   const [passwordType, setPasswordType] = useState("password");

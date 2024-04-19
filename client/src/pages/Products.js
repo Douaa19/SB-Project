@@ -10,7 +10,7 @@ import { NoDataCard } from "../components/organismes";
 
 function Products({ title }) {
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.categories);
+  let categories = useSelector((state) => state.categories);
   const url = window.location.href;
   const bestSellingItems = useSelector((state) => state.bestSellingItems);
   const newestItems = useSelector((state) => state.newestItems);
@@ -18,7 +18,7 @@ function Products({ title }) {
   let itemsCategory = useSelector((state) => state.categoryItems);
   // search reasults items
   const searchResults = useSelector((state) => state.searchResults);
-  console.log(searchResults.length);
+  console.log(searchResults);
 
   const limit = useSelector((state) => state.loadMoreItems.limit);
   const [displayLimit, setDisplayLimit] = useState(limit);
@@ -101,6 +101,8 @@ function Products({ title }) {
         </div>
       </>
     );
+  } else if (searchResults.length === 0) {
+    contentToDisplay = contentToDisplay = <NoDataCard />;
   } else {
     contentToDisplay = contentToDisplay = <NoDataCard />;
   }
