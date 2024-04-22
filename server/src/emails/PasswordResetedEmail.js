@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+module.exports.passwordReseted = (username, link) => {
+  return `<!DOCTYPE html>
   <html lang="en">
     <head>
       <meta name="viewport" content="width=device-width" />
@@ -105,7 +106,7 @@
                             color: black;
                             margin-left: 1rem;
                           ">
-                          <span>Hello ${user.username},</span>
+                          <span>Hello ${username},</span>
                           <p>
                             Congratulations! Your password for your SabaEmbroidery account has been successfully reset. You're now all set to dive back into the world of online shopping with us.
                           </p>
@@ -137,4 +138,5 @@
         </table>
       </center>
     </body>
-  </html>
+  </html>`;
+};
