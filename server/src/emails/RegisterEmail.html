@@ -39,10 +39,11 @@
         background-color: #ffffff;
         margin: 0 auto;
         width: 100%;
-        max-width: 600px;
+        max-width: 90%;
         border-spacing: 0;
         font-family: Montserrat;
         color: black;
+        text-align: left;
       }
     </style>
   </head>
@@ -51,7 +52,7 @@
       <table
         class="main"
         width="100%"
-        style="border: 1px solid #dab88a; border-radius: 8px">
+        style="">
         <!-- LOGO SECTION -->
         <tr>
           <td>
@@ -63,6 +64,7 @@
                     padding: 1rem 0 0;
                     width: 100%;
                     max-width: 300px;
+                    margin-bottom: 1rem;
                   ">
                   <a href="sabaembroidery.ma">
                     <img
@@ -76,27 +78,6 @@
           </td>
         </tr>
 
-        <!-- TEXT -->
-        <tr>
-          <td>
-            <table style="width: 100%">
-              <tr>
-                <td
-                  style="
-                    font-size: 16px;
-                    font-weight: bold;
-                    width: 100%;
-                    padding: 0 2rem 1rem;
-                    text-align: center;
-                  ">
-                  <span>You have received a new message</span>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-        <!-- TEXT -->
-
         <!-- BODY SECTION -->
         <tr>
           <td>
@@ -106,34 +87,6 @@
                   <table
                     class="row"
                     style="font-size: 18px; padding: 0 2rem; width: 100%">
-                    <tr
-                      class="data"
-                      style="
-                        display: flex;
-                        padding: 0.4rem 0;
-                        width: 100%;
-                        text-decoration: none;
-                        color: #000;
-                      ">
-                      <td
-                        style="
-                          width: 6rem;
-                          color: #dab88a;
-                          font-weight: normal;
-                          font-size: 16px;
-                        ">
-                        <span>Name</span>
-                      </td>
-                      <td
-                        style="
-                          font-size: 16px;
-                          width: 100%;
-                          text-decoration: none;
-                          color: black;
-                          margin-left: 1rem;
-                        ">
-                        <span>${data.name}</span>
-                      </td>
                     </tr>
                     <tr
                       class="data"
@@ -146,80 +99,52 @@
                       ">
                       <td
                         style="
-                          width: 6rem;
-                          color: #dab88a;
-                          font-weight: normal;
-                          font-size: 16px;
-                        ">
-                        <span>Email</span>
-                      </td>
-                      <td
-                        style="
                           font-size: 16px;
                           width: 100%;
                           text-decoration: none;
                           color: black;
                           margin-left: 1rem;
                         ">
-                        <span>${data.email}</span>
-                      </td>
-                    </tr>
-                    <tr
-                      class="data"
-                      style="
-                        display: flex;
-                        padding: 0.4rem 0;
-                        width: 100%;
-                        text-decoration: none;
-                        color: #000;
-                      ">
-                      <td
-                        style="
-                          width: 6rem;
-                          color: #dab88a;
-                          font-weight: normal;
-                          font-size: 16px;
-                        ">
-                        <span>Phone</span>
-                      </td>
-                      <td
-                        style="
-                          font-size: 16px;
-                          width: 100%;
-                          text-decoration: none;
-                          color: black;
-                          margin-left: 1rem;
-                        ">
-                        <span>${data.phone}</span>
-                      </td>
-                    </tr>
-                    <tr
-                      class="data"
-                      style="
-                        display: flex;
-                        padding: 0.4rem 0;
-                        width: 100%;
-                        text-decoration: none;
-                        color: #000;
-                      ">
-                      <td
-                        style="
-                          width: 6rem;
-                          color: #dab88a;
-                          font-weight: normal;
-                          font-size: 16px;
-                        ">
-                        <span>Message</span>
-                      </td>
-                      <td
-                        style="
-                          font-size: 16px;
-                          width: 100%;
-                          text-decoration: none;
-                          color: black;
-                          margin-left: 1rem;
-                        ">
-                        <span>${data.message}</span>
+                        <span>Hello ${user.username},</span>
+                        <p>
+                          Welcome aboard! 🎉 We're delighted to have you join
+                          SabaEmbroidery family. As you embark on your journey
+                          with us, we want to extend our warmest greetings and
+                          assure you that we're here to make your online
+                          embroidery shopping experience truly exceptional.
+                        </p>
+                        <p>
+                          At SabaEmbroidery, we're dedicated to providing you
+                          with a seamless and enjoyable shopping experience for
+                          all your embroidery needs, whether you're seeking
+                          personalized gifts, custom apparel, or unique
+                          embroidered items. With our wide range of embroidery
+                          designs and user-friendly interface, bringing your
+                          creative visions to life is just a few clicks away.
+                        </p>
+                        <p>
+                          As a new member, you're now part of a vibrant
+                          community of embroidery enthusiasts who trust us to
+                          deliver quality embroidery products and excellent
+                          service. We're committed to exceeding your
+                          expectations at every turn.
+                        </p>
+                        <p>
+                          To help you get started, feel free to explore our
+                          website and discover our latest embroidery designs and
+                          offerings. If you have any questions or need
+                          assistance with your embroidery projects, our support
+                          team is always ready to help. Don't hesitate to reach
+                          out!
+                        </p>
+                        <p>
+                          Once again, welcome to [Your Embroidery E-Commerce
+                          Platform]. We're excited to have you join us, and we
+                          look forward to being your go-to destination for all
+                          things embroidery.
+                        </p>
+                        <span>Best regards,</span>
+                        <span>SabaEmbroidery Team </span>
                       </td>
                     </tr>
                   </table>
