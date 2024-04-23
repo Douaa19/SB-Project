@@ -1,4 +1,4 @@
-module.exports.newOrder = (data) => {
+module.exports.register = (username) => {
   return `<!DOCTYPE html>
   <html lang="en">
     <head>
@@ -45,22 +45,6 @@ module.exports.newOrder = (data) => {
           font-family: Montserrat;
           color: black;
           text-align: left;
-        }
-        .detailsTable {
-            width: 90%;
-            border-collapse: collapse;
-        }
-        .detailsTable tr th {
-            padding:0.5rem;
-            text-align: center;
-            border: #EEE 1px solid;
-        }
-        .detailsTable tr td {
-            padding: 0.2rem;
-            border: #CCC 1px solid;
-        }
-        .pricesTable tr td {
-            padding: 0.2rem;
         }
       </style>
     </head>
@@ -122,51 +106,44 @@ module.exports.newOrder = (data) => {
                             color: black;
                             margin-left: 1rem;
                           ">
-                          <span>Hello ${data.username},</span>
+                          <span>Hello ${user.username},</span>
                           <p>
-                            Thank you for choosing SabaEmbroidery for your recent purchase! We're excited to confirm that your order has been successfully placed and is now being processed.
+                            Welcome aboard! 🎉 We're delighted to have you join
+                            SabaEmbroidery family. As you embark on your journey
+                            with us, we want to extend our warmest greetings and
+                            assure you that we're here to make your online
+                            embroidery shopping experience truly exceptional.
                           </p>
                           <p>
-                            Below is a summary of your order details:
+                            At SabaEmbroidery, we're dedicated to providing you
+                            with a seamless and enjoyable shopping experience for
+                            all your embroidery needs, whether you're seeking
+                            personalized gifts, custom apparel, or unique
+                            embroidered items. With our wide range of embroidery
+                            designs and user-friendly interface, bringing your
+                            creative visions to life is just a few clicks away.
                           </p>
-                          <table class="detailsTable" style="border: #CCC 1px solid;
-                          border-radius: 5px; font-size: 14px;">
-                            <tr style="background-color: #CECECE;">
-                                <th>Item</th>
-                                <th>Price</th>
-                                <th>Size</th>
-                                <th>Color</th>
-                                <th>Quantity</th>
-                            </tr>
-                            ${data.items
-                              .map(
-                                (item) => `
-                            <tr>
-                              <td>${item.item.title}</td>
-                              <td>${item.item.price}</td>
-                              <td>${item.item.size}</td>
-                              <td>${item.item.color}</td>
-                              <td>${item.quantity}</td>
-                            </tr>
-                          `
-                              )
-                              .join("")}
-                          </table>
-                          <table style="margin-top: 1rem; font-size: 14px;" class="pricesTable">
-                            <tr>
-                                <td style="font-weight: bold;">Shipping: </td>
-                                <td>${data.shipping}</td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: bold;">Total Price: </td>
-                                <td>${data.total}</td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: bold;">Order Status: </td>
-                                <td>${data.status}</td>
-                            </tr>
-                          </table>
-                          <p>If you have any questions or need further assistance, feel free to reach out to us. Thank you for choosing us!</p>
+                          <p>
+                            As a new member, you're now part of a vibrant
+                            community of embroidery enthusiasts who trust us to
+                            deliver quality embroidery products and excellent
+                            service. We're committed to exceeding your
+                            expectations at every turn.
+                          </p>
+                          <p>
+                            To help you get started, feel free to explore our
+                            website and discover our latest embroidery designs and
+                            offerings. If you have any questions or need
+                            assistance with your embroidery projects, our support
+                            team is always ready to help. Don't hesitate to reach
+                            out!
+                          </p>
+                          <p>
+                            Once again, welcome to [Your Embroidery E-Commerce
+                            Platform]. We're excited to have you join us, and we
+                            look forward to being your go-to destination for all
+                            things embroidery.
+                          </p>
                           <span>Best regards,</span>
                           <span>SabaEmbroidery Team </span>
                         </td>
@@ -180,5 +157,6 @@ module.exports.newOrder = (data) => {
         </table>
       </center>
     </body>
-  </html>`;
+  </html>
+    `;
 };

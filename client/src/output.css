@@ -2684,10 +2684,6 @@ body .menu ul li > a:hover {
     display: block;
   }
 
-  .lg\:hidden {
-    display: none;
-  }
-
   .lg\:h-24 {
     height: 6rem;
   }
