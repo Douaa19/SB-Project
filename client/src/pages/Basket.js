@@ -12,7 +12,6 @@ function Basket() {
   const [subtotal, setSubTotal] = useState(null);
   const [grandtotal, setGrandTotal] = useState(null);
   const [shipping, setShipping] = useState(40);
-  const [clearValues, setClearValues] = useState(false);
   const userId = useSelector((state) => state.user_id);
   const orderSent = useSelector((state) => state.orderSentPopup);
 
@@ -54,9 +53,8 @@ function Basket() {
               subtotal={subtotal}
               grandTotal={grandtotal}
               shipping={shipping}
-              clearValues={clearValues}
             />
-            <ShippingForm setClearValues={setClearValues} />
+            <ShippingForm />
           </div>
         )}
       </div>
@@ -64,7 +62,7 @@ function Basket() {
       {orderSent !== false && (
         <div className="min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
           <Popup>
-            <CheckoutPopupContent clearValues={clearValues} />
+            <CheckoutPopupContent />
           </Popup>
         </div>
       )}
