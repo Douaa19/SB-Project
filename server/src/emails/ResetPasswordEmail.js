@@ -125,8 +125,10 @@ module.exports.resetPassword = (username, resetLink) => {
                             <p>
                               Thank you for choosing SabaEmbroidery. We appreciate your business and look forward to serving you again soon!
                             </p>
+                            <p style="display: flex; flex-direction: column;">
                             <span>Best regards,</span>
                             <span>SabaEmbroidery Team </span>
+                            </p>
                           </td>
                         </tr>
                       </table>
