@@ -11,9 +11,9 @@ function HeaderProducts({ title, categories }) {
   const [searchQuery, setSearchQuery] = useState("");
   const allItems = useSelector((state) => state.newestItems);
 
-  // useEffect(() => {
-  //   handleSearch(searchQuery);
-  // }, [allItems]);
+  useEffect(() => {
+    dispatch(setSearchResults(""));
+  }, []);
 
   const handleSearch = (query) => {
     const filteredResults = allItems.filter((item) => {
