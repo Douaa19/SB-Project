@@ -1,4 +1,4 @@
-const { Order, OrderProducts, Item } = require("../models");
+const { Order, OrderProducts, Item, User } = require("../models");
 const nodemailer = require("nodemailer");
 const newOrderEmail = require("../emails/NewOrderEmail");
 
@@ -24,7 +24,6 @@ const createOrder = async (req, res) => {
         let quantities = [];
         let prices = [];
         let totals = [];
-
         items.forEach((item) => {
           products_id.push(item.item._id);
           quantities.push(item.quantity);
@@ -57,6 +56,14 @@ const createOrder = async (req, res) => {
                 { total: Total },
                 (err, order) => {
                   if (order) {
+                    const data = {
+                      username: shippingInfos.name,
+                      items,
+                      shipping: 40,
+                      total: Total,
+                      status: response.status,
+                    };
+
                     // Send email to admin
                     const transporter = nodemailer.createTransport({
                       service: "Gmail",
@@ -72,8 +79,8 @@ const createOrder = async (req, res) => {
                     const mailOption = {
                       from: '"Saba Embroidery" <sabalarif97@gmail.com>',
                       to: `sabalarif97@gmail.com, ${shippingInfos.email}`,
-                      subject: "New order",
-                      html: `${newOrderEmail.newOrder("New order passed")}`,
+                      subject: "Your Order Confirmation from SabaEmbroidery",
+                      html: newOrderEmail.newOrder(data),
                     };
 
                     transporter.sendMail(mailOption, (error, info) => {
@@ -81,14 +88,11 @@ const createOrder = async (req, res) => {
                         res.send(error);
                       } else {
                         console.log("Order sent!");
-                        res
-                          .status(200)
-                          .send({
-                            messageSuccess: "Your order passed successfully",
-                          });
+                        res.status(200).send({
+                          messageSuccess: "Your order passed successfully",
+                        });
                       }
                     });
-
                     // Send email to the client with the order information
                   }
                 }
