@@ -144,8 +144,10 @@ module.exports.register = (username) => {
                             look forward to being your go-to destination for all
                             things embroidery.
                           </p>
-                          <span>Best regards,</span>
-                          <span>SabaEmbroidery Team </span>
+                          <p style="display: flex; flex-direction: column;">
+                            <span>Best regards,</span>
+                            <span>SabaEmbroidery Team </span>
+                            </p>
                         </td>
                       </tr>
                     </table>

@@ -167,8 +167,10 @@ module.exports.newOrder = (data) => {
                             </tr>
                           </table>
                           <p>If you have any questions or need further assistance, feel free to reach out to us. Thank you for choosing us!</p>
-                          <span>Best regards,</span>
-                          <span>SabaEmbroidery Team </span>
+                          <p style="display: flex; flex-direction: column;">
+                            <span>Best regards,</span>
+                            <span>SabaEmbroidery Team </span>
+                            </p>
                         </td>
                       </tr>
                     </table>
