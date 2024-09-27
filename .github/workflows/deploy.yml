@@ -10,29 +10,51 @@ jobs:
     runs-on: ubuntu-latest  # This specifies the environment for the job
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2  # This checks out your repository code
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Specify the Node.js version
+          node-version: '16'  # Specify the Node.js version
 
-      - name: Install dependencies
-        run: npm install  # Install the project dependencies
+      # Install dependencies for frontend
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
 
-      - name: Build project
-        run: npm run build  # Build your project
+      # Build frontend project
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm run build
 
+      # Install dependencies for backend
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
+
+      # Deploy both frontend build and backend
       - name: Deploy to server
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}  # Use a secret for SSH key
           USER: your_username  # Replace with your server username
           HOST: your_server_ip  # Replace with your server IP address
-          TARGET_DIR: /var/www/SB-Project/frontend/build  # Target directory on your server
+          FRONTEND_TARGET_DIR: /var/www/SB-Project/frontend/build  # Target directory for frontend
+          BACKEND_TARGET_DIR: /var/www/SB-Project/backend  # Target directory for backend
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa  # Save the SSH key
           chmod 600 ~/.ssh/id_rsa  # Set permissions
           ssh-keyscan -H $HOST >> ~/.ssh/known_hosts  # Add server to known hosts
-          scp -r ./build/* $USER@$HOST:$TARGET_DIR  # Copy files to server
+          
+          # Deploy frontend build files
+          scp -r ./frontend/build/* $USER@$HOST:$FRONTEND_TARGET_DIR
+          
+          # Deploy backend code
+          scp -r ./backend/* $USER@$HOST:$BACKEND_TARGET_DIR
+
+          # (Optional) Restart backend service
+          ssh $USER@$HOST 'pm2 restart backend'  # Adjust this if you're using pm2 or any service manager
