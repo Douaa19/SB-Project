@@ -57,4 +57,4 @@ jobs:
           scp -r ./backend/* $USER@$HOST:$BACKEND_TARGET_DIR
 
           # (Optional) Restart backend service
-          ssh $USER@$HOST 'pm2 restart backend'  # Adjust this if you're using pm2 or any service manager
+          ssh $USER@$HOST 'pm2 restart sb-backend'  # Adjust this if you're using pm2 or any service manager
