@@ -7,7 +7,6 @@ import { BACK_URL } from "../../config";
 
 function BigItemCard({ url, item }) {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const userId = useSelector((state) => state.user_id);
   const [images, setImages] = useState([]);
   const settings = {

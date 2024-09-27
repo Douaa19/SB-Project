@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { getItemById } from "../redux/selectors/selectors";
 import { SectionCards } from "../components/layout";
 
-function Product({}) {
+function Product() {
   const params = useParams();
   const newestItems = useSelector((state) => state.newestItems);
   const location = window.location.href;

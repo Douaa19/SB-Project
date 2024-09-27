@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { getItemsByCategory } from "../../services/itemsServices";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { setCategoryItems } from "../../redux/actions/items";
 
 function CategoryCard({ name, id }) {
   const location = window.location.href.slice(22);
   const dispatch = useDispatch();
-  const [emptyData, setEmptyData] = useState(false);
 
   const categoryItems = async () => {
     const type = location === "best-selling" ? "best-selling" : "all";

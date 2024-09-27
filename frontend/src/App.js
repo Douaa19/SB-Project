@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import AppRoutes from "./routes/AppRoutes";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setBestSellingItems, setNewestItems } from "./redux/actions/items";
 import { setCategories } from "./redux/actions/categoris";
 import {

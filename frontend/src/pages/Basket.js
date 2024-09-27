@@ -11,7 +11,7 @@ function Basket() {
   const orders = useSelector((state) => state.orders.orders);
   const [subtotal, setSubTotal] = useState(null);
   const [grandtotal, setGrandTotal] = useState(null);
-  const [shipping, setShipping] = useState(40);
+  const shipping = 40;
   const userId = useSelector((state) => state.user_id);
   const orderSent = useSelector((state) => state.orderSentPopup);
 

@@ -1,6 +1,4 @@
 import React from "react";
-import { Button } from "../atoms";
-import { useSelector } from "react-redux";
 
 function CheckOutCard({ subtotal, shipping, grandTotal }) {
   // style

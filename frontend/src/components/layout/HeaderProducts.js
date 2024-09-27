@@ -13,7 +13,7 @@ function HeaderProducts({ title, categories }) {
 
   useEffect(() => {
     dispatch(setSearchResults(""));
-  }, []);
+  }, [dispatch]);
 
   const handleSearch = (query) => {
     const filteredResults = allItems.filter((item) => {

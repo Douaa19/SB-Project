@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import Search from "../../assets/icons/search-svgrepo-com.svg";
 import Logo from "../../assets/images/small-logo-sabaembroidery.svg";
-import Input from "../atoms/Input";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchResults } from "../../redux/actions/items";
 import { LogIn, ShoppingCart, LogOut } from "lucide-react";
 import {
   setIdAction,
@@ -14,41 +11,10 @@ import {
 function NavBar() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const location = window.location.href;
-  const [searchQuery, setSearchQuery] = useState("");
-  const allItems = useSelector((state) => state.newestItems);
   const orders = useSelector((state) => state.orders.orders);
   const userId = useSelector((state) => state.user_id);
-  const searchResults = useSelector((state) => state.searchResults);
 
   const userOrders = orders[userId] || [];
-  const url = location.includes("best-selling")
-    ? "best-selling"
-    : location.includes("products")
-    ? "products"
-    : "";
-
-  let inputContent = (
-    <>
-      {url !== "best-selling" && url !== "products" && (
-        <>
-          <Input
-            className="border rounded-5 border-main lg:text-14 lg:block px-3 py-2 outline-none md:block md:text-12 ssm:hidden"
-            placeHolder="search..."
-            rightIcon={Search}
-            name="search"
-            classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-40 pr-2 top-2 md:left-36 md:w-4 ssm:w-6 md:block ssm:hidden"
-            value={searchQuery}
-            onChange={(e) => {
-              const query = e.target.value.toString();
-              setSearchQuery(query);
-            }}
-            onIconClick={() => handleSearch()}
-          />
-        </>
-      )}
-    </>
-  );
 
   let links = [
     { name: "home", link: "/" },
@@ -64,25 +30,6 @@ function NavBar() {
   let [open, setOpen] = useState(false);
 
   const isOpen = open ? "open" : "";
-
-  const handleSearch = () => {
-    const filteredResultes = allItems.filter((item) => {
-      const { title, description } = item;
-      const lowercaseQuery = searchQuery.toLowerCase();
-
-      return (
-        title.toLowerCase().includes(lowercaseQuery) ||
-        description.toLowerCase().includes(lowercaseQuery) ||
-        item.price.toString().includes(lowercaseQuery)
-      );
-    });
-    if (searchQuery !== "") {
-      dispatch(setSearchResults(filteredResultes));
-      window.location = "/products";
-    } else {
-      dispatch(setSearchResults(""));
-    }
-  };
 
   const logout = async () => {
     window.location = "/";
@@ -127,32 +74,6 @@ function NavBar() {
                 }`}>
                 {link.name}
               </a>
-              {/* ) : ( */}
-              {/* <div
-                  href=""
-                  style={{ animationDelay: `0.${index + 1}s` }}
-                  className={`mt-1 ${
-                    open ? `appear text-white opacity-1` : "md:text-dark"
-                  }`}>
-                  {url !== "best-selling" && url !== "products" && (
-                    <>
-                      <Input
-                        className="border ssm:mr-3 rounded-5 border-main text-dark ssm:text-14 px-3 py-2 outline-none md:hidden md:text-12"
-                        placeHolder="search..."
-                        rightIcon={Search}
-                        name="search"
-                        classIcon="hover:cursor-pointer absolute pr-2 top-2 ssm:w-5 right-4 top-2"
-                        value={searchQuery}
-                        onChange={(e) => {
-                          const query = e.target.value.toString();
-                          setSearchQuery(query);
-                        }}
-                        onIconClick={() => handleSearch()}
-                      />
-                    </>
-                  )}
-                </div>
-              )} */}
             </li>
           ))}
         </ul>

@@ -1,5 +1,4 @@
 import React from "react";
-import SuccessIcon from "../../assets/icons/success-tick-svgrepo-com.svg";
 import { ReactComponent as Done } from "../../assets/icons/success-tick-svgrepo-com.svg";
 
 function ContactDonePopup() {

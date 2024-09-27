@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ReactComponent as Next } from "../../assets/icons/arrow-next-small-svgrepo-com.svg";
 import { ReactComponent as Prev } from "../../assets/icons/arrow-prev-small-svgrepo-com.svg";
 import ItemCard from "../organismes/ItemCard";

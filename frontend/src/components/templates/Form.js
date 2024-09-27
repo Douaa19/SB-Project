@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Input, TextArea } from "../atoms";
 import { sendMessage } from "../../services/userServices";
 import { setContactDone } from "../../redux/actions/popups";
 import { SelectComponent } from "../atoms";
 import { sendOrder } from "../../services/orders";
-import { setOrders } from "../../redux/actions/orders";
 import { setOrderSent } from "../../redux/actions/popups";
 
 function Form(props) {

@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setOrderSent } from "../../redux/actions/popups";
 import { clearUserOrders } from "../../redux/actions/orders";
-// import { ReactComponent as Close } from "../../assets/icons/close.svg";
 import { ReactComponent as Done } from "../../assets/icons/success-tick-svgrepo-com.svg";
 
 function CheckoutPopupContent(props) {

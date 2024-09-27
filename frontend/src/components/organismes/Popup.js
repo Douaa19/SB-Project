@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Popup({open, children, onClose}) {
+function Popup({children}) {
   return (
     <div className='popup'>
         {children}
