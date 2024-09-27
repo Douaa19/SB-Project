@@ -18,7 +18,6 @@ function Home() {
 
   return (
     <div>
-      <h1>test deployement</h1>
       <Header />
       <PresentationCards />
       <SectionCards
