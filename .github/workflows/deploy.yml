@@ -1,0 +1,38 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main  # This specifies the branch that will trigger the workflow
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # This specifies the environment for the job
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # This checks out your repository code
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Specify the Node.js version
+
+      - name: Install dependencies
+        run: npm install  # Install the project dependencies
+
+      - name: Build project
+        run: npm run build  # Build your project
+
+      - name: Deploy to server
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}  # Use a secret for SSH key
+          USER: your_username  # Replace with your server username
+          HOST: your_server_ip  # Replace with your server IP address
+          TARGET_DIR: /var/www/SB-Project/frontend/build  # Target directory on your server
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa  # Save the SSH key
+          chmod 600 ~/.ssh/id_rsa  # Set permissions
+          ssh-keyscan -H $HOST >> ~/.ssh/known_hosts  # Add server to known hosts
+          scp -r ./build/* $USER@$HOST:$TARGET_DIR  # Copy files to server
