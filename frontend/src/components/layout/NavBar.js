@@ -40,18 +40,16 @@ function NavBar() {
   };
 
   return (
-    <div className="h-max relative bg-white md:flex md:flex-row md:items-center md:justify-around gap-4 md:w-full md:pt-3 ssm:pt-2 font-normal md:gap-1 md:px-6 ssm:flex ssm:flex-col ssm:items-start ssm:px-8 ssm:gap-1 ssm:justify-center">
-      <div className="logo flex justify-center items-center md:ml-0 ssm:ml-[2rem]">
-        <a href="/">
-          <img
-            src={Logo}
-            alt="logo"
-            className="text-main lg:w-20 text-center p-2 text-18 hover:cursor-pointer md:w-16 ssm:w-12"
-          />
-        </a>
+    <div className="h-max relative md:flex md:flex-row md:items-center md:justify-between gap-4 md:w-full font-normal md:gap-1 ssm:flex ssm:flex-col ssm:items-start ssm:gap-1 ssm:justify-center py-2 md:px-10 ssm:px-8">
+      <div className="flex justify-center items-center md:ml-0 ssm:ml-[2rem]">
+        <img
+          src={Logo}
+          alt="logo"
+          className="text-main text-center hover:cursor-pointer md:w-16 ssm:w-12"
+        />
       </div>
       <div
-        className={`lg:block lg:text-18 lg:w-640 flex justify-center items-center md:block md:text-16 ssm:text-10 md:w-500 ssm:w-full p-0`}>
+        className={`lg:block lg:text-16 lg:w-640 flex justify-center items-center md:block ssm:text-14 md:w-500 ssm:w-full p-0`}>
         <ul
           className={`${
             open ? `menu ${isOpen}` : "ssm:hidden"
@@ -65,10 +63,10 @@ function NavBar() {
                 onClick={link.name === "logout" ? logout : () => {}}
                 className={`costum-list ${
                   open ? "open" : ""
-                } list sm:text-16 ssm:text-14 cursor-pointer ${
+                } list cursor-pointer ${
                   open
-                    ? `appear text-white opacity-1 hover:text-secondary`
-                    : "md:text-dark"
+                    ? `appear text-white opacity-1`
+                    : "md:text-main hover:font-semibold"
                 } md:${link.name === "login" ? "hidden" : "block"} md:${
                   link.name === "logout" ? "hidden" : "block"
                 }`}>
@@ -79,26 +77,18 @@ function NavBar() {
         </ul>
       </div>
       <div className="btns md:static flex justify-between items-center md:gap-2 w-max ssm:gap-2 ssm:absolute ssm:right-8">
-        <div className="">
+        <div className="w-full">
           {isLoggedIn !== true ? (
             <button
               onClick={() => (window.location = "/login")}
-              className="flex items-center justify-center mr-1 outline-none ssm:hidden md:w-[24px] md:block">
-              <LogIn
-                size={20}
-                strokeWidth={1}
-                className="hover:text-main text-dark"
-              />
+              className={`mr-1 md:block ssm:hidden outline-none text-main lg:text-16 ssm:text-14 py-1 px-6 rounded-full hover:scale-110 transition-all ease-in-out border border-main hover:bg-main hover:text-light hover:duration-300 hover:shadow-md`}>
+              <span className="">Log in</span>
             </button>
           ) : (
             <button
               onClick={logout}
-              className="flex items-center justify-center mr-1 outline-none ssm:hidden md:w-[24px] md:block">
-              <LogOut
-                size={20}
-                strokeWidth={1}
-                className="hover:text-main text-dark"
-              />
+              className={`mr-1 md:block ssm:hidden outline-none text-main lg:text-16 ssm:text-14 py-1 px-6 rounded-full hover:scale-110 transition-all ease-in-out border border-main hover:bg-main hover:text-light hover:duration-300 hover:shadow-md`}>
+              <span className="">Log out</span>
             </button>
           )}
         </div>
@@ -114,11 +104,11 @@ function NavBar() {
                 window.location = "/login";
               }
             }}>
-            <div className={`${open ? "mr-14" : ""}`}>
+            <div className={`${open ? "mr-[3.2rem]" : ""}`}>
               <ShoppingCart
                 size={20}
-                strokeWidth={1}
-                className="hover:text-main text-dark"
+                strokeWidth={1.2}
+                className="text-main hover:text-light hover:bg-main hover:duration-300 hover:shadow-md w-7 h-7 p-2 hover:scale-110 border border-main rounded-full transition-all ease-in-out"
               />
             </div>
           </button>

@@ -19,6 +19,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Montserrat", sans-serif;
+  background-color: #f5f5f5;
 }
 
 .costum-list {
@@ -45,7 +46,7 @@ body {
 }
 .open.list:before,
 .open.list:after {
-  background: #dab88a;
+  background: #f5f5f5;
 }
 .list:after {
   right: inherit;
@@ -343,7 +344,7 @@ h2.frame-5 span:nth-child(4) {
   aspect-ratio: 1 / 1;
   translate: 50% -50%;
   height: 88px;
-  background: #07030a;
+  background: #192655;
   border-radius: 50%;
   opacity: 0;
   transition: 0.6s;
@@ -401,6 +402,10 @@ body .menu ul li > a:hover {
 
 .menu.open li a {
   opacity: 1;
+}
+
+.menu.open li a:hover {
+  color: #f5f5f5;
 }
 
 @keyframes appear {
