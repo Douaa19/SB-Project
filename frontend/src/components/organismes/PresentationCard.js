@@ -17,21 +17,6 @@ function PresentationCard({ item }) {
         </div>
       </div>
     </div>
-    // <div className="md:text-16 ssm:text-14 ssm:p-4 sm:p-6 border rounded-lg border-main max-w-sm">
-    //   <div className="md:w-10 ssm:w-8 mb-2">
-    //     <img
-    //       src={item.icon}
-    //       alt={item.title}
-    //       className="w-full"
-    //     />
-    //   </div>
-    //   <div className="flex flex-col gap-1">
-    //     <span className="font-bold capitalize mb-1">
-    //       {item.title}
-    //     </span>
-    //     <p className="text-14">{item.desc}</p>
-    //   </div>
-    // </div>
   );
 }
 
