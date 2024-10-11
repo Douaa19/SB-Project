@@ -9,21 +9,18 @@ function ItemCard({ description, price, id, color, url, transition }) {
 
   return (
     <div
-      className={`${
-        transition === true ? "card-item" : ""
-      } bg-white h-max text-dark hover:cursor-pointer rounded-md opacity-img`}
+      className={`bg-white h-max text-dark hover:cursor-pointer rounded-md border border-gray-100 order-gray p-4 flex flex-col gap-4`}
       onClick={() => openProduct(id)}>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center rounded-sm">
         <img
           src={`${BACK_URL}/items/${id}/image`}
           alt=""
-          className="w-full h-[300px] item-img"
+          className="w-[250px] md:h-[250px] rounded"
         />
       </div>
-
-      <div className="sm:text-14 ssm:text-10 flex flex-col justify-center items-start gap-4 p-4">
+      <div className="sm:text-14 ssm:text-10 flex flex-col justify-center items-start gap-6">
         <p className="font-normale">{description}</p>
-        <span>{price}DH</span>
+        <span className="">{price}DH</span>
       </div>
     </div>
   );
