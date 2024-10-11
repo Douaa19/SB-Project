@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../assets/images/small-logo-sabaembroidery.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { LogIn, ShoppingCart, LogOut } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import {
   setIdAction,
   setRoleAction,
@@ -15,6 +15,25 @@ function NavBar() {
   const userId = useSelector((state) => state.user_id);
 
   const userOrders = orders[userId] || [];
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      if (scrollTop > 0) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   let links = [
     { name: "home", link: "/" },
@@ -40,7 +59,8 @@ function NavBar() {
   };
 
   return (
-    <div className="h-max relative md:flex md:flex-row md:items-center md:justify-between gap-4 md:w-full font-normal md:gap-1 ssm:flex ssm:flex-col ssm:items-start ssm:gap-1 ssm:justify-center py-2 md:px-10 ssm:px-8">
+    <div
+      className={`bg-light h-max fixed top-0 w-full z-[60] md:flex md:flex-row md:items-center md:justify-between gap-4 md:w-full font-normal md:gap-1 ssm:flex ssm:flex-col ssm:items-start ssm:gap-1 ssm:justify-center py-2 md:px-10 ssm:px-8 transition-colors duration-300`}>
       <div className="flex justify-center items-center md:ml-0 ssm:ml-[2rem]">
         <img
           src={Logo}
