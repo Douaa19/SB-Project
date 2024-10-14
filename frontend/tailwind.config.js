@@ -44,8 +44,6 @@ module.exports = {
         "gray-100": "#CECECE",
         red: "#FF004D",
         "dark-gray": "#333333",
-        blue: "#192655",
-        "blue-600": "rgb(37 99 235)",
       },
       padding: {
         1: "2px",
@@ -58,7 +56,6 @@ module.exports = {
         "main-bg": "#192655",
         secondary: "#DAB88A",
         light: "#F5F5F5",
-        blue: "#192655",
         "main-color": "#192655",
         dark: "#000000",
         white: "#FFFFFF",
@@ -83,11 +80,12 @@ module.exports = {
       },
       borderColor: {
         main: "#192655",
+        secondary: "#DAB88A",
+        light: "#F5F5F5",
         white: "#FFFFFF",
         dark: "#000000",
         red: "#FF004D",
         "gray-100": "rgb(206 206 206)",
-        secondary: "#DAB88A",
       },
       borderRadius: {
         2: "2px",
@@ -111,12 +109,11 @@ module.exports = {
       height: {
         80: "80px",
       },
-      boxShadowColor: {
-        "blue-600": "rgb(37 99 235)",
-      },
     },
     colors: {
       main: "#192655",
+      secondary: "#DAB88A",
+      light: "#F5F5F5",
     },
   },
   plugins: [],

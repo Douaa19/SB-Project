@@ -72,7 +72,7 @@ function SectionCards({ items, title, buttonText, page, limit, transition }) {
           ) : (
             <Slider {...settings}>
               {myArr.map((i, index) => (
-                <LoadingCard />
+                <LoadingCard key={index} />
               ))}
             </Slider>
           )}
