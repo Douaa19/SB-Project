@@ -705,10 +705,6 @@ video {
   margin-top: 2rem;
 }
 
-.mt-16 {
-  margin-top: 4rem;
-}
-
 .block {
   display: block;
 }
@@ -1385,6 +1381,11 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-light {
+  --tw-text-opacity: 1;
+  color: rgb(245 245 245 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -2055,6 +2056,10 @@ body .menu ul li > a:hover {
     margin-top: 2.5rem;
   }
 
+  .ssm\:mt-16 {
+    margin-top: 4rem;
+  }
+
   .ssm\:mt-2 {
     margin-top: 0.5rem;
   }
@@ -2065,10 +2070,6 @@ body .menu ul li > a:hover {
 
   .ssm\:mt-5 {
     margin-top: 1.25rem;
-  }
-
-  .ssm\:mt-16 {
-    margin-top: 4rem;
   }
 
   .ssm\:flex {
@@ -2299,10 +2300,6 @@ body .menu ul li > a:hover {
 }
 
 @media (min-width: 640px) {
-  .sm\:top-16 {
-    top: 4rem;
-  }
-
   .sm\:mt-10 {
     margin-top: 2.5rem;
   }
@@ -2380,16 +2377,8 @@ body .menu ul li > a:hover {
     position: static;
   }
 
-  .md\:top-\[6rem\] {
-    top: 6rem;
-  }
-
   .md\:top-\[7\.8rem\] {
     top: 7.8rem;
-  }
-
-  .md\:top-0 {
-    top: 0px;
   }
 
   .md\:ml-0 {
@@ -2408,6 +2397,10 @@ body .menu ul li > a:hover {
     margin-top: 0.5rem;
   }
 
+  .md\:mt-20 {
+    margin-top: 5rem;
+  }
+
   .md\:mt-3 {
     margin-top: 0.75rem;
   }
@@ -2422,14 +2415,6 @@ body .menu ul li > a:hover {
 
   .md\:mt-8 {
     margin-top: 2rem;
-  }
-
-  .md\:mt-16 {
-    margin-top: 4rem;
-  }
-
-  .md\:mt-20 {
-    margin-top: 5rem;
   }
 
   .md\:block {

@@ -3,11 +3,11 @@ import Logo from "../../assets/images/big-logo-sabaembroidery.svg";
 import FacebookIcon from "../../assets/icons/face-icon-png.png";
 import InstagramIcon from "../../assets/icons/instagram-icone.png";
 import PinterestIcon from "../../assets/icons/pinterest-icon-svg.png";
-import { Phone, Mail } from "lucide-react"
+import { Phone, Mail } from "lucide-react";
 
 function Footer() {
   return (
-    <div className="mt-10 bg-blue lg:py-8 ssm:py-6 lg:px-28 ssm:px-16 h-max text-white">
+    <div className="mt-10 bg-main lg:py-8 ssm:py-6 lg:px-28 ssm:px-16 h-max text-light">
       <div className="flex justify-between flex-col items-start">
         <div className="w-full mb-4 mx-0 flex items-center lg:justify-center ssm:justify-center">
           <a href="/">
@@ -65,7 +65,8 @@ function Footer() {
         <div className="flex justify-between items-center lg:w-28 ssm:w-24 gap-4">
           <a
             href="https://www.facebook.com/p/Embroidery-Saba-100087891292627/"
-            target="_blank">
+            target="_blank"
+            rel="noreferrer">
             <img
               src={FacebookIcon}
               className="hover:cursor-pointer"
@@ -74,14 +75,18 @@ function Footer() {
           </a>
           <a
             href="https://www.instagram.com/embroiderysaba?igsh=NGVhN2U2NjQ0Yg=="
-            target="_blank">
+            target="_blank"
+            rel="noreferrer">
             <img
               src={InstagramIcon}
               className="hover:cursor-pointer"
               alt="pintrest"
             />
           </a>
-          <a href="https://www.pinterest.com/sabaembroidery/" target="_blank">
+          <a
+            href="https://www.pinterest.com/sabaembroidery/"
+            target="_blank"
+            rel="noreferrer">
             <img
               src={PinterestIcon}
               className="hover:cursor-pointer"
@@ -89,7 +94,7 @@ function Footer() {
             />
           </a>
         </div>
-        <div className="h-[1px] bg-main w-full rounded-full"></div>
+        <div className="h-[1px] bg-light w-full rounded-full"></div>
         <div className="">
           <span className="text-white md:text-12 ssm:text-10 text-start">
             @ 2024 Saba Embroidery
