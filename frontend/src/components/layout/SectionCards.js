@@ -80,9 +80,9 @@ function SectionCards({ items, title, buttonText, page, limit, transition }) {
       </div>
       <div className="w-max mt-10">
         <button
-          className="text-center capitalize sm:text-14 ssm:text-12 font-bold border border-main text-main px-6 py-3 rounded-5 hover:text-white hover:bg-main"
+          class="relative flex px-6 py-3 items-center justify-center overflow-hidden bg-main md:text-16 ssm:text-14 font-medium rounded-md text-white shadow-md transition-all duration-300 before:absolute before:inset-0 before:border-0 before:border-white before:duration-100 before:ease-linear hover:bg-white hover:text-main hover:shadow-main hover:before:border-[25px]"
           onClick={() => (window.location = `/${page}`)}>
-          {buttonText}
+          <span class="relative z-10">{buttonText}</span>
         </button>
       </div>
     </div>
