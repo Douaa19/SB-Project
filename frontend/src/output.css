@@ -1868,6 +1868,37 @@ body .menu ul li > a:hover {
   color: rgb(255 0 77 / var(--tw-text-opacity));
 }
 
+.before\:absolute::before {
+  content: var(--tw-content);
+  position: absolute;
+}
+
+.before\:inset-0::before {
+  content: var(--tw-content);
+  inset: 0px;
+}
+
+.before\:border-0::before {
+  content: var(--tw-content);
+  border-width: 0px;
+}
+
+.before\:border-white::before {
+  content: var(--tw-content);
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.before\:duration-100::before {
+  content: var(--tw-content);
+  transition-duration: 100ms;
+}
+
+.before\:ease-linear::before {
+  content: var(--tw-content);
+  transition-timing-function: linear;
+}
+
 .hover\:scale-110:hover {
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
@@ -1945,8 +1976,18 @@ body .menu ul li > a:hover {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.hover\:shadow-main:hover {
+  --tw-shadow-color: #192655;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
 .hover\:duration-300:hover {
   transition-duration: 300ms;
+}
+
+.hover\:before\:border-\[25px\]:hover::before {
+  content: var(--tw-content);
+  border-width: 25px;
 }
 
 .focus\:outline-none:focus {

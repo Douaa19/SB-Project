@@ -45,6 +45,7 @@ module.exports = {
         red: "#FF004D",
         "dark-gray": "#333333",
         blue: "#192655",
+        "blue-600": "rgb(37 99 235)",
       },
       padding: {
         1: "2px",
@@ -74,6 +75,7 @@ module.exports = {
         "slate-800": "rgb(15 23 42)",
         "gray-300": "rgb(209 213 219)",
         "gray-100": "rgb(206 206 206)",
+        "blue-600": "rgb(37 99 235)",
       },
       borderWidth: {
         1: "1px",
@@ -108,6 +110,9 @@ module.exports = {
       },
       height: {
         80: "80px",
+      },
+      boxShadowColor: {
+        "blue-600": "rgb(37 99 235)",
       },
     },
     colors: {
