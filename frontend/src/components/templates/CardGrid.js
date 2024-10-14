@@ -1,5 +1,4 @@
 import React from "react";
-import Slider from "react-slick";
 import CategoryCard from "../organismes/CategoryCard";
 import AboutCard from "../organismes/AboutCard";
 import { ItemCard } from "../organismes";
@@ -13,55 +12,14 @@ function CardGrid({
   limit,
   transition,
 }) {
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    autoplay: true,
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    useTransform: true,
-    pauseOnHover: true,
-    rtl: true,
-    responsive: [
-      {
-        breakpoint: 1100,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 500,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 350,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          initialSlide: 2,
-        },
-      },
-    ],
-  };
+
   return (
     <>
       {type === "category" ? (
-        <div className="md:w-9/12 ssm:w-full my-4">
-          <Slider {...settings}>
-            {categories?.map((c, key) => (
-              <div className="flex items-center justify-between w-1/2 py-2">
-                <CategoryCard name={c.name} id={c._id} key={key} />
-              </div>
-            ))}
-          </Slider>
+        <div className="md:w-9/12 ssm:w-full my-4 flex items-center gap-2 flex-wrap">
+          {categories?.map((c, key) => (
+            <CategoryCard name={c.name} id={c._id} key={key} />
+          ))}
         </div>
       ) : (
         <>

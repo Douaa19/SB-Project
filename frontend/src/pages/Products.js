@@ -14,8 +14,6 @@ function Products({ title }) {
   const location = window.location.href;
   const bestSellingItems = useSelector((state) => state.bestSellingItems);
   const newestItems = useSelector((state) => state.newestItems);
-  console.log(bestSellingItems);
-  console.log(newestItems);
   // get items's category
   let itemsCategory = useSelector((state) => state.categoryItems);
   // search reasults items
@@ -23,8 +21,7 @@ function Products({ title }) {
 
   const limit = useSelector((state) => state.loadMoreItems.limit);
   const [displayLimit, setDisplayLimit] = useState(limit);
-  const url = location.includes("best-selling") ? "best-selling" : "products"
-
+  const url = location.includes("best-selling") ? "best-selling" : "products";
 
   useEffect(() => {
     setDisplayLimit(limit);
@@ -34,7 +31,7 @@ function Products({ title }) {
     setDisplayLimit(10);
 
     dispatch(setCategoryItems(null));
-  }, []);
+  }, [dispatch]);
 
   const handleLoadMore = () => {
     const newLimit = displayLimit + 10;
@@ -88,9 +85,7 @@ function Products({ title }) {
       <>
         <CardGrid
           type="products"
-          items={
-            url === "best-selling" ? bestSellingItems : newestItems
-          }
+          items={url === "best-selling" ? bestSellingItems : newestItems}
           url={url}
           limit={displayLimit}
           transition={true}
@@ -113,7 +108,7 @@ function Products({ title }) {
   return (
     <>
       <NavBar />
-      <div className="md:px-[4.5rem] lg:px-32 ssm:px-8 ssm:pt-4 w-full">
+      <div className="md:px-[4.5rem] lg:px-32 ssm:px-8 ssm:pt-4 w-full mt-8">
         <HeaderProducts title={title} categories={categories} type="category" />
         {contentToDisplay}
       </div>
