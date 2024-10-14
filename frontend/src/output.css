@@ -1939,6 +1939,16 @@ body .menu ul li > a:hover {
   color: rgb(255 0 77 / var(--tw-text-opacity));
 }
 
+.placeholder\:text-gray-100::placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(206 206 206 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-main::placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(25 38 85 / var(--tw-text-opacity));
+}
+
 .before\:absolute::before {
   content: var(--tw-content);
   position: absolute;
@@ -2163,6 +2173,22 @@ body .menu ul li > a:hover {
     height: 40vh;
   }
 
+  .ssm\:h-\[\] {
+    height: ;
+  }
+
+  .ssm\:h-\[20rem\] {
+    height: 20rem;
+  }
+
+  .ssm\:h-auto {
+    height: auto;
+  }
+
+  .ssm\:h-\[2\E0rem\] {
+    height: 2àrem;
+  }
+
   .ssm\:w-1 {
     width: 0.25rem;
   }
@@ -2315,6 +2341,16 @@ body .menu ul li > a:hover {
     padding-right: 2px;
   }
 
+  .ssm\:px-2 {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .ssm\:px-4 {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
   .ssm\:pb-2 {
     padding-bottom: 4px;
   }
@@ -2391,6 +2427,18 @@ body .menu ul li > a:hover {
 
   .sm\:h-full {
     height: 100%;
+  }
+
+  .sm\:h-\[26rem\] {
+    height: 26rem;
+  }
+
+  .sm\:h-auto {
+    height: auto;
+  }
+
+  .sm\:h-\[24rem\] {
+    height: 24rem;
   }
 
   .sm\:w-2 {

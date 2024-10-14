@@ -10,7 +10,7 @@ function ItemCard({ description, price, id, color, url }) {
 
   return (
     <div
-      className={`bg-white h-[26rem] text-dark hover:cursor-pointer rounded-md overflow-hidden border border-gray-100 order-gray flex flex-col justify-between gap-4 hover:shadow-lg transition-all duration-300 ease-in-out`}
+      className={`bg-white sm:h-[24rem] ssm:h-[20rem] text-dark hover:cursor-pointer rounded-md overflow-hidden border border-gray-100 order-gray flex flex-col justify-between gap-4 hover:shadow-lg transition-all duration-300 ease-in-out`}
       onClick={() => openProduct(id)}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}>
