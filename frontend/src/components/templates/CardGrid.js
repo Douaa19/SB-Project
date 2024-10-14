@@ -24,7 +24,7 @@ function CardGrid({
         <>
           {type === "products" ? (
             <>
-              <div className="grid xl:grid-cols-4 gap-6 mt-10 md:grid-cols-3 ssm:grid-cols-2">
+              <div className="grid xl:grid-cols-3 sm:grid-cols-2 ssm:grid-cols-2 gap-6 mt-10">
                 {items?.slice(0, limit).map((item, key) => (
                   <ItemCard
                     description={item.description}

@@ -48,7 +48,7 @@ function HeaderProducts({ title, categories }) {
       />
       <div className="h-full flex md:justify-between md:items-center md:flex-row md:gap-4 ssm:flex-col ssm:gap-4 sm:pt-4 sm:pb-2 ssm:py-4">
         <CardGrid type="category" categories={updatedCategories} />
-        <div className="flex justify-end items-end">
+        <div className="flex md:justify-end ssm:justify-start items-end">
           <div className="animate-border inline-block rounded-md bg-gradient-to-r from-main to-light bg-[length:400%_400%] p-[1px]">
             <Input
               className="rounded-5 lg:text-14 px-3 py-2 outline-none ssm:text-12 ssm:w-[11rem] bg-white text-main"

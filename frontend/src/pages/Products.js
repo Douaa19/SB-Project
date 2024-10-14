@@ -108,7 +108,7 @@ function Products({ title }) {
   return (
     <>
       <NavBar />
-      <div className="md:px-[4.5rem] lg:px-32 ssm:px-8 ssm:pt-4 w-full mt-8">
+      <div className="md:px-[4.5rem] lg:px-32 sm:px-4 ssm:px-1 ssm:pt-4 w-full mt-8">
         <HeaderProducts title={title} categories={categories} type="category" />
         {contentToDisplay}
       </div>
