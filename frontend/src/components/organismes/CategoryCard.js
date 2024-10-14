@@ -10,8 +10,6 @@ function CategoryCard({ name, id }) {
     isBestSellingPage ? state.bestSellingItems : state.newestItems
   );
 
-  // console.log(allProducts);
-
   const categoryItems = async () => {
     if (id === "all") {
       dispatch(setCategoryItems(allProducts));

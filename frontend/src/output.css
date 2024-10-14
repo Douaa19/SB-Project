@@ -709,6 +709,10 @@ video {
   display: block;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .flex {
   display: flex;
 }
@@ -897,6 +901,20 @@ video {
 
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@keyframes border {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-border {
+  animation: border 4s ease infinite;
 }
 
 @keyframes pulse {
@@ -1141,8 +1159,26 @@ video {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
 
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
 .bg-none {
   background-image: none;
+}
+
+.from-main {
+  --tw-gradient-from: #192655 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(25 38 85 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-light {
+  --tw-gradient-to: #F5F5F5 var(--tw-gradient-to-position);
+}
+
+.bg-\[length\:400\%_400\%\] {
+  background-size: 400% 400%;
 }
 
 .bg-cover {
@@ -1183,6 +1219,14 @@ video {
 
 .p-8 {
   padding: 2rem;
+}
+
+.p-\[\] {
+  padding: ;
+}
+
+.p-\[1px\] {
+  padding: 1px;
 }
 
 .px-10 {
@@ -1879,6 +1923,17 @@ body .menu ul li > a:hover {
 
 /* popup */
 
+/* input */
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* input */
+
 .placeholder\:text-red::placeholder {
   --tw-text-opacity: 1;
   color: rgb(255 0 77 / var(--tw-text-opacity));
@@ -2036,8 +2091,8 @@ body .menu ul li > a:hover {
     position: absolute;
   }
 
-  .ssm\:left-36 {
-    left: 9rem;
+  .ssm\:left-\[9\.5rem\] {
+    left: 9.5rem;
   }
 
   .ssm\:right-8 {
@@ -2350,13 +2405,16 @@ body .menu ul li > a:hover {
     padding-right: 6rem;
   }
 
-  .sm\:py-6 {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+  .sm\:pb-2 {
+    padding-bottom: 4px;
   }
 
   .sm\:pb-7 {
     padding-bottom: 1.75rem;
+  }
+
+  .sm\:pt-4 {
+    padding-top: 12px;
   }
 
   .sm\:text-14 {

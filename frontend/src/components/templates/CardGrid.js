@@ -12,7 +12,6 @@ function CardGrid({
   limit,
   transition,
 }) {
-
   return (
     <>
       {type === "category" ? (
