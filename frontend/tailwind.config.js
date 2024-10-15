@@ -123,6 +123,8 @@ module.exports = {
       main: "#192655",
       secondary: "#DAB88A",
       light: "#F5F5F5",
+      "gray-50": "rgb(249 250 251)",
+      "gray-700": "rgb(55 65 81)",
     },
   },
   plugins: [],

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadMoreItems, setCategoryItems } from "../redux/actions/items";
 import { Button } from "../components/atoms";
 import { NoDataCard } from "../components/organismes";
+import { motion } from "framer-motion";
 
 function Products({ title }) {
   const dispatch = useDispatch();

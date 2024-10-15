@@ -4,7 +4,7 @@ function Button({ className, rightIcon, type, text, onClick, textClass }) {
   return (
     <>
       <button type={type} className={className} onClick={onClick}>
-        {textClass ? <span className={`${textClass}`}>{text}</span> : { text }}
+        <span className={`${textClass ? textClass : ""}`}>{text}</span>
         {rightIcon ? rightIcon : ""}
       </button>
     </>
