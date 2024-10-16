@@ -45,6 +45,7 @@ function CardGrid({
                   title={item.title}
                   text={item.text}
                   image={item.image}
+                  reverse={key % 2 === 1}
                 />
               ))}
             </>
