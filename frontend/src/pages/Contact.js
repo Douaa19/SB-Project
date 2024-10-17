@@ -6,6 +6,7 @@ import { Form } from "../components/templates";
 import Popup from "../components/organismes/Popup";
 import ContactDonePopup from "../components/molecules/ContactDonePopup";
 import { setContactDone } from "../redux/actions/popups";
+import { MapPinHouse, Inbox, Phone } from "lucide-react";
 
 function Contact() {
   const dispatch = useDispatch();
@@ -18,25 +19,44 @@ function Contact() {
   return (
     <>
       <NavBar />
-      <div className="flex w-full md:px-28 ssm:px-16 md:mt-8 ssm:mt-4 justify-center">
-        <div className="flex flex-col items-center md:gap-10 ssm:gap-4 w-[80%]">
-          <PageTitle
-            className="font-extrabold md:text-42 ssm:text-32 capitalize text-main text-center"
-            title="contact us"
-          />
-          <p className="text-dark md:text-16 w-full ssm:text-12">
-            We'd love to hear from you! Whether you have a question, suggestion,
-            or just want to say hello, feel free to reach out using the form
-            below. Your feedback is valuable to us and we'll do our best to get
-            back to you as soon as possible.
-          </p>
-          <Form
-            className="flex flex-col items-between w-full gap-6"
-            type="contact"
-          />
+      <div className="mt-24 flex w-full md:px-16 ssm:px-8 justify-center">
+        <div className="flex justify-center items-center w-[90%] ssm:mb-10">
+          <div className="rounded-sm shadow-lg h-full bg-white flex md:flex-row ssm:flex-col items-center justify-center w-full">
+            <div className="py-6 lg:px-16 md:px-10 ssm:px-8 w-full flex justify-center">
+              <div className="md:w-10/12 ssm:w-full flex flex-col md:px-0 sm:px-12 ssm:px-4">
+                <div className="mb-8">
+                  <h1 className="text-main font-semibold text-18">
+                    Get in Touch
+                  </h1>
+                  <p className="text-gray-500 md:text-16 ssm:text-14 font-medium">
+                    Feel free to drop us a line below
+                  </p>
+                </div>
+                <div className="">
+                  <Form
+                    className="flex flex-col items-between w-full gap-4"
+                    type="contact"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="h-full flex justify-center items-start flex-col bg-main shadow-md text-light lg:px-12 md:px-6 sm:px-16 ssm:px-10 py-12 rounded-sm md:w-auto ssm:w-full">
+              <h2 className="font-medium pb-8">Contact Us</h2>
+              <div className="flex flex-col justify-arond items-center gap-4">
+                <div className="flex justify-start items-center gap-4 w-full py-2">
+                  <Inbox className="w- h-" size={20} />
+                  <p className="ssm:text-14">embroidery.saba12@gmail.com</p>
+                </div>
+                <div className="flex justify-start items-center gap-4 w-full py-2">
+                  <Phone className="w- h-" size={20} />
+                  <p className="ssm:text-14">+212634242755</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
       {contactPopup && (
         <div
           onClick={closePopup}
