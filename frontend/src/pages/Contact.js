@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { PageTitle } from "../components/atoms";
-import { NavBar, Footer } from "../components/layout";
+import { NavBar } from "../components/layout";
 import { Form } from "../components/templates";
 import Popup from "../components/organismes/Popup";
 import ContactDonePopup from "../components/molecules/ContactDonePopup";
 import { setContactDone } from "../redux/actions/popups";
-import { MapPinHouse, Inbox, Phone } from "lucide-react";
+import { Inbox, Phone } from "lucide-react";
+import Logo from "../assets/icons/Logo2.png";
 
 function Contact() {
   const dispatch = useDispatch();
@@ -20,10 +20,34 @@ function Contact() {
     <>
       <NavBar />
       <div className="mt-24 flex w-full md:px-16 ssm:px-8 justify-center">
-        <div className="flex justify-center items-center w-[90%] ssm:mb-10">
-          <div className="rounded-sm shadow-lg h-full bg-white flex md:flex-row ssm:flex-col items-center justify-center w-full">
-            <div className="py-6 lg:px-16 md:px-10 ssm:px-8 w-full flex justify-center">
-              <div className="md:w-10/12 ssm:w-full flex flex-col md:px-0 sm:px-12 ssm:px-4">
+        <div className="w-[70%] md:mb-0 ssm:mb-10">
+          <div className="relative w-full rounded-sm shadow-lg h-full bg-white ll:block ssm:flex ssm:flex-col-reverse">
+            <div className="overflow-hidden ll:absolute ll:top-8 ll:-left-20 ssm:relative bg-main shadow-md text-light px-8 py-12 rounded-sm ll:h-[85%]">
+              <div className="ll:absolute top-0 left-0 ll:block ssm:hidden bg-secondary opacity-5 w-full z-0">
+                <img
+                  src={Logo}
+                  alt="Saba Embroidery logo"
+                  className="w-auto"
+                  srcset=""
+                />
+              </div>
+              <div className="relative z-10">
+                <h2 className="font-medium pb-8">Contact Us</h2>
+                <div className="flex flex-col justify-arond items-center gap-4">
+                  <div className="flex justify-start items-center gap-4 w-full py-2">
+                    <Inbox className="w- h-" size={20} />
+                    <p className="ssm:text-14">embroidery.saba12@gmail.com</p>
+                  </div>
+                  <div className="flex justify-start items-center gap-4 w-full py-2">
+                    <Phone className="w- h-" size={20} />
+                    <p className="ssm:text-14">+212634242755</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="ll:grid grid-cols-3 py-6 md:px-10 ssm:px-8">
+              <div></div>
+              <div className="col-span-2 ll:pl-10">
                 <div className="mb-8">
                   <h1 className="text-main font-semibold text-18">
                     Get in Touch
@@ -34,22 +58,9 @@ function Contact() {
                 </div>
                 <div className="">
                   <Form
-                    className="flex flex-col items-between w-full gap-4"
+                    className="relative flex flex-col items-between w-full gap-4"
                     type="contact"
                   />
-                </div>
-              </div>
-            </div>
-            <div className="h-full flex justify-center items-start flex-col bg-main shadow-md text-light lg:px-12 md:px-6 sm:px-16 ssm:px-10 py-12 rounded-sm md:w-auto ssm:w-full">
-              <h2 className="font-medium pb-8">Contact Us</h2>
-              <div className="flex flex-col justify-arond items-center gap-4">
-                <div className="flex justify-start items-center gap-4 w-full py-2">
-                  <Inbox className="w- h-" size={20} />
-                  <p className="ssm:text-14">embroidery.saba12@gmail.com</p>
-                </div>
-                <div className="flex justify-start items-center gap-4 w-full py-2">
-                  <Phone className="w- h-" size={20} />
-                  <p className="ssm:text-14">+212634242755</p>
                 </div>
               </div>
             </div>
