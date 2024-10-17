@@ -22,7 +22,7 @@ function Contact() {
       <div className="mt-24 flex w-full md:px-16 ssm:px-8 justify-center">
         <div className="flex justify-center items-center w-[90%] ssm:mb-10">
           <div className="rounded-sm shadow-lg h-full bg-white flex md:flex-row ssm:flex-col items-center justify-center w-full">
-            <div className="py-6 px-8 w-full flex justify-center">
+            <div className="py-6 lg:px-16 md:px-10 ssm:px-8 w-full flex justify-center">
               <div className="md:w-10/12 ssm:w-full flex flex-col md:px-0 sm:px-12 ssm:px-4">
                 <div className="mb-8">
                   <h1 className="text-main font-semibold text-18">
@@ -40,7 +40,7 @@ function Contact() {
                 </div>
               </div>
             </div>
-            <div className="h-full flex justify-center items-start flex-col bg-main shadow-md text-light lg:px-12 md:px-6 sm:px-16 ssm:px-10 py-12 rounded-sm w-full">
+            <div className="h-full flex justify-center items-start flex-col bg-main shadow-md text-light lg:px-12 md:px-6 sm:px-16 ssm:px-10 py-12 rounded-sm md:w-auto ssm:w-full">
               <h2 className="font-medium pb-8">Contact Us</h2>
               <div className="flex flex-col justify-arond items-center gap-4">
                 <div className="flex justify-start items-center gap-4 w-full py-2">

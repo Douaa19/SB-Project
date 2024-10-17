@@ -1322,6 +1322,11 @@ video {
   padding-bottom: 2rem;
 }
 
+.px-16 {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
 .pb-10 {
   padding-bottom: 2.5rem;
 }
@@ -2650,6 +2655,10 @@ body .menu ul li > a:hover {
 
   .md\:w-10\/12 {
     width: 83.333333%;
+  }
+
+  .md\:w-auto {
+    width: auto;
   }
 
   .md\:min-w-\[50rem\] {
