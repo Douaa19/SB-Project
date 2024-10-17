@@ -133,13 +133,13 @@ function Form(props) {
       <div
         className={`flex ${
           props.type !== "contact"
-            ? "flex-col ssm:gap-2"
-            : "md:flex-row ssm:flex-col ssm:gap-6"
-        }  w-full md:justify-between ssm:justify-center items-center md:gap-2`}>
+            ? "flex-col md:gap-2 ssm:gap-2"
+            : "flex-col gap-4"
+        }  w-full md:justify-between ssm:justify-center items-center`}>
         {props.type !== "login" && (
           <Input
             type="text"
-            className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
+            className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
             placeHolder={`${props.type === "contact" ? "name" : "full name"}`}
             name="name"
             value={data.name}
@@ -149,7 +149,7 @@ function Form(props) {
         )}
         <Input
           type="email"
-          className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
+          className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
           placeHolder="example@email.com"
           name="email"
           value={data.email}
@@ -159,7 +159,7 @@ function Form(props) {
       </div>
       <Input
         type="phone"
-        className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
+        className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
         placeHolder="+212600000000"
         name="phone"
         value={data.phone}
@@ -183,7 +183,7 @@ function Form(props) {
       {props.type === "shipping" ? (
         <Input
           type="text"
-          className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
+          className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
           placeHolder="address"
           name="address"
           value={data.address}
@@ -194,7 +194,7 @@ function Form(props) {
       {props.type === "shipping" && (
         <Input
           type="text"
-          className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
+          className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
           placeHolder="postal code"
           name="postalCode"
           value={data.postalCode}
@@ -212,14 +212,14 @@ function Form(props) {
             value={data.message}
             onChange={(e) => handleChange("message", e.target.value)}
             error={errors.message}
-            className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
+            className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
           />
         </>
       )}
       <div className="flex items-center justify-start w-full">
         <Button
-          className={`w-full mt-4 ssm:m-0 md:mt-3
-          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
+          className={`ssm:m-0 md:mt-3
+          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white bg-main md:text-16 ssm:text-14 font-medium outline-none hover:bg-white hover:text-main`}
           text={
             props.type === "contact"
               ? "submit"

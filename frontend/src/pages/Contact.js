@@ -6,6 +6,7 @@ import { Form } from "../components/templates";
 import Popup from "../components/organismes/Popup";
 import ContactDonePopup from "../components/molecules/ContactDonePopup";
 import { setContactDone } from "../redux/actions/popups";
+import { MapPinHouse, Mail, Phone } from "lucide-react";
 
 function Contact() {
   const dispatch = useDispatch();
@@ -18,22 +19,50 @@ function Contact() {
   return (
     <>
       <NavBar />
-      <div className="flex w-full md:px-28 ssm:px-16 md:mt-8 ssm:mt-4 justify-center">
+      <div className="mt-24 flex w-full md:px-28 ssm:px-16 justify-center">
         <div className="flex flex-col items-center md:gap-10 ssm:gap-4 w-[80%]">
-          <PageTitle
-            className="font-extrabold md:text-42 ssm:text-32 capitalize text-main text-center"
-            title="contact us"
-          />
-          <p className="text-dark md:text-16 w-full ssm:text-12">
-            We'd love to hear from you! Whether you have a question, suggestion,
-            or just want to say hello, feel free to reach out using the form
-            below. Your feedback is valuable to us and we'll do our best to get
-            back to you as soon as possible.
-          </p>
-          <Form
-            className="flex flex-col items-between w-full gap-6"
-            type="contact"
-          />
+          <div className="relative w-full rounded-sm shadow-lg h-full bg-white">
+            <div className="absolute top-8 -left-20 bg-main shadow-md text-light px-8 py-12 rounded-sm">
+              <div className="">
+                <h2 className="text-medium pb-4">Contact Us</h2>
+                <div className="flex flex-col justify-arond items-center">
+                  <div className="flex justify-start items-center w-full px-3 py-2">
+                    <MapPinHouse size={20} />
+                    <p className="text-16">
+                      32, Avenue ve Newyork 321994 Newyork
+                    </p>
+                  </div>
+                  <div className="flex justify-start items-center w-full px-3 py-2">
+                    <Mail size={20} />
+                    <p className="text-16">sabaembroidery@gmail.com</p>
+                  </div>
+                  <div className="flex justify-start items-center w-full px-3 py-2">
+                    <Phone size={20} />
+                    <p className="text-16">+212657899765</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 py-6 md:px-10 ssm:px-8">
+              <div></div>
+              <div className="col-span-2">
+                <div className="mb-8">
+                  <h1 className="text-main font-semibold text-18">
+                    Get in Touch
+                  </h1>
+                  <p className="text-gray-500 md:text-16 ssm:text-14 font-medium">
+                    Feel free to drop us a line below
+                  </p>
+                </div>
+                <div className="">
+                  <Form
+                    className="relative flex flex-col items-between w-full gap-4"
+                    type="contact"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <Footer />
