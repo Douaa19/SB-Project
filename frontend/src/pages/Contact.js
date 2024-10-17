@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { PageTitle } from "../components/atoms";
-import { NavBar, Footer } from "../components/layout";
+import { NavBar } from "../components/layout";
 import { Form } from "../components/templates";
 import Popup from "../components/organismes/Popup";
 import ContactDonePopup from "../components/molecules/ContactDonePopup";
 import { setContactDone } from "../redux/actions/popups";
-import { MapPinHouse, Inbox, Phone } from "lucide-react";
+import { Inbox, Phone } from "lucide-react";
+import Logo from "../assets/icons/Logo2.png";
 
 function Contact() {
   const dispatch = useDispatch();
@@ -22,8 +22,16 @@ function Contact() {
       <div className="mt-24 flex w-full md:px-16 ssm:px-8 justify-center">
         <div className="w-[70%] md:mb-0 ssm:mb-10">
           <div className="relative w-full rounded-sm shadow-lg h-full bg-white ll:block ssm:flex ssm:flex-col-reverse">
-            <div className="ll:absolute ll:top-8 ll:-left-20 ssm:relative bg-main shadow-md text-light px-8 py-12 rounded-sm ll:h-[85%]">
-              <div className="">
+            <div className="overflow-hidden ll:absolute ll:top-8 ll:-left-20 ssm:relative bg-main shadow-md text-light px-8 py-12 rounded-sm ll:h-[85%]">
+              <div className="ll:absolute top-0 left-0 ll:block ssm:hidden bg-secondary opacity-5 w-full z-0">
+                <img
+                  src={Logo}
+                  alt="Saba Embroidery logo"
+                  className="w-auto"
+                  srcset=""
+                />
+              </div>
+              <div className="relative z-10">
                 <h2 className="font-medium pb-8">Contact Us</h2>
                 <div className="flex flex-col justify-arond items-center gap-4">
                   <div className="flex justify-start items-center gap-4 w-full py-2">
