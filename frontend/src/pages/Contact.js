@@ -6,7 +6,7 @@ import { Form } from "../components/templates";
 import Popup from "../components/organismes/Popup";
 import ContactDonePopup from "../components/molecules/ContactDonePopup";
 import { setContactDone } from "../redux/actions/popups";
-import { MapPinHouse, Mail, Phone } from "lucide-react";
+import { MapPinHouse, Inbox, Phone } from "lucide-react";
 
 function Contact() {
   const dispatch = useDispatch();
@@ -19,33 +19,11 @@ function Contact() {
   return (
     <>
       <NavBar />
-      <div className="mt-24 flex w-full md:px-28 ssm:px-16 justify-center">
-        <div className="flex flex-col items-center md:gap-10 ssm:gap-4 w-[80%]">
-          <div className="relative w-full rounded-sm shadow-lg h-full bg-white">
-            <div className="absolute top-8 -left-20 bg-main shadow-md text-light px-8 py-12 rounded-sm">
-              <div className="">
-                <h2 className="text-medium pb-4">Contact Us</h2>
-                <div className="flex flex-col justify-arond items-center">
-                  <div className="flex justify-start items-center w-full px-3 py-2">
-                    <MapPinHouse size={20} />
-                    <p className="text-16">
-                      32, Avenue ve Newyork 321994 Newyork
-                    </p>
-                  </div>
-                  <div className="flex justify-start items-center w-full px-3 py-2">
-                    <Mail size={20} />
-                    <p className="text-16">sabaembroidery@gmail.com</p>
-                  </div>
-                  <div className="flex justify-start items-center w-full px-3 py-2">
-                    <Phone size={20} />
-                    <p className="text-16">+212657899765</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="grid grid-cols-3 py-6 md:px-10 ssm:px-8">
-              <div></div>
-              <div className="col-span-2">
+      <div className="mt-24 flex w-full md:px-16 ssm:px-8 justify-center">
+        <div className="flex justify-center items-center w-[90%] ssm:mb-10">
+          <div className="rounded-sm shadow-lg h-full bg-white flex md:flex-row ssm:flex-col items-center justify-center w-full">
+            <div className="py-6 px-8 w-full flex justify-center">
+              <div className="md:w-10/12 ssm:w-full flex flex-col md:px-0 sm:px-12 ssm:px-4">
                 <div className="mb-8">
                   <h1 className="text-main font-semibold text-18">
                     Get in Touch
@@ -56,16 +34,29 @@ function Contact() {
                 </div>
                 <div className="">
                   <Form
-                    className="relative flex flex-col items-between w-full gap-4"
+                    className="flex flex-col items-between w-full gap-4"
                     type="contact"
                   />
+                </div>
+              </div>
+            </div>
+            <div className="h-full flex justify-center items-start flex-col bg-main shadow-md text-light lg:px-12 md:px-6 sm:px-16 ssm:px-10 py-12 rounded-sm w-full">
+              <h2 className="font-medium pb-8">Contact Us</h2>
+              <div className="flex flex-col justify-arond items-center gap-4">
+                <div className="flex justify-start items-center gap-4 w-full py-2">
+                  <Inbox className="w- h-" size={20} />
+                  <p className="ssm:text-14">embroidery.saba12@gmail.com</p>
+                </div>
+                <div className="flex justify-start items-center gap-4 w-full py-2">
+                  <Phone className="w- h-" size={20} />
+                  <p className="ssm:text-14">+212634242755</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
       {contactPopup && (
         <div
           onClick={closePopup}
