@@ -625,10 +625,6 @@ video {
   z-index: 60;
 }
 
-.z-20 {
-  z-index: 20;
-}
-
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
@@ -825,8 +821,8 @@ video {
   width: 2.5rem;
 }
 
-.w-24 {
-  width: 6rem;
+.w-2\/4 {
+  width: 50%;
 }
 
 .w-4 {
@@ -959,6 +955,10 @@ video {
   flex-direction: row;
 }
 
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -1009,6 +1009,10 @@ video {
 
 .gap-6 {
   gap: 1.5rem;
+}
+
+.gap-8 {
+  gap: 2rem;
 }
 
 .self-end {
