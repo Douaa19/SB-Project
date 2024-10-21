@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Input, Button } from "../atoms";
-import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
-import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
+import { Eye, EyeOff } from "lucide-react";
 import {
   loginAction,
   setIdAction,
@@ -13,22 +12,24 @@ import { jwtDecode } from "jwt-decode";
 import { setForgetPassword } from "../../redux/actions/popups";
 import { motion } from "framer-motion";
 
-function LoginCard(props) {
+function LoginCard() {
   const dispatch = useDispatch();
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
   const [passwordType, setPasswordType] = useState("password");
-  const [passwordIcon, setPasswordIcon] = useState(<CloseEye />);
+  const [passwordIcon, setPasswordIcon] = useState(
+    <EyeOff size={20} strokeWidth={1} s />
+  );
   const [errorResponse, setErrorResponse] = useState({});
 
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
-      setPasswordIcon(<OpenEye />);
+      setPasswordIcon(<Eye size={20} strokeWidth={1} />);
       return;
     }
     setPasswordType("password");
-    setPasswordIcon(<CloseEye />);
+    setPasswordIcon(<EyeOff size={20} strokeWidth={1} />);
   };
 
   const handleChange = async (element, value) => {
@@ -119,7 +120,7 @@ function LoginCard(props) {
         value={data.password}
         onChange={(e) => handleChange("password", e.target.value)}
         error={errors.password || errorResponse.password}
-        iconStyle="absolute right-2 top-[0.40rem] bg-white outline-none"
+        iconStyle="absolute right-2 top-[0.40rem] outline-none"
       />
       <span
         className="mt-0 text-12 capitalize hover:text-main hover:underline hover:cursor-pointer text-end w-full"

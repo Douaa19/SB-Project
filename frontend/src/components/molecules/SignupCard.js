@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import { Input, Button } from "../atoms";
 import { register } from "../../services/auth";
-import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
-import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
+import { Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
 
 function SignupCard() {
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
   const [passwordType, setPasswordType] = useState("password");
-  const [passwordIcon, setPasswordIcon] = useState(<CloseEye />);
+  const [passwordIcon, setPasswordIcon] = useState(<EyeOff strokeWidth={1} size={20} />);
   const [errorResponse, setErrorResponse] = useState({});
 
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
-      setPasswordIcon(<OpenEye />);
+      setPasswordIcon(<Eye size={20} strokeWidth={1} />);
       return;
     }
     setPasswordType("password");
-    setPasswordIcon(<CloseEye />);
+    setPasswordIcon(<EyeOff size={20} strokeWidth={1} />);
   };
 
   const handleChange = async (element, value) => {
@@ -143,7 +142,7 @@ function SignupCard() {
         error={errors.address || errorResponse.address}
       />
       <div className="flex items-center justify-center w-full mt-2">
-      <motion.button
+        <motion.button
           className="w-1/2 mt-4 ssm:m-0 md:mt-3
           border-1 border-main rounded-full md:px-10 ssm:px-6 md:py-3 ssm:py-[6px]  text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold"
           whileHover={{ scale: 1.05, boxShadow: "0 4px 10px rgba(0,0, 0, 0.2" }}

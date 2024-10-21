@@ -56,8 +56,12 @@ function Login() {
         animate="visible"
         variants={fadeIn}>
         <div className="h-[70vh] md:min-w-[50rem] sm:min-w-[40rem] ssm:min-w-[25rem] flex justify-between items-center bg-white rounded-md shadow-md px-4 py-5 m-2">
-          <div className="background-img h-full w-full sm:block ssm:hidden">
-            {signIn === "login" ? <LoginImg /> : <LoginImg />}
+          <div className="h-full w-full ssm:hidden sm:flex justify-center items-center">
+            {signIn === "login" ? (
+              <LoginImg className="w-full" />
+            ) : (
+              <LoginImg className="w-full" />
+            )}
           </div>
           <div className="w-full h-full p-8 flex flex-col justify-between items-center">
             <div className="w-full">
