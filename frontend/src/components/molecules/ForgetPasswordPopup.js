@@ -146,7 +146,7 @@ function ForgetPasswordPopup() {
               </div>
               <div className="">
                 <span
-                  className="text-12 capitalize text-main underline hover:cursor-pointer"
+                  className="text-14 capitalize text-gray-700 hover:text-main hover:cursor-pointer hover:underline"
                   onClick={closePopup}>
                   login
                 </span>
