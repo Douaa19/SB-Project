@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Input, Button } from "../atoms";
-import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
-import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
+import { Eye, EyeOff } from "lucide-react";
 import {
   loginAction,
   setIdAction,
@@ -11,23 +10,26 @@ import {
 import { login } from "../../services/auth";
 import { jwtDecode } from "jwt-decode";
 import { setForgetPassword } from "../../redux/actions/popups";
+import { motion } from "framer-motion";
 
-function LoginCard(props) {
+function LoginCard() {
   const dispatch = useDispatch();
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
   const [passwordType, setPasswordType] = useState("password");
-  const [passwordIcon, setPasswordIcon] = useState(<CloseEye />);
+  const [passwordIcon, setPasswordIcon] = useState(
+    <EyeOff size={20} strokeWidth={1} s />
+  );
   const [errorResponse, setErrorResponse] = useState({});
 
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
-      setPasswordIcon(<OpenEye />);
+      setPasswordIcon(<Eye size={20} strokeWidth={1} />);
       return;
     }
     setPasswordType("password");
-    setPasswordIcon(<CloseEye />);
+    setPasswordIcon(<EyeOff size={20} strokeWidth={1} />);
   };
 
   const handleChange = async (element, value) => {
@@ -97,7 +99,7 @@ function LoginCard(props) {
   };
 
   return (
-    <div className="login flex flex-col justify-center items-start gap-2 py-8 px-4 w-full">
+    <div className="login h-full flex flex-col justify-center items-start gap-2 px-4 w-full">
       <Input
         type="email"
         className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
@@ -118,7 +120,7 @@ function LoginCard(props) {
         value={data.password}
         onChange={(e) => handleChange("password", e.target.value)}
         error={errors.password || errorResponse.password}
-        iconStyle="absolute right-2 top-[0.40rem]"
+        iconStyle="absolute right-2 top-[0.40rem] outline-none text-[#5F6165]"
       />
       <span
         className="mt-0 text-12 capitalize hover:text-main hover:underline hover:cursor-pointer text-end w-full"
@@ -130,13 +132,18 @@ function LoginCard(props) {
         }}>
         forget password
       </span>
-      <div className="flex items-center justify-start w-full">
-        <Button
-          className={`w-full mt-4 ssm:m-0 md:mt-3
-          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
-          text="sign in"
-          onClick={() => handleSubmit()}
-        />
+      <div className="flex items-center justify-center w-full mt-2">
+        <motion.button
+          className="w-1/2 mt-4 ssm:m-0 md:mt-3
+          border-1 border-main rounded-full md:px-10 ssm:px-6 md:py-3 ssm:py-[6px]  text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold"
+          whileHover={{ scale: 1.05, boxShadow: "0 4px 10px rgba(0,0, 0, 0.2" }}
+          transition={{ duration: 0.3 }}>
+          <Button
+            className={`capitalize`}
+            text="sign in"
+            onClick={() => handleSubmit()}
+          />
+        </motion.button>
       </div>
     </div>
   );
