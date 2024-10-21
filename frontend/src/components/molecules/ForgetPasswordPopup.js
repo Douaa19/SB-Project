@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Input, Button } from "../atoms";
 import { ReactComponent as Close } from "../../assets/icons/close.svg";
 import { ReactComponent as Lock } from "../../assets/icons/lock-keyhole-minimalistic-svgrepo-com.svg";
@@ -12,6 +12,8 @@ function ForgetPasswordPopup() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [done, setDone] = useState(false);
+
+  const popupRef = useRef(null);
 
   const closePopup = () => {
     dispatch(setForgetPassword(false));
@@ -55,10 +57,24 @@ function ForgetPasswordPopup() {
     );
   };
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        closePopup();
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [popupRef, closePopup]);
+
   return (
     <>
       <div class="absolute bg-white opacity-80 inset-0 z-0"></div>
-      <div class="w-400 max-w-xl px-5 py-10 flex justify-center relative bg-white mx-auto my-auto rounded-xl shadow-lg animation-fadeIn">
+      <div
+        ref={popupRef}
+        class="w-400 max-w-xl px-5 py-10 flex justify-center relative bg-white mx-auto my-auto rounded-xl shadow-lg animation-fadeIn">
         {done !== true && (
           <div className="absolute top-2 right-2">
             <button
