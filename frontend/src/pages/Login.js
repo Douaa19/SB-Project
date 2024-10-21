@@ -31,6 +31,14 @@ function Login() {
       exit: { x: "100vw", opacity: 0, transition: { duration: 0.5 } },
     },
   };
+  const fadeIn = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeInOut" },
+    },
+  };
 
   useEffect(() => {
     dispatch(setForgetPassword(false));
@@ -42,7 +50,11 @@ function Login() {
 
   return (
     <>
-      <div className="bg-gray h-screen flex justify-center items-center">
+      <motion.div
+        className="bg-gray h-screen flex justify-center items-center"
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}>
         <div className="h-[70vh] md:min-w-[50rem] sm:min-w-[40rem] ssm:min-w-[25rem] flex justify-between items-center bg-white rounded-md shadow-md px-4 py-5 m-2">
           <div className="background-img h-full w-full sm:block ssm:hidden">
             {signIn === "login" ? <LoginImg /> : <LoginImg />}
@@ -107,7 +119,7 @@ function Login() {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

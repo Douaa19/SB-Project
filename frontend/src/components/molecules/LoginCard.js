@@ -11,6 +11,7 @@ import {
 import { login } from "../../services/auth";
 import { jwtDecode } from "jwt-decode";
 import { setForgetPassword } from "../../redux/actions/popups";
+import { motion } from "framer-motion";
 
 function LoginCard(props) {
   const dispatch = useDispatch();
@@ -118,7 +119,7 @@ function LoginCard(props) {
         value={data.password}
         onChange={(e) => handleChange("password", e.target.value)}
         error={errors.password || errorResponse.password}
-        iconStyle="absolute right-2 top-[0.40rem]"
+        iconStyle="absolute right-2 top-[0.40rem] bg-white outline-none"
       />
       <span
         className="mt-0 text-12 capitalize hover:text-main hover:underline hover:cursor-pointer text-end w-full"
@@ -130,13 +131,18 @@ function LoginCard(props) {
         }}>
         forget password
       </span>
-      <div className="flex items-center justify-start w-full">
-        <Button
-          className={`w-full mt-4 ssm:m-0 md:mt-3
-          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
-          text="sign in"
-          onClick={() => handleSubmit()}
-        />
+      <div className="flex items-center justify-center w-full mt-2">
+        <motion.button
+          className="w-1/2 mt-4 ssm:m-0 md:mt-3
+          border-1 border-main rounded-full md:px-10 ssm:px-6 md:py-3 ssm:py-[6px]  text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold"
+          whileHover={{ scale: 1.05, boxShadow: "0 4px 10px rgba(0,0, 0, 0.2" }}
+          transition={{ duration: 0.3 }}>
+          <Button
+            className={`capitalize`}
+            text="sign in"
+            onClick={() => handleSubmit()}
+          />
+        </motion.button>
       </div>
     </div>
   );

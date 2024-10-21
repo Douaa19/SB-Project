@@ -3,6 +3,7 @@ import { Input, Button } from "../atoms";
 import { register } from "../../services/auth";
 import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
 import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
+import { motion } from "framer-motion";
 
 function SignupCard() {
   const [data, setData] = useState({});
@@ -115,13 +116,13 @@ function SignupCard() {
         passwordIcon={passwordIcon}
         clickableIcon="clickable-icon"
         IconClickEvent={togglePassword}
-        className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
+        className={`border rounded-5 lg:block px-4 pr-2 py-3 outline-none w-full text-12 border-main`}
         placeHolder="password"
         name="password"
         value={data.password}
         onChange={(e) => handleChange("password", e.target.value)}
         error={errors.password || errorResponse.password}
-        iconStyle="absolute right-2 top-[0.40rem]"
+        iconStyle="absolute right-2 top-[0.40rem] bg-white outline-none"
       />
       <Input
         type="phone"
@@ -141,13 +142,18 @@ function SignupCard() {
         onChange={(e) => handleChange("address", e.target.value)}
         error={errors.address || errorResponse.address}
       />
-      <div className="flex items-center justify-start w-full">
-        <Button
-          className={`w-full mt-4 ssm:m-0 md:mt-3
-          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
-          text="sign in"
-          onClick={() => handleSubmit()}
-        />
+      <div className="flex items-center justify-center w-full mt-2">
+      <motion.button
+          className="w-1/2 mt-4 ssm:m-0 md:mt-3
+          border-1 border-main rounded-full md:px-10 ssm:px-6 md:py-3 ssm:py-[6px]  text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold"
+          whileHover={{ scale: 1.05, boxShadow: "0 4px 10px rgba(0,0, 0, 0.2" }}
+          transition={{ duration: 0.3 }}>
+          <Button
+            className={`capitalize`}
+            text="sign up"
+            onClick={() => handleSubmit()}
+          />
+        </motion.button>
       </div>
     </div>
   );
