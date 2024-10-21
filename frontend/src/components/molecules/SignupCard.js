@@ -91,7 +91,7 @@ function SignupCard() {
   };
 
   return (
-    <div className="login flex flex-col justify-center items-start gap-2 py-8 px-4 w-full">
+    <div className="login h-full flex flex-col justify-center items-start gap-2 px-4 w-full">
       <Input
         type="text"
         className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-12 border-main`}
