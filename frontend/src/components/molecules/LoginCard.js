@@ -120,7 +120,7 @@ function LoginCard() {
         value={data.password}
         onChange={(e) => handleChange("password", e.target.value)}
         error={errors.password || errorResponse.password}
-        iconStyle="absolute right-2 top-[0.40rem] outline-none"
+        iconStyle="absolute right-2 top-[0.40rem] outline-none text-[#5F6165]"
       />
       <span
         className="mt-0 text-12 capitalize hover:text-main hover:underline hover:cursor-pointer text-end w-full"

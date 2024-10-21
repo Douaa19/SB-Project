@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Input, Button } from "../atoms";
-import { ReactComponent as Close } from "../../assets/icons/close.svg";
-import { ReactComponent as Lock } from "../../assets/icons/lock-keyhole-minimalistic-svgrepo-com.svg";
-import { ReactComponent as Email } from "../../assets/icons/email-8-svgrepo-com.svg";
+import { X, LockKeyhole, Send } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { setForgetPassword } from "../../redux/actions/popups";
 import { forgetPassword } from "../../services/auth";
+import { motion } from "framer-motion";
 
 function ForgetPasswordPopup() {
   const dispatch = useDispatch();
@@ -21,10 +20,10 @@ function ForgetPasswordPopup() {
   };
 
   const handleSubmit = () => {
-    let error = validationForm(email);
+    validationForm(email);
 
-    if (error) {
-      console.log(error);
+    if (emailError) {
+      console.log(emailError);
     } else {
       forgetPassword(email).then((response) => {
         if (response.data) {
@@ -78,9 +77,9 @@ function ForgetPasswordPopup() {
         {done !== true && (
           <div className="absolute top-2 right-2">
             <button
-              className="border-2 border-[#5F6165] rounded-full outline-none"
+              className="border-2 border-gray-100 rounded-full outline-none text-gray-100 hover:border-gray-500 hover:text-gray-500 hover:shadow-md"
               onClick={closePopup}>
-              <Close />
+              <X size={20} strokeWidth={1} />
             </button>
           </div>
         )}
@@ -88,13 +87,21 @@ function ForgetPasswordPopup() {
           {done !== true ? (
             <div className="bg-[#FEF2F6] w-fit rounded-full p-4 flex justify-center items-center">
               <div className="bg-[#FCDAE4] rounded-full p-3 flex justify-center items-center">
-                <Lock />
+                <LockKeyhole
+                  size={32}
+                  strokeWidth={2}
+                  className="text-[#EB0045] flex justify-center items-center"
+                />
               </div>
             </div>
           ) : (
             <div className="bg-[#F0F9F9] w-fit rounded-full p-4 flex justify-center items-center">
               <div className="bg-[#C5E8E6] rounded-full p-3 flex justify-center items-center">
-                <Email />
+                <Send
+                  size={32}
+                  strokeWidth={2}
+                  className="text-[#6DC5C5] flex justify-center items-center"
+                />
               </div>
             </div>
           )}
@@ -122,13 +129,20 @@ function ForgetPasswordPopup() {
                   error={emailError}
                 />
               </div>
-              <div className="w-full">
-                <Button
-                  className={`w-full
-        border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
-                  text="send"
-                  onClick={() => handleSubmit()}
-                />
+              <div className="flex items-center justify-center w-full">
+                <motion.button
+                  className="w-1/2 mt-4 ssm:m-0 md:mt-3 border-1 border-main rounded-full md:px-10 ssm:px-6 md:py-3 ssm:py-[6px]  text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold"
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 4px 10px rgba(0,0, 0, 0.2",
+                  }}
+                  transition={{ duration: 0.3 }}>
+                  <Button
+                    className={`capitalize`}
+                    text="send"
+                    onClick={() => handleSubmit()}
+                  />
+                </motion.button>
               </div>
               <div className="">
                 <span

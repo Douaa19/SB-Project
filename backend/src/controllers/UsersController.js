@@ -140,8 +140,8 @@ const forgetPassword = async (req, res) => {
         port: 465,
         secure: true,
         auth: {
-          user: "embroidery.saba12@gmail.com",
-          pass: "EMBROIDERYsaba123",
+          user: "sabalarif97@gmail.com",
+          pass: "bjnzseuzjmzvomlv",
         },
       });
 
@@ -186,8 +186,8 @@ const recreatPassword = async (req, res) => {
         port: 465,
         secure: true,
         auth: {
-          user: "embroidery.saba12@gmail.com",
-          pass: "EMBROIDERYsaba123",
+          user: "sabalarif97@gmail.com",
+          pass: "bjnzseuzjmzvomlv",
         },
       });
 

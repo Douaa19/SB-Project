@@ -121,7 +121,7 @@ function SignupCard() {
         value={data.password}
         onChange={(e) => handleChange("password", e.target.value)}
         error={errors.password || errorResponse.password}
-        iconStyle="absolute right-2 top-[0.40rem] bg-white outline-none"
+        iconStyle="absolute right-2 top-[0.40rem] bg-white outline-none text-[#5F6165]"
       />
       <Input
         type="phone"
