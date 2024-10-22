@@ -1087,11 +1087,6 @@ video {
   border-top-width: 4px;
 }
 
-.border-\[\#5F6165\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(95 97 101 / var(--tw-border-opacity));
-}
-
 .border-gray-100 {
   --tw-border-opacity: 1;
   border-color: rgb(206 206 206 / var(--tw-border-opacity));
@@ -1461,9 +1456,29 @@ video {
   color: rgb(95 97 101 / var(--tw-text-opacity));
 }
 
+.text-\[\#6DC5C5\] {
+  --tw-text-opacity: 1;
+  color: rgb(109 197 197 / var(--tw-text-opacity));
+}
+
+.text-\[\#82C05D\] {
+  --tw-text-opacity: 1;
+  color: rgb(130 192 93 / var(--tw-text-opacity));
+}
+
 .text-\[\#A1A3A7\] {
   --tw-text-opacity: 1;
   color: rgb(161 163 167 / var(--tw-text-opacity));
+}
+
+.text-\[\#DFC67C\] {
+  --tw-text-opacity: 1;
+  color: rgb(223 198 124 / var(--tw-text-opacity));
+}
+
+.text-\[\#EB0045\] {
+  --tw-text-opacity: 1;
+  color: rgb(235 0 69 / var(--tw-text-opacity));
 }
 
 .text-dark {
@@ -1474,6 +1489,11 @@ video {
 .text-gray {
   --tw-text-opacity: 1;
   color: rgb(204 204 204 / var(--tw-text-opacity));
+}
+
+.text-gray-100 {
+  --tw-text-opacity: 1;
+  color: rgb(206 206 206 / var(--tw-text-opacity));
 }
 
 .text-gray-500 {
@@ -1509,48 +1529,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-gray-100 {
-  --tw-text-opacity: 1;
-  color: rgb(206 206 206 / var(--tw-text-opacity));
-}
-
-.text-\[\#EB0045\] {
-  --tw-text-opacity: 1;
-  color: rgb(235 0 69 / var(--tw-text-opacity));
-}
-
-.text-\[\#\] {
-  color: #;
-}
-
-.text-\[\#6DC5C5\] {
-  --tw-text-opacity: 1;
-  color: rgb(109 197 197 / var(--tw-text-opacity));
-}
-
-.text-\[\] {
-  color: ;
-}
-
-.text-\[\#CECECE\] {
-  --tw-text-opacity: 1;
-  color: rgb(206 206 206 / var(--tw-text-opacity));
-}
-
-.text-\[\#DFC67C\] {
-  --tw-text-opacity: 1;
-  color: rgb(223 198 124 / var(--tw-text-opacity));
-}
-
-.text-\[\#82C05D\] {
-  --tw-text-opacity: 1;
-  color: rgb(130 192 93 / var(--tw-text-opacity));
-}
-
-.underline {
-  text-decoration-line: underline;
 }
 
 .opacity-0 {
@@ -2112,6 +2090,11 @@ body .menu ul li > a:hover {
   font-weight: 600;
 }
 
+.hover\:text-gray-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
 .hover\:text-light:hover {
   --tw-text-opacity: 1;
   color: rgb(245 245 245 / var(--tw-text-opacity));
@@ -2135,11 +2118,6 @@ body .menu ul li > a:hover {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.hover\:text-gray-500:hover {
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
 .hover\:underline:hover {
@@ -2503,10 +2481,6 @@ body .menu ul li > a:hover {
 @media (min-width: 640px) {
   .sm\:mt-10 {
     margin-top: 2.5rem;
-  }
-
-  .sm\:block {
-    display: block;
   }
 
   .sm\:flex {
