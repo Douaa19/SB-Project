@@ -111,18 +111,6 @@ function BigItemCard({ url, item }) {
     return errors;
   };
 
-  const buyNow = () => {
-    // validation
-    let errors = handleError(order);
-
-    if (Object.keys(errors).length === 0) {
-      dispatch(setOrders(userId, order.item, order.quantity));
-      window.location = `/basket`;
-    } else {
-      console.log("Error!!");
-    }
-  };
-
   const addToCard = () => {
     // validation
     let errors = handleError(order);
@@ -151,10 +139,10 @@ function BigItemCard({ url, item }) {
     };
 
     fetchItemImages();
-  }, []);
+  }, [item._id]);
 
   return (
-    <div className="lg:py-8 ssm:py-6 sm:px-24 ssm:px-6 mt-16 h-auto">
+    <div className="lg:py-8 ssm:py-6 sm:px-24 ssm:px-6 mt-20 h-auto">
       <div className="flex flex-col gap-3 h-full">
         <div className="capitalize text-16">
           <p>

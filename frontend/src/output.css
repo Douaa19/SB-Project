@@ -657,6 +657,11 @@ video {
   margin-bottom: auto;
 }
 
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -727,6 +732,10 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mt-20 {
+  margin-top: 5rem;
 }
 
 .block {
@@ -1129,6 +1138,11 @@ video {
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
+.border-e-red {
+  --tw-border-opacity: 1;
+  border-inline-end-color: rgb(255 0 77 / var(--tw-border-opacity));
+}
+
 .bg-\[\#C5E8E6\] {
   --tw-bg-opacity: 1;
   background-color: rgb(197 232 230 / var(--tw-bg-opacity));
@@ -1385,6 +1399,18 @@ video {
 
 .pt-4 {
   padding-top: 12px;
+}
+
+.pl-10 {
+  padding-left: 2.5rem;
+}
+
+.pl-12 {
+  padding-left: 3rem;
+}
+
+.pl-16 {
+  padding-left: 4rem;
 }
 
 .text-center {
@@ -2467,6 +2493,11 @@ body .menu ul li > a:hover {
     padding-bottom: 6px;
   }
 
+  .ssm\:py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
   .ssm\:pb-2 {
     padding-bottom: 4px;
   }
@@ -2956,6 +2987,11 @@ body .menu ul li > a:hover {
   .lg\:py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
+  }
+
+  .lg\:py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 
   .lg\:text-14 {
