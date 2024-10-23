@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { Button, Input } from "../atoms";
+import { Button } from "../atoms";
 import { setOrders } from "../../redux/actions/orders";
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
+import Select from "react-select";
+import chroma from "chroma-js";
 import { BACK_URL } from "../../config";
 import { ReactComponent as Next } from "../../assets/icons/arrow-next-small-svgrepo-com.svg";
 import { ReactComponent as Prev } from "../../assets/icons/arrow-prev-small-svgrepo-com.svg";
@@ -16,6 +19,17 @@ function BigItemCard({ url, item }) {
     quantity: 1,
     item,
   });
+  const [selectedNumber, setSelectedNumber] = useState(null);
+
+  const colorOptions = [
+    { value: "beige", label: "Beige", color: "#ede8d0" },
+    { value: "black", label: "Black", color: "#000000" },
+  ];
+
+  const numberOptions = Array.from({ length: 5 }, (_, i) => ({
+    value: i + 1,
+    label: `${i + 1}`,
+  }));
 
   const settings = {
     dots: true,
@@ -33,6 +47,58 @@ function BigItemCard({ url, item }) {
       );
     },
     dotsClass: "slick-dots",
+  };
+
+  const colorStyles = {
+    control: (styles) => ({ ...styles, background: "white" }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      const color = chroma(data.color);
+      return {
+        ...styles,
+        backgroundColor: isDisabled
+          ? undefined
+          : isSelected
+          ? data.color
+          : isFocused
+          ? color.alpha(0.1).css()
+          : undefined,
+        color: isDisabled
+          ? "#ccc"
+          : isSelected
+          ? chroma.contrast(color, "black") > 2
+            ? "white"
+            : "black"
+          : data.color,
+        cursor: isDisabled ? "not-allowed" : "default",
+        ":active": {
+          ...styles[":active"],
+          backgroundColor: !isDisabled
+            ? isSelected
+              ? data.color
+              : color.alpha(0.3).css()
+            : undefined,
+        },
+      };
+    },
+    multiValue: (styles, { data }) => {
+      const color = chroma(data.color);
+      return {
+        ...styles,
+        backgroundColor: color.alpha(0.1).css(),
+      };
+    },
+    multiValueLabel: (styles, { data }) => ({
+      ...styles,
+      color: chroma.contrast(data.color, "white") > 2 ? data.color : "black", // Ensure black text for white option
+    }),
+    multiValueRemove: (styles, { data }) => ({
+      ...styles,
+      color: data.color,
+      ":hover": {
+        backgroundColor: data.color,
+        color: "white",
+      },
+    }),
   };
 
   const handleError = (data) => {
@@ -69,6 +135,10 @@ function BigItemCard({ url, item }) {
     }
   };
 
+  const handleNumberChange = (selectedOption) => {
+    setSelectedNumber(selectedOption);
+  };
+
   useEffect(() => {
     const fetchItemImages = async () => {
       try {
@@ -85,8 +155,8 @@ function BigItemCard({ url, item }) {
   }, []);
 
   return (
-    <div className="lg:py-8 ssm:py-6 sm:px-24 ssm:px-6 mt-16">
-      <div className="flex flex-col gap-3">
+    <div className="lg:py-8 ssm:py-6 sm:px-24 ssm:px-6 mt-16 h-auto">
+      <div className="flex flex-col gap-3 h-full">
         <div className="capitalize text-16">
           <p>
             <a
@@ -106,8 +176,8 @@ function BigItemCard({ url, item }) {
             </span>
           </p>
         </div>
-        <div className="flex md:flex-row md:justify-between items-center ssm:flex-col ssm:justify-start md:gap-16 ssm:gap-12">
-          <div className="flex justify-start md:w-1/2 ssm:w-full">
+        <div className="h-auto flex md:flex-row md:justify-between items-center ssm:flex-col ssm:justify-start md:gap-16 ssm:gap-12">
+          <div className="flex justify-start md:w-1/2 ssm:w-full h-full">
             <div className="w-full">
               {item.images.length > 0 ? (
                 <>
@@ -117,7 +187,7 @@ function BigItemCard({ url, item }) {
                         key={index}
                         className="w-auto max-h-[400px] flex items-center justify-center relative">
                         <img
-                          className="object-cover w-full h-auto px-1"
+                          className="object-contain w-full h-auto px-1"
                           src={`data:image/png;base64,${imageData}`}
                           alt="item_img"
                         />
@@ -130,30 +200,35 @@ function BigItemCard({ url, item }) {
               )}
             </div>
           </div>
-          <div className="flex justify-start w-full ssm:mt-8 md:mt-0">
-            <div className="text-start w-full">
+          <div className="md:h-[60vh] ssm:h-auto flex justify-start w-full ssm:mt-8 md:mt-0">
+            <div className="w-full flex flex-col justify-between items-start">
               <div className="">
-                <h3 className="lg:text-24 md:text-18 text-dark-gray font-bold">
+                <h3 className="lg:text-24 md:text-18 text-dark-gray font-bold tracking-wider">
                   {item.title}
                 </h3>
-                <p className="">{item.description}</p>
-                <span>{`${item.size} cm`}</span>
-                <div className="md:mt-10 ssm:mt-2 md:gap-3 ssm:gap-1 flex flex-col md:text-16 ssm:text-14">
-                  <div
-                    className={`border h-4 w-4 rounded-full ${
-                      item.color === "black"
-                        ? "bg-dark"
-                        : item.color === "white"
-                        ? "bg-white"
-                        : "bg-main"
-                    }`}></div>
-                  {/* <div className="">
-                  {item.colors.map((color, index) => (
-                    <div>{color}</div>
-                  ))}
-                </div> */}
+                <p className="md:text-16 ssm:text-14">{item.description}</p>
+                <span className="md:text-16 ssm:text-14">{`${item.size} cm`}</span>
+                <div className="flex justify-start items-center gap-2 w-full mt-4">
+                  <Select
+                    closeMenuOnSelect={false}
+                    defaultValue={[]}
+                    isMulti
+                    options={colorOptions}
+                    styles={colorStyles}
+                    placeholder="Color"
+                    className="w-[12rem] text-14"
+                  />
+                  <Select
+                    value={selectedNumber}
+                    onChange={handleNumberChange}
+                    options={numberOptions}
+                    placeholder="Quantity"
+                    isClearable
+                    className="text-14"
+                  />
                 </div>
-                <div className="mt-2">
+                <span className="md:text-18 ssm:text-16 mt-4">{`${item.price}DH`}</span>
+                {/* <div className="mt-2">
                   <Input
                     type="number"
                     className={`border rounded-5 lg:text-14 lg:block px-2 py-2 outline-none md:text-12 w-10 ssm:text-12 ${
@@ -168,20 +243,16 @@ function BigItemCard({ url, item }) {
                     }
                     error={errors.quantity}
                   />
-                  <span className="lg:text-24 md:text-18">{`${item.price}DH`}</span>
-                </div>
+                </div> */}
               </div>
-              <div className="flex flex-col gap-4 md:mt-40 ssm:mt-10 ssm:items-center">
-                <Button
-                  className="ssm:min-w-[75%] md:w-1/2 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-main hover:text-white text-main rounded-md py-3 capitalize"
-                  text="buy now"
-                  onClick={buyNow}
-                />
-                <Button
-                  className="ssm:min-w-[75%] md:w-1/2 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-white hover:text-main bg-main text-white rounded-md py-3 capitalize"
-                  text="add to card"
-                  onClick={addToCard}
-                />
+              <div className="flex justify-center ssm:items-center w-full">
+                <motion.button>
+                  <Button
+                    className="w-1/2 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-white hover:text-main bg-main text-white rounded-full py-3"
+                    text="Add to card"
+                    onClick={addToCard}
+                  />
+                </motion.button>
               </div>
             </div>
           </div>
