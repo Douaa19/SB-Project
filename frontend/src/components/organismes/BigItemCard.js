@@ -4,6 +4,8 @@ import { Button, Input } from "../atoms";
 import { setOrders } from "../../redux/actions/orders";
 import { useDispatch, useSelector } from "react-redux";
 import { BACK_URL } from "../../config";
+import { ReactComponent as Next } from "../../assets/icons/arrow-next-small-svgrepo-com.svg";
+import { ReactComponent as Prev } from "../../assets/icons/arrow-prev-small-svgrepo-com.svg";
 
 function BigItemCard({ url, item }) {
   const dispatch = useDispatch();
@@ -17,23 +19,17 @@ function BigItemCard({ url, item }) {
 
   const settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 1000,
     autoplay: false,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <></>,
-    prevArrow: <></>,
+    nextArrow: <Next />,
+    prevArrow: <Prev />,
     useTransform: true,
     customPaging: (i) => {
       return (
-        <div className="w-16 h-16 flex justify-center items-center">
-          <img
-            src={`data:image/png;base64,${images[i]}`}
-            alt={`dot_image_${i}`}
-            className="h-full w-full object-cover rounded-lg hover:cursor-pointer hover:opacity-90"
-          />
-        </div>
+        <div className="w-3 h-3 flex justify-center items-center border border-gray-500 rounded-full hover:bg-gray-100 hover:border-gray-100 transition-all ease-in-out duration-300"></div>
       );
     },
     dotsClass: "slick-dots",
@@ -121,7 +117,7 @@ function BigItemCard({ url, item }) {
                         key={index}
                         className="w-auto max-h-[400px] flex items-center justify-center relative">
                         <img
-                          className="object-contain w-full h-auto"
+                          className="object-cover w-full h-auto px-1"
                           src={`data:image/png;base64,${imageData}`}
                           alt="item_img"
                         />
