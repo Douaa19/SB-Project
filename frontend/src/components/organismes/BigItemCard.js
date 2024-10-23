@@ -9,22 +9,35 @@ function BigItemCard({ url, item }) {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user_id);
   const [images, setImages] = useState([]);
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 2000,
-    autoplay: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    nextArrow: null,
-    prevArrow: null,
-    useTransform: true,
-  };
   const [errors, setErrors] = useState({});
   const [order, setOrder] = useState({
     quantity: 1,
     item,
   });
+
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 1000,
+    autoplay: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <></>,
+    prevArrow: <></>,
+    useTransform: true,
+    customPaging: (i) => {
+      return (
+        <div className="w-16 h-16 flex justify-center items-center">
+          <img
+            src={`data:image/png;base64,${images[i]}`}
+            alt={`dot_image_${i}`}
+            className="h-full w-full object-cover rounded-lg hover:cursor-pointer hover:opacity-90"
+          />
+        </div>
+      );
+    },
+    dotsClass: "slick-dots",
+  };
 
   const handleError = (data) => {
     const errors = {};
@@ -76,7 +89,7 @@ function BigItemCard({ url, item }) {
   }, []);
 
   return (
-    <div className="lg:py-8 ssm:py-6 sm:px-24 ssm:px-6">
+    <div className="lg:py-8 ssm:py-6 sm:px-24 ssm:px-6 mt-16">
       <div className="flex flex-col gap-3">
         <div className="capitalize text-16">
           <p>
@@ -97,16 +110,18 @@ function BigItemCard({ url, item }) {
             </span>
           </p>
         </div>
-        <div className="flex md:flex-row md:justify-between items-center ssm:flex-col ssm:justify-start md:gap-28 ssm:gap-12">
+        <div className="flex md:flex-row md:justify-between items-center ssm:flex-col ssm:justify-start md:gap-16 ssm:gap-12">
           <div className="flex justify-start md:w-1/2 ssm:w-full">
             <div className="w-full">
               {item.images.length > 0 ? (
                 <>
                   <Slider {...settings}>
                     {images.map((imageData, index) => (
-                      <div className="w-auto max-h-[500px]">
+                      <div
+                        key={index}
+                        className="w-auto max-h-[400px] flex items-center justify-center relative">
                         <img
-                          key={index}
+                          className="object-contain w-full h-auto"
                           src={`data:image/png;base64,${imageData}`}
                           alt="item_img"
                         />
@@ -115,34 +130,33 @@ function BigItemCard({ url, item }) {
                   </Slider>
                 </>
               ) : (
-                <></>
+                <p>No images available</p>
               )}
             </div>
           </div>
-          <div className="flex justify-start w-full">
+          <div className="flex justify-start w-full ssm:mt-8 md:mt-0">
             <div className="text-start w-full">
               <div className="">
-                <h3 className="lg:text-24 md:text-18 font-bold">
+                <h3 className="lg:text-24 md:text-18 text-dark-gray font-bold">
                   {item.title}
                 </h3>
-                <span className="lg:text-24 md:text-18">{`${item.price}DH`}</span>
-              </div>
-              <div className="md:mt-10 ssm:mt-2 md:gap-3 ssm:gap-1 flex flex-col md:text-16 ssm:text-14">
-                <p>{item.description}</p>
+                <p className="">{item.description}</p>
                 <span>{`${item.size} cm`}</span>
-                <div
-                  className={`border h-4 w-4 rounded-full ${
-                    item.color === "black"
-                      ? "bg-dark"
-                      : item.color === "white"
-                      ? "bg-white"
-                      : "bg-main"
-                  }`}></div>
-                {/* <div className="">
+                <div className="md:mt-10 ssm:mt-2 md:gap-3 ssm:gap-1 flex flex-col md:text-16 ssm:text-14">
+                  <div
+                    className={`border h-4 w-4 rounded-full ${
+                      item.color === "black"
+                        ? "bg-dark"
+                        : item.color === "white"
+                        ? "bg-white"
+                        : "bg-main"
+                    }`}></div>
+                  {/* <div className="">
                   {item.colors.map((color, index) => (
                     <div>{color}</div>
                   ))}
                 </div> */}
+                </div>
                 <div className="mt-2">
                   <Input
                     type="number"
@@ -158,6 +172,7 @@ function BigItemCard({ url, item }) {
                     }
                     error={errors.quantity}
                   />
+                  <span className="lg:text-24 md:text-18">{`${item.price}DH`}</span>
                 </div>
               </div>
               <div className="flex flex-col gap-4 md:mt-40 ssm:mt-10 ssm:items-center">
