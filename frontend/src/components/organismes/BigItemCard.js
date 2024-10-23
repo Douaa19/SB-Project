@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { Button } from "../atoms";
+import { Button, Input } from "../atoms";
 import { setOrders } from "../../redux/actions/orders";
 import { useDispatch, useSelector } from "react-redux";
-import { motion } from "framer-motion";
 import Select from "react-select";
 import chroma from "chroma-js";
 import { BACK_URL } from "../../config";
@@ -208,7 +207,7 @@ function BigItemCard({ url, item }) {
                 </h3>
                 <p className="md:text-16 ssm:text-14">{item.description}</p>
                 <span className="md:text-16 ssm:text-14">{`${item.size} cm`}</span>
-                <div className="flex justify-start items-center gap-2 w-full mt-4">
+                <div className="flex justify-start items-center gap-2 w-full my-4">
                   <Select
                     closeMenuOnSelect={false}
                     defaultValue={[]}
@@ -227,7 +226,7 @@ function BigItemCard({ url, item }) {
                     className="text-14"
                   />
                 </div>
-                <span className="md:text-18 ssm:text-16 mt-4">{`${item.price}DH`}</span>
+                <span className="md:text-18 ssm:text-16">{`${item.price}DH`}</span>
                 {/* <div className="mt-2">
                   <Input
                     type="number"
@@ -245,14 +244,13 @@ function BigItemCard({ url, item }) {
                   />
                 </div> */}
               </div>
-              <div className="flex justify-center ssm:items-center w-full">
-                <motion.button>
-                  <Button
-                    className="w-1/2 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-white hover:text-main bg-main text-white rounded-full py-3"
-                    text="Add to card"
-                    onClick={addToCard}
-                  />
-                </motion.button>
+              <div className="flex justify-start ssm:items-center w-full">
+                <Button
+                  className="w-1/2 ssm:m-0 md:mt-3
+          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white bg-main md:text-16 ssm:text-14 font-medium outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105"
+                  text="Add to card"
+                  onClick={addToCard}
+                />
               </div>
             </div>
           </div>
