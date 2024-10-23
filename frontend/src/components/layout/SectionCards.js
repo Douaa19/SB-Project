@@ -49,7 +49,7 @@ function SectionCards({ items, title, buttonText, page, limit, transition }) {
   return (
     <div
       className={`sm:px-10 ssm:px-6 ssm:pb-4 sm:pb-7 flex flex-col justify-center items-center w-full`}>
-      <div className="capitalize sm:text-32 ssm:text-24 font-extrabold text-main">
+      <div className="w-full capitalize sm:text-32 ssm:text-24 font-extrabold text-main pl-16">
         {title}
       </div>
       <div className="w-[90%]">

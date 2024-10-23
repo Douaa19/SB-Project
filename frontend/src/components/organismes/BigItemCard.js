@@ -3,28 +3,102 @@ import Slider from "react-slick";
 import { Button, Input } from "../atoms";
 import { setOrders } from "../../redux/actions/orders";
 import { useDispatch, useSelector } from "react-redux";
+import Select from "react-select";
+import chroma from "chroma-js";
 import { BACK_URL } from "../../config";
+import { ReactComponent as Next } from "../../assets/icons/arrow-next-small-svgrepo-com.svg";
+import { ReactComponent as Prev } from "../../assets/icons/arrow-prev-small-svgrepo-com.svg";
 
 function BigItemCard({ url, item }) {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user_id);
   const [images, setImages] = useState([]);
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 2000,
-    autoplay: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    nextArrow: null,
-    prevArrow: null,
-    useTransform: true,
-  };
   const [errors, setErrors] = useState({});
   const [order, setOrder] = useState({
     quantity: 1,
     item,
   });
+  const [selectedNumber, setSelectedNumber] = useState(null);
+
+  const colorOptions = [
+    { value: "beige", label: "Beige", color: "#ede8d0" },
+    { value: "black", label: "Black", color: "#000000" },
+  ];
+
+  const numberOptions = Array.from({ length: 5 }, (_, i) => ({
+    value: i + 1,
+    label: `${i + 1}`,
+  }));
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    autoplay: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <Next />,
+    prevArrow: <Prev />,
+    useTransform: true,
+    customPaging: (i) => {
+      return (
+        <div className="w-3 h-3 flex justify-center items-center border border-gray-500 rounded-full hover:bg-gray-100 hover:border-gray-100 transition-all ease-in-out duration-300"></div>
+      );
+    },
+    dotsClass: "slick-dots",
+  };
+
+  const colorStyles = {
+    control: (styles) => ({ ...styles, background: "white" }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      const color = chroma(data.color);
+      return {
+        ...styles,
+        backgroundColor: isDisabled
+          ? undefined
+          : isSelected
+          ? data.color
+          : isFocused
+          ? color.alpha(0.1).css()
+          : undefined,
+        color: isDisabled
+          ? "#ccc"
+          : isSelected
+          ? chroma.contrast(color, "black") > 2
+            ? "white"
+            : "black"
+          : data.color,
+        cursor: isDisabled ? "not-allowed" : "default",
+        ":active": {
+          ...styles[":active"],
+          backgroundColor: !isDisabled
+            ? isSelected
+              ? data.color
+              : color.alpha(0.3).css()
+            : undefined,
+        },
+      };
+    },
+    multiValue: (styles, { data }) => {
+      const color = chroma(data.color);
+      return {
+        ...styles,
+        backgroundColor: color.alpha(0.1).css(),
+      };
+    },
+    multiValueLabel: (styles, { data }) => ({
+      ...styles,
+      color: chroma.contrast(data.color, "white") > 2 ? data.color : "black", // Ensure black text for white option
+    }),
+    multiValueRemove: (styles, { data }) => ({
+      ...styles,
+      color: data.color,
+      ":hover": {
+        backgroundColor: data.color,
+        color: "white",
+      },
+    }),
+  };
 
   const handleError = (data) => {
     const errors = {};
@@ -37,18 +111,6 @@ function BigItemCard({ url, item }) {
     return errors;
   };
 
-  const buyNow = () => {
-    // validation
-    let errors = handleError(order);
-
-    if (Object.keys(errors).length === 0) {
-      dispatch(setOrders(userId, order.item, order.quantity));
-      window.location = `/basket`;
-    } else {
-      console.log("Error!!");
-    }
-  };
-
   const addToCard = () => {
     // validation
     let errors = handleError(order);
@@ -58,6 +120,10 @@ function BigItemCard({ url, item }) {
     } else {
       console.log("Error!!");
     }
+  };
+
+  const handleNumberChange = (selectedOption) => {
+    setSelectedNumber(selectedOption);
   };
 
   useEffect(() => {
@@ -73,11 +139,11 @@ function BigItemCard({ url, item }) {
     };
 
     fetchItemImages();
-  }, []);
+  }, [item._id]);
 
   return (
-    <div className="lg:py-8 ssm:py-6 sm:px-24 ssm:px-6">
-      <div className="flex flex-col gap-3">
+    <div className="lg:py-8 ssm:py-6 sm:px-24 ssm:px-6 mt-20 h-auto">
+      <div className="flex flex-col gap-3 h-full">
         <div className="capitalize text-16">
           <p>
             <a
@@ -97,16 +163,18 @@ function BigItemCard({ url, item }) {
             </span>
           </p>
         </div>
-        <div className="flex md:flex-row md:justify-between items-center ssm:flex-col ssm:justify-start md:gap-28 ssm:gap-12">
-          <div className="flex justify-start md:w-1/2 ssm:w-full">
+        <div className="h-auto flex md:flex-row md:justify-between items-center ssm:flex-col ssm:justify-start md:gap-16 ssm:gap-12">
+          <div className="flex justify-start md:w-1/2 ssm:w-full h-full">
             <div className="w-full">
               {item.images.length > 0 ? (
                 <>
                   <Slider {...settings}>
                     {images.map((imageData, index) => (
-                      <div className="w-auto max-h-[500px]">
+                      <div
+                        key={index}
+                        className="w-auto max-h-[400px] flex items-center justify-center relative">
                         <img
-                          key={index}
+                          className="object-contain w-full h-auto px-1"
                           src={`data:image/png;base64,${imageData}`}
                           alt="item_img"
                         />
@@ -115,35 +183,39 @@ function BigItemCard({ url, item }) {
                   </Slider>
                 </>
               ) : (
-                <></>
+                <p>No images available</p>
               )}
             </div>
           </div>
-          <div className="flex justify-start w-full">
-            <div className="text-start w-full">
+          <div className="md:h-[60vh] ssm:h-auto flex justify-start w-full ssm:mt-8 md:mt-0">
+            <div className="w-full flex flex-col justify-between items-start">
               <div className="">
-                <h3 className="lg:text-24 md:text-18 font-bold">
+                <h3 className="lg:text-24 md:text-18 text-dark-gray font-bold tracking-wider">
                   {item.title}
                 </h3>
-                <span className="lg:text-24 md:text-18">{`${item.price}DH`}</span>
-              </div>
-              <div className="md:mt-10 ssm:mt-2 md:gap-3 ssm:gap-1 flex flex-col md:text-16 ssm:text-14">
-                <p>{item.description}</p>
-                <span>{`${item.size} cm`}</span>
-                <div
-                  className={`border h-4 w-4 rounded-full ${
-                    item.color === "black"
-                      ? "bg-dark"
-                      : item.color === "white"
-                      ? "bg-white"
-                      : "bg-main"
-                  }`}></div>
-                {/* <div className="">
-                  {item.colors.map((color, index) => (
-                    <div>{color}</div>
-                  ))}
-                </div> */}
-                <div className="mt-2">
+                <p className="md:text-16 ssm:text-14">{item.description}</p>
+                <span className="md:text-16 ssm:text-14">{`${item.size} cm`}</span>
+                <div className="flex justify-start items-center gap-2 w-full my-4">
+                  <Select
+                    closeMenuOnSelect={false}
+                    defaultValue={[]}
+                    isMulti
+                    options={colorOptions}
+                    styles={colorStyles}
+                    placeholder="Color"
+                    className="w-[12rem] text-14"
+                  />
+                  <Select
+                    value={selectedNumber}
+                    onChange={handleNumberChange}
+                    options={numberOptions}
+                    placeholder="Quantity"
+                    isClearable
+                    className="text-14"
+                  />
+                </div>
+                <span className="md:text-18 ssm:text-16">{`${item.price}DH`}</span>
+                {/* <div className="mt-2">
                   <Input
                     type="number"
                     className={`border rounded-5 lg:text-14 lg:block px-2 py-2 outline-none md:text-12 w-10 ssm:text-12 ${
@@ -158,17 +230,13 @@ function BigItemCard({ url, item }) {
                     }
                     error={errors.quantity}
                   />
-                </div>
+                </div> */}
               </div>
-              <div className="flex flex-col gap-4 md:mt-40 ssm:mt-10 ssm:items-center">
+              <div className="flex justify-start ssm:items-center w-full">
                 <Button
-                  className="ssm:min-w-[75%] md:w-1/2 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-main hover:text-white text-main rounded-md py-3 capitalize"
-                  text="buy now"
-                  onClick={buyNow}
-                />
-                <Button
-                  className="ssm:min-w-[75%] md:w-1/2 outline-none border border-main font-bold md:text-16 ssm:text-14 hover:bg-white hover:text-main bg-main text-white rounded-md py-3 capitalize"
-                  text="add to card"
+                  className="w-1/2 ssm:m-0 md:mt-3
+          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white bg-main md:text-16 ssm:text-14 font-medium outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105"
+                  text="Add to card"
                   onClick={addToCard}
                 />
               </div>

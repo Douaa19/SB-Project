@@ -59,9 +59,9 @@ body {
   transition: 400ms ease all;
 }
 
-.slick-slide > div {
+/* .slick-slide > div {
   margin: 0 10px;
-}
+} */
 
 /* select input */
 .dropdown-select-inner__single-value {
@@ -406,9 +406,17 @@ body .menu ul li > a:hover {
 
 /* input */
 @keyframes ping {
-  75%, 100% {
+  75%,
+  100% {
     transform: scale(2);
     opacity: 0;
   }
 }
 /* input */
+
+/* slick */
+.slick-dots {
+  position: absolute;
+  bottom: 1rem !important;
+}
+/* slick */
