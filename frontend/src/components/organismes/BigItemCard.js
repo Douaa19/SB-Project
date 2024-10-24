@@ -232,7 +232,7 @@ function BigItemCard({ url, item }) {
                   <div className="flex justify-start items-center gap-4">
                     <span className="text-14">Color:</span>
                     <Select
-                      closeMenuOnSelect={false}
+                      closeMenuOnSelect={true}
                       defaultValue={null}
                       options={colorOptions}
                       styles={colorStyles}

@@ -8,7 +8,7 @@ function RowBasket(props) {
   const userId = useSelector((state) => state.user_id);
 
   const handleDelete = () => {
-    dispatch(removeOrder(userId, props.data.item._id));
+    dispatch(removeOrder(userId, props.data.item._id, props.data.colors));
   };
 
   const handleEdit = () => {
@@ -38,7 +38,7 @@ function RowBasket(props) {
                 {props.data.quantity}{" "}
                 <span className="font-bold"> X ${props.data.item.price}</span>
               </span>
-              <span className="text-14">{props.data.colors[0]}</span>
+              <span className="text-14">{props.data.colors}</span>
             </div>
           </div>
         </div>
