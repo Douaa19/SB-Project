@@ -5,7 +5,7 @@ import EditIcon from "../../assets/icons/edit-text.png";
 
 function BasketTable({ orders }) {
   return (
-    <div className="md:mt-6 ssm:mt4">
+    <div className="md:mt-6 ssm:mt-4">
       <div className="min-w-full">
         {orders.length > 0 ? (
           <>

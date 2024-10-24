@@ -17,7 +17,7 @@ function RowBasket(props) {
 
   return (
     <>
-      <div className="bg-white border-b border-gray-100 transition duration-300 ease-in-out flex justify-between">
+      <div className="bg-white border border-gray-50 rounded-md my-3 transition-all duration-300 ease-in-out flex justify-between hover:scale-105 hover:shadow-lg">
         <div
           className={`flex gap-4 px-6 w-fit py-4 whitespace-nowrap md:text-sm ssm:text-12 text-start text-gray-900 font-normal`}>
           <div className={`w-[100px]`}>

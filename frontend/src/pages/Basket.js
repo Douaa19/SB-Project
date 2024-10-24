@@ -43,22 +43,17 @@ function Basket() {
   return (
     <>
       <NavBar />
-      <div className="md:px-[4.5rem] lg:px-32 ssm:px-8 ssm:pt-4 w-full mt-20">
+      <div className="ssm:pt-4 md:px-20 w-full mt-20">
         <PageTitle
           title="your shopping bag"
           className="capitalize md:text-28 ssm:text-24 font-extrabold text-main flex justify-center items-center mb-2 pb-2 px-4 w-full"
           icon={<ShoppingBag size={24} className="text-main mx-1" />}
         />
-        <div className="flex items-center justify-center w-full h-[2px] mb-4">
+        <div className="flex items-center justify-center w-full h-[2px] mb-8">
           <span className="bg-gray-100 h-full w-80 rounded-full"></span>
         </div>
-        <div className="">
-          <div className=""></div>
-          <div className=""></div>
-          <div className=""></div>
-        </div>
         <BasketTable orders={userOrders} />
-        {userOrders.length > 0 && (
+        {/* {userOrders.length > 0 && (
           <div className="mt-6 w-[100%] flex md:flex-row ssm:flex-col items-start justify-between gap-4">
             <CheckOutCard
               subtotal={subtotal}
@@ -67,7 +62,7 @@ function Basket() {
             />
             <ShippingForm />
           </div>
-        )}
+        )} */}
       </div>
       <Footer />
       {orderSent !== false && (
