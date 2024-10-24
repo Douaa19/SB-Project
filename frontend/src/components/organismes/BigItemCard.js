@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { Button, Input } from "../atoms";
+import { Button } from "../atoms";
 import { setOrders } from "../../redux/actions/orders";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
@@ -17,7 +17,7 @@ function BigItemCard({ url, item }) {
   const [order, setOrder] = useState({
     quantity: 1,
     item,
-    colors: [],
+    colors: "",
   });
   const [isClearable, setIsClearable] = useState(false);
 
@@ -150,14 +150,12 @@ function BigItemCard({ url, item }) {
     setOrder((prevOrder) => ({ ...prevOrder, quantity: selectedOption.value }));
   };
 
-  const handleColorChange = (selectedOptions) => {
-    const selectedColors = selectedOptions
-      ? selectedOptions.map((option) => option.value)
-      : [];
+  const handleColorChange = (selectedOption) => {
+    const selectedColor = selectedOption ? selectedOption.value : null;
 
-    setOrders((prevOrder) => ({
+    setOrder((prevOrder) => ({
       ...prevOrder,
-      colors: selectedColors,
+      colors: selectedColor ? selectedColor : null,
     }));
   };
 
@@ -230,30 +228,35 @@ function BigItemCard({ url, item }) {
                 </h3>
                 <p className="md:text-16 ssm:text-14">{item.description}</p>
                 <span className="md:text-16 ssm:text-14">{`${item.size} cm`}</span>
-                <div className="flex justify-start items-center gap-2 w-full my-4">
-                  <Select
-                    closeMenuOnSelect={false}
-                    defaultValue={[]}
-                    isMulti
-                    options={colorOptions}
-                    styles={colorStyles}
-                    placeholder="Color"
-                    className="w-full text-14"
-                    isClearable={isClearable}
-                    onChange={handleColorChange}
-                  />
-                  <Select
-                    value={numberOptions.find(
-                      (option) => option.value === order.quantity
-                    )}
-                    onChange={handleNumberChange}
-                    error={errors.quantity}
-                    options={numberOptions}
-                    placeholder="Quantity"
-                    isClearable={isClearable}
-                    className="text-14 w-28"
-                    styles={quantityStyles}
-                  />
+                <div className="flex flex-col gap-2 w-full my-4">
+                  <div className="flex justify-start items-center gap-4">
+                    <span className="text-14">Color:</span>
+                    <Select
+                      closeMenuOnSelect={false}
+                      defaultValue={null}
+                      options={colorOptions}
+                      styles={colorStyles}
+                      placeholder="Color"
+                      className="w-32 text-14"
+                      isClearable={isClearable}
+                      onChange={handleColorChange}
+                    />
+                  </div>
+                  <div className="flex justify-start items-center gap-4">
+                    <span className="text-14">Quantity:</span>
+                    <Select
+                      value={numberOptions.find(
+                        (option) => option.value === order.quantity
+                      )}
+                      onChange={handleNumberChange}
+                      error={errors.quantity}
+                      options={numberOptions}
+                      placeholder="Quantity"
+                      isClearable={isClearable}
+                      className="w-24 text-14"
+                      styles={quantityStyles}
+                    />
+                  </div>
                 </div>
                 <span className="md:text-18 ssm:text-16 font-medium">{`${item.price}DH`}</span>
               </div>

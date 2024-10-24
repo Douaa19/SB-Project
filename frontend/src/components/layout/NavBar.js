@@ -118,11 +118,7 @@ function NavBar() {
           <button
             className="hover:cursor-pointer w-full flex items-center justify-center"
             onClick={() => {
-              if (isLoggedIn) {
-                window.location = "/basket";
-              } else {
-                window.location = "/login";
-              }
+              window.location = "/basket";
             }}>
             <div className={`${open ? "mr-[3.2rem]" : ""}`}>
               <ShoppingCart

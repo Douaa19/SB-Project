@@ -1,6 +1,7 @@
 import React from "react";
 import { removeOrder } from "../../redux/actions/orders";
 import { useDispatch, useSelector } from "react-redux";
+import { BACK_URL } from "../../config";
 
 function RowBasket(props) {
   const dispatch = useDispatch();
@@ -9,6 +10,7 @@ function RowBasket(props) {
   const handleDelete = () => {
     dispatch(removeOrder(userId, props.data.item._id));
   };
+
   const handleEdit = () => {
     window.location = `/products/item/${props.data._id}`;
   };
@@ -20,7 +22,7 @@ function RowBasket(props) {
           className={`flex gap-4 px-6 w-fit py-4 whitespace-nowrap md:text-sm ssm:text-12 text-start text-gray-900 font-normal`}>
           <div className={`w-[100px]`}>
             <img
-              src={`http://localhost:8008/api/items/${props.data.item._id}/image`}
+              src={`${BACK_URL}/items/${props.data.item._id}/image`}
               alt="Item"
               className="w-full rounded-md"
             />
@@ -36,6 +38,7 @@ function RowBasket(props) {
                 {props.data.quantity}{" "}
                 <span className="font-bold"> X ${props.data.item.price}</span>
               </span>
+              <span className="text-14">{props.data.colors[0]}</span>
             </div>
           </div>
         </div>

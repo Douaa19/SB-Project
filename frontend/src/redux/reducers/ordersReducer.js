@@ -9,7 +9,9 @@ const ordersReducer = (state = { orders: {} }, action) => {
       }
 
       const existingItemIndex = userOrders[user].findIndex(
-        (order) => order.item._id === item._id
+        (order) =>
+          order.item._id === item._id &&
+          JSON.stringify(order.colors) === JSON.stringify(colors)
       );
 
       if (existingItemIndex !== -1) {
@@ -26,7 +28,9 @@ const ordersReducer = (state = { orders: {} }, action) => {
 
       if (updatedOrders[userId]) {
         updatedOrders[userId] = updatedOrders[userId].filter(
-          (order) => order.item._id !== itemId
+          (order) =>
+            order.item._id !== itemId &&
+            JSON.stringify(order.colors) === JSON.stringify(colors)
         );
       }
 

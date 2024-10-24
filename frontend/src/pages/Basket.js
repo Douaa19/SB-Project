@@ -15,6 +15,7 @@ function Basket() {
   const userId = useSelector((state) => state.user_id);
   const orderSent = useSelector((state) => state.orderSentPopup);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const userOrders = orders[userId] || [];
 
   useEffect(() => {
@@ -29,7 +30,7 @@ function Basket() {
     }
 
     setSubTotal(total);
-  }, [orders]);
+  }, [orders, userOrders]);
 
   useEffect(() => {
     if (subtotal !== null) {
