@@ -1,7 +1,7 @@
 const ordersReducer = (state = { orders: {} }, action) => {
   switch (action.type) {
     case "SETORDERS":
-      const { user, item, quantity } = action.payload;
+      const { user, item, quantity, colors } = action.payload;
       const userOrders = { ...state.orders };
 
       if (!userOrders[user]) {
@@ -15,7 +15,7 @@ const ordersReducer = (state = { orders: {} }, action) => {
       if (existingItemIndex !== -1) {
         userOrders[user][existingItemIndex].quantity += quantity;
       } else {
-        userOrders[user].push({ item, quantity });
+        userOrders[user].push({ item, quantity, colors });
       }
 
       return { ...state, orders: userOrders };
