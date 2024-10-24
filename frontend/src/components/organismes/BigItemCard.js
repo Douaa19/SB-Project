@@ -259,7 +259,7 @@ function BigItemCard({ url, item }) {
               </div>
               <div className="flex justify-start ssm:items-center w-full">
                 <Button
-                  className="ssm:mt-4 ssm:w-full md:mt-2
+                  className="ssm:mt-4 w-full md:mt-2
           border-1 border-main rounded-md md:px-10 ssm:px-6 py-3 capitalize text-white bg-main md:text-16 ssm:text-16 font-medium outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105"
                   text="Add to card"
                   onClick={addToCard}
