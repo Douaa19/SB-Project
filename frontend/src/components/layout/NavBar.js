@@ -133,7 +133,7 @@ function NavBar() {
             </div>
           </button>
           {userOrders.length > 0 && (
-            <div className="cursor-pointer length text-white w-4 text-center text-8 border border-red bg-red rounded-full absolute bottom-3 left-3 md:p-1 ssm:p-1">
+            <div className="cursor-pointer length text-white w-4 text-center text-8 border border-red bg-red rounded-full absolute bottom-4 left-4 p-1">
               <span className="">{userOrders.length}</span>
             </div>
           )}
