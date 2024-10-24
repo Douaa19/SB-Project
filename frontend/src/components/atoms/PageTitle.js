@@ -1,7 +1,12 @@
 import React from "react";
 
-function PageTitle({ title, className }) {
-  return <div className={className}>{title}</div>;
+function PageTitle({ title, className, icon }) {
+  return (
+    <div className={className}>
+      {icon}
+      {title}
+    </div>
+  );
 }
 
 export default PageTitle;
