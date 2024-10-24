@@ -2,6 +2,8 @@ import React from "react";
 import { removeOrder } from "../../redux/actions/orders";
 import { useDispatch, useSelector } from "react-redux";
 import { BACK_URL } from "../../config";
+import { X } from "lucide-react";
+import Button from "./Button";
 
 function RowBasket(props) {
   const dispatch = useDispatch();
@@ -11,13 +13,9 @@ function RowBasket(props) {
     dispatch(removeOrder(userId, props.data.item._id, props.data.colors));
   };
 
-  const handleEdit = () => {
-    window.location = `/products/item/${props.data._id}`;
-  };
-
   return (
     <>
-      <div className="bg-white border border-gray-50 rounded-md my-3 transition-all duration-300 ease-in-out flex justify-between hover:scale-105 hover:shadow-lg">
+      <div className="bg-white border border-gray-100 rounded-md my-3 transition-all duration-300 ease-in-out flex justify-between items-center hover:scale-105 hover:shadow-lg px-2">
         <div
           className={`flex gap-4 px-6 w-fit py-4 whitespace-nowrap md:text-sm ssm:text-12 text-start text-gray-900 font-normal`}>
           <div className={`w-[100px]`}>
@@ -42,28 +40,11 @@ function RowBasket(props) {
             </div>
           </div>
         </div>
-        <div className={`py-5 capitalize flex md:text-14 ssm:text-12 px-6`}>
-          <div
-            className="hover:cursor-pointer hover:text-main flex justify-between ml-3"
-            onClick={handleEdit}>
-            <img
-              src={props.editIcon}
-              alt="delete"
-              className="md:w-5 md:h-5 ssm:w-4 ssm:h-4"
-            />
-            <span className="ml-1">edit</span>
-          </div>
-          <div
-            className="hover:cursor-pointer hover:text-red flex justify-between ml-3"
-            onClick={handleDelete}>
-            <img
-              src={props.deleteIcon}
-              alt="delete"
-              className="md:w-5 md:h-5 ssm:w-4 ssm:h-4"
-            />
-            <span className="ml-1">delete</span>
-          </div>
-        </div>
+        <Button
+          onClick={handleDelete}
+          className="bg-transparent m-2"
+          rightIcon={<X size={20} className="text-gray-500 hover:text-red" />}
+        />
       </div>
     </>
   );
