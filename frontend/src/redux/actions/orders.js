@@ -5,10 +5,10 @@ export const setOrders = (user, item, quantity, colors) => {
   };
 };
 
-export const removeOrder = (userId, itemId) => {
+export const removeOrder = (userId, itemId, color) => {
   return {
     type: "REMOVEORDER",
-    payload: { userId, itemId },
+    payload: { userId, itemId, color },
   };
 };
 
