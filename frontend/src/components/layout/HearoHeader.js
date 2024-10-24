@@ -45,7 +45,7 @@ function HearoHeader() {
           border: "1px #192655 solid",
           borderRadius: "8px",
           position: "relative",
-          top: "0",
+          top: "3rem",
           left: "0",
           margin: "0",
           backgroundColor: "#192655",
