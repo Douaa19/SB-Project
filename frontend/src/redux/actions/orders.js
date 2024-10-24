@@ -1,7 +1,7 @@
-export const setOrders = (user, item, quantity) => {
+export const setOrders = (user, item, quantity, colors) => {
   return {
     type: "SETORDERS",
-    payload: { user, item, quantity },
+    payload: { user, item, quantity, colors },
   };
 };
 

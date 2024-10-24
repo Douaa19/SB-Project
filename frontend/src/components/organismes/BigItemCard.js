@@ -17,8 +17,9 @@ function BigItemCard({ url, item }) {
   const [order, setOrder] = useState({
     quantity: 1,
     item,
+    colors: [],
   });
-  const [selectedNumber, setSelectedNumber] = useState(null);
+  const [isClearable, setIsClearable] = useState(false);
 
   const colorOptions = [
     { value: "beige", label: "Beige", color: "#ede8d0" },
@@ -49,7 +50,13 @@ function BigItemCard({ url, item }) {
   };
 
   const colorStyles = {
-    control: (styles) => ({ ...styles, background: "white" }),
+    control: (styles, state) => ({
+      ...styles,
+      background: "white",
+      boxShadow: "none",
+      border: state.isFocused ? "1px solid #CCCCCC" : "1px solid #CECECE",
+      "&:hover": { outline: "none" },
+    }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
       const color = chroma(data.color);
       return {
@@ -100,6 +107,23 @@ function BigItemCard({ url, item }) {
     }),
   };
 
+  const quantityStyles = {
+    control: (styles, state) => ({
+      ...styles,
+      background: "white",
+      boxShadow: "none",
+      border: state.isFocused ? "1px solid #CCCCCC" : "1px solid #CECECE",
+      "&:hover": { outline: "none" },
+    }),
+    option: (styles) => {
+      return {
+        ...styles,
+        text: "#F5F5F5",
+        cursor: "pointer",
+      };
+    },
+  };
+
   const handleError = (data) => {
     const errors = {};
 
@@ -116,14 +140,25 @@ function BigItemCard({ url, item }) {
     let errors = handleError(order);
 
     if (Object.keys(errors).length === 0) {
-      dispatch(setOrders(userId, order.item, order.quantity));
+      dispatch(setOrders(userId, order.item, order.quantity, order.colors));
     } else {
       console.log("Error!!");
     }
   };
 
   const handleNumberChange = (selectedOption) => {
-    setSelectedNumber(selectedOption);
+    setOrder((prevOrder) => ({ ...prevOrder, quantity: selectedOption.value }));
+  };
+
+  const handleColorChange = (selectedOptions) => {
+    const selectedColors = selectedOptions
+      ? selectedOptions.map((option) => option.value)
+      : [];
+
+    setOrders((prevOrder) => ({
+      ...prevOrder,
+      colors: selectedColors,
+    }));
   };
 
   useEffect(() => {
@@ -189,8 +224,8 @@ function BigItemCard({ url, item }) {
           </div>
           <div className="md:h-[60vh] ssm:h-auto flex justify-start w-full ssm:mt-8 md:mt-0">
             <div className="w-full flex flex-col justify-between items-start">
-              <div className="">
-                <h3 className="lg:text-24 md:text-18 text-dark-gray font-bold tracking-wider">
+              <div className="w-full">
+                <h3 className="lg:text-24 ssm:text-24 text-dark-gray font-bold tracking-wider">
                   {item.title}
                 </h3>
                 <p className="md:text-16 ssm:text-14">{item.description}</p>
@@ -203,39 +238,29 @@ function BigItemCard({ url, item }) {
                     options={colorOptions}
                     styles={colorStyles}
                     placeholder="Color"
-                    className="w-[12rem] text-14"
+                    className="w-full text-14"
+                    isClearable={isClearable}
+                    onChange={handleColorChange}
                   />
                   <Select
-                    value={selectedNumber}
+                    value={numberOptions.find(
+                      (option) => option.value === order.quantity
+                    )}
                     onChange={handleNumberChange}
+                    error={errors.quantity}
                     options={numberOptions}
                     placeholder="Quantity"
-                    isClearable
-                    className="text-14"
+                    isClearable={isClearable}
+                    className="text-14 w-28"
+                    styles={quantityStyles}
                   />
                 </div>
-                <span className="md:text-18 ssm:text-16">{`${item.price}DH`}</span>
-                {/* <div className="mt-2">
-                  <Input
-                    type="number"
-                    className={`border rounded-5 lg:text-14 lg:block px-2 py-2 outline-none md:text-12 w-10 ssm:text-12 ${
-                      errors.quantity
-                        ? "border-red text-red placeholder:text-red"
-                        : "border-main"
-                    }`}
-                    name="name"
-                    value={order.quantity}
-                    onChange={(e) =>
-                      setOrder({ ...order, quantity: parseInt(e.target.value) })
-                    }
-                    error={errors.quantity}
-                  />
-                </div> */}
+                <span className="md:text-18 ssm:text-16 font-medium">{`${item.price}DH`}</span>
               </div>
               <div className="flex justify-start ssm:items-center w-full">
                 <Button
-                  className="w-1/2 ssm:m-0 md:mt-3
-          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white bg-main md:text-16 ssm:text-14 font-medium outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105"
+                  className="ssm:mt-4 ssm:w-full md:mt-2
+          border-1 border-main rounded-md md:px-10 ssm:px-6 py-3 capitalize text-white bg-main md:text-16 ssm:text-16 font-medium outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105"
                   text="Add to card"
                   onClick={addToCard}
                 />
