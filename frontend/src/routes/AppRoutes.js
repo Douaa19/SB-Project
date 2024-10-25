@@ -12,8 +12,6 @@ import {
 import { useSelector } from "react-redux";
 
 function AppRoutes() {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-
   return (
     <>
       <Router>
@@ -31,7 +29,7 @@ function AppRoutes() {
           />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/basket" element={isLoggedIn ? <Basket /> : <Login />} />
+          <Route path="/basket" element={<Basket />} />
           <Route path="/login" element={<Login />} />
           <Route
             path={`/reset-password/:resetToken/:user_id`}

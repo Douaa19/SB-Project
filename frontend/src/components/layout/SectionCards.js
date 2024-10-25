@@ -24,7 +24,6 @@ function SectionCards({ items, title, buttonText, page, limit, transition }) {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true,
         },
       },
       {

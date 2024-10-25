@@ -9,6 +9,7 @@ import PresentationCards from "./PresentationCards";
 import SectionCards from "./SectionCards";
 import Slider from "./Slider";
 import BasketTable from "../organismes/BasketTable";
+import Loading from "./Loading";
 
 export {
   ActionMenu,
@@ -22,4 +23,5 @@ export {
   SectionCards,
   Slider,
   BasketTable,
+  Loading,
 };

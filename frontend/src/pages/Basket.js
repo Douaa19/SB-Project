@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { NavBar, Footer } from "../components/layout";
+import { NavBar, Footer, Loading } from "../components/layout";
 import { BasketTable, CheckOutCard } from "../components/organismes";
 import { PageTitle } from "../components/atoms";
 import { ShippingForm } from "../components/molecules";
 import { useSelector } from "react-redux";
 import { Popup } from "../components/organismes";
 import { CheckoutPopupContent } from "../components/molecules";
+import { ShoppingBag } from "lucide-react";
 
 function Basket() {
   const orders = useSelector((state) => state.orders.orders);
@@ -14,7 +15,9 @@ function Basket() {
   const shipping = 40;
   const userId = useSelector((state) => state.user_id);
   const orderSent = useSelector((state) => state.orderSentPopup);
+  const [loading, setLoading] = useState(true);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const userOrders = orders[userId] || [];
 
   useEffect(() => {
@@ -29,7 +32,11 @@ function Basket() {
     }
 
     setSubTotal(total);
-  }, [orders]);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, [orders, userOrders]);
 
   useEffect(() => {
     if (subtotal !== null) {
@@ -40,31 +47,41 @@ function Basket() {
 
   return (
     <>
-      <NavBar />
-      <div className="md:px-[4.5rem] lg:px-32 ssm:px-8 ssm:pt-4 w-full">
-        <PageTitle
-          title="my basket"
-          className="capitalize md:text-32 ssm:text-24 font-extrabold text-main text-start"
-        />
-        <BasketTable orders={userOrders} />
-        {userOrders.length > 0 && (
-          <div className="mt-6 w-[100%] flex md:flex-row ssm:flex-col items-start justify-between gap-4">
-            <CheckOutCard
-              subtotal={subtotal}
-              grandTotal={grandtotal}
-              shipping={shipping}
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <NavBar />
+          <div className="ssm:pt-4 md:px-20 w-full mt-24">
+            <PageTitle
+              title="your shopping bag"
+              className="capitalize md:text-28 ssm:text-24 font-extrabold text-main flex justify-center items-center mb-2 pb-2 px-4 w-full"
+              icon={<ShoppingBag size={24} className="text-main mx-1" />}
             />
-            <ShippingForm />
+            <div className="flex items-center justify-center w-full h-[2px] mb-8">
+              <span className="bg-gray-100 h-full w-80 rounded-full"></span>
+            </div>
+            <BasketTable orders={userOrders} />
+            {userOrders.length > 0 && (
+              <div className="mt-6 w-[100%] flex md:flex-row ssm:flex-col items-start justify-between gap-4">
+                <CheckOutCard
+                  subtotal={subtotal}
+                  grandTotal={grandtotal}
+                  shipping={shipping}
+                />
+                <ShippingForm />
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      <Footer />
-      {orderSent !== false && (
-        <div className="min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
-          <Popup>
-            <CheckoutPopupContent />
-          </Popup>
-        </div>
+          <Footer />
+          {orderSent !== false && (
+            <div className="min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
+              <Popup>
+                <CheckoutPopupContent />
+              </Popup>
+            </div>
+          )}
+        </>
       )}
     </>
   );

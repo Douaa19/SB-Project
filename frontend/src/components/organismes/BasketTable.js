@@ -1,27 +1,24 @@
 import React from "react";
 import { RowBasket, EmptyRowBasket } from "../atoms";
-import DeleteIcon from "../../assets/icons/delete.png";
-import EditIcon from "../../assets/icons/edit-text.png";
+import { motion } from "framer-motion";
 
 function BasketTable({ orders }) {
   return (
-    <div className="md:mt-6 ssm:mt4">
+    <div className="md:mt-6 ssm:mt-4 ssm:mx-6 md:mx-0">
       <div className="min-w-full">
         {orders.length > 0 ? (
-          <>
-            <div>
-              {orders.map((order) => (
-                <>
-                  <RowBasket
-                    data={order}
-                    key={order}
-                    deleteIcon={DeleteIcon}
-                    editIcon={EditIcon}
-                  />
-                </>
-              ))}
-            </div>
-          </>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.5,
+              ease: [0, 0.71, 0.2, 1.01],
+            }}>
+            {orders.map((order, index) => (
+              <RowBasket data={order} key={index} />
+            ))}
+          </motion.div>
         ) : (
           <EmptyRowBasket />
         )}

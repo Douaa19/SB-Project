@@ -569,10 +569,6 @@ video {
   bottom: 0px;
 }
 
-.bottom-3 {
-  bottom: 0.75rem;
-}
-
 .bottom-4 {
   bottom: 1rem;
 }
@@ -583,6 +579,10 @@ video {
 
 .left-3 {
   left: 0.75rem;
+}
+
+.left-4 {
+  left: 1rem;
 }
 
 .right-0 {
@@ -607,10 +607,6 @@ video {
 
 .top-\[0\.40rem\] {
   top: 0.40rem;
-}
-
-.left-4 {
-  left: 1rem;
 }
 
 .z-0 {
@@ -646,6 +642,11 @@ video {
   margin-right: 0px;
 }
 
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -654,6 +655,11 @@ video {
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .my-4 {
@@ -680,14 +686,6 @@ video {
 
 .mb-8 {
   margin-bottom: 2rem;
-}
-
-.ml-1 {
-  margin-left: 0.25rem;
-}
-
-.ml-3 {
-  margin-left: 0.75rem;
 }
 
 .mr-1 {
@@ -764,6 +762,10 @@ video {
 
 .h-10 {
   height: 2.5rem;
+}
+
+.h-28 {
+  height: 7rem;
 }
 
 .h-3 {
@@ -846,8 +848,20 @@ video {
   width: 50%;
 }
 
+.w-24 {
+  width: 6rem;
+}
+
+.w-28 {
+  width: 7rem;
+}
+
 .w-3 {
   width: 0.75rem;
+}
+
+.w-32 {
+  width: 8rem;
 }
 
 .w-4 {
@@ -870,16 +884,12 @@ video {
   width: 2rem;
 }
 
+.w-80 {
+  width: 20rem;
+}
+
 .w-\[100\%\] {
   width: 100%;
-}
-
-.w-\[100px\] {
-  width: 100px;
-}
-
-.w-\[12rem\] {
-  width: 12rem;
 }
 
 .w-\[15px\] {
@@ -908,26 +918,6 @@ video {
 
 .w-max {
   width: max-content;
-}
-
-.w-12 {
-  width: 3rem;
-}
-
-.w-16 {
-  width: 4rem;
-}
-
-.w-20 {
-  width: 5rem;
-}
-
-.w-24 {
-  width: 6rem;
-}
-
-.w-28 {
-  width: 7rem;
 }
 
 .min-w-full {
@@ -1072,6 +1062,10 @@ video {
   overflow: hidden;
 }
 
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
 .whitespace-nowrap {
   white-space: nowrap;
 }
@@ -1126,6 +1120,10 @@ video {
 
 .border-t-4 {
   border-top-width: 4px;
+}
+
+.border-none {
+  border-style: none;
 }
 
 .border-gray-100 {
@@ -1306,6 +1304,10 @@ video {
 
 .p-4 {
   padding: 12px;
+}
+
+.p-6 {
+  padding: 1.5rem;
 }
 
 .p-8 {
@@ -1562,6 +1564,11 @@ video {
 .text-gray-100 {
   --tw-text-opacity: 1;
   color: rgb(206 206 206 / var(--tw-text-opacity));
+}
+
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
 .text-gray-500 {
@@ -2097,11 +2104,6 @@ body .menu ul li > a:hover {
 
 /* slick */
 
-.placeholder\:text-red::placeholder {
-  --tw-text-opacity: 1;
-  color: rgb(255 0 77 / var(--tw-text-opacity));
-}
-
 .before\:absolute::before {
   content: var(--tw-content);
   position: absolute;
@@ -2149,6 +2151,10 @@ body .menu ul li > a:hover {
   cursor: pointer;
 }
 
+.hover\:border-none:hover {
+  border-style: none;
+}
+
 .hover\:border-gray-100:hover {
   --tw-border-opacity: 1;
   border-color: rgb(206 206 206 / var(--tw-border-opacity));
@@ -2185,6 +2191,11 @@ body .menu ul li > a:hover {
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+.hover\:text-gray-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
 .hover\:text-light:hover {
@@ -2300,8 +2311,9 @@ body .menu ul li > a:hover {
     margin: 0px;
   }
 
-  .ssm\:m-4 {
-    margin: 1rem;
+  .ssm\:mx-6 {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
   }
 
   .ssm\:mb-10 {
@@ -2508,16 +2520,6 @@ body .menu ul li > a:hover {
     padding-bottom: 6px;
   }
 
-  .ssm\:py-\[\] {
-    padding-top: ;
-    padding-bottom: ;
-  }
-
-  .ssm\:py-3 {
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
-
   .ssm\:pb-2 {
     padding-bottom: 4px;
   }
@@ -2678,6 +2680,11 @@ body .menu ul li > a:hover {
     top: 7.8rem;
   }
 
+  .md\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
   .md\:mb-0 {
     margin-bottom: 0px;
   }
@@ -2724,10 +2731,6 @@ body .menu ul li > a:hover {
 
   .md\:hidden {
     display: none;
-  }
-
-  .md\:h-5 {
-    height: 1.25rem;
   }
 
   .md\:h-\[60vh\] {
@@ -2818,10 +2821,6 @@ body .menu ul li > a:hover {
     gap: 1rem;
   }
 
-  .md\:p-1 {
-    padding: 2px;
-  }
-
   .md\:px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
@@ -2830,6 +2829,11 @@ body .menu ul li > a:hover {
   .md\:px-16 {
     padding-left: 4rem;
     padding-right: 4rem;
+  }
+
+  .md\:px-20 {
+    padding-left: 5rem;
+    padding-right: 5rem;
   }
 
   .md\:px-28 {
@@ -2881,6 +2885,10 @@ body .menu ul li > a:hover {
 
   .md\:text-24 {
     font-size: 24px;
+  }
+
+  .md\:text-28 {
+    font-size: 28px;
   }
 
   .md\:text-2xl {
