@@ -52,7 +52,7 @@ function Basket() {
       ) : (
         <>
           <NavBar />
-          <div className="ssm:pt-4 md:px-20 w-full mt-20">
+          <div className="ssm:pt-4 md:px-20 w-full mt-24">
             <PageTitle
               title="your shopping bag"
               className="capitalize md:text-28 ssm:text-24 font-extrabold text-main flex justify-center items-center mb-2 pb-2 px-4 w-full"
