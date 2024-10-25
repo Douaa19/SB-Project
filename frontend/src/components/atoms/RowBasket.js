@@ -19,8 +19,6 @@ function RowBasket(props) {
   return (
     <>
       <motion.div
-        initial={{ opacity: 0.1, y: 300 }}
-        animate={{ opacity: 1, y: 0 }}
         whileHover={{ scale: 1.03 }}
         className="bg-white border border-gray-100 rounded-md my-3 transition-all duration-300 ease-in-out flex justify-between items-center hover:shadow-lg px-2">
         <div
