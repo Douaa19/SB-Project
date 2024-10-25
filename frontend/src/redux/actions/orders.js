@@ -12,6 +12,13 @@ export const removeOrder = (userId, itemId, color) => {
   };
 };
 
+export const editOrder = (userId, itemId, colors, newQuantity) => {
+  return {
+    type: "EDITORDER",
+    payload: { userId, itemId, newQuantity, colors },
+  };
+};
+
 export const clearUserOrders = (userId) => {
   return {
     type: "CLEARUSERORDERS",

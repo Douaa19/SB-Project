@@ -1,11 +1,10 @@
 import React from "react";
-import { removeOrder } from "../../redux/actions/orders";
+import { removeOrder, editOrder } from "../../redux/actions/orders";
 import { useDispatch, useSelector } from "react-redux";
 import { BACK_URL } from "../../config";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import Button from "./Button";
-import { setOrders } from "../../redux/actions/orders";
 
 function RowBasket(props) {
   const dispatch = useDispatch();
@@ -13,8 +12,26 @@ function RowBasket(props) {
 
   const itemImg = `${BACK_URL}/items/${props.data.item._id}/image`;
 
-  const handleDelete = () => {
+  const handleDeleteItem = () => {
     dispatch(removeOrder(userId, props.data.item._id, props.data.colors));
+  };
+
+  const handleQuantityChange = (operation) => {
+    if (operation === "add") {
+      const newQuantity = props.data.quantity + 1;
+      dispatch(
+        editOrder(userId, props.data.item._id, props.data.colors, newQuantity)
+      );
+    } else if (operation === "subtract") {
+      if (props.data.quantity === 1) {
+        handleDeleteItem();
+      } else if (props.data.quantity > 1) {
+        const newQuantity = props.data.quantity - 1;
+        dispatch(
+          editOrder(userId, props.data.item._id, props.data.colors, newQuantity)
+        );
+      }
+    }
   };
 
   return (
@@ -42,7 +59,7 @@ function RowBasket(props) {
               </span>
               <div className="flex flex-col">
                 <span className="font-normal capitadivze text-gray-400 md:text-14 ssm:text-12">
-                  {props.data.item.category_id.name}
+                  {props.data.item.category_id?.name}
                 </span>
                 <span className="font-normal text-gray-400 md:text-14 ssm:text-12">
                   {props.data.item.size} cm
@@ -52,7 +69,9 @@ function RowBasket(props) {
           </div>
 
           <div className="flex items-center justify-center mx-2">
-            <span className="text-14 font-medium capitalize">{props.data.colors}</span>
+            <span className="text-14 font-medium capitalize">
+              {props.data.colors}
+            </span>
           </div>
           <div className="flex items-center justify-center mx-2">
             <span className="text-14 font-medium">
@@ -60,11 +79,15 @@ function RowBasket(props) {
             </span>
           </div>
           <div className="flex items-center justify-center gap-2 mx-2">
-            <button className="text-16 font-semibold text-gray-500 hover:text-gray-700">
+            <button
+              onClick={() => handleQuantityChange("subtract")}
+              className="text-16 font-semibold text-gray-500 hover:text-gray-700">
               -
             </button>
             <span className="text-14 font-medium">{props.data.quantity}</span>
-            <button className="text-16 font-semibold text-gray-500 hover:text-gray-700">
+            <button
+              onClick={() => handleQuantityChange("add")}
+              className="text-16 font-semibold text-gray-500 hover:text-gray-700">
               +
             </button>
           </div>
@@ -88,7 +111,7 @@ function RowBasket(props) {
             </div>
           </div> */}
           <Button
-            onClick={handleDelete}
+            onClick={handleDeleteItem}
             className="bg-transparent mx-2"
             rightIcon={<X size={20} className="text-gray-500 hover:text-red" />}
           />

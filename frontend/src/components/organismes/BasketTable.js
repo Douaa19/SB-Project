@@ -16,9 +16,7 @@ function BasketTable({ orders }) {
               ease: [0, 0.71, 0.2, 1.01],
             }}>
             {orders.map((order, index) => (
-              <>
-                <RowBasket data={order} key={index} />
-              </>
+              <RowBasket data={order} key={index} />
             ))}
           </motion.div>
         ) : (

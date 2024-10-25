@@ -15,7 +15,7 @@ const ordersReducer = (state = { orders: {} }, action) => {
       );
 
       if (existingItemIndex !== -1) {
-        userOrders[user][existingItemIndex].quantity += quantity;
+        return state;
       } else {
         userOrders[user].push({ item, quantity, colors });
       }
@@ -23,30 +23,53 @@ const ordersReducer = (state = { orders: {} }, action) => {
       return { ...state, orders: userOrders };
 
     case "REMOVEORDER":
-      const { userId, itemId, color } = action.payload;
-      const updatedOrders = { ...state.orders };
+      const {
+        userId: removeUserId,
+        itemId: removeItemId,
+        color,
+      } = action.payload;
+      const filtredOrders = { ...state.orders };
 
-      if (updatedOrders[userId]) {
-        updatedOrders[userId] = updatedOrders[userId].filter(
+      if (filtredOrders[removeUserId]) {
+        filtredOrders[removeUserId] = filtredOrders[removeUserId].filter(
           (order) =>
             !(
-              order.item._id === itemId &&
+              order.item._id === removeItemId &&
               JSON.stringify(order.colors) === JSON.stringify(color)
             )
         );
       }
 
+      return { ...state, orders: filtredOrders };
+
+    case "EDITORDER":
+      const {
+        userId,
+        itemId,
+        colors: editColors,
+        newQuantity,
+      } = action.payload;
+      const updatedOrders = { ...state.orders };
+
+      if (updatedOrders[userId]) {
+        const itemIndex = updatedOrders[userId].findIndex(
+          (order) =>
+            order.item._id === itemId &&
+            JSON.stringify(order.colors) === JSON.stringify(editColors)
+        );
+
+        if (itemIndex !== -1) {
+          updatedOrders[userId][itemIndex].quantity = newQuantity;
+        }
+      }
+
       return { ...state, orders: updatedOrders };
 
     case "CLEARUSERORDERS":
-      const userIdToRemove = action.payload;
-      const filteredOrders = {};
-      for (const userId in state.orders) {
-        if (userId !== userIdToRemove) {
-          filteredOrders[userId] = state.orders[userId];
-        }
-      }
-      return { ...state, orders: filteredOrders };
+      const userIdToClear = action.payload;
+      const newOrders = { ...state.orders };
+      delete newOrders[userIdToClear];
+      return { ...state, orders: newOrders };
 
     default:
       return state;
