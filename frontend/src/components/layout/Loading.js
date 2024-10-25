@@ -2,52 +2,63 @@ import React from "react";
 import { motion } from "framer-motion";
 
 function Loading() {
+  const LoadingDot = {
+    display: "block",
+    width: "0.5rem",
+    height: "0.5rem",
+    backgroundColor: "#192655",
+    borderRadius: "50%",
+  };
+
+  const LoadingContainer = {
+    width: "5rem",
+    height: "5rem",
+    display: "flex",
+    justifyContent: "space-around",
+  };
+
+  const DotVariants = {
+    animate: {
+      y: ["0%", "100%", "0%"],
+    },
+  };
+
+  const DotTransition = (delay) => ({
+    duration: 0.5,
+    repeat: Infinity,
+    ease: "easeInOut",
+    delay,
+  });
+
   return (
-    <div className="flex items-center justify-center">
-      <motion.svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 100 100"
-        className="w-24 h-24">
-        <motion.path
-          d="M50 15 A35 35 0 0 1 85 50"
-          fill="none"
-          stroke="#4FD1C5"
-          strokeWidth="10"
-          strokeLinecap="round"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{
-            duration: 1,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}>
+      <motion.div style={LoadingContainer}>
+        <motion.span
+          style={LoadingDot}
+          variants={DotVariants}
+          animate="animate"
+          transition={DotTransition(0)}
         />
-        <motion.path
-          d="M50 85 A35 35 0 0 1 15 50"
-          fill="none"
-          stroke="#9F7AEA"
-          strokeWidth="10"
-          strokeLinecap="round"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{
-            duration: 1,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.1,
-          }}
+        <motion.span
+          style={LoadingDot}
+          variants={DotVariants}
+          animate="animate"
+          transition={DotTransition(0.2)}
         />
-        <text
-          x="50"
-          y="50"
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fill="#4FD1C5"
-          fontSize="14"
-          fontWeight="bold">
-          Loading...
-        </text>
-      </motion.svg>
+        <motion.span
+          style={LoadingDot}
+          variants={DotVariants}
+          animate="animate"
+          transition={DotTransition(0.4)}
+        />
+      </motion.div>
     </div>
   );
 }

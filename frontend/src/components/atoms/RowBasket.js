@@ -10,7 +10,7 @@ function RowBasket(props) {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user_id);
 
-  console.log(props);
+  const itemImg = `${BACK_URL}/items/${props.data.item._id}/image`;
 
   const handleDelete = () => {
     dispatch(removeOrder(userId, props.data.item._id, props.data.colors));
@@ -24,11 +24,15 @@ function RowBasket(props) {
         <div
           className={`h-full flex items-center justify-between w-full p-6 whitespace-nowrap md:text-sm ssm:text-12 text-start text-gray-900 font-normal`}>
           <div className={`w-28 h-28 overflow-hidden rounded-md`}>
-            <img
-              src={`${BACK_URL}/items/${props.data.item._id}/image`}
-              alt="Item"
-              className="w-full rounded-md object-cover"
-            />
+            {!itemImg ? (
+              <div className="w-full h-full rounded-md animate-pulse bg-gray-100"></div>
+            ) : (
+              <img
+                src={itemImg}
+                alt="Item"
+                className="w-full h-full rounded-md object-cover"
+              />
+            )}
           </div>
           <div className="flex flex-col justify-center items-start gap-2">
             <span className="title md:text-16 font-bold ssm:text-14">
