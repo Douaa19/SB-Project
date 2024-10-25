@@ -5,6 +5,7 @@ import { BACK_URL } from "../../config";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import Button from "./Button";
+import { setOrders } from "../../redux/actions/orders";
 
 function RowBasket(props) {
   const dispatch = useDispatch();
@@ -50,6 +51,9 @@ function RowBasket(props) {
             </div>
           </div>
 
+          <div className="flex items-center justify-center mx-2">
+            <span className="text-14 font-medium capitalize">{props.data.colors}</span>
+          </div>
           <div className="flex items-center justify-center mx-2">
             <span className="text-14 font-medium">
               {props.data.item.price}0DH
