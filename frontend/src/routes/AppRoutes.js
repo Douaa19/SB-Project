@@ -8,6 +8,7 @@ import {
   Contact,
   Product,
   Login,
+  Checkout,
 } from "../pages";
 import { useSelector } from "react-redux";
 
@@ -35,6 +36,7 @@ function AppRoutes() {
             path={`/reset-password/:resetToken/:user_id`}
             element={<Login />}
           />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Router>
     </>
