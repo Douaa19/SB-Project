@@ -949,6 +949,18 @@ video {
   width: max-content;
 }
 
+.w-44 {
+  width: 11rem;
+}
+
+.w-48 {
+  width: 12rem;
+}
+
+.w-52 {
+  width: 13rem;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -2478,6 +2490,10 @@ body .menu ul li > a:hover {
     width: 100%;
   }
 
+  .ssm\:w-52 {
+    width: 13rem;
+  }
+
   .ssm\:min-w-\[25rem\] {
     min-width: 25rem;
   }
@@ -2673,12 +2689,24 @@ body .menu ul li > a:hover {
     width: 100%;
   }
 
+  .sm\:w-auto {
+    width: auto;
+  }
+
   .sm\:min-w-\[40rem\] {
     min-width: 40rem;
   }
 
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+
+  .sm\:justify-between {
+    justify-content: space-between;
   }
 
   .sm\:p-2 {
