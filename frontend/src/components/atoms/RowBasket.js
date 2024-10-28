@@ -75,7 +75,7 @@ function RowBasket(props) {
           </div>
           <div className="flex items-center justify-center mx-2">
             <span className="text-14 font-medium">
-              {props.data.item.price}0DH
+              {props.data.item.price}DH
             </span>
           </div>
           <div className="flex items-center justify-center gap-2 mx-2">
@@ -93,7 +93,7 @@ function RowBasket(props) {
           </div>
           <div className="">
             <span className="md:text-16 ssm:text-14 font-bold mx-2">
-              {props.data.quantity * props.data.item.price}0DH
+              {props.data.quantity * props.data.item.price}DH
             </span>
           </div>
           {/* <div className="flex flex-col justify-between items-start py-2">

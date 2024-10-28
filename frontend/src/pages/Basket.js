@@ -70,7 +70,7 @@ function Basket() {
             </div>
             <BasketTable orders={userOrders} />
             {userOrders.length > 0 && (
-              <div className="mt-6 w-full flex justify-end items-center">
+              <div className="mt-8 w-full flex justify-end items-center">
                 <div className="flex flex-col items-end justify-between gap-4 sm:w-1/2 ssm:w-full">
                   <CheckOutCard
                     subtotal={subtotal}
