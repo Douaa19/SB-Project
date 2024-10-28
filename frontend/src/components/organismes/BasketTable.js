@@ -1,7 +1,6 @@
 import React from "react";
 import { RowBasket, EmptyRowBasket } from "../atoms";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowLeft } from "lucide-react";
 
 function BasketTable({ orders }) {
   return (
@@ -21,28 +20,6 @@ function BasketTable({ orders }) {
                 <RowBasket data={order} key={index} />
               ))}
             </motion.div>
-            <div className="flex sm:justify-between sm:flex-row ssm:flex-col  ssm:justify-center items-center w-full mx-1">
-              <a
-                href="/checkout"
-                class="my-2 relative inline-flex items-center px-8 py-3 overflow-hidden md:text-16 ssm:text-14 font-medium text-main border-1 border-main rounded-md hover:text-white group hover:bg-gray-50 ssm:w-52 sm:w-auto">
-                <span class="absolute left-0 block w-full h-0 transition-all bg-main opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
-                <span class="absolute -left-2 flex items-center justify-end w-10 h-10 duration-300 transform -translate-x-full group-hover:translate-x-0 ease">
-                  <ArrowLeft strokeWidth={1.5} size={24} />
-                </span>
-                <span class="relative w-full text-center">
-                  Back To Shopping
-                </span>
-              </a>
-              <a
-                href="/checkout"
-                class="my-2 relative inline-flex items-center px-8 py-3 overflow-hidden md:text-16 ssm:text-14 font-medium text-main border-1 border-main rounded-md hover:text-white group hover:bg-gray-50 ssm:w-52 sm:w-auto">
-                <span class="absolute left-0 block w-full h-0 transition-all bg-main opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
-                <span class="absolute -right-2 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
-                  <ArrowRight strokeWidth={1.5} size={24} />
-                </span>
-                <span class="relative w-full text-center">Check out</span>
-              </a>
-            </div>
           </>
         ) : (
           <EmptyRowBasket />
