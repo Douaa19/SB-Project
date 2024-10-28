@@ -62,7 +62,7 @@ function Basket() {
               <span className="bg-gray-100 h-full w-80 rounded-full"></span>
             </div>
             <BasketTable orders={userOrders} />
-            {userOrders.length > 0 && (
+            {/* {userOrders.length > 0 && (
               <div className="mt-6 w-[100%] flex md:flex-row ssm:flex-col items-start justify-between gap-4">
                 <CheckOutCard
                   subtotal={subtotal}
@@ -71,7 +71,7 @@ function Basket() {
                 />
                 <ShippingForm />
               </div>
-            )}
+            )} */}
           </div>
           <Footer />
           {orderSent !== false && (
