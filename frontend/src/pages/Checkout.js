@@ -71,7 +71,11 @@ function Checkout() {
     }
 
     if (!data.postalCode) {
-      errors.postalCode = "The field postal code is required to proceed.";
+      errors.postalCode = "The field zip code is required to proceed.";
+    }
+
+    if (selectedPayment === null) {
+      errors.payment = "You have to choose a payment method to proceed.";
     }
 
     setErrors(errors);
@@ -112,13 +116,18 @@ function Checkout() {
               <h3 className="text-16 font-semibold capitalize tracking-wide text-gray-700">
                 payement method
               </h3>
+              {errors.payment && (
+                <h4 className="text-red font-medium text-14">
+                  {errors.payment}
+                </h4>
+              )}
               <div className="w-full">
                 <form
                   action=""
                   method="post"
                   className="w-full flex items-center justify-around gap-2">
                   <div
-                    className={`py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md cursor-pointer ${
+                    className={`py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md ${
                       selectedPayment === "cach-on-delivery"
                         ? "border-main border-2"
                         : "border-gray-100"
@@ -148,7 +157,7 @@ function Checkout() {
                     </label>
                   </div>
                   <div
-                    className={`py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md cursor-pointer ${
+                    className={`py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md ${
                       selectedPayment === "online-payment"
                         ? "border-main border-2"
                         : "border-light border-2"
@@ -177,27 +186,6 @@ function Checkout() {
                       Online Payment
                     </label>
                   </div>
-                  {/* <div className="flex w-full gap-2 items-center">
-                    <div className="grid place-items-center relative w-max border hover:cursor-pointer">
-                      <Input
-                        type="radio"
-                        value="Online Payment"
-                        checked={payment === "online-payment"}
-                        onChange={onRadioChange}
-                        className="appearance-none w-4 h-4 border-2 border-gray-500 rounded-full hover:border-gray-700"
-                        id="online-payment"
-                        name="online-payment"
-                      />
-                      {selectedPayment && ( 
-                      <div className="absolute w-2 h-2 rounded-full bg-gray-500"></div>
-                      // )}
-                    </div>
-                    <label
-                      htmlFor="online-payment"
-                      className="ms-2 text-sm font-medium text-gray-700">
-                      Online Payment
-                    </label>
-                  </div> */}
                 </form>
               </div>
             </div>

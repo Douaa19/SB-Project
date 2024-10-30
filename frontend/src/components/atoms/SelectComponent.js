@@ -53,7 +53,7 @@ function SelectComponent(props) {
       />
       {props.error && (
         <>
-          <span className="text-red leading-[0px] md:text-12 ssm:text-10 relative left-1">
+          <span className="text-red leading-[0px] text-12 relative left-1">
             {props.error}
           </span>
         </>
