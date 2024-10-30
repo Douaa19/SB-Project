@@ -1520,28 +1520,16 @@ video {
   text-transform: capitalize;
 }
 
+.leading-\[0px\] {
+  line-height: 0px;
+}
+
 .leading-normal {
   line-height: 1.5;
 }
 
 .leading-relaxed {
   line-height: 1.625;
-}
-
-.leading-3 {
-  line-height: .75rem;
-}
-
-.leading-4 {
-  line-height: 1rem;
-}
-
-.leading-\[\] {
-  line-height: ;
-}
-
-.leading-\[0px\] {
-  line-height: 0px;
 }
 
 .tracking-wide {

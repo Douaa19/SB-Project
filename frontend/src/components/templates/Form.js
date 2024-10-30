@@ -36,14 +36,6 @@ function Form(props) {
             }, 3000);
           }
         });
-      } else if (props.type === "shipping") {
-        sendOrder(data, userOrders).then((response) => {
-          if (!response.data.messageSuccess) {
-            alert("Your order doesn't sent");
-          } else {
-            dispatch(setOrderSent(true));
-          }
-        });
       }
     } else {
       console.log("Error!!");
@@ -111,22 +103,17 @@ function Form(props) {
   return (
     <div className={props.className}>
       <div
-        className={`flex ${
-          props.type !== "contact"
-            ? "flex-col md:gap-2 ssm:gap-2"
-            : "flex-col gap-4"
-        }  w-full md:justify-between ssm:justify-center items-center`}>
-        {props.type !== "login" && (
-          <Input
-            type="text"
-            className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
-            placeHolder={`${props.type === "contact" ? "name" : "full name"}`}
-            name="name"
-            value={data.name}
-            onChange={(e) => handleChange("name", e.target.value)}
-            error={errors.name}
-          />
-        )}
+        className={`flex flex-col gap-4 w-full md:justify-between ssm:justify-center items-center`}>
+        <Input
+          type="text"
+          className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
+          placeHolder={`${props.type === "contact" ? "name" : "full name"}`}
+          name="name"
+          value={data.name}
+          onChange={(e) => handleChange("name", e.target.value)}
+          error={errors.name}
+        />
+
         <Input
           type="email"
           className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
@@ -146,29 +133,20 @@ function Form(props) {
         onChange={(e) => handleChange("phone", e.target.value)}
         error={errors.phone}
       />
-      {props.type === "contact" && (
-        <>
-          <TextArea
-            text="your message"
-            id="message"
-            rows="3"
-            name="message"
-            value={data.message}
-            onChange={(e) => handleChange("message", e.target.value)}
-            error={errors.message}
-            className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
-          />
-        </>
-      )}
+      <TextArea
+        text="your message"
+        id="message"
+        rows="3"
+        name="message"
+        value={data.message}
+        onChange={(e) => handleChange("message", e.target.value)}
+        error={errors.message}
+        className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
+      />
       {props.button !== false && (
         <div className="flex items-center justify-start w-full">
           <Button
-            className={`ssm:m-0 md:mt-3
-          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white bg-main md:text-16 ssm:text-14 font-medium outline-none hover:bg-white hover:text-main ${
-            props.type === "contact"
-              ? "transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105"
-              : ""
-          }`}
+            className={`ssm:m-0 md:mt-3 border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white bg-main md:text-16 ssm:text-14 font-medium outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105`}
             text={
               props.type === "contact"
                 ? "send"

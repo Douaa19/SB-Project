@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavBar, Footer } from "../components/layout";
 import { ShippingForm } from "../components/molecules";
 import { Input, Button } from "../components/atoms";
+import { sendOrder } from "../services/orders";
+import { setOrderSent } from "../redux/actions/popups";
 
 function Checkout() {
   const dispatch = useDispatch();
@@ -17,7 +19,17 @@ function Checkout() {
   const handleSubmit = () => {
     let errors = validationForm(data);
 
-    // console.log(errors);
+    if (Object.keys(errors).length === 0) {
+      sendOrder(data, userOrders).then((res) => {
+        if (!res.data.messageSuccess) {
+          setErrorResponse(res.data.messageError);
+        } else {
+          dispatch(setOrderSent(true));
+        }
+      });
+    } else {
+      return;
+    }
   };
 
   const validationForm = (data) => {
