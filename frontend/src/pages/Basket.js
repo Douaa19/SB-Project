@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { NavBar, Footer, Loading } from "../components/layout";
 import { BasketTable, CheckOutCard } from "../components/organismes";
 import { PageTitle } from "../components/atoms";
-import { ShippingForm } from "../components/molecules";
 import { useSelector } from "react-redux";
 import { Popup } from "../components/organismes";
 import { CheckoutPopupContent } from "../components/molecules";
@@ -89,7 +88,6 @@ function Basket() {
                     </a>
                   </div>
                 </div>
-                {/* <ShippingForm /> */}
               </div>
             )}
           </div>
