@@ -5,6 +5,7 @@ import { ShippingForm } from "../components/molecules";
 import { Input, Button } from "../components/atoms";
 import { sendOrder } from "../services/orders";
 import { setOrderSent } from "../redux/actions/popups";
+import { CircleCheck } from "lucide-react";
 
 function Checkout() {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ function Checkout() {
   const [errors, setErrors] = useState({});
   const [errorResponse, setErrorResponse] = useState(null);
   const [payment, setPayment] = useState(null);
+  const [selectedPayment, setSelectedPayment] = useState(null);
   const userId = useSelector((state) => state.user_id);
   const orders = useSelector((state) => state.orders.orders);
 
@@ -91,7 +93,7 @@ function Checkout() {
   return (
     <>
       <NavBar />
-      <div className="ssm:pt-4 md:px-20 w-full mt-24">
+      <div className="ssm:pt-4 md:px-20 ssm:px-16 w-full mt-24">
         <div className="grid md:grid-cols-2 md:grid-rows-1 ssm:grid-cols-1 ssm:grid-rows-2 gap-8 h-max w-full">
           <div className="md:col-span-1 ssm:order-last md:order-first w-full flex flex-col items-start justify-between gap-8">
             <div className="flex flex-col items-start gap-2 w-full">
@@ -114,39 +116,88 @@ function Checkout() {
                 <form
                   action=""
                   method="post"
-                  className="w-full flex items-center justify-around">
-                  <div className="flex w-full items-center ">
-                    <Input
-                      type="radio"
-                      value="Cash on Delivery"
-                      cheked={payment === "cach-on-delivery"}
-                      onChange={onRadioChange}
-                      className={`w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-60`}
-                      id="chack-on-delivery"
-                      name="chack-on-delivery"
-                    />
+                  className="w-full flex items-center justify-around gap-2">
+                  <div
+                    className={`py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md cursor-pointer ${
+                      selectedPayment === "cach-on-delivery"
+                        ? "border-main border-2"
+                        : "border-gray-100"
+                    }`}
+                    onClick={() => setSelectedPayment("cach-on-delivery")}>
                     <label
                       htmlFor="chack-on-delivery"
-                      className="ms-2 text-sm font-medium text-gray-700">
+                      className="text-14 font-medium text-gray-700 flex gap-1 items-center">
+                      <Input
+                        type="radio"
+                        value="Cash on Delivery"
+                        cheked={payment === "cach-on-delivery"}
+                        onChange={onRadioChange}
+                        className={`peer sr-only`}
+                        id="chack-on-delivery"
+                        name="chack-on-delivery"
+                      />
+                      <CircleCheck
+                        strokeWidth={1.5}
+                        className={`rounded-full ${
+                          selectedPayment === "cach-on-delivery"
+                            ? "bg-main text-light"
+                            : "bg-light text-gray-700"
+                        }`}
+                      />
                       Cach on Delivery
                     </label>
                   </div>
-                  <div className="flex w-full items-center ">
-                    <Input
-                      type="radio"
-                      value="Online Payment"
-                      cheked={payment === "online-payment"}
-                      onChange={onRadioChange}
-                      className={`w-4 h-4 text-main bg-gray-100 border-gray-100 focus:ring-secondary dark:focus:ring-main dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-500 dark:border-gray-50`}
-                      id="online-payment"
-                      name="online-payment"
-                    />
+                  <div
+                    className={`py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md cursor-pointer ${
+                      selectedPayment === "online-payment"
+                        ? "border-main border-2"
+                        : "border-light border-2"
+                    }`}
+                    onClick={() => setSelectedPayment("online-payment")}>
+                    <label
+                      htmlFor="chack-on-delivery"
+                      className="text-14 font-medium text-gray-700 flex gap-1 items-center">
+                      <Input
+                        type="radio"
+                        value="Cash on Delivery"
+                        cheked={payment === "online-payment"}
+                        onChange={onRadioChange}
+                        className={`appearance-none`}
+                        id="chack-on-delivery"
+                        name="chack-on-delivery"
+                      />
+                      <CircleCheck
+                        strokeWidth={1.5}
+                        className={`rounded-full ${
+                          selectedPayment === "online-payment"
+                            ? "bg-main text-light"
+                            : "bg-light text-gray-700"
+                        }`}
+                      />
+                      Online Payment
+                    </label>
+                  </div>
+                  {/* <div className="flex w-full gap-2 items-center">
+                    <div className="grid place-items-center relative w-max border hover:cursor-pointer">
+                      <Input
+                        type="radio"
+                        value="Online Payment"
+                        checked={payment === "online-payment"}
+                        onChange={onRadioChange}
+                        className="appearance-none w-4 h-4 border-2 border-gray-500 rounded-full hover:border-gray-700"
+                        id="online-payment"
+                        name="online-payment"
+                      />
+                      {selectedPayment && ( 
+                      <div className="absolute w-2 h-2 rounded-full bg-gray-500"></div>
+                      // )}
+                    </div>
                     <label
                       htmlFor="online-payment"
                       className="ms-2 text-sm font-medium text-gray-700">
                       Online Payment
                     </label>
-                  </div>
+                  </div> */}
                 </form>
               </div>
             </div>
