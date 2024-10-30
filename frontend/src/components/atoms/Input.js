@@ -2,7 +2,9 @@ function Input(props) {
   return (
     <div
       className={`flex relative w-full flex-start ${
-        props.error ? "flex-col" : "flex-row"
+        props.error
+          ? "flex-col"
+          : `flex-row ${props.type === "radio" ? "w-max" : ""}`
       }`}>
       <input
         type={props.type}

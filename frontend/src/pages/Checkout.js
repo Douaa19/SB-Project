@@ -10,7 +10,8 @@ function Checkout() {
   const dispatch = useDispatch();
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
-  const [errorResponse, setErrorResponse] = useState("");
+  const [errorResponse, setErrorResponse] = useState(null);
+  const [payment, setPayment] = useState(null);
   const userId = useSelector((state) => state.user_id);
   const orders = useSelector((state) => state.orders.orders);
 
@@ -23,6 +24,9 @@ function Checkout() {
       sendOrder(data, userOrders).then((res) => {
         if (!res.data.messageSuccess) {
           setErrorResponse(res.data.messageError);
+          setTimeout(() => {
+            alert(errorResponse);
+          });
         } else {
           dispatch(setOrderSent(true));
         }
@@ -80,6 +84,10 @@ function Checkout() {
     return /^(\+212\d{9}|0\d{9})$/.test(phone);
   };
 
+  const onRadioChange = (e) => {
+    setPayment(e.target.value);
+  };
+
   return (
     <>
       <NavBar />
@@ -102,9 +110,44 @@ function Checkout() {
               <h3 className="text-16 font-semibold capitalize tracking-wide text-gray-700">
                 payement method
               </h3>
-              <div className="flex items-center justify-around w-full">
-                <Input type="radio" placeHolder="Cash on Delivery" />
-                <Input type="radio" placeHolder="Online Payment" />
+              <div className="w-full">
+                <form
+                  action=""
+                  method="post"
+                  className="w-full flex items-center justify-around">
+                  <div className="flex w-full items-center ">
+                    <Input
+                      type="radio"
+                      value="Cash on Delivery"
+                      cheked={payment === "cach-on-delivery"}
+                      onChange={onRadioChange}
+                      className={`w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-60`}
+                      id="chack-on-delivery"
+                      name="chack-on-delivery"
+                    />
+                    <label
+                      htmlFor="chack-on-delivery"
+                      className="ms-2 text-sm font-medium text-gray-700">
+                      Cach on Delivery
+                    </label>
+                  </div>
+                  <div className="flex w-full items-center ">
+                    <Input
+                      type="radio"
+                      value="Online Payment"
+                      cheked={payment === "online-payment"}
+                      onChange={onRadioChange}
+                      className={`w-4 h-4 text-main bg-gray-100 border-gray-100 focus:ring-secondary dark:focus:ring-main dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-500 dark:border-gray-50`}
+                      id="online-payment"
+                      name="online-payment"
+                    />
+                    <label
+                      htmlFor="online-payment"
+                      className="ms-2 text-sm font-medium text-gray-700">
+                      Online Payment
+                    </label>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
