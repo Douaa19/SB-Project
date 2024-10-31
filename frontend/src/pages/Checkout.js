@@ -12,7 +12,6 @@ function Checkout() {
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
   const [errorResponse, setErrorResponse] = useState(null);
-  const [payment, setPayment] = useState(null);
   const [selectedPayment, setSelectedPayment] = useState(null);
   const userId = useSelector((state) => state.user_id);
   const orders = useSelector((state) => state.orders.orders);
@@ -20,26 +19,24 @@ function Checkout() {
   const userOrders = orders[userId];
 
   const handleSubmit = () => {
-    let errors = validationForm(data);
+    const updatedData = { ...data, payment: selectedPayment };
+    const validationErrors = validationForm(updatedData);
 
-    if (Object.keys(errors).length === 0) {
-      sendOrder(data, userOrders).then((res) => {
+    if (Object.keys(validationErrors).length === 0) {
+      sendOrder(updatedData, userOrders).then((res) => {
         if (!res.data.messageSuccess) {
           setErrorResponse(res.data.messageError);
-          setTimeout(() => {
-            alert(errorResponse);
-          });
+          alert(errorResponse);
         } else {
           dispatch(setOrderSent(true));
         }
       });
     } else {
-      return;
+      setErrors(validationErrors);
     }
   };
 
   const validationForm = (data) => {
-    console.log(data);
     const errors = {};
 
     if (!data.name) {
@@ -74,11 +71,11 @@ function Checkout() {
       errors.postalCode = "The field zip code is required to proceed.";
     }
 
-    if (selectedPayment === null) {
+    if (!selectedPayment) {
       errors.payment = "You have to choose a payment method to proceed.";
     }
 
-    setErrors(errors);
+    return errors;
   };
 
   const isValidEmail = (email) => {
@@ -88,10 +85,6 @@ function Checkout() {
 
   const isPhoneNumber = (phone) => {
     return /^(\+212\d{9}|0\d{9})$/.test(phone);
-  };
-
-  const onRadioChange = (e) => {
-    setPayment(e.target.value);
   };
 
   return (
@@ -109,101 +102,85 @@ function Checkout() {
                 button={false}
                 data={data}
                 setData={setData}
-                errors={errors ? errors : null}
+                errors={errors}
               />
             </div>
             <div className="flex flex-col items-start gap-2 w-full">
               <h3 className="text-16 font-semibold capitalize tracking-wide text-gray-700">
-                payement method
+                payment method
               </h3>
               {errors.payment && (
                 <h4 className="text-red font-medium text-14">
                   {errors.payment}
                 </h4>
               )}
-              <div className="w-full">
-                <form
-                  action=""
-                  method="post"
-                  className="w-full flex items-center justify-around gap-2">
-                  <div
-                    className={`py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md ${
-                      selectedPayment === "cach-on-delivery"
-                        ? "border-main border-2"
-                        : "border-gray-100"
-                    }`}
-                    onClick={() => setSelectedPayment("cach-on-delivery")}>
-                    <label
-                      htmlFor="chack-on-delivery"
-                      className="text-14 font-medium text-gray-700 flex gap-1 items-center">
-                      <Input
-                        type="radio"
-                        value="Cash on Delivery"
-                        cheked={payment === "cach-on-delivery"}
-                        onChange={onRadioChange}
-                        className={`peer sr-only`}
-                        id="chack-on-delivery"
-                        name="chack-on-delivery"
-                      />
-                      <CircleCheck
-                        strokeWidth={1.5}
-                        className={`rounded-full ${
-                          selectedPayment === "cach-on-delivery"
-                            ? "bg-main text-light"
-                            : "bg-light text-gray-700"
-                        }`}
-                      />
-                      Cach on Delivery
-                    </label>
-                  </div>
-                  <div
-                    className={`py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md ${
-                      selectedPayment === "online-payment"
-                        ? "border-main border-2"
-                        : "border-light border-2"
-                    }`}
-                    onClick={() => setSelectedPayment("online-payment")}>
-                    <label
-                      htmlFor="chack-on-delivery"
-                      className="text-14 font-medium text-gray-700 flex gap-1 items-center">
-                      <Input
-                        type="radio"
-                        value="Cash on Delivery"
-                        cheked={payment === "online-payment"}
-                        onChange={onRadioChange}
-                        className={`appearance-none`}
-                        id="chack-on-delivery"
-                        name="chack-on-delivery"
-                      />
-                      <CircleCheck
-                        strokeWidth={1.5}
-                        className={`rounded-full ${
-                          selectedPayment === "online-payment"
-                            ? "bg-main text-light"
-                            : "bg-light text-gray-700"
-                        }`}
-                      />
-                      Online Payment
-                    </label>
-                  </div>
-                </form>
+              <div className="w-full flex sm:flex-row ssm:flex-col gap-4 items-center justify-between">
+                <div
+                  className={`py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md ${
+                    selectedPayment === "cash-on-delivery"
+                      ? "border-main border-2"
+                      : "border-gray-100"
+                  }`}
+                  onClick={() => setSelectedPayment("cash-on-delivery")}>
+                  <label className="text-14 font-medium text-gray-700 flex gap-1 items-center">
+                    <Input
+                      type="radio"
+                      value="cash-on-delivery"
+                      checked={selectedPayment === "cash-on-delivery"}
+                      readOnly
+                      className="peer sr-only"
+                    />
+                    <CircleCheck
+                      strokeWidth={1.5}
+                      className={`rounded-full ${
+                        selectedPayment === "cash-on-delivery"
+                          ? "bg-main text-light"
+                          : "bg-light text-gray-700"
+                      }`}
+                    />
+                    Cash on Delivery
+                  </label>
+                </div>
+                <div
+                  className={`py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md ${
+                    selectedPayment === "online-payment"
+                      ? "border-main border-2"
+                      : "border-light border-2"
+                  }`}
+                  onClick={() => setSelectedPayment("online-payment")}>
+                  <label className="text-14 font-medium text-gray-700 flex gap-1 items-center">
+                    <Input
+                      type="radio"
+                      value="online-payment"
+                      checked={selectedPayment === "online-payment"}
+                      readOnly
+                      className="appearance-none"
+                    />
+                    <CircleCheck
+                      strokeWidth={1.5}
+                      className={`rounded-full ${
+                        selectedPayment === "online-payment"
+                          ? "bg-main text-light"
+                          : "bg-light text-gray-700"
+                      }`}
+                    />
+                    Online Payment
+                  </label>
+                </div>
               </div>
             </div>
           </div>
-          <div className=" flex flex-col items-start gap-2 w-full">
+          <div className="flex flex-col items-start gap-2 w-full">
             <h3 className="text-16 font-semibold capitalize tracking-wide text-gray-700">
               order summary
             </h3>
-            <div className="flex flex-col items-start gap-2 w-full">
-              <div className="items w-full"></div>
-              <div className="checkout w-full text-center">
-                <Button
-                  type="submit"
-                  text="Cofirm Order"
-                  className="border-main py-2 px-3 bg-main text-light rounded-md"
-                  onClick={handleSubmit}
-                />
-              </div>
+            <div className="checkout w-full text-center">
+              <Button
+                type="submit"
+                text="Confirm Order"
+                className="border-main py-2 px-3 bg-main text-light rounded-md"
+                onClick={handleSubmit}
+              />
             </div>
           </div>
         </div>
