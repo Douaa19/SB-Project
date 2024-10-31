@@ -18,7 +18,6 @@ function Checkout() {
   const orders = useSelector((state) => state.orders.orders);
 
   const userOrders = orders[userId];
-  // console.log(userOrders);
 
   const handleSubmit = () => {
     const updatedData = { ...data, payment: selectedPayment };
@@ -94,7 +93,7 @@ function Checkout() {
       <NavBar />
       <div className="ssm:pt-4 md:px-20 ssm:px-16 w-full mt-24">
         <div className="grid md:grid-cols-2 md:grid-rows-1 ssm:grid-cols-1 ssm:grid-rows-2 gap-8 h-max w-full">
-          <div className="md:col-span-1 ssm:order-last md:order-first w-full flex flex-col items-start justify-between gap-8">
+          <div className="md:col-span-1 ssm:order-last md:order-first w-full flex flex-col items-start justify-start gap-8">
             <div className="flex flex-col items-start gap-2 w-full">
               <h3 className="text-16 font-semibold capitalize tracking-wide text-gray-700">
                 delivery information
@@ -177,7 +176,7 @@ function Checkout() {
               order summary
             </h3>
             <div className="flex flex-col justify-between items-center bg-white p-6 rounded-md shadow-md w-full">
-              <div className="w-full py-5">
+              <div className="w-full pb-5">
                 <div className="flex flex-col items-center justify-center gap-2">
                   {userOrders.map((order, index) => (
                     <OrderSummaryCard
@@ -216,11 +215,12 @@ function Checkout() {
                       289DH
                     </span>
                   </div>
-                  <div className="checkout w-full text-center">
+                  <div className="w-full text-center">
                     <Button
                       type="submit"
                       text="Confirm Order"
-                      className="border-main py-2 px-3 bg-main text-light rounded-md"
+                      textClass="relative z-10"
+                      className="capitalize relative flex px-6 py-3 items-center justify-center overflow-hidden bg-main md:text-16 ssm:text-14 font-medium rounded-md text-white shadow-md transition-all duration-300 before:absolute before:inset-0 before:border-0 before:border-white before:duration-100 before:ease-linear hover:bg-white hover:text-main hover:shadow-main hover:before:border-[25px]"
                       onClick={handleSubmit}
                     />
                   </div>
