@@ -860,6 +860,10 @@ video {
   height: 100vh;
 }
 
+.h-16 {
+  height: 4rem;
+}
+
 .max-h-\[400px\] {
   max-height: 400px;
 }
@@ -946,6 +950,14 @@ video {
 
 .w-max {
   width: max-content;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.w-16 {
+  width: 4rem;
 }
 
 .min-w-full {
@@ -1170,6 +1182,14 @@ video {
 
 .border-t-4 {
   border-top-width: 4px;
+}
+
+.border-t {
+  border-top-width: 1px;
+}
+
+.border-t-1 {
+  border-top-width: 1px;
 }
 
 .border-gray-100 {

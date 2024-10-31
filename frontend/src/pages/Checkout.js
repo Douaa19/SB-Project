@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavBar, Footer } from "../components/layout";
 import { ShippingForm } from "../components/molecules";
 import { Input, Button } from "../components/atoms";
+import { OrderSummaryCard } from "../components/organismes";
 import { sendOrder } from "../services/orders";
 import { setOrderSent } from "../redux/actions/popups";
 import { CircleCheck } from "lucide-react";
@@ -17,6 +18,7 @@ function Checkout() {
   const orders = useSelector((state) => state.orders.orders);
 
   const userOrders = orders[userId];
+  // console.log(userOrders);
 
   const handleSubmit = () => {
     const updatedData = { ...data, payment: selectedPayment };
@@ -174,13 +176,56 @@ function Checkout() {
             <h3 className="text-16 font-semibold capitalize tracking-wide text-gray-700">
               order summary
             </h3>
-            <div className="checkout w-full text-center">
-              <Button
-                type="submit"
-                text="Confirm Order"
-                className="border-main py-2 px-3 bg-main text-light rounded-md"
-                onClick={handleSubmit}
-              />
+            <div className="flex flex-col justify-between items-center bg-white p-6 rounded-md shadow-md w-full">
+              <div className="w-full py-5">
+                <div className="flex flex-col items-center justify-center gap-2">
+                  {userOrders.map((order, index) => (
+                    <OrderSummaryCard
+                      key={index}
+                      order={order}
+                      userId={userId}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="w-full">
+                <div className="flex flex-col items-center justify-center gap-4 border-t-1 border-gray-100 w-full py-5">
+                  <div className="flex justify-between items-center w-full">
+                    <span className="text-14 w-max text-gray-500">
+                      Subtotal
+                    </span>
+                    <span className="text-14 w-max text-gray-700 font-semibold">
+                      240DH
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center w-full">
+                    <span className="text-14 w-max text-gray-500">
+                      Shipping
+                    </span>
+                    <span className="text-14 w-max text-gray-700 font-semibold">
+                      49DH
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-col items-center justify-between w-full border-t-1 border-gray-100 py-5 gap-6">
+                  <div className="flex justify-between items-center w-full">
+                    <span className="text-14 w-max text-gray-500">
+                      Total {`(DH)`}
+                    </span>
+                    <span className="text-14 w-max text-gray-700 font-semibold">
+                      289DH
+                    </span>
+                  </div>
+                  <div className="checkout w-full text-center">
+                    <Button
+                      type="submit"
+                      text="Confirm Order"
+                      className="border-main py-2 px-3 bg-main text-light rounded-md"
+                      onClick={handleSubmit}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
