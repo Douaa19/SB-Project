@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavBar, Footer } from "../components/layout";
 import { ShippingForm } from "../components/molecules";
@@ -14,6 +14,9 @@ function Checkout() {
   const [errors, setErrors] = useState({});
   const [errorResponse, setErrorResponse] = useState(null);
   const [selectedPayment, setSelectedPayment] = useState(null);
+  const [subtotal, setSubTotal] = useState(null);
+  const [grandtotal, setGrandTotal] = useState(null);
+  const shipping = 49;
   const userId = useSelector((state) => state.user_id);
   const orders = useSelector((state) => state.orders.orders);
 
@@ -87,6 +90,27 @@ function Checkout() {
   const isPhoneNumber = (phone) => {
     return /^(\+212\d{9}|0\d{9})$/.test(phone);
   };
+
+  useEffect(() => {
+    let total = 0;
+    for (let index = 0; index < userOrders.length; index++) {
+      if (
+        typeof userOrders[index].item.price === "number" &&
+        typeof userOrders[index].quantity === "number"
+      ) {
+        total += userOrders[index].item.price * userOrders[index].quantity;
+      }
+    }
+
+    setSubTotal(total);
+  }, [orders, userOrders]);
+
+  useEffect(() => {
+    if (subtotal !== null) {
+      const grandTotal = subtotal + shipping;
+      setGrandTotal(grandTotal);
+    }
+  }, [subtotal, shipping]);
 
   return (
     <>
@@ -194,7 +218,7 @@ function Checkout() {
                       Subtotal
                     </span>
                     <span className="text-14 w-max text-gray-700 font-semibold">
-                      240DH
+                      {subtotal}DH
                     </span>
                   </div>
                   <div className="flex justify-between items-center w-full">
@@ -202,7 +226,7 @@ function Checkout() {
                       Shipping
                     </span>
                     <span className="text-14 w-max text-gray-700 font-semibold">
-                      49DH
+                      {shipping}DH
                     </span>
                   </div>
                 </div>
@@ -212,7 +236,7 @@ function Checkout() {
                       Total {`(DH)`}
                     </span>
                     <span className="text-14 w-max text-gray-700 font-semibold">
-                      289DH
+                    {grandtotal}DH
                     </span>
                   </div>
                   <div className="w-full text-center">
