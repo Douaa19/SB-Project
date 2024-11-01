@@ -2,14 +2,16 @@ function Input(props) {
   return (
     <div
       className={`flex relative w-full flex-start ${
-        props.error ? "flex-col" : "flex-row"
+        props.error
+          ? "flex-col"
+          : `flex-row ${props.type === "radio" ? "w-max" : ""}`
       }`}>
       <input
         type={props.type}
         name={props.name}
         value={props.value}
         className={props.className}
-        placeholder={props.placeHolder}
+        placeholder={props.placeHolder ? props.placeHolder : ""}
         onChange={props.onChange}
         min={props.type === "number" && "0"}
         autoComplete="off"
@@ -34,7 +36,7 @@ function Input(props) {
       )}
       {props.error && (
         <>
-          <span className="text-red md:text-12 ssm:text-10 relative left-3">
+          <span className="text-red text-12 relative left-1">
             {props.error}
           </span>
         </>

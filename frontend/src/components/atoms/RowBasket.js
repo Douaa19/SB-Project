@@ -96,20 +96,6 @@ function RowBasket(props) {
               {props.data.quantity * props.data.item.price}DH
             </span>
           </div>
-          {/* <div className="flex flex-col justify-between items-start py-2">
-            <div className="title md:text-16 font-bold ssm:text-14">
-              <span>{props.data.item.title}</span>
-            </div>
-            <div className="capitalize details md:text-14 ssm:text-12 flex flex-col">
-              <span className="lowercase">{props.data.item.size}cm</span>
-              <span>{props.data.item.color}</span>
-              <span>
-                {props.data.quantity}{" "}
-                <span className="font-bold"> X ${props.data.item.price}</span>
-              </span>
-              <span className="text-14">{props.data.colors}</span>
-            </div>
-          </div> */}
           <Button
             onClick={handleDeleteItem}
             className="bg-transparent mx-2"

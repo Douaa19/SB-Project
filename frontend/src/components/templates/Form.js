@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Input, TextArea } from "../atoms";
 import { sendMessage } from "../../services/userServices";
 import { setContactDone } from "../../redux/actions/popups";
-import { SelectComponent } from "../atoms";
 import { sendOrder } from "../../services/orders";
 import { setOrderSent } from "../../redux/actions/popups";
 
@@ -16,9 +15,6 @@ function Form(props) {
   const orders = useSelector((state) => state.orders.orders);
 
   const userOrders = orders[userId];
-
-  // cities
-  const cities = useSelector((state) => state.cities);
 
   const handleChange = async (element, value) => {
     const newData = { ...data, [`${element}`]: value };
@@ -38,14 +34,6 @@ function Form(props) {
               dispatch(setContactDone(false));
               window.location = "/";
             }, 3000);
-          }
-        });
-      } else if (props.type === "shipping") {
-        sendOrder(data, userOrders).then((response) => {
-          if (!response.data.messageSuccess) {
-            alert("Your order doesn't sent");
-          } else {
-            dispatch(setOrderSent(true));
           }
         });
       }
@@ -86,21 +74,12 @@ function Form(props) {
       }
     }
 
-    if (props.type === "shipping" || props.type === "createAccount") {
+    if (props.type === "createAccount") {
       if (!data.address) {
         errors.address = "Address is required";
       }
     }
 
-    if (props.type === "shipping") {
-      if (!data.city) {
-        errors.city = "City is required";
-      }
-
-      if (!data.postalCode) {
-        errors.postalCode = "Postal code is required";
-      }
-    }
     if (props.type === "login") {
       if (!data.password) {
         errors.password = "password is required";
@@ -121,32 +100,20 @@ function Form(props) {
     return /^\+\d{12}$/.test(phone);
   };
 
-  const hadleSelect = (name, value) => {
-    setData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
   return (
     <div className={props.className}>
       <div
-        className={`flex ${
-          props.type !== "contact"
-            ? "flex-col md:gap-2 ssm:gap-2"
-            : "flex-col gap-4"
-        }  w-full md:justify-between ssm:justify-center items-center`}>
-        {props.type !== "login" && (
-          <Input
-            type="text"
-            className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
-            placeHolder={`${props.type === "contact" ? "name" : "full name"}`}
-            name="name"
-            value={data.name}
-            onChange={(e) => handleChange("name", e.target.value)}
-            error={errors.name}
-          />
-        )}
+        className={`flex flex-col gap-4 w-full md:justify-between ssm:justify-center items-center`}>
+        <Input
+          type="text"
+          className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
+          placeHolder={`${props.type === "contact" ? "name" : "full name"}`}
+          name="name"
+          value={data.name}
+          onChange={(e) => handleChange("name", e.target.value)}
+          error={errors.name}
+        />
+
         <Input
           type="email"
           className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
@@ -166,76 +133,33 @@ function Form(props) {
         onChange={(e) => handleChange("phone", e.target.value)}
         error={errors.phone}
       />
-      {props.type === "shipping" && (
-        <>
-          <SelectComponent
-            data={cities}
-            name="city"
-            error={errors.city}
-            className=""
-            city={data.city}
-            onChange={(value) => {
-              hadleSelect("city", value);
-            }}
+      <TextArea
+        text="your message"
+        id="message"
+        rows="3"
+        name="message"
+        value={data.message}
+        onChange={(e) => handleChange("message", e.target.value)}
+        error={errors.message}
+        className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
+      />
+      {props.button !== false && (
+        <div className="flex items-center justify-start w-full">
+          <Button
+            className={`ssm:m-0 md:mt-3 border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white bg-main md:text-16 ssm:text-14 font-medium outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105`}
+            text={
+              props.type === "contact"
+                ? "send"
+                : props.type === "login"
+                ? "login"
+                : props.type === "createAccount"
+                ? "create account"
+                : "checkout"
+            }
+            onClick={() => handleSubmit()}
           />
-        </>
+        </div>
       )}
-      {props.type === "shipping" ? (
-        <Input
-          type="text"
-          className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
-          placeHolder="address"
-          name="address"
-          value={data.address}
-          onChange={(e) => handleChange("address", e.target.value)}
-          error={errors.address}
-        />
-      ) : null}
-      {props.type === "shipping" && (
-        <Input
-          type="text"
-          className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
-          placeHolder="postal code"
-          name="postalCode"
-          value={data.postalCode}
-          onChange={(e) => handleChange("postalCode", e.target.value)}
-          error={errors.postalCode}
-        />
-      )}
-      {props.type === "contact" && (
-        <>
-          <TextArea
-            text="your message"
-            id="message"
-            rows="3"
-            name="message"
-            value={data.message}
-            onChange={(e) => handleChange("message", e.target.value)}
-            error={errors.message}
-            className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 border-main`}
-          />
-        </>
-      )}
-      <div className="flex items-center justify-start w-full">
-        <Button
-          className={`ssm:m-0 md:mt-3
-          border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white bg-main md:text-16 ssm:text-14 font-medium outline-none hover:bg-white hover:text-main ${
-            props.type === "contact"
-              ? "transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105"
-              : ""
-          }`}
-          text={
-            props.type === "contact"
-              ? "send"
-              : props.type === "login"
-              ? "login"
-              : props.type === "createAccount"
-              ? "create account"
-              : "checkout"
-          }
-          onClick={() => handleSubmit()}
-        />
-      </div>
     </div>
   );
 }

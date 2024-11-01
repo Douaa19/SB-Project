@@ -10,7 +10,6 @@ import {
   Login,
   Checkout,
 } from "../pages";
-import { useSelector } from "react-redux";
 
 function AppRoutes() {
   return (
