@@ -14,11 +14,11 @@ function CheckoutPopupContent() {
     window.location = "/";
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     closePopup();
-  //   }, 4000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      closePopup();
+    }, 4000);
+  }, []);
 
   return (
     <>
