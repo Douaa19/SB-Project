@@ -131,6 +131,10 @@ function BigItemCard({ url, item }) {
       errors.quantity = "Minimum quantity is 1";
     }
 
+    if (!data.colors) {
+      errors.colors = "Please select a color.";
+    }
+
     setErrors(errors);
     return errors;
   };
@@ -237,10 +241,17 @@ function BigItemCard({ url, item }) {
                       options={colorOptions}
                       styles={colorStyles}
                       placeholder="Color"
-                      className="w-32 text-14"
+                      className={`w-32 text-14 ${
+                        errors.colors ? "border border-red rounded-md" : ""
+                      }`}
                       isClearable={isClearable}
                       onChange={handleColorChange}
                     />
+                    {errors.colors && (
+                      <span className="text-red font-medium text-14">
+                        {errors.colors}
+                      </span>
+                    )}
                   </div>
                   <div className="flex justify-start items-center gap-4">
                     <span className="text-14">Quantity:</span>
