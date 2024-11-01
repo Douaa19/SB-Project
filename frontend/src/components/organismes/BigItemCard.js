@@ -144,7 +144,18 @@ function BigItemCard({ url, item }) {
     let errors = handleError(order);
 
     if (Object.keys(errors).length === 0) {
-      dispatch(setOrders(userId, order.item, order.quantity, order.colors));
+      if (userId.length > 0) {
+        dispatch(setOrders(userId, order.item, order.quantity, order.colors));
+      } else {
+        const guestOrders =
+          JSON.parse(localStorage.getItem("guestOrders")) || [];
+        guestOrders.push({
+          item: order.item,
+          quantity: order.quantity,
+          colors: order.colors,
+        });
+        localStorage.setItem("guestOrders", JSON.stringify(guestOrders));
+      }
     } else {
       console.log("Error!!");
     }
