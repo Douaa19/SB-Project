@@ -34,10 +34,7 @@ function AppRoutes() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/basket" element={<Basket />} />
-          <Route
-            path="/login"
-            element={userId.length > 0 && isLoggedIn ? <Home /> : <Login />}
-          />
+          <Route path="/login" element={isLoggedIn ? <Home /> : <Login />} />
           <Route
             path={`/reset-password/:resetToken/:user_id`}
             element={<Login />}

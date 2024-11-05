@@ -22,7 +22,7 @@ function BasketTable({ orders, isLoggedIn }) {
   return (
     <div className="md:mt-6 ssm:mt-4 ssm:mx-6 md:mx-0">
       <div className="min-w-full">
-        {displayedOrders.length > 0 ? (
+        {displayedOrders?.length > 0 ? (
           <>
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}

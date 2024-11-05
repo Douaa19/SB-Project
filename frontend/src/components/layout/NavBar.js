@@ -26,8 +26,6 @@ function NavBar() {
       ? guestOrders
       : [];
 
-  console.log(allOrders.length);
-
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
