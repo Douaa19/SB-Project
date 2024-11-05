@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/small-logo-sabaembroidery.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { ShoppingCart } from "lucide-react";
@@ -10,6 +11,7 @@ import {
 
 function NavBar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const orders = useSelector((state) => state.orders.orders);
   const userId = useSelector((state) => state.user_id);
@@ -51,7 +53,7 @@ function NavBar() {
   const isOpen = open ? "open" : "";
 
   const logout = async () => {
-    window.location = "/";
+    navigate("/");
     localStorage.removeItem("token");
     dispatch(setRoleAction(""));
     dispatch(setIdAction(""));

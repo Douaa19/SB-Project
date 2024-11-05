@@ -15,6 +15,8 @@ function Basket() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const userOrders = orders[userId] || [];
 
+  console.log(userOrders);
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -49,19 +51,20 @@ function Basket() {
             <BasketTable orders={userOrders} />
             {userOrders.length > 0 && (
               <div className="mt-6">
-                <a
-                  href={
+                <button
+                  onClick={() => {
                     userId.length > 0
                       ? navigate("/checkout")
                       : navigate("/login")
-                  }
+                  }}
+                    
                   class="relative inline-flex items-center px-8 py-3 overflow-hidden md:text-16 ssm:text-14 font-medium text-main border-1 border-main rounded-md hover:text-white group hover:bg-gray-50 ssm:w-52 sm:w-auto">
                   <span class="absolute left-0 block w-full h-0 transition-all bg-main opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
                   <span class="absolute -right-2 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
                     <ArrowRight strokeWidth={1.5} size={24} />
                   </span>
                   <span class="relative w-full text-center">Check out</span>
-                </a>
+                </button>
               </div>
             )}
           </div>
