@@ -13,24 +13,63 @@ function RowBasket(props) {
   const itemImg = `${BACK_URL}/items/${props.data.item._id}/image`;
 
   const handleDeleteItem = () => {
-    dispatch(removeOrder(userId, props.data.item._id, props.data.colors));
+    if (props.isLoggedIn) {
+      dispatch(removeOrder(userId, props.data.item._id, props.data.colors));
+    } else {
+      const storedOrders = JSON.parse(localStorage.getItem("guestOrders"));
+      const updatedOrders = storedOrders.filter(
+        (order) =>
+          !(
+            order.item._id === props.data.item._id &&
+            JSON.stringify(order.colors) === JSON.stringify(props.data.colors)
+          )
+      );
+      localStorage.setItem("guestOrders", JSON.stringify(updatedOrders));
+      props.onGuestOrdersUpdate(updatedOrders);
+    }
   };
 
   const handleQuantityChange = (operation) => {
-    if (operation === "add") {
-      const newQuantity = props.data.quantity + 1;
-      dispatch(
-        editOrder(userId, props.data.item._id, props.data.colors, newQuantity)
-      );
-    } else if (operation === "subtract") {
-      if (props.data.quantity === 1) {
-        handleDeleteItem();
-      } else if (props.data.quantity > 1) {
-        const newQuantity = props.data.quantity - 1;
+    if (props.isLoggedIn) {
+      if (operation === "add") {
+        const newQuantity = props.data.quantity + 1;
         dispatch(
           editOrder(userId, props.data.item._id, props.data.colors, newQuantity)
         );
+      } else if (operation === "subtract") {
+        if (props.data.quantity === 1) {
+          handleDeleteItem();
+        } else if (props.data.quantity > 1) {
+          const newQuantity = props.data.quantity - 1;
+          dispatch(
+            editOrder(
+              userId,
+              props.data.item._id,
+              props.data.colors,
+              newQuantity
+            )
+          );
+        }
       }
+    } else {
+      const storedOrders = JSON.parse(localStorage.getItem("guestOrders"));
+      const updatedOrders = storedOrders.map((order) => {
+        if (
+          order.item._id === props.data.item._id &&
+          JSON.stringify(order.colors) === JSON.stringify(props.data.colors)
+        ) {
+          return {
+            ...order,
+            quantity:
+              operation === "add"
+                ? order.quantity + 1
+                : Math.max(order.quantity - 1, 1),
+          };
+        }
+        return order;
+      });
+      localStorage.setItem("guestOredrs", JSON.stringify(updatedOrders));
+      props.onGuestOrdersUpdate(updatedOrders);
     }
   };
 
