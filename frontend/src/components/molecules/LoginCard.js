@@ -42,7 +42,7 @@ function LoginCard() {
   };
 
   const userOrders = useSelector((state) =>
-    userId ? state.orders[userId] || [] : []
+    userId?.length > 0 ? state.orders.orders[userId] : []
   );
 
   const handleSubmit = async () => {
@@ -64,12 +64,12 @@ function LoginCard() {
           setUserId(decodedToken.id);
           await dispatch(loginAction());
           await dispatch(setRoleAction(decodedToken.role));
-          await dispatch(setIdAction(decodedToken.id));
-          mergeGuestOrdersWithUserOrders(decodedToken.id);
+          await dispatch(setIdAction(userId));
+          mergeGuestOrdersWithUserOrders(userId);
 
-          // setTimeout(() => {
-          //   navigate("/");
-          // }, 3000);
+          setTimeout(() => {
+            navigate("/");
+          }, 3000);
           setErrors({});
         }
       });
@@ -94,9 +94,10 @@ function LoginCard() {
       }
     });
 
-    console.log(userId, userOrders);
+    userOrders.forEach((order) => {
+      dispatch(setOrders(userId, order.item, order.quantity, order.colors));
+    });
 
-    dispatch(setOrders(userId, userOrders));
     localStorage.removeItem("guestOrders");
   };
 

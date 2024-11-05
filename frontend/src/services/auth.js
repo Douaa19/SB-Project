@@ -2,7 +2,6 @@ import axios from "axios";
 import { BACK_URL } from "../config";
 
 export const login = async (data) => {
-  console.log(data);
   const res = await axios.post(`${BACK_URL}/auth/login`, data);
   localStorage.setItem("token", JSON.stringify(res.data.token));
   return res;
