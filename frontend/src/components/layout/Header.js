@@ -2,10 +2,10 @@ import React from "react";
 import NavBar from "./NavBar";
 import HearoHeader from "./HearoHeader";
 
-function Header() {
+function Header(props) {
   return (
     <>
-      <NavBar />
+      <NavBar setLoading={props.setLoading} />
       <HearoHeader />
     </>
   );

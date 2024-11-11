@@ -7,9 +7,11 @@ import {
   setRoleAction,
   logoutAction,
 } from "../../redux/actions/auth";
+import { useNavigate } from "react-router-dom";
 
-function NavBar() {
+function NavBar(props) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const orders = useSelector((state) => state.orders.orders);
   const userId = useSelector((state) => state.user_id);
@@ -51,11 +53,16 @@ function NavBar() {
   const isOpen = open ? "open" : "";
 
   const logout = async () => {
-    window.location = "/";
+    navigate("/");
     localStorage.removeItem("token");
     dispatch(setRoleAction(""));
     dispatch(setIdAction(""));
     dispatch(logoutAction(""));
+    props.setLoading(true);
+
+    setTimeout(() => {
+      props.setLoading(false);
+    }, 2000);
   };
 
   return (
