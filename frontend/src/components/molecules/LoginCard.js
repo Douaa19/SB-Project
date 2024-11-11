@@ -85,27 +85,25 @@ function LoginCard() {
   const mergeGuestOrdersWithUserOrders = (user_id, userOrders) => {
     const guestOrders = JSON.parse(localStorage.getItem("guestOrders")) || [];
 
-    console.log(userId);
-
     if (userOrders.length === 0) {
       dispatch(setMultipleOrders(user_id, guestOrders));
     } else {
       const updatedUserOrders = [...userOrders];
-      // guestOrders.forEach((guestOrder) => {
-      //   const existingItemIndex = updatedUserOrders.findIndex(
-      //     (order) =>
-      //       order.item._id === guestOrder.item._id &&
-      //       JSON.stringify(order.colors) === JSON.stringify(guestOrder.colors)
-      //   );
+      guestOrders.forEach((guestOrder) => {
+        const existingItemIndex = updatedUserOrders.findIndex(
+          (order) =>
+            order.item._id === guestOrder.item._id &&
+            JSON.stringify(order.colors) === JSON.stringify(guestOrder.colors)
+        );
 
-      //   if (existingItemIndex !== -1) {
-      //     updatedUserOrders[existingItemIndex].quantity += guestOrder.quantity;
-      //   } else {
-      //     updatedUserOrders.push(guestOrder);
-      //   }
-      // });
+        if (existingItemIndex !== -1) {
+          updatedUserOrders[existingItemIndex].quantity += guestOrder.quantity;
+        } else {
+          updatedUserOrders.push(guestOrder);
+        }
+      });
 
-      // dispatch(setMultipleOrders(user_id, updatedUserOrders));
+      dispatch(setMultipleOrders(user_id, updatedUserOrders));
     }
 
     localStorage.removeItem("guestOrders");
