@@ -8,8 +8,9 @@ import {
   setRoleAction,
   logoutAction,
 } from "../../redux/actions/auth";
+import { useNavigate } from "react-router-dom";
 
-function NavBar() {
+function NavBar(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -61,6 +62,11 @@ function NavBar() {
     dispatch(setRoleAction(""));
     dispatch(setIdAction(""));
     dispatch(logoutAction(""));
+    props.setLoading(true);
+
+    setTimeout(() => {
+      props.setLoading(false);
+    }, 2000);
   };
 
   return (
