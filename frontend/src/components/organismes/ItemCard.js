@@ -32,11 +32,15 @@ function ItemCard({ description, price, id, color, url, title }) {
       <span className="px-4 font-medium ">{title}</span>
       <div className="px-4 pt-2 pb-4 md:text-16 ssm:text-14 flex flex-col justify-center items-start gap-4">
         <p className="font-normale">{description}</p>
-        <div className="flex flex-row justify-between items-start">
+        <div className="flex flex-row justify-between items-start w-full">
           <span className="">{price}DH</span>
-          {/* {color.map((color, index) => ( */}
-          <span classNma="text-gray-100 font-normal text-14">{color}</span>
-          {/* ))} */}
+          {color.map((color, index) => (
+            <span
+              key={index}
+              className={`text-gray-500 font-normal text-14 py-1 px-2 border border-gray-100 rounded-full`}>
+              {color}
+            </span>
+          ))}
         </div>
       </div>
     </div>
