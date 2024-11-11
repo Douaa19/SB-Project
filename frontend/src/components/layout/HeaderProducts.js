@@ -50,8 +50,8 @@ function HeaderProducts({ title, categories }) {
         <CardGrid type="category" categories={updatedCategories} />
         <div className="flex md:justify-end ssm:justify-end items-start h-full md:my-4 ssm:my-0">
           <Input
-            className="border border-main rounded-5 lg:text-14 px-3 py-2 outline-none ssm:text-12 ssm:w-[11rem] text-main"
-            placeholder="search..."
+            className="border border-gray-100 rounded-5 lg:text-14 px-3 py-2 outline-none ssm:text-12 ssm:w-[11rem] text-main"
+            placeHolder="search..."
             rightIcon={Search}
             name="search"
             classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-38 top-[0.35rem] ssm:left-[9.5rem] ssm:w-4"
