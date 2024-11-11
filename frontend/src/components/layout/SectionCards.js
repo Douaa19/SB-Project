@@ -57,9 +57,11 @@ function SectionCards({ items, title, buttonText, page, limit, transition }) {
             <Slider {...settings}>
               {items.slice(0, limit).map((i, index) => (
                 <ItemCard
+                  title={i.title}
                   key={index}
                   description={i.description}
                   price={i.price}
+                  color={i.color}
                   id={i._id}
                   url={page}
                   transition={false}

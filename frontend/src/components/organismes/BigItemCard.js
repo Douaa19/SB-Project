@@ -226,7 +226,7 @@ function BigItemCard({ url, item }) {
         </div>
         <div className="h-auto flex md:flex-row md:justify-between items-center ssm:flex-col ssm:justify-start md:gap-16 ssm:gap-12">
           <div className="flex justify-start md:w-1/2 ssm:w-full h-full">
-            <div className="w-full">
+            <div className="w-full flex items-center justify-center">
               {item.images.length > 0 ? (
                 <>
                   <Slider {...settings}>
@@ -244,7 +244,7 @@ function BigItemCard({ url, item }) {
                   </Slider>
                 </>
               ) : (
-                <p>No images available</p>
+                <div className="w-[28rem] h-[28rem] animate-pulse bg-gray-100"></div>
               )}
             </div>
           </div>
