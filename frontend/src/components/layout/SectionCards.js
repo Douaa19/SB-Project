@@ -56,16 +56,14 @@ function SectionCards({ items, title, buttonText, page, limit, transition }) {
           {items.length > 0 ? (
             <Slider {...settings}>
               {items.slice(0, limit).map((i, index) => (
-                <>
-                  <ItemCard
-                    key={index}
-                    description={i.description}
-                    price={i.price}
-                    id={i._id}
-                    url={page}
-                    transition={false}
-                  />
-                </>
+                <ItemCard
+                  key={index}
+                  description={i.description}
+                  price={i.price}
+                  id={i._id}
+                  url={page}
+                  transition={false}
+                />
               ))}
             </Slider>
           ) : (

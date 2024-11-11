@@ -8,7 +8,6 @@ import {
   setRoleAction,
   logoutAction,
 } from "../../redux/actions/auth";
-import { useNavigate } from "react-router-dom";
 
 function NavBar(props) {
   const dispatch = useDispatch();

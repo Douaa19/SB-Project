@@ -30,14 +30,14 @@ function PresentationCards() {
   return (
     <div className="max-w-6xl mx-auto px-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10">
-        {items.map((item, idx) => (
+        {items.map((item, index) => (
           <div
-            key={item?.link}
+            key={index}
             className="relative group block p-2 h-full w-full "
-            onMouseEnter={() => setHoveredIndex(idx)}
+            onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}>
             <AnimatePresence>
-              {hoveredIndex === idx && (
+              {hoveredIndex === index && (
                 <motion.span
                   className="absolute inset-0 h-full w-full bg-slate-800/[0.1] block rounded-lg"
                   layoutId="hoverBackground"

@@ -72,15 +72,14 @@ function HearoHeader() {
       </div>
       <Slider {...settings} className="slider-image">
         {images.map((image, index) => (
-          <>
+          <div key={index}>
             <div className="z-10 h-full absolute bg-dark opacity-5 w-full top-0 left-0 flex justify-center items-center"></div>
             <img
-              key={index}
               src={image}
               alt="slide"
               className="object-cover md:h-[80vh] sm:h-[60vh] ssm:h-[40vh] w-full"
             />
-          </>
+          </div>
         ))}
       </Slider>
     </div>

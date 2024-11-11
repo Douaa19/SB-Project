@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Header from "../components/layout/Header";
+import { Header, Loading } from "../components/layout";
 import PresentationCards from "../components/layout/PresentationCards";
 import SectionCards from "../components/layout/SectionCards";
 import Footer from "../components/layout/Footer";
@@ -42,7 +42,7 @@ function Home() {
           <Footer />
         </>
       ) : (
-        <>Loading ...</>
+        <Loading />
       )}
     </>
   );
