@@ -12,7 +12,7 @@ import { login } from "../../services/auth";
 import { jwtDecode } from "jwt-decode";
 import { setForgetPassword } from "../../redux/actions/popups";
 import { motion } from "framer-motion";
-import { setOrders } from "../../redux/actions/orders";
+import { setMultipleOrders, setOrders } from "../../redux/actions/orders";
 
 function LoginCard() {
   const dispatch = useDispatch();
@@ -41,9 +41,11 @@ function LoginCard() {
     setData(newData);
   };
 
-  const userOrders = useSelector((state) =>
-    userId?.length > 0 ? state.orders.orders[userId] : []
-  );
+  const userOrders = useSelector((state) => {
+    return userId && state.orders.orders[userId]
+      ? state.orders.orders[userId]
+      : [];
+  });
 
   const handleSubmit = async () => {
     let errors = validationForm(data);
@@ -64,8 +66,9 @@ function LoginCard() {
           setUserId(decodedToken.id);
           await dispatch(loginAction());
           await dispatch(setRoleAction(decodedToken.role));
-          await dispatch(setIdAction(userId));
-          mergeGuestOrdersWithUserOrders(userId);
+          await dispatch(setIdAction(decodedToken.id));
+
+          mergeGuestOrdersWithUserOrders(decodedToken.id, userOrders);
 
           setTimeout(() => {
             navigate("/");
@@ -79,24 +82,31 @@ function LoginCard() {
     }
   };
 
-  const mergeGuestOrdersWithUserOrders = (userId) => {
+  const mergeGuestOrdersWithUserOrders = (user_id, userOrders) => {
     const guestOrders = JSON.parse(localStorage.getItem("guestOrders")) || [];
 
-    guestOrders.forEach((guestOrder) => {
-      const existingItemsIndex = userOrders.findIndex(
-        (order) =>
-          order.item._id === guestOrder.item._id &&
-          JSON.stringify(order.colors) === JSON.stringify(guestOrder.colors)
-      );
+    console.log(userId);
 
-      if (existingItemsIndex === -1) {
-        userOrders.push(guestOrder);
-      }
-    });
+    if (userOrders.length === 0) {
+      dispatch(setMultipleOrders(user_id, guestOrders));
+    } else {
+      const updatedUserOrders = [...userOrders];
+      // guestOrders.forEach((guestOrder) => {
+      //   const existingItemIndex = updatedUserOrders.findIndex(
+      //     (order) =>
+      //       order.item._id === guestOrder.item._id &&
+      //       JSON.stringify(order.colors) === JSON.stringify(guestOrder.colors)
+      //   );
 
-    userOrders.forEach((order) => {
-      dispatch(setOrders(userId, order.item, order.quantity, order.colors));
-    });
+      //   if (existingItemIndex !== -1) {
+      //     updatedUserOrders[existingItemIndex].quantity += guestOrder.quantity;
+      //   } else {
+      //     updatedUserOrders.push(guestOrder);
+      //   }
+      // });
+
+      // dispatch(setMultipleOrders(user_id, updatedUserOrders));
+    }
 
     localStorage.removeItem("guestOrders");
   };

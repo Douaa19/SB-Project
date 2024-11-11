@@ -8,14 +8,14 @@ import { ShoppingBag, MoveLeft, ArrowRight } from "lucide-react";
 
 function Basket() {
   const navigate = useNavigate();
-  const orders = useSelector((state) => state.orders.orders);
   const userId = useSelector((state) => state.user_id);
+  const userOrders = useSelector((state) => state.orders.orders[userId]);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [loading, setLoading] = useState(true);
   const guestOrders = JSON.parse(localStorage.getItem("guestOrders"));
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const userOrders = orders[userId] || [];
+  const orders = isLoggedIn ? userOrders : guestOrders;
 
   useEffect(() => {
     setTimeout(() => {
@@ -39,7 +39,7 @@ function Basket() {
             <div className="flex items-center justify-center w-full h-[2px] mb-8">
               <span className="bg-gray-100 h-full w-80 rounded-full"></span>
             </div>
-            {(userOrders.length > 0 || guestOrders.length > 0) && (
+            {orders.length > 0 && (
               <div className="hover:border-b hover:border-main w-fit">
                 <a
                   href="/products"
@@ -49,7 +49,7 @@ function Basket() {
               </div>
             )}
             <BasketTable isLoggedIn={isLoggedIn} orders={userOrders} />
-            {(userOrders.length > 0 || guestOrders.length > 0) && (
+            {orders.length > 0 && (
               <div className="mt-6">
                 <button
                   onClick={() => {

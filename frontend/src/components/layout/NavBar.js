@@ -19,12 +19,7 @@ function NavBar() {
 
   const userOrders = orders[userId] || [];
 
-  const allOrders =
-    userOrders.length > 0
-      ? userOrders
-      : guestOrders.length > 0
-      ? guestOrders
-      : [];
+  const allOrders = isLoggedIn ? userOrders : guestOrders;
 
   const [scrolled, setScrolled] = useState(false);
 
