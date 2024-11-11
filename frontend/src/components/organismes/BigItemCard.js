@@ -226,7 +226,7 @@ function BigItemCard({ url, item }) {
         </div>
         <div className="h-auto flex md:flex-row md:justify-between items-center ssm:flex-col ssm:justify-start md:gap-16 ssm:gap-12">
           <div className="flex justify-start md:w-1/2 ssm:w-full h-full">
-            <div className="w-full flex items-center justify-center">
+            <div className="w-full">
               {item.images.length > 0 ? (
                 <>
                   <Slider {...settings}>
@@ -295,9 +295,9 @@ function BigItemCard({ url, item }) {
                 </div>
                 <span className="md:text-18 ssm:text-16 font-medium">{`${item.price}DH`}</span>
               </div>
-              <div className="flex justify-start ssm:items-center w-full">
+              <div className="flex md:justify-center ssm:justify-start ssm:items-center w-full">
                 <Button
-                  className="ssm:mt-4 w-full md:mt-2
+                  className="ssm:mt-4 md:w-1/2 ssm:w-full md:mt-2
           border-1 border-main rounded-md md:px-10 ssm:px-6 py-3 capitalize text-white bg-main md:text-16 ssm:text-16 font-medium outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105"
                   text="Add to card"
                   onClick={addToCard}

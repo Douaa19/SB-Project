@@ -3024,6 +3024,10 @@ body .menu ul li > a:hover {
     justify-content: flex-end;
   }
 
+  .md\:justify-center {
+    justify-content: center;
+  }
+
   .md\:justify-between {
     justify-content: space-between;
   }
