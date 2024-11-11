@@ -12,6 +12,7 @@ import { ReactComponent as Prev } from "../../assets/icons/arrow-prev-small-svgr
 function BigItemCard({ url, item }) {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user_id);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [images, setImages] = useState([]);
   const [errors, setErrors] = useState({});
   const [order, setOrder] = useState({
@@ -144,7 +145,30 @@ function BigItemCard({ url, item }) {
     let errors = handleError(order);
 
     if (Object.keys(errors).length === 0) {
-      dispatch(setOrders(userId, order.item, order.quantity, order.colors));
+      if (isLoggedIn) {
+        dispatch(setOrders(userId, order.item, order.quantity, order.colors));
+      } else {
+        const guestOrders =
+          JSON.parse(localStorage.getItem("guestOrders")) || [];
+        const existingItemIndex = guestOrders.findIndex(
+          (existingOrder) =>
+            existingOrder.item._id === order.item._id &&
+            JSON.stringify(existingOrder.colors) ===
+              JSON.stringify(order.colors)
+        );
+
+        if (existingItemIndex !== -1) {
+          guestOrders[existingItemIndex].quantity += order.quantity;
+        } else {
+          guestOrders.push({
+            item: order.item,
+            quantity: order.quantity,
+            colors: order.colors,
+          });
+        }
+
+        localStorage.setItem("guestOrders", JSON.stringify(guestOrders));
+      }
     } else {
       console.log("Error!!");
     }

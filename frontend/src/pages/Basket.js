@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { NavBar, Footer, Loading } from "../components/layout";
 import { BasketTable } from "../components/organismes";
 import { PageTitle } from "../components/atoms";
@@ -6,12 +7,15 @@ import { useSelector } from "react-redux";
 import { ShoppingBag, MoveLeft, ArrowRight } from "lucide-react";
 
 function Basket() {
-  const orders = useSelector((state) => state.orders.orders);
+  const navigate = useNavigate();
   const userId = useSelector((state) => state.user_id);
+  const userOrders = useSelector((state) => state.orders.orders[userId]);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [loading, setLoading] = useState(true);
+  const guestOrders = JSON.parse(localStorage.getItem("guestOrders"));
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const userOrders = orders[userId] || [];
+  const orders = isLoggedIn ? userOrders : guestOrders;
 
   useEffect(() => {
     setTimeout(() => {
@@ -35,7 +39,7 @@ function Basket() {
             <div className="flex items-center justify-center w-full h-[2px] mb-8">
               <span className="bg-gray-100 h-full w-80 rounded-full"></span>
             </div>
-            {userOrders.length > 0 && (
+            {orders.length > 0 && (
               <div className="hover:border-b hover:border-main w-fit">
                 <a
                   href="/products"
@@ -44,18 +48,20 @@ function Basket() {
                 </a>
               </div>
             )}
-            <BasketTable orders={userOrders} />
-            {userOrders.length > 0 && (
+            <BasketTable isLoggedIn={isLoggedIn} orders={userOrders} />
+            {orders.length > 0 && (
               <div className="mt-6">
-                <a
-                  href={userId.length > 0 ? "/checkout" : "/login"}
+                <button
+                  onClick={() => {
+                    isLoggedIn ? navigate("/checkout") : navigate("/login");
+                  }}
                   class="relative inline-flex items-center px-8 py-3 overflow-hidden md:text-16 ssm:text-14 font-medium text-main border-1 border-main rounded-md hover:text-white group hover:bg-gray-50 ssm:w-52 sm:w-auto">
                   <span class="absolute left-0 block w-full h-0 transition-all bg-main opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
                   <span class="absolute -right-2 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
                     <ArrowRight strokeWidth={1.5} size={24} />
                   </span>
                   <span class="relative w-full text-center">Check out</span>
-                </a>
+                </button>
               </div>
             )}
           </div>

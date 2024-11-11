@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/small-logo-sabaembroidery.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { ShoppingCart } from "lucide-react";
@@ -10,11 +11,15 @@ import {
 
 function NavBar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const orders = useSelector((state) => state.orders.orders);
   const userId = useSelector((state) => state.user_id);
+  const guestOrders = JSON.parse(localStorage.getItem("guestOrders")) || [];
 
   const userOrders = orders[userId] || [];
+
+  const allOrders = isLoggedIn ? userOrders : guestOrders;
 
   const [scrolled, setScrolled] = useState(false);
 
@@ -51,7 +56,7 @@ function NavBar() {
   const isOpen = open ? "open" : "";
 
   const logout = async () => {
-    window.location = "/";
+    navigate("/");
     localStorage.removeItem("token");
     dispatch(setRoleAction(""));
     dispatch(setIdAction(""));
@@ -128,9 +133,9 @@ function NavBar() {
               />
             </div>
           </button>
-          {userOrders.length > 0 && (
+          {allOrders.length > 0 && (
             <div className="cursor-pointer length text-white w-4 text-center text-8 border border-red bg-red rounded-full absolute bottom-4 left-4 p-1">
-              <span className="">{userOrders.length}</span>
+              <span className="">{allOrders.length}</span>
             </div>
           )}
         </div>

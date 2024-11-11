@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Input, Button } from "../atoms";
 import { Eye, EyeOff } from "lucide-react";
 import {
@@ -11,9 +12,11 @@ import { login } from "../../services/auth";
 import { jwtDecode } from "jwt-decode";
 import { setForgetPassword } from "../../redux/actions/popups";
 import { motion } from "framer-motion";
+import { setMultipleOrders, setOrders } from "../../redux/actions/orders";
 
 function LoginCard() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
   const [passwordType, setPasswordType] = useState("password");
@@ -21,6 +24,7 @@ function LoginCard() {
     <EyeOff size={20} strokeWidth={1} s />
   );
   const [errorResponse, setErrorResponse] = useState({});
+  const [userId, setUserId] = useState(null);
 
   const togglePassword = () => {
     if (passwordType === "password") {
@@ -37,35 +41,38 @@ function LoginCard() {
     setData(newData);
   };
 
+  const userOrders = useSelector((state) => {
+    return userId && state.orders.orders[userId]
+      ? state.orders.orders[userId]
+      : [];
+  });
+
   const handleSubmit = async () => {
     let errors = validationForm(data);
 
     if (Object.keys(errors).length === 0) {
       login(data).then(async (response) => {
         if (!response.data.token) {
-          if (response.data.messageError) {
-            setErrorResponse({
-              email: "Email is incorrect",
-              password: "Password is incorrect",
-            });
-            setTimeout(() => {
-              alert("Credentials are invalid");
-            });
-          }
-          if (response.data.passwordError) {
-            setErrorResponse({
-              password: response.data.passwordError,
-            });
-          }
+          setErrorResponse({
+            email: response.data.messageError
+              ? "Email is incorrect"
+              : undefined,
+            password: response.data.passwordError || "Password is incorrect",
+          });
 
           return errors;
         } else {
+          const decodedToken = jwtDecode(response.data.token);
+          setUserId(decodedToken.id);
           await dispatch(loginAction());
-          await dispatch(setRoleAction(jwtDecode(response.data.token).role));
-          await dispatch(setIdAction(jwtDecode(response.data.token).id));
+          await dispatch(setRoleAction(decodedToken.role));
+          await dispatch(setIdAction(decodedToken.id));
+
+          mergeGuestOrdersWithUserOrders(decodedToken.id, userOrders);
+
           setTimeout(() => {
-            window.location = "/";
-          });
+            navigate("/");
+          }, 3000);
           setErrors({});
         }
       });
@@ -73,6 +80,33 @@ function LoginCard() {
       console.log("Error!!");
       console.log(errors);
     }
+  };
+
+  const mergeGuestOrdersWithUserOrders = (user_id, userOrders) => {
+    const guestOrders = JSON.parse(localStorage.getItem("guestOrders")) || [];
+
+    if (userOrders.length === 0) {
+      dispatch(setMultipleOrders(user_id, guestOrders));
+    } else {
+      const updatedUserOrders = [...userOrders];
+      guestOrders.forEach((guestOrder) => {
+        const existingItemIndex = updatedUserOrders.findIndex(
+          (order) =>
+            order.item._id === guestOrder.item._id &&
+            JSON.stringify(order.colors) === JSON.stringify(guestOrder.colors)
+        );
+
+        if (existingItemIndex !== -1) {
+          updatedUserOrders[existingItemIndex].quantity += guestOrder.quantity;
+        } else {
+          updatedUserOrders.push(guestOrder);
+        }
+      });
+
+      dispatch(setMultipleOrders(user_id, updatedUserOrders));
+    }
+
+    localStorage.removeItem("guestOrders");
   };
 
   const validationForm = (data) => {

@@ -5,6 +5,13 @@ export const setOrders = (user, item, quantity, colors) => {
   };
 };
 
+export const setMultipleOrders = (user_id, orders) => {
+  return {
+    type: "SETMULTIPLEORDERS",
+    payload: { user_id, orders },
+  };
+};
+
 export const removeOrder = (userId, itemId, color) => {
   return {
     type: "REMOVEORDER",

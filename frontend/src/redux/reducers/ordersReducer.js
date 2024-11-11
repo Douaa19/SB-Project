@@ -15,12 +15,36 @@ const ordersReducer = (state = { orders: {} }, action) => {
       );
 
       if (existingItemIndex !== -1) {
-        return state;
+        userOrders[user][existingItemIndex].quantity += quantity;
       } else {
         userOrders[user].push({ item, quantity, colors });
       }
 
       return { ...state, orders: userOrders };
+
+    case "SETMULTIPLEORDERS":
+      const { user_id, orders } = action.payload;
+      const user_orders = { ...state.orders };
+
+      if (!user_orders[user_id]) {
+        user_orders[user_id] = [];
+      }
+
+      orders.forEach(({ item, quantity, colors }) => {
+        const existingItemIndex = user_orders[user_id].findIndex(
+          (order) =>
+            order.item._id === item._id &&
+            JSON.stringify(order.colors) === JSON.stringify(colors)
+        );
+
+        if (existingItemIndex !== -1) {
+          user_orders[user_id][existingItemIndex].quantity += quantity;
+        } else {
+          user_orders[user_id].push({ item, quantity, colors });
+        }
+      });
+
+      return { ...state, orders: user_orders };
 
     case "REMOVEORDER":
       const {

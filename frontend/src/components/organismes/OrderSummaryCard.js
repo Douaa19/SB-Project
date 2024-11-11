@@ -56,7 +56,7 @@ function OrderSummaryCard(props) {
             {props.order.item.title}
           </span>
           <span className="text-14 font-normal text-gray-500 uppercase">
-            {props.order.item.category_id.name}
+            {props.order.item.category_id?.name}
           </span>
           <span className="text-14 font-semibold capitalize text-gray-700">
             {props.order.item.price * props.order.quantity}DH

@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   Home,
@@ -12,6 +13,9 @@ import {
 } from "../pages";
 
 function AppRoutes() {
+  const userId = useSelector((state) => state.user_id);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   return (
     <>
       <Router>
@@ -30,7 +34,7 @@ function AppRoutes() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/basket" element={<Basket />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={isLoggedIn ? <Home /> : <Login />} />
           <Route
             path={`/reset-password/:resetToken/:user_id`}
             element={<Login />}

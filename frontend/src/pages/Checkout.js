@@ -42,7 +42,6 @@ function Checkout() {
       setErrors(validationErrors);
     }
   };
-  console.log(orderSent)
 
   const validationForm = (data) => {
     const errors = {};
