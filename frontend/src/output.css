@@ -2444,6 +2444,11 @@ body .menu ul li > a:hover {
     margin-right: 1.5rem;
   }
 
+  .ssm\:my-0 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
   .ssm\:mb-10 {
     margin-bottom: 2.5rem;
   }
@@ -2590,6 +2595,10 @@ body .menu ul li > a:hover {
 
   .ssm\:justify-start {
     justify-content: flex-start;
+  }
+
+  .ssm\:justify-end {
+    justify-content: flex-end;
   }
 
   .ssm\:justify-center {
@@ -2841,6 +2850,11 @@ body .menu ul li > a:hover {
     margin-right: 0px;
   }
 
+  .md\:my-4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
   .md\:mb-0 {
     margin-bottom: 0px;
   }
@@ -2947,6 +2961,10 @@ body .menu ul li > a:hover {
 
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:items-start {
+    align-items: flex-start;
   }
 
   .md\:items-center {

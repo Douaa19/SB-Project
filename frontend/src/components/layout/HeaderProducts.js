@@ -46,9 +46,9 @@ function HeaderProducts({ title, categories }) {
         title={title}
         className="capitalize md:text-32 ssm:text-24 font-extrabold text-main text-start md:mt-8 ssm:mt-4"
       />
-      <div className="h-full flex md:justify-between md:items-center md:flex-row md:gap-4 ssm:flex-col ssm:gap-4 sm:pt-4 sm:pb-2 ssm:py-4">
+      <div className="h-full flex md:justify-between md:items-start md:flex-row md:gap-4 ssm:flex-col ssm:gap-4 sm:pt-4 sm:pb-2 ssm:py-4">
         <CardGrid type="category" categories={updatedCategories} />
-        <div className="flex md:justify-end ssm:justify-start items-end">
+        <div className="flex md:justify-end ssm:justify-end items-start h-full md:my-4 ssm:my-0">
           <Input
             className="border border-main rounded-5 lg:text-14 px-3 py-2 outline-none ssm:text-12 ssm:w-[11rem] text-main"
             placeholder="search..."
