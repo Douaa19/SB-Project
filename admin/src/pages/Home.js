@@ -6,7 +6,7 @@ function Home() {
     <>
       <SideBar>
         <div className="max-w-7xl mx-auto px-6 py-2 text-dark">
-          <div className="w-full flex justify-between items-center border border-main">
+          <div className="w-full flex justify-between items-center">
             <div className="">
               <input type="text" placeholder="search..." />
             </div>
@@ -14,7 +14,9 @@ function Home() {
               <div className="">
                 <button>export</button>
               </div>
-              <div className="rounded-full">img</div>
+              <div className="rounded-full">
+                <img src="" alt="" width={28} height={28} />
+              </div>
             </div>
           </div>
         </div>
