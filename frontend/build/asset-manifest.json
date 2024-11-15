@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0ab435c9.css",
+    "main.js": "/static/js/main.22b73b11.js",
+    "static/media/cristina-gottardi-CSpjU6hYo_0-unsplash.jpg": "/static/media/cristina-gottardi-CSpjU6hYo_0-unsplash.51a3b6a41e7f271e3acc.jpg",
+    "static/media/blue_view.jpg": "/static/media/blue_view.4112af1b69b6890f0af8.jpg",
+    "static/media/kace-rodriguez-p3OzJuT_Dks-unsplash.jpg": "/static/media/kace-rodriguez-p3OzJuT_Dks-unsplash.78e816f652499dc41af0.jpg",
+    "static/media/tobias-rademacher-NuBvAE6VfSM-unsplash.jpg": "/static/media/tobias-rademacher-NuBvAE6VfSM-unsplash.7b6ba77ea7ef888a8302.jpg",
+    "static/media/matthew-mortimer-CLZpczBurGA-unsplash.jpg": "/static/media/matthew-mortimer-CLZpczBurGA-unsplash.6dfb912a0f76b97e4fb3.jpg",
+    "static/media/Mobile-login-pana.svg": "/static/media/Mobile-login-pana.e81b0a06214af8559ba8c6cd32b891c0.svg",
+    "static/media/ecofriendly.png": "/static/media/ecofriendly.deb07ad765fa2420d504.png",
+    "static/media/pinterest-icon-svg.png": "/static/media/pinterest-icon-svg.dce2cbecfb8b5e21f3a1.png",
+    "static/media/cube.png": "/static/media/cube.1c2823cc29621ec3dc55.png",
+    "static/media/instagram-icone.png": "/static/media/instagram-icone.25dde087bf28d2341f5a.png",
+    "static/media/big-logo-sabaembroidery.svg": "/static/media/big-logo-sabaembroidery.de76a5390e45829195484b94ad90244c.svg",
+    "static/media/craft-embroidery-crafts-svgrepo-com.svg": "/static/media/craft-embroidery-crafts-svgrepo-com.2368804d4e95f18d9f51e410acaa6b03.svg",
+    "static/media/small-logo-sabaembroidery.svg": "/static/media/small-logo-sabaembroidery.fa77bc6d2d8a4b0afd3fe3b41d5ced80.svg",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/email-8-svgrepo-com.svg": "/static/media/email-8-svgrepo-com.b348fa348502033c1727920b1a62fb3b.svg",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "static/media/success-tick-svgrepo-com.svg": "/static/media/success-tick-svgrepo-com.4bb8e89b61421b9c196e7f5a5aa3eb2d.svg",
+    "static/media/new-password-svgrepo-com.svg": "/static/media/new-password-svgrepo-com.c4e6393ed4b1d7d4de663768d79ece42.svg",
+    "static/media/lock-keyhole-minimalistic-svgrepo-com.svg": "/static/media/lock-keyhole-minimalistic-svgrepo-com.21b56b504f899edbe41e1db50ae86fd5.svg",
+    "static/media/left.svg": "/static/media/left.50e0a852262cdafbac02fc5b6d9de6a1.svg",
+    "static/media/search-svgrepo-com.svg": "/static/media/search-svgrepo-com.dd75d9ee63135d4b1c4b6c6df4b3b142.svg",
+    "static/media/right.svg": "/static/media/right.211382fd5421968059f81d06f5bbb1b7.svg",
+    "static/media/arrow-next-small-svgrepo-com.svg": "/static/media/arrow-next-small-svgrepo-com.3c2082debe1740f7c675f2e8b1d3a138.svg",
+    "static/media/eye-closed-svgrepo-com.svg": "/static/media/eye-closed-svgrepo-com.07319f08832d7f9c898fdb927dcbcb7c.svg",
+    "static/media/arrow-prev-small-svgrepo-com.svg": "/static/media/arrow-prev-small-svgrepo-com.8d42b25c1d94d745cf89091e2adf32b0.svg",
+    "index.html": "/index.html",
+    "static/media/eye-open-svgrepo-com (1).svg": "/static/media/eye-open-svgrepo-com (1).c0da82750fa044bd13cbabd899906f6c.svg",
+    "static/media/close.svg": "/static/media/close.10da36a27e0ca3a23cccd97e160b8b9d.svg",
+    "main.0ab435c9.css.map": "/static/css/main.0ab435c9.css.map",
+    "main.22b73b11.js.map": "/static/js/main.22b73b11.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0ab435c9.css",
+    "static/js/main.22b73b11.js"
+  ]
+}
