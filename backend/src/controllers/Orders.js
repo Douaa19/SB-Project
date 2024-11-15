@@ -8,124 +8,120 @@ const createOrder = async (req, res) => {
   const shippingInfos = req.body.shipping;
   const items = req.body.items;
 
-  console.log(client_id);
-  console.log(shippingInfos);
-  console.log(items);
+  try {
+    await Order.create({
+      client_id,
+      address: shippingInfos.address,
+      phone: shippingInfos.phone,
+      city: shippingInfos.city,
+      zipCode: shippingInfos.postalCode,
+      total: 0,
+    }).then((response) => {
+      if (!response) {
+        console.log("Order doesn't created!");
+      } else {
+        // Create arrays
+        let products_id = [];
+        let quantities = [];
+        let prices = [];
+        let totals = [];
+        items.forEach((item) => {
+          products_id.push(item.item._id);
+          quantities.push(item.quantity);
+          prices.push(item.item.price);
+          totals.push(item.quantity * item.item.price);
+        });
 
-  // try {
-  //   await Order.create({
-  //     client_id,
-  //     address: shippingInfos.address,
-  //     phone: shippingInfos.phone,
-  //     city: shippingInfos.city,
-  //     zipCode: shippingInfos.postalCode,
-  //     total: 0,
-  //   }).then((response) => {
-  //     if (!response) {
-  //       console.log("Order doesn't created!");
-  //     } else {
-  //       // Create arrays
-  //       let products_id = [];
-  //       let quantities = [];
-  //       let prices = [];
-  //       let totals = [];
-  //       items.forEach((item) => {
-  //         products_id.push(item.item._id);
-  //         quantities.push(item.quantity);
-  //         prices.push(item.item.price);
-  //         totals.push(item.quantity * item.item.price);
-  //       });
+        // create OredrProducts
+        OrderProducts.create(
+          {
+            order_id: response._id,
+            products_id,
+            quantities,
+            prices,
+            totals,
+          },
+          (err, result) => {
+            if (result) {
+              // calculate total without shipping fees
+              let Total = 0;
+              totals.forEach((t) => {
+                Total += t;
+              });
+              // add shipping fees
+              Total += 40;
 
-  //       // create OredrProducts
-  //       OrderProducts.create(
-  //         {
-  //           order_id: response._id,
-  //           products_id,
-  //           quantities,
-  //           prices,
-  //           totals,
-  //         },
-  //         (err, result) => {
-  //           if (result) {
-  //             // calculate total without shipping fees
-  //             let Total = 0;
-  //             totals.forEach((t) => {
-  //               Total += t;
-  //             });
-  //             // add shipping fees
-  //             Total += 40;
+              // Update total in order
+              Order.findByIdAndUpdate(
+                response._id,
+                { total: Total },
+                (err, order) => {
+                  if (order) {
+                    const data = {
+                      username: shippingInfos.name,
+                      items,
+                      shipping: 40,
+                      total: Total,
+                      status: response.status,
+                    };
 
-  //             // Update total in order
-  //             Order.findByIdAndUpdate(
-  //               response._id,
-  //               { total: Total },
-  //               (err, order) => {
-  //                 if (order) {
-  //                   const data = {
-  //                     username: shippingInfos.name,
-  //                     items,
-  //                     shipping: 40,
-  //                     total: Total,
-  //                     status: response.status,
-  //                   };
+                    // Send email to admin
+                    const transporter = nodemailer.createTransport({
+                      service: "Gmail",
+                      host: "smtp.gmail.com",
+                      port: 465,
+                      secure: true,
+                      auth: {
+                        user: "sabalarif97@gmail.com",
+                        pass: "bjnzseuzjmzvomlv",
+                      },
+                    });
 
-  //                   // Send email to admin
-  //                   const transporter = nodemailer.createTransport({
-  //                     service: "Gmail",
-  //                     host: "smtp.gmail.com",
-  //                     port: 465,
-  //                     secure: true,
-  //                     auth: {
-  //                       user: "sabalarif97@gmail.com",
-  //                       pass: "bjnzseuzjmzvomlv",
-  //                     },
-  //                   });
+                    const mailOption = {
+                      from: '"Saba Embroidery" <sabalarif97@gmail.com>',
+                      to: `${shippingInfos.email}`,
+                      subject: "Your Order Confirmation from SabaEmbroidery",
+                      html: newOrderEmail.newOrder(data),
+                    };
 
-  //                   const mailOption = {
-  //                     from: '"Saba Embroidery" <sabalarif97@gmail.com>',
-  //                     to: `${shippingInfos.email}`,
-  //                     subject: "Your Order Confirmation from SabaEmbroidery",
-  //                     html: newOrderEmail.newOrder(data),
-  //                   };
+                    transporter.sendMail(mailOption, (error, info) => {
+                      if (error) {
+                        res.send(error);
+                      } else {
+                        console.log("Order sent! Email sent to the client.");
+                        const mailOption = {
+                          from: `"Saba Embtoidery" <sabalarif97@gmail.com>`,
+                          to: `sabalarif97@gmail.com`,
+                          subject: "New Order",
+                          html: adminNewOrder(data),
+                        };
 
-  //                   transporter.sendMail(mailOption, (error, info) => {
-  //                     if (error) {
-  //                       res.send(error);
-  //                     } else {
-  //                       console.log("Order sent! Email sent to the client.");
-  //                       const mailOption = {
-  //                         from: `"Saba Embtoidery" <sabalarif97@gmail.com>`,
-  //                         to: `sabalarif97@gmail.com`,
-  //                         subject: "New Order",
-  //                         html: adminNewOrder(data),
-  //                       };
-
-  //                       transporter.sendMail(mailOption, (error, info) => {
-  //                         if (error) {
-  //                           res.send(error);
-  //                         } else {
-  //                           console.log("Order sent! Email sent to the admin.");
-  //                           res.status(200).send({
-  //                             messageSuccess: "Your order passed successfully",
-  //                           });
-  //                         }
-  //                       });
-  //                     }
-  //                   });
-  //                 }
-  //               }
-  //             );
-  //           }
-  //         }
-  //       );
-  //     }
-  //   });
-  // } catch (error) {
-  //   res.status(500).send({
-  //     messageError: "Somthing goes wrong in server side",
-  //     error: error.message,
-  //   });
-  // }
+                        transporter.sendMail(mailOption, (error, info) => {
+                          if (error) {
+                            res.send(error);
+                          } else {
+                            console.log("Order sent! Email sent to the admin.");
+                            res.status(200).send({
+                              messageSuccess: "Your order passed successfully",
+                            });
+                          }
+                        });
+                      }
+                    });
+                  }
+                }
+              );
+            }
+          }
+        );
+      }
+    });
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in server side",
+      error: error.message,
+    });
+  }
 };
 
 // get my orders
