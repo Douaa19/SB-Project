@@ -1,4 +1,4 @@
-module.exports.passwordReseted = (username, link) => {
+module.exports.newOrder = (data) => {
   return `<!DOCTYPE html>
   <html lang="en">
     <head>
@@ -45,6 +45,22 @@ module.exports.passwordReseted = (username, link) => {
           font-family: Montserrat;
           color: black;
           text-align: left;
+        }
+        .detailsTable {
+            width: 90%;
+            border-collapse: collapse;
+        }
+        .detailsTable tr th {
+            padding:0.5rem;
+            text-align: center;
+            border: #EEE 1px solid;
+        }
+        .detailsTable tr td {
+            padding: 0.2rem;
+            border: #CCC 1px solid;
+        }
+        .pricesTable tr td {
+            padding: 0.2rem;
         }
       </style>
     </head>
@@ -106,25 +122,34 @@ module.exports.passwordReseted = (username, link) => {
                             color: black;
                             margin-left: 1rem;
                           ">
-                          <span>Hello ${username},</span>
+                          <span>Hello Owner,</span>
                           <p>
-                            Congratulations! Your password for your SabaEmbroidery account has been successfully reset. You're now all set to dive back into the world of online shopping with us.
+                            A new order has been placed on SabaEmbroidery! It's time to work your magic and ensure a smooth and timely delivery for our customer. Check the order details below and get started on it as soon as possible. Thank you for your dedication and hard work!
                           </p>
                           <p>
-                            To access your account and start exploring our latest offerings, simply click on the following link: <a href="${link}">SabaEmbroidery</a>.
+                            Below is a summary of the new order details:
                           </p>
-                          <p>
-                            Please ensure that you choose a strong and secure password to protect your account. Once you've reset your password, you'll be able to log in and resume your shopping experience with us.
-                          </p>
-                          <p>
-                            We're delighted to have you back with us and hope you find everything you need to make your shopping experience enjoyable and convenient. Should you have any questions or require assistance while browsing our platform, please don't hesitate to reach out to our support team at embroidery.saba12@gmail.com.
-                          </p>
-                          <p>
-                            Thank you for choosing SabaEmbroidery. We value your continued support and look forward to serving you again soon!
-                          </p>
-                          <p>
-                            Happy shopping
-                          </p>
+                          <table class="detailsTable" style="border: #CCC 1px solid;
+                          border-radius: 5px; font-size: 14px;">
+                            <tr style="background-color: #CECECE;">
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th>Size</th>
+                                <th>Color</th>
+                                <th>Quantity</th>
+                            </tr>
+                            ${data.items.map(
+                              (item) => `
+                            <tr>
+                              <td>${item.item.title}</td>
+                              <td>${item.item.price}</td>
+                              <td>${item.item.size}</td>
+                              <td>${item.item.color}</td>
+                              <td>${item.quantity}</td>
+                            </tr>
+                          `
+                            )}
+                          </table>
                           <p style="display: flex; flex-direction: column;">
                             <span>Best regards,</span>
                             <span>SabaEmbroidery Team</span>
