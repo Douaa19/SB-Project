@@ -45,7 +45,7 @@ function HearoHeader() {
           border: "1px #192655 solid",
           borderRadius: "8px",
           position: "relative",
-          top: "0",
+          top: "3rem",
           left: "0",
           margin: "0",
           backgroundColor: "#192655",
@@ -54,8 +54,8 @@ function HearoHeader() {
   };
 
   return (
-    <div className="w-[100%] md:h-[80vh] sm:h-[60vh] ssm:h-[40vh] ssm:mt-2 block">
-      <div className="z-[1] md:h-[80vh] sm:h-[60vh] ssm:h-[40vh] absolute w-full md:top-[6rem] sm:top-16 ssm:top-18 left-0 flex justify-center items-center">
+    <div className="w-[100%] md:h-[80vh] sm:h-[60vh] ssm:h-[40vh] block md:mt-20 ssm:mt-16">
+      <div className="z-[1] md:h-[80vh] sm:h-[60vh] ssm:h-[40vh] absolute w-full left-0 top-0 flex justify-center items-center">
         <div className="flex flex-col items-center justify-center">
           <h2 className="frame-5 text-center text-white font-normale md:text-24 sm:text-16 ssm:text-12">
             <span>Stitching</span>
@@ -72,15 +72,14 @@ function HearoHeader() {
       </div>
       <Slider {...settings} className="slider-image">
         {images.map((image, index) => (
-          <>
-            <div className="z-10 h-full absolute bg-dark opacity-5 w-full top-0 left-0 flex justify-center items-center"></div>
+          <div key={index}>
+            <div className="z-10 h-[99%] absolute bg-dark opacity-5 w-full top-0 left-0 flex justify-center items-center"></div>
             <img
-              key={index}
               src={image}
               alt="slide"
               className="object-cover md:h-[80vh] sm:h-[60vh] ssm:h-[40vh] w-full"
             />
-          </>
+          </div>
         ))}
       </Slider>
     </div>

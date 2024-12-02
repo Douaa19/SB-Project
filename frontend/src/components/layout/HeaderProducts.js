@@ -11,6 +11,8 @@ function HeaderProducts({ title, categories }) {
   const [searchQuery, setSearchQuery] = useState("");
   const allItems = useSelector((state) => state.newestItems);
 
+  const updatedCategories = [{ _id: "all", name: "All" }, ...categories];
+
   useEffect(() => {
     dispatch(setSearchResults(""));
   }, [dispatch]);
@@ -39,22 +41,24 @@ function HeaderProducts({ title, categories }) {
     handleSearch(query);
   };
   return (
-    <div className="">
+    <div className="ssm:px-4 sm:px:0">
       <PageTitle
         title={title}
         className="capitalize md:text-32 ssm:text-24 font-extrabold text-main text-start md:mt-8 ssm:mt-4"
       />
-      <div className="flex md:justify-between md:items-center md:flex-row md:gap-4 ssm:flex-col-reverse ssm:gap-2 sm:py-6 ssm:py-4">
-        <CardGrid type="category" categories={categories} />
-        <Input
-          className="border rounded-5 border-main lg:text-14 px-3 py-2 outline-none md:block ssm:text-12 ssm:w-[11rem]"
-          placeHolder="search..."
-          rightIcon={Search}
-          name="search"
-          classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-38 top-[0.35rem] ssm:left-36 ssm:w-4"
-          value={searchQuery}
-          onChange={handleChange}
-        />
+      <div className="h-full flex md:justify-between md:items-start md:flex-row md:gap-4 ssm:flex-col ssm:gap-4 sm:pt-4 sm:pb-2 ssm:py-4">
+        <CardGrid type="category" categories={updatedCategories} />
+        <div className="flex md:justify-end ssm:justify-end items-start h-full md:my-4 ssm:my-0">
+          <Input
+            className="border border-gray-100 rounded-5 lg:text-14 px-3 py-2 outline-none ssm:text-12 ssm:w-[11rem] text-main"
+            placeHolder="search..."
+            rightIcon={Search}
+            name="search"
+            classIcon="lg:w-5 hover:cursor-pointer absolute lg:left-38 top-[0.35rem] ssm:left-[9.5rem] ssm:w-4"
+            value={searchQuery}
+            onChange={handleChange}
+          />
+        </div>
       </div>
     </div>
   );

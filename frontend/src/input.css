@@ -19,6 +19,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Montserrat", sans-serif;
+  background-color: #f5f5f5;
 }
 
 .costum-list {
@@ -45,7 +46,7 @@ body {
 }
 .open.list:before,
 .open.list:after {
-  background: #dab88a;
+  background: #f5f5f5;
 }
 .list:after {
   right: inherit;
@@ -58,32 +59,9 @@ body {
   transition: 400ms ease all;
 }
 
-.slick-slide > div {
+/* .slick-slide > div {
   margin: 0 10px;
-}
-
-.category-card {
-  background-image: url("./assets/images/blue_view.jpg");
-}
-
-.opacity-img:hover img {
-  opacity: 0.9;
-}
-
-.card-item {
-  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.01), 0px 2px 2px rgba(0, 0, 0, 0.04),
-    0px 1px 1px rgba(0, 0, 0, 0.06), 0px 0px 1px rgba(0, 0, 0, 0.07),
-    0px 0px 0px rgba(0, 0, 0, 0.07);
-  transition: all 0.08s ease-in-out;
-}
-
-.card-item:hover {
-  transform: translateY(-5px);
-}
-
-.item-img {
-  border-radius: 6px 6px 0 0;
-}
+} */
 
 /* select input */
 .dropdown-select-inner__single-value {
@@ -91,12 +69,12 @@ body {
 }
 
 .dropdown-select-inner__control {
-  border-color: #192655 !important;
+  border-color: #cecece !important;
   width: 100%;
 }
 
 .input-error.dropdown-select-inner__control {
-  border-color: #ff004d !important;
+  border-color: rgb(248 113 113) !important;
 }
 
 .dropdown-select-inner__control--menu-is-open
@@ -130,7 +108,7 @@ body {
   .dropdown-select-inner__control--is-focused
   ~ .dropdown-select
   .dropdown-select-inner__control--is-focused {
-  border-color: #ff004d !important;
+  border-color: rgb(248 113 113) !important;
 }
 
 .dropdown-select .dropdown-select-inner__indicator-separator {
@@ -189,9 +167,9 @@ body {
   gap: 12px;
 }
 
-.input-error.dropdown-select-inner__control {
-  border-color: #ff004d !important;
-  color: #ff004d !important;
+.input-error .dropdown-select-inner__control {
+  border-color: rgb(248 113 113) !important;
+  color: rgb(248 113 113) !important;
 }
 
 @media (min-width: 950px) {
@@ -343,7 +321,7 @@ h2.frame-5 span:nth-child(4) {
   aspect-ratio: 1 / 1;
   translate: 50% -50%;
   height: 88px;
-  background: #07030a;
+  background: #192655;
   border-radius: 50%;
   opacity: 0;
   transition: 0.6s;
@@ -403,6 +381,10 @@ body .menu ul li > a:hover {
   opacity: 1;
 }
 
+.menu.open li a:hover {
+  color: #f5f5f5;
+}
+
 @keyframes appear {
   0% {
     opacity: 0;
@@ -421,3 +403,20 @@ body .menu ul li > a:hover {
 /* popup */
 
 /* popup */
+
+/* input */
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+/* input */
+
+/* slick */
+.slick-dots {
+  position: absolute;
+  bottom: 1rem !important;
+}
+/* slick */

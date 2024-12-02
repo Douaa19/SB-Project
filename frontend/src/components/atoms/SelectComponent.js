@@ -34,7 +34,10 @@ function SelectComponent(props) {
   };
 
   return (
-    <div className={`dropdown-select ${isFocused ? "dropdown-focused" : ""}`}>
+    <div
+      className={`mt-1 dropdown-select ${isFocused ? "dropdown-focused" : ""} ${
+        props.error ? "input-error" : ""
+      }`}>
       <Select
         options={props.data}
         components={{ Option: customOptionRenderer }}
@@ -42,7 +45,7 @@ function SelectComponent(props) {
         className={`flex relative w-full flex-start ${
           props.error ? "flex-col" : "flex-row"
         }`}
-        placeholder="city"
+        placeholder=""
         onChange={handleChange}
         error={props.error}
         onFocus={handleFocus}
@@ -50,10 +53,7 @@ function SelectComponent(props) {
       />
       {props.error && (
         <>
-          <span
-            className={`
-              text-red
-             md:text-12 ssm:text-10 relative left-3`}>
+          <span className="text-red leading-[0px] text-12 relative left-1">
             {props.error}
           </span>
         </>

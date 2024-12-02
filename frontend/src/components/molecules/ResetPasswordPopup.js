@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Input, Button } from "../atoms";
-import { ReactComponent as NewPassword } from "../../assets/icons/new-password-svgrepo-com.svg";
-import { ReactComponent as Close } from "../../assets/icons/close.svg";
-import { ReactComponent as CloseEye } from "../../assets/icons/eye-closed-svgrepo-com.svg";
-import { ReactComponent as OpenEye } from "../../assets/icons/eye-open-svgrepo-com (1).svg";
-import { ReactComponent as Done } from "../../assets/icons/success-tick-svgrepo-com.svg";
+import { SquarePen, Eye, EyeOff, X, Check } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { setResetPassword } from "../../redux/actions/popups";
 import { recreatPassword } from "../../services/auth";
 import { useParams } from "react-router";
+import { motion } from "framer-motion";
 
 function ResetPasswordPopup() {
   const dispatch = useDispatch();
@@ -17,30 +14,36 @@ function ResetPasswordPopup() {
   const [errors, setErrors] = useState({});
   const [newPasswordType, setNewPasswordType] = useState("password");
   const [repeatedPasswordType, setRepeatedPasswordType] = useState("password");
-  const [newPasswordIcon, setNewPasswordIcon] = useState(<CloseEye />);
+  const [newPasswordIcon, setNewPasswordIcon] = useState(
+    <EyeOff size={20} strokeWidth={1} />
+  );
   const [repeatedPasswordIcon, setRepeatedPasswordIcon] = useState(
-    <CloseEye />
+    <EyeOff size={20} strokeWidth={1} />
   );
   const [resetDone, setResetDone] = useState(false);
+
+  const popupRef = useRef(null);
 
   const togglePassword = (param) => {
     if (param === "newPassword") {
       if (newPasswordType === "password") {
         setNewPasswordType("text");
-        setNewPasswordIcon(<OpenEye />);
+        setNewPasswordIcon(<Eye size={20} strokeWidth={1} />);
+
         return;
       }
       setNewPasswordType("password");
-      setNewPasswordIcon(<CloseEye />);
+      setNewPasswordIcon(<EyeOff size={20} strokeWidth={1} />);
     }
     if (param === "repeatedPassword") {
       if (repeatedPasswordType === "password") {
         setRepeatedPasswordType("text");
-        setRepeatedPasswordIcon(<OpenEye />);
+        setRepeatedPasswordIcon(<Eye size={20} strokeWidth={1} />);
+
         return;
       }
       setRepeatedPasswordType("password");
-      setRepeatedPasswordIcon(<CloseEye />);
+      setRepeatedPasswordIcon(<EyeOff size={20} strokeWidth={1} />);
     }
   };
 
@@ -93,30 +96,44 @@ function ResetPasswordPopup() {
     dispatch(setResetPassword(false));
   };
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        closePopup();
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [popupRef, closePopup]);
+
   return (
     <>
       <div class="absolute bg-white opacity-80 inset-0 z-0"></div>
-      <div class="w-400 max-w-xl px-5 py-10 flex justify-center relative bg-white mx-auto my-auto rounded-xl shadow-lg animation-fadeIn">
+      <div
+        ref={popupRef}
+        class="w-400 max-w-xl px-5 py-10 flex justify-center relative bg-white mx-auto my-auto rounded-xl shadow-lg animation-fadeIn">
         {resetDone !== true && (
           <div className="absolute top-2 right-2">
             <button
-              className="border border-2 border-[#5F6165] rounded-full outline-none"
+              className="border-2 border-gray-100 rounded-full outline-none text-gray-100 hover:border-gray-500 hover:text-gray-500 hover:shadow-md"
               onClick={closePopup}>
-              <Close />
+              <X size={20} strokeWidth={1} />
             </button>
           </div>
         )}
         <div className="flex flex-col items-center gap-4 w-[70%]">
           {resetDone !== true ? (
             <div className="bg-[#FBF8EE] w-fit rounded-full p-4 flex justify-center items-center">
-              <div className="bg-[#F3EACE] rounded-full p-3 flex justify-center items-center">
-                <NewPassword />
+              <div className="bg-[#F3EACE] text-[#DFC67C] rounded-full p-3 flex justify-center items-center">
+                <SquarePen size={32} strokeWidth={2} />
               </div>
             </div>
           ) : (
             <div className="bg-[#F3F9F1] w-fit rounded-full p-4 flex justify-center items-center">
-              <div className="bg-[#D0E8C5] rounded-full p-3 flex justify-center items-center">
-                <Done />
+              <div className="bg-[#D0E8C5] text-[#82C05D] rounded-full p-3 flex justify-center items-center">
+                <Check size={32} />
               </div>
             </div>
           )}
@@ -146,7 +163,7 @@ function ResetPasswordPopup() {
                 error={errors.newPassword}
                 clickableIcon="clickable-icon"
                 IconClickEvent={() => togglePassword("newPassword")}
-                iconStyle="absolute right-2 top-[0.40rem]"
+                iconStyle="absolute right-2 top-[0.40rem] text-[#5F6165]"
                 passwordIcon={newPasswordIcon}
               />
               <Input
@@ -161,15 +178,24 @@ function ResetPasswordPopup() {
                 error={errors.repeatedPassword}
                 clickableIcon="clickable-icon"
                 IconClickEvent={() => togglePassword("repeatedPassword")}
-                iconStyle="absolute right-2 top-[0.40rem]"
+                iconStyle="absolute right-2 top-[0.40rem] text-[#5F6165]"
                 passwordIcon={repeatedPasswordIcon}
               />
-              <Button
-                className={`w-full
-        border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold`}
-                text="send"
-                onClick={() => handleSubmit()}
-              />
+              <div className="flex items-center justify-center w-full">
+                <motion.button
+                  className="w-1/2 mt-4 ssm:m-0 md:mt-3 border-1 border-main rounded-full md:px-10 ssm:px-6 md:py-3 ssm:py-[6px]  text-white md:text-14 ssm:text-12 outline-none hover:bg-white hover:text-main bg-main font-bold"
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 4px 10px rgba(0,0, 0, 0.2",
+                  }}
+                  transition={{ duration: 0.3 }}>
+                  <Button
+                    className={`capitalize`}
+                    text="reset"
+                    onClick={() => handleSubmit()}
+                  />
+                </motion.button>
+              </div>
             </>
           )}
         </div>

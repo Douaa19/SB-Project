@@ -12,7 +12,6 @@ function Product() {
   const location = window.location.href;
   const item = useSelector((state) => getItemById(newestItems, params.itemId));
   const items = useSelector((state) => state.bestSellingItems);
-
   const url = location.includes("best-selling") ? "best-selling" : "products";
 
   // filter items based on category_id
@@ -24,12 +23,12 @@ function Product() {
     <>
       <NavBar />
       <BigItemCard url={url} item={item} />
-      <div className="mt-8">
+      <div className="mt-10">
         <SectionCards
-          title="Other categories"
+          title="You might also like"
           items={mismatchedCategories}
           page={url}
-          buttonText="view more"
+          buttonText="View More"
         />
       </div>
       <Footer />

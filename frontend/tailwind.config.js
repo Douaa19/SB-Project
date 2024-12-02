@@ -7,6 +7,7 @@ module.exports = {
       ssm: "320px",
       sm: "640px",
       md: "768px",
+      ll: "940px",
       lg: "950px",
       xl: "1024px",
       "2xl": "1280px",
@@ -37,13 +38,13 @@ module.exports = {
       textColor: {
         main: "#192655",
         secondary: "#DAB88A",
+        light: "#F5F5F5",
         white: "#FFFFFF",
         dark: "#000000",
         gray: "#CCCCCC",
         "gray-100": "#CECECE",
         red: "#FF004D",
         "dark-gray": "#333333",
-        blue: "#192655",
       },
       padding: {
         1: "2px",
@@ -55,7 +56,7 @@ module.exports = {
       backgroundColor: {
         "main-bg": "#192655",
         secondary: "#DAB88A",
-        blue: "#192655",
+        light: "#F5F5F5",
         "main-color": "#192655",
         dark: "#000000",
         white: "#FFFFFF",
@@ -69,8 +70,10 @@ module.exports = {
         "slate-500": "rgb(100 116 139)",
         "slate-600": "rgb(71 85 105)",
         "slate-700": "rgb(30 41 59)",
+        "slate-800": "rgb(15 23 42)",
         "gray-300": "rgb(209 213 219)",
         "gray-100": "rgb(206 206 206)",
+        "blue-600": "rgb(37 99 235)",
       },
       borderWidth: {
         1: "1px",
@@ -78,11 +81,12 @@ module.exports = {
       },
       borderColor: {
         main: "#192655",
+        secondary: "#DAB88A",
+        light: "#F5F5F5",
         white: "#FFFFFF",
         dark: "#000000",
         red: "#FF004D",
         "gray-100": "rgb(206 206 206)",
-        secondary: "#DAB88A",
       },
       borderRadius: {
         2: "2px",
@@ -106,9 +110,26 @@ module.exports = {
       height: {
         80: "80px",
       },
+      animation: {
+        border: "border 4s ease infinite",
+      },
+      keyframes: {
+        border: {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+      },
     },
     colors: {
       main: "#192655",
+      secondary: "#DAB88A",
+      light: "#F5F5F5",
+      "gray-50": "rgb(249 250 251)",
+      "gray-100": "#CECECE",
+      "gray-400": "rgb(156 163 175)",
+      "gray-500": "rgb(107 114 128)",
+      "gray-700": "rgb(55 65 81)",
+      "red-400": "rgb(248 113 113)",
     },
   },
   plugins: [],

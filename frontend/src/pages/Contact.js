@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { PageTitle } from "../components/atoms";
-import { NavBar, Footer } from "../components/layout";
+import { NavBar } from "../components/layout";
 import { Form } from "../components/templates";
 import Popup from "../components/organismes/Popup";
 import ContactDonePopup from "../components/molecules/ContactDonePopup";
 import { setContactDone } from "../redux/actions/popups";
+import { Inbox, Phone } from "lucide-react";
+import Logo from "../assets/icons/Logo2.png";
 
 function Contact() {
   const dispatch = useDispatch();
@@ -18,25 +19,55 @@ function Contact() {
   return (
     <>
       <NavBar />
-      <div className="flex w-full md:px-28 ssm:px-16 md:mt-8 ssm:mt-4 justify-center">
-        <div className="flex flex-col items-center md:gap-10 ssm:gap-4 w-[80%]">
-          <PageTitle
-            className="font-extrabold md:text-42 ssm:text-32 capitalize text-main text-center"
-            title="contact us"
-          />
-          <p className="text-dark md:text-16 w-full ssm:text-12">
-            We'd love to hear from you! Whether you have a question, suggestion,
-            or just want to say hello, feel free to reach out using the form
-            below. Your feedback is valuable to us and we'll do our best to get
-            back to you as soon as possible.
-          </p>
-          <Form
-            className="flex flex-col items-between w-full gap-6"
-            type="contact"
-          />
+      <div className="mt-24 flex w-full md:px-16 ssm:px-8 justify-center">
+        <div className="w-[70%] md:mb-0 ssm:mb-10">
+          <div className="relative w-full rounded-sm shadow-lg h-full bg-white ll:block ssm:flex ssm:flex-col-reverse">
+            <div className="overflow-hidden ll:absolute ll:top-8 ll:-left-20 ssm:relative bg-main shadow-md text-light px-8 py-12 rounded-sm ll:h-[85%]">
+              <div className="ll:absolute top-0 left-0 ll:block ssm:hidden bg-secondary opacity-5 w-full z-0">
+                <img
+                  src={Logo}
+                  alt="Saba Embroidery logo"
+                  className="w-auto"
+                  srcset=""
+                />
+              </div>
+              <div className="relative z-10">
+                <h2 className="font-medium pb-8">Contact Us</h2>
+                <div className="flex flex-col justify-arond items-center gap-4">
+                  <div className="flex justify-start items-center gap-4 w-full py-2">
+                    <Inbox className="w- h-" size={20} />
+                    <p className="ssm:text-14">embroidery.saba12@gmail.com</p>
+                  </div>
+                  <div className="flex justify-start items-center gap-4 w-full py-2">
+                    <Phone className="w- h-" size={20} />
+                    <p className="ssm:text-14">+212634242755</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="ll:grid grid-cols-3 py-6 md:px-10 ssm:px-8">
+              <div></div>
+              <div className="col-span-2 ll:pl-10">
+                <div className="mb-8">
+                  <h1 className="text-main font-semibold text-18">
+                    Get in Touch
+                  </h1>
+                  <p className="text-gray-500 md:text-16 ssm:text-14 font-medium">
+                    Feel free to drop us a line below
+                  </p>
+                </div>
+                <div className="">
+                  <Form
+                    className="relative flex flex-col items-between w-full gap-4"
+                    type="contact"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
       {contactPopup && (
         <div
           onClick={closePopup}

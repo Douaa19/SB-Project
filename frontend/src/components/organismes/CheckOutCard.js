@@ -9,7 +9,7 @@ function CheckOutCard({ subtotal, shipping, grandTotal }) {
   };
 
   return (
-    <div className="md:w-full ssm:w-[80%] border  border-gray-100 p-8 rounded-md flex flex-col items-between gap-4">
+    <div className="w-full bg-white p-8 rounded-md flex flex-col items-between gap-4">
       <div className={`${style.group}`}>
         <span className={`${style.title}`}>subtotal</span>
         <span className={`${style.amount}`}>{`${subtotal}DH`}</span>

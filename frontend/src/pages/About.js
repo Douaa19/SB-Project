@@ -36,8 +36,8 @@ function About() {
       image: Image1,
     },
     {
-      title: "",
-      text: "Thank you for visiting our store and we hope that you will find something here that speaks to your heart. If you have any questions or comments, please don’t hesitate to contact us",
+      title: "Thank you",
+      text: "For visiting our store and we hope that you will find something here that speaks to your heart. If you have any questions or comments, please don’t hesitate to contact us",
       image: Image1,
     },
   ];
@@ -45,7 +45,7 @@ function About() {
   return (
     <>
       <NavBar />
-      <div className="flex flex-col w-full md:px-28 ssm:px-16 md:mt-8 ssm:mt-4 items-center md:gap-4 ssm:gap-2">
+      <div className="mt-24 flex flex-col w-full md:px-28 ssm:px-16 items-center md:gap-4 ssm:gap-2">
         <PageTitle
           title="about us"
           className="font-extrabold md:text-42 ssm:text-32 capitalize text-main"
