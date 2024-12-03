@@ -5,10 +5,9 @@ import MultiS from "../../assets/images/multi-s.svg";
 
 function Footer() {
   return (
-    <div className="w-full relative bottom-0 left-0 mt-10 bg-main lg:py-8 ssm:py-6 lg:px-28 ssm:px-16 h-max">
-      <div className="z-[-1] absolute top_0 left-0 bg-cover w-auto bg-repeat-x">
-        <img src={MultiS} alt="Saba Embroidery logo" className="w-full" />
-      </div>
+    <div
+      className="w-full relative bottom-0 left-0 mt-10 bg-main lg:py-8 ssm:py-6 lg:px-28 ssm:px-16 h-max bg-cover bg-repeat"
+      style={{ backgroundImage: `url(${MultiS})` }}>
       <div className="flex justify-between flex-col items-start">
         <div className="w-full mb-4 mx-0 flex items-center lg:justify-center ssm:justify-center">
           <a href="/">
