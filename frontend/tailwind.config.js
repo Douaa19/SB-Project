@@ -14,7 +14,8 @@ module.exports = {
       "3xl": "1536px",
     },
     extend: {
-      backgroundImage: {},
+      backgroundImage: {
+      },
       fontWeight: {
         normale: "400",
         medium: "500",
