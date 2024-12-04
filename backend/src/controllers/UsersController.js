@@ -437,6 +437,30 @@ const editProfile = async (req, res) => {
   }
 };
 
+// edit password
+const editPassword = async (req, res) => {
+  try {
+    const user = req.user;
+    const { newPassword } = req.body;
+
+    const userPassword = await User.findById(user.id).then((user) => {
+      if (user) {
+        user.password = newPassword;
+        user.save();
+        res
+          .status(200)
+          .send({ user, messageSuccess: "Password edited successfully!" });
+      } else {
+        res.status(404).send({ messageError: "User not found!" });
+      }
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ messageError: "Somthing goes wrong in server side!" });
+  }
+};
+
 module.exports = {
   handleRegister,
   hendleLogin,
@@ -445,4 +469,5 @@ module.exports = {
   recreatPassword,
   getProfile,
   editProfile,
+  editPassword,
 };

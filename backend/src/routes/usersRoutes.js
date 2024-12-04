@@ -19,4 +19,7 @@ router.route("/profile").get(authorization, Users.getProfile);
 // get profile
 router.route("/edit-profile").post(authorization, Users.editProfile);
 
+// edit password
+router.route("/edit-password").post(authorization, Users.editPassword);
+
 module.exports = router;
