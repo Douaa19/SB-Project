@@ -415,6 +415,28 @@ const getProfile = async (req, res) => {
   }
 };
 
+// edit profile
+const editProfile = async (req, res) => {
+  try {
+    const user = req.user;
+    const newData = req.body;
+
+    await User.findByIdAndUpdate(user.id, newData).then((user) => {
+      if (user) {
+        res
+          .status(200)
+          .send({ user, messageSuccess: "Profile edited successfully!" });
+      } else {
+        res.status(400).send({ messageError: "Profile not edited!" });
+      }
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ messageError: "Somthing goes wrong in server side!" });
+  }
+};
+
 module.exports = {
   handleRegister,
   hendleLogin,
@@ -422,4 +444,5 @@ module.exports = {
   sendMessage,
   recreatPassword,
   getProfile,
+  editProfile,
 };

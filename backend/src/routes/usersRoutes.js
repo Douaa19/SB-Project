@@ -16,4 +16,7 @@ router.route("/contact").post(Users.sendMessage);
 // get profile
 router.route("/profile").get(authorization, Users.getProfile);
 
+// get profile
+router.route("/edit-profile").post(authorization, Users.editProfile);
+
 module.exports = router;
