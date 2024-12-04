@@ -19,10 +19,13 @@ router.route("/get-order/:order_id").get();
 // get orders
 router.route("/get-orders").get();
 
-// get my orders
-router.route("/my-orders").get(authorization, Order.getMyOrders);
+// get orders by client
+router.route("/my-orders").get(authorization, Order.getOrdersByClient);
 
 // delete orders
 router.route("/delete-order/:order_id").post();
+
+// get user orders
+router.route("/user-orders").get(authorization, Order.getUserOrders);
 
 module.exports = router;

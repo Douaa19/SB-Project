@@ -111,7 +111,7 @@ const createOrder = async (req, res) => {
 };
 
 // get my orders
-const getMyOrders = async (req, res) => {
+const getOrdersByClient = async (req, res) => {
   try {
     const user_id = req.user.id;
     let myOrders = await Order.find({ clinet_id: user_id })
@@ -133,7 +133,28 @@ const getMyOrders = async (req, res) => {
   }
 };
 
+// get user orders
+const getUserOrders = async (req, res) => {
+  try {
+    const user = req.user;
+
+    await Order.find({ client_id: user.id }).then((orders) => {
+      if (orders) {
+        res.status(200).send(orders);
+      } else {
+        res.status(404).send({ messageError: "Orders not found!" });
+      }
+    });
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in server side",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createOrder,
-  getMyOrders,
+  getOrdersByClient,
+  getUserOrders,
 };
