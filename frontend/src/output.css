@@ -1340,11 +1340,6 @@ video {
   background-color: rgb(255 0 77 / var(--tw-bg-opacity));
 }
 
-.bg-secondary {
-  --tw-bg-opacity: 1;
-  background-color: rgb(218 184 138 / var(--tw-bg-opacity));
-}
-
 .bg-slate-800\/\[0\.1\] {
   background-color: rgb(15 23 42 / 0.1);
 }
@@ -1372,6 +1367,10 @@ video {
 
 .bg-center {
   background-position: center;
+}
+
+.bg-repeat {
+  background-repeat: repeat;
 }
 
 .bg-no-repeat {
