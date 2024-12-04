@@ -153,8 +153,30 @@ const getUserOrders = async (req, res) => {
   }
 };
 
+// get user orders by status
+const getUserOrdersByStatus = async (req, res) => {
+  try {
+    const user = req.user;
+    const status = req.params.status;
+
+    await Order.find({ client_id: user.id, status: status }).then((orders) => {
+      if (orders) {
+        res.status(200).send(orders);
+      } else {
+        res.status(404).send({ messageError: "Orders not found!" });
+      }
+    });
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in server side",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createOrder,
   getOrdersByClient,
   getUserOrders,
+  getUserOrdersByStatus,
 };

@@ -28,4 +28,7 @@ router.route("/delete-order/:order_id").post();
 // get user orders
 router.route("/user-orders").get(authorization, Order.getUserOrders);
 
+// get orders by status
+router.route("/user-orders/:status").get(authorization, Order.getUserOrdersByStatus);
+
 module.exports = router;
