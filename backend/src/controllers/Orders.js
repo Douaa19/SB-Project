@@ -160,8 +160,12 @@ const getUserOrdersByStatus = async (req, res) => {
     const status = req.params.status;
 
     await Order.find({ client_id: user.id, status: status }).then((orders) => {
-      if (orders) {
+      if (orders.length > 0) {
         res.status(200).send(orders);
+      } else if (orders.length === 0) {
+        res
+          .status(200)
+          .send({ message: `Orders with status ${status} not found` });
       } else {
         res.status(404).send({ messageError: "Orders not found!" });
       }
