@@ -1,6 +1,8 @@
 const { Order, OrderProducts } = require("../models");
 const nodemailer = require("nodemailer");
 const newOrderEmail = require("../emails/NewOrderEmail");
+const orderModifiedAdminEmail = require("../emails/OrderModifiedAdminEmail");
+const orderModifiedClientEmail = require("../emails/OrderModifiedClientEmail");
 
 const createOrder = async (req, res) => {
   const client_id = req.user.id;
@@ -247,33 +249,52 @@ const editOrder = async (req, res) => {
     await Order.findById(order_id).then(async (order) => {
       if (order && order.client_id == user.id) {
         if (order.status == "pending") {
-          await Order.findByIdAndUpdate(order_id, newData).then((order) => {
-            if (order) {
-              const transporter = nodemailer.createTransport({
-                service: "Gmail",
-                host: "smtp.gmail.com",
-                port: 465,
-                secure: true,
-                auth: {
-                  user: "sabalarif97@gmail.com",
-                  pass: "bjnzseuzjmzvomlv",
-                },
-              });
+          await Order.findByIdAndUpdate(order_id, newData)
+            .populate("client_id", "username email")
+            .then(async (order) => {
+              if (order) {
+                const data = {
+                  username: order.client_id.username,
+                  address: newData.address ? newData.address : order.address,
+                  phone: newData.phone ? newData.phone : order.phone,
+                  email: newData.email ? newData.email : order.email,
+                  city: newData.city ? newData.city : order.city,
+                  zipCode: newData.zipCode ? newData.zipCode : order.zipCode,
+                };
 
-              const mailOption = {
-                from: '"Saba Embroidery" <sabalarif97@gmail.com>',
-                to: `sabalarif97@gmail.com, ${shippingInfos.email}`,
-                subject: "Your Order Confirmation from SabaEmbroidery",
-                html: newOrderEmail.newOrder(data),
-              };
-              
-              res
-                .status(200)
-                .send({ order, messageSuccess: "Order updated successfully!" });
-            } else {
-              res.status(400).send({ messageError: "Order not updated!" });
-            }
-          });
+                const transporter = nodemailer.createTransport({
+                  service: "Gmail",
+                  host: "smtp.gmail.com",
+                  port: 465,
+                  secure: true,
+                  auth: {
+                    user: "sabalarif97@gmail.com",
+                    pass: "bjnzseuzjmzvomlv",
+                  },
+                });
+
+                const mailOption = {
+                  from: '"Saba Embroidery" <sabalarif97@gmail.com>',
+                  to: `${order.client_id.email}`,
+                  subject: "Shipping Info Updated",
+                  html: orderModifiedClientEmail.orderModifiedClientEmail(data),
+                };
+
+                transporter.sendMail(mailOption, (error, info) => {
+                  if (error) {
+                    res.send(error);
+                  } else {
+                    console.log("Shpping infos updated!");
+                    res.status(200).send({
+                      order,
+                      messageSuccess: "Order updated successfully!",
+                    });
+                  }
+                });
+              } else {
+                res.status(400).send({ messageError: "Order not updated!" });
+              }
+            });
         } else {
           res.status(200).send({
             messageError: `You can't edit this order because its status is ${order.status}`,

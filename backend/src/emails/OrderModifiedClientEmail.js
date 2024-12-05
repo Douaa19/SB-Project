@@ -1,4 +1,4 @@
-module.exports.orderModifiedAdminEmail = (data) => {
+module.exports.orderModifiedClientEmail = (data) => {
   return `<!DOCTYPE html>
     <html lang="en">
       <head>
@@ -9,7 +9,7 @@ module.exports.orderModifiedAdminEmail = (data) => {
         <link
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
           rel="stylesheet" />
-        <title>Saba Embroidery - Contact Message</title>
+        <title>Saba Embroidery - Shipping Info Updated</title>
         <style>
           @font-face {
             font-family: Montserrat;
@@ -124,53 +124,30 @@ module.exports.orderModifiedAdminEmail = (data) => {
                             ">
                             <span>Hello ${data.username},</span>
                             <p>
-                              Thank you for choosing SabaEmbroidery for your recent purchase! We're excited to confirm that your order has been successfully placed and is now being processed.
-                            </p>
-                            <p>
-                              Below is a summary of your order details:
+                              We wanted to let you know that your shipping information has been successfully updated. Below are your new shipping details:
                             </p>
                             <table class="detailsTable" style="border: #CCC 1px solid;
                             border-radius: 5px; font-size: 14px;">
                               <tr style="background-color: #CECECE;">
-                                  <th>Item</th>
-                                  <th>Price</th>
-                                  <th>Size</th>
-                                  <th>Color</th>
-                                  <th>Quantity</th>
+                                  <th>Email</th>
+                                  <th>Address</th>
+                                  <th>Phone Number</th>
+                                  <th>City</th>
+                                  <th>Postal code</th>
                               </tr>
-                              ${data.items
-                                .map(
-                                  (item) => `
-                              <tr>
-                                <td>${item.item.title}</td>
-                                <td>${item.item.price}</td>
-                                <td>${item.item.size}</td>
-                                <td>${item.item.color}</td>
-                                <td>${item.quantity}</td>
-                              </tr>
-                            `
-                                )
-                                .join("")}
-                            </table>
-                            <table style="margin-top: 1rem; font-size: 14px;" class="pricesTable">
-                              <tr>
-                                  <td style="font-weight: bold;">Shipping: </td>
-                                  <td>${data.shipping}</td>
-                              </tr>
-                              <tr>
-                                  <td style="font-weight: bold;">Total Price: </td>
-                                  <td>${data.total}</td>
-                              </tr>
-                              <tr>
-                                  <td style="font-weight: bold;">Order Status: </td>
-                                  <td>${data.status}</td>
+                              <tr style="">
+                                  <td>${data.email}</td>
+                                  <td>${data.address}</td>
+                                  <td>${data.phone}</td>
+                                  <td>${data.city}</td>
+                                  <td>${data.zipCode}</td>
                               </tr>
                             </table>
-                            <p>If you have any questions or need further assistance, feel free to reach out to us. Thank you for choosing us!</p>
-                            <p style="display: flex; flex-direction: column;">
-                              <span>Best regards,</span>
-                              <span>SabaEmbroidery Team </span>
-                              </p>
+                            <p>If you did not make this change or have any concerns, please contact us immediately.</p>
+                            <p style="">
+                              Best regards,<br />
+                              SabaEmbroidery Team
+                            </p>
                           </td>
                         </tr>
                       </table>
