@@ -1,8 +1,12 @@
 const { Order, OrderProducts } = require("../models");
 const nodemailer = require("nodemailer");
 const newOrderEmail = require("../emails/NewOrderEmail");
-const orderModifiedAdminEmail = require("../emails/OrderModifiedAdminEmail");
-const orderModifiedClientEmail = require("../emails/OrderModifiedClientEmail");
+const {
+  orderModifiedAdminEmail,
+} = require("../emails/OrderModifiedAdminEmail");
+const {
+  orderModifiedClientEmail,
+} = require("../emails/OrderModifiedClientEmail");
 
 const createOrder = async (req, res) => {
   const client_id = req.user.id;
@@ -273,24 +277,35 @@ const editOrder = async (req, res) => {
                   },
                 });
 
-                const mailOption = {
+                const clientMailOption = {
                   from: '"Saba Embroidery" <sabalarif97@gmail.com>',
-                  to: `${order.client_id.email}`,
+                  to: order.client_id.email,
                   subject: "Shipping Info Updated",
-                  html: orderModifiedClientEmail.orderModifiedClientEmail(data),
+                  html: orderModifiedClientEmail(data),
                 };
 
-                transporter.sendMail(mailOption, (error, info) => {
-                  if (error) {
-                    res.send(error);
-                  } else {
-                    console.log("Shpping infos updated!");
+                const adminMailOprion = {
+                  from: '"Saba Embroidery" <sabalarif97@gmail.com>',
+                  to: "sabalarif97@gmail.com",
+                  subject: "Customer Shipping Info Updated",
+                  html: orderModifiedAdminEmail(data),
+                };
+
+                Promise.all([
+                  transporter.sendMail(clientMailOption),
+                  transporter.sendMail(adminMailOprion),
+                ])
+                  .then(([clientInformation, adminInfo]) => {
+                    console.log("Emails sent successfully!");
                     res.status(200).send({
                       order,
                       messageSuccess: "Order updated successfully!",
                     });
-                  }
-                });
+                  })
+                  .catch((error) => {
+                    console.error("Error sending emails:", error);
+                    res.status(500).send(error);
+                  });
               } else {
                 res.status(400).send({ messageError: "Order not updated!" });
               }
