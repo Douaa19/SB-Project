@@ -8,7 +8,7 @@ const {
 } = require("../middlewares/authorization");
 
 // controller
-const { Users } = require("../controllers");
+const { Users, Orders } = require("../controllers");
 
 // contact admin
 router.route("/contact").post(Users.sendMessage);

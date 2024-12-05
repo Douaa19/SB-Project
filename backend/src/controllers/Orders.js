@@ -1,7 +1,6 @@
 const { Order, OrderProducts } = require("../models");
 const nodemailer = require("nodemailer");
 const newOrderEmail = require("../emails/NewOrderEmail");
-const moment = require("moment");
 
 const createOrder = async (req, res) => {
   const client_id = req.user.id;
@@ -238,6 +237,60 @@ const getUserOrder = async (req, res) => {
   }
 };
 
+// edit order
+const editOrder = async (req, res) => {
+  try {
+    const user = req.user;
+    const { order_id } = req.params;
+    const newData = req.body;
+
+    await Order.findById(order_id).then(async (order) => {
+      if (order && order.client_id == user.id) {
+        if (order.status == "pending") {
+          await Order.findByIdAndUpdate(order_id, newData).then((order) => {
+            if (order) {
+              const transporter = nodemailer.createTransport({
+                service: "Gmail",
+                host: "smtp.gmail.com",
+                port: 465,
+                secure: true,
+                auth: {
+                  user: "sabalarif97@gmail.com",
+                  pass: "bjnzseuzjmzvomlv",
+                },
+              });
+
+              const mailOption = {
+                from: '"Saba Embroidery" <sabalarif97@gmail.com>',
+                to: `sabalarif97@gmail.com, ${shippingInfos.email}`,
+                subject: "Your Order Confirmation from SabaEmbroidery",
+                html: newOrderEmail.newOrder(data),
+              };
+              
+              res
+                .status(200)
+                .send({ order, messageSuccess: "Order updated successfully!" });
+            } else {
+              res.status(400).send({ messageError: "Order not updated!" });
+            }
+          });
+        } else {
+          res.status(200).send({
+            messageError: `You can't edit this order because its status is ${order.status}`,
+          });
+        }
+      } else {
+        res.status(400).send({ messageError: "Order not found" });
+      }
+    });
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in server side!",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createOrder,
   getOrdersByClient,
@@ -245,4 +298,5 @@ module.exports = {
   getUserOrdersByStatus,
   getUserOrdersByDate,
   getUserOrder,
+  editOrder,
 };
