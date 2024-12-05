@@ -38,4 +38,7 @@ router
   .route("/user-orders-by-date")
   .get(authorization, Order.getUserOrdersByDate);
 
+  // get user order by id
+  router.route("/user-order/:order_id").get(authorization, Order.getUserOrder);
+
 module.exports = router;

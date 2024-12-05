@@ -216,10 +216,32 @@ const getUserOrdersByDate = async (req, res) => {
   }
 };
 
+// get user order by id
+const getUserOrder = async (req, res) => {
+  try {
+    const user = req.user;
+    const { order_id } = req.params;
+
+    await Order.find({ client_id: user.id, _id: order_id }).then((order) => {
+      if (order) {
+        res.status(200).send(order);
+      } else {
+        res.status(400).send({ messageError: "Order not found!" });
+      }
+    });
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in server side",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createOrder,
   getOrdersByClient,
   getUserOrders,
   getUserOrdersByStatus,
   getUserOrdersByDate,
+  getUserOrder,
 };
