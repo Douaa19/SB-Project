@@ -13,6 +13,7 @@ const createOrder = async (req, res) => {
       client_id,
       address: shippingInfos.address,
       phone: shippingInfos.phone,
+      email: shippingInfos.email,
       city: shippingInfos.city,
       zipCode: shippingInfos.postalCode,
       total: 0,
