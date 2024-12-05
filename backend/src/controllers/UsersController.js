@@ -441,15 +441,21 @@ const editProfile = async (req, res) => {
 const editPassword = async (req, res) => {
   try {
     const user = req.user;
-    const { newPassword } = req.body;
+    const { newPassword, oldPassword } = req.body;
 
-    const userPassword = await User.findById(user.id).then((user) => {
+    await User.findById(user.id).then((user) => {
       if (user) {
-        user.password = newPassword;
-        user.save();
-        res
-          .status(200)
-          .send({ user, messageSuccess: "Password edited successfully!" });
+        user.comparePasswords(oldPassword).then((result) => {
+          if (result) {
+            user.password = newPassword;
+            user.save();
+            res
+              .status(200)
+              .send({ user, messageSuccess: "Password edited successfully!" });
+          } else {
+            res.status(400).send({ messageError: "Old password is wrong!" });
+          }
+        });
       } else {
         res.status(404).send({ messageError: "User not found!" });
       }
