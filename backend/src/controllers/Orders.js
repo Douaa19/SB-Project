@@ -1,6 +1,7 @@
-const { Order, OrderProducts, Item, User } = require("../models");
+const { Order, OrderProducts } = require("../models");
 const nodemailer = require("nodemailer");
 const newOrderEmail = require("../emails/NewOrderEmail");
+const moment = require("moment");
 
 const createOrder = async (req, res) => {
   const client_id = req.user.id;
@@ -178,9 +179,47 @@ const getUserOrdersByStatus = async (req, res) => {
   }
 };
 
+// get userOrders by date range
+const getUserOrdersByDate = async (req, res) => {
+  try {
+    const user = req.user;
+    const { startDate, endDate } = req.body;
+
+    const parseDate = (dateString) => {
+      const [day, month, year] = dateString.split("/").map(Number);
+      return new Date(Date.UTC(year, month - 1, day));
+    };
+
+    const start = parseDate(startDate);
+    const end = parseDate(endDate);
+    end.setUTCDate(end.getUTCDate() + 1);
+
+    await Order.find({
+      client_id: user.id,
+      createdAt: { $gte: start, $lt: end },
+    }).then((orders) => {
+      if (orders.length > 0) {
+        res.status(200).send(orders);
+      } else if (orders.length === 0) {
+        res.status(200).send({
+          messae: `Orders with date range ${startDate} and ${endDate} not found`,
+        });
+      } else {
+        res.status(400).send({ messageError: "Orders not found!" });
+      }
+    });
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in server side",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createOrder,
   getOrdersByClient,
   getUserOrders,
   getUserOrdersByStatus,
+  getUserOrdersByDate,
 };

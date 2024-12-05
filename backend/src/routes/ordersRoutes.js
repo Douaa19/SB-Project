@@ -29,6 +29,13 @@ router.route("/delete-order/:order_id").post();
 router.route("/user-orders").get(authorization, Order.getUserOrders);
 
 // get orders by status
-router.route("/user-orders/:status").get(authorization, Order.getUserOrdersByStatus);
+router
+  .route("/user-orders/:status")
+  .get(authorization, Order.getUserOrdersByStatus);
+
+// get user orders by date range
+router
+  .route("/user-orders-by-date")
+  .get(authorization, Order.getUserOrdersByDate);
 
 module.exports = router;
