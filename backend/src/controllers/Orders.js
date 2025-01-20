@@ -1,6 +1,12 @@
-const { Order, OrderProducts, Item, User } = require("../models");
+const { Order, OrderProducts } = require("../models");
 const nodemailer = require("nodemailer");
 const newOrderEmail = require("../emails/NewOrderEmail");
+const {
+  orderModifiedAdminEmail,
+} = require("../emails/OrderModifiedAdminEmail");
+const {
+  orderModifiedClientEmail,
+} = require("../emails/OrderModifiedClientEmail");
 
 const createOrder = async (req, res) => {
   const client_id = req.user.id;
@@ -12,6 +18,7 @@ const createOrder = async (req, res) => {
       client_id,
       address: shippingInfos.address,
       phone: shippingInfos.phone,
+      email: shippingInfos.email,
       city: shippingInfos.city,
       zipCode: shippingInfos.postalCode,
       total: 0,
@@ -111,7 +118,7 @@ const createOrder = async (req, res) => {
 };
 
 // get my orders
-const getMyOrders = async (req, res) => {
+const getOrdersByClient = async (req, res) => {
   try {
     const user_id = req.user.id;
     let myOrders = await Order.find({ clinet_id: user_id })
@@ -133,7 +140,199 @@ const getMyOrders = async (req, res) => {
   }
 };
 
+// get user orders
+const getUserOrders = async (req, res) => {
+  try {
+    const user = req.user;
+
+    await Order.find({ client_id: user.id }).then((orders) => {
+      if (orders) {
+        res.status(200).send(orders);
+      } else {
+        res.status(404).send({ messageError: "Orders not found!" });
+      }
+    });
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in server side",
+      error: error.message,
+    });
+  }
+};
+
+// get user orders by status
+const getUserOrdersByStatus = async (req, res) => {
+  try {
+    const user = req.user;
+    const status = req.params.status;
+
+    await Order.find({ client_id: user.id, status: status }).then((orders) => {
+      if (orders.length > 0) {
+        res.status(200).send(orders);
+      } else if (orders.length === 0) {
+        res
+          .status(200)
+          .send({ message: `Orders with status ${status} not found` });
+      } else {
+        res.status(404).send({ messageError: "Orders not found!" });
+      }
+    });
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in server side",
+      error: error.message,
+    });
+  }
+};
+
+// get userOrders by date range
+const getUserOrdersByDate = async (req, res) => {
+  try {
+    const user = req.user;
+    const { startDate, endDate } = req.body;
+
+    const parseDate = (dateString) => {
+      const [day, month, year] = dateString.split("/").map(Number);
+      return new Date(Date.UTC(year, month - 1, day));
+    };
+
+    const start = parseDate(startDate);
+    const end = parseDate(endDate);
+    end.setUTCDate(end.getUTCDate() + 1);
+
+    await Order.find({
+      client_id: user.id,
+      createdAt: { $gte: start, $lt: end },
+    }).then((orders) => {
+      if (orders.length > 0) {
+        res.status(200).send(orders);
+      } else if (orders.length === 0) {
+        res.status(200).send({
+          messae: `Orders with date range ${startDate} and ${endDate} not found`,
+        });
+      } else {
+        res.status(400).send({ messageError: "Orders not found!" });
+      }
+    });
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in server side",
+      error: error.message,
+    });
+  }
+};
+
+// get user order by id
+const getUserOrder = async (req, res) => {
+  try {
+    const user = req.user;
+    const { order_id } = req.params;
+
+    await Order.find({ client_id: user.id, _id: order_id }).then((order) => {
+      if (order) {
+        res.status(200).send(order);
+      } else {
+        res.status(400).send({ messageError: "Order not found!" });
+      }
+    });
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in server side",
+      error: error.message,
+    });
+  }
+};
+
+// edit order
+const editOrder = async (req, res) => {
+  try {
+    const user = req.user;
+    const { order_id } = req.params;
+    const newData = req.body;
+
+    await Order.findById(order_id).then(async (order) => {
+      if (order && order.client_id == user.id) {
+        if (order.status == "pending") {
+          await Order.findByIdAndUpdate(order_id, newData)
+            .populate("client_id", "username email")
+            .then(async (order) => {
+              if (order) {
+                const data = {
+                  username: order.client_id.username,
+                  address: newData.address ? newData.address : order.address,
+                  phone: newData.phone ? newData.phone : order.phone,
+                  email: newData.email ? newData.email : order.email,
+                  city: newData.city ? newData.city : order.city,
+                  zipCode: newData.zipCode ? newData.zipCode : order.zipCode,
+                };
+
+                const transporter = nodemailer.createTransport({
+                  service: "Gmail",
+                  host: "smtp.gmail.com",
+                  port: 465,
+                  secure: true,
+                  auth: {
+                    user: "sabalarif97@gmail.com",
+                    pass: "bjnzseuzjmzvomlv",
+                  },
+                });
+
+                const clientMailOption = {
+                  from: '"Saba Embroidery" <sabalarif97@gmail.com>',
+                  to: order.client_id.email,
+                  subject: "Shipping Info Updated",
+                  html: orderModifiedClientEmail(data),
+                };
+
+                const adminMailOprion = {
+                  from: '"Saba Embroidery" <sabalarif97@gmail.com>',
+                  to: "sabalarif97@gmail.com",
+                  subject: "Customer Shipping Info Updated",
+                  html: orderModifiedAdminEmail(data),
+                };
+
+                Promise.all([
+                  transporter.sendMail(clientMailOption),
+                  transporter.sendMail(adminMailOprion),
+                ])
+                  .then(([clientInformation, adminInfo]) => {
+                    console.log("Emails sent successfully!");
+                    res.status(200).send({
+                      order,
+                      messageSuccess: "Order updated successfully!",
+                    });
+                  })
+                  .catch((error) => {
+                    console.error("Error sending emails:", error);
+                    res.status(500).send(error);
+                  });
+              } else {
+                res.status(400).send({ messageError: "Order not updated!" });
+              }
+            });
+        } else {
+          res.status(200).send({
+            messageError: `You can't edit this order because its status is ${order.status}`,
+          });
+        }
+      } else {
+        res.status(400).send({ messageError: "Order not found" });
+      }
+    });
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in server side!",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createOrder,
-  getMyOrders,
+  getOrdersByClient,
+  getUserOrders,
+  getUserOrdersByStatus,
+  getUserOrdersByDate,
+  getUserOrder,
+  editOrder,
 };

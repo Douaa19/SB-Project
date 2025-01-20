@@ -6,7 +6,7 @@ import Popup from "../components/organismes/Popup";
 import ContactDonePopup from "../components/molecules/ContactDonePopup";
 import { setContactDone } from "../redux/actions/popups";
 import { Inbox, Phone } from "lucide-react";
-import Logo from "../assets/icons/Logo2.png";
+import Logo from "../assets/images/multi-s.svg";
 
 function Contact() {
   const dispatch = useDispatch();
@@ -22,15 +22,12 @@ function Contact() {
       <div className="mt-24 flex w-full md:px-16 ssm:px-8 justify-center">
         <div className="w-[70%] md:mb-0 ssm:mb-10">
           <div className="relative w-full rounded-sm shadow-lg h-full bg-white ll:block ssm:flex ssm:flex-col-reverse">
-            <div className="overflow-hidden ll:absolute ll:top-8 ll:-left-20 ssm:relative bg-main shadow-md text-light px-8 py-12 rounded-sm ll:h-[85%]">
-              <div className="ll:absolute top-0 left-0 ll:block ssm:hidden bg-secondary opacity-5 w-full z-0">
-                <img
-                  src={Logo}
-                  alt="Saba Embroidery logo"
-                  className="w-auto"
-                  srcset=""
-                />
-              </div>
+            <div
+              className="overflow-hidden ll:absolute ll:top-8 ll:-left-20 ssm:relative bg-main shadow-md text-light px-8 py-12 rounded-sm ll:h-[85%]"
+              style={{ backgroundImage: `url(${Logo})` }}>
+              {/* <div className="ll:absolute top-0 left-0 ll:block ssm:hidden bg-main opacity-1 w-full z-0">
+                <img src={Logo} alt="Saba Embroidery logo" className="w-full" />
+              </div> */}
               <div className="relative z-10">
                 <h2 className="font-medium pb-8">Contact Us</h2>
                 <div className="flex flex-col justify-arond items-center gap-4">

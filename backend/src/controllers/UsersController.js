@@ -397,10 +397,85 @@ const sendMessage = async (req, res) => {
   }
 };
 
+// get profile
+const getProfile = async (req, res) => {
+  try {
+    const user = req.user;
+    await User.findById(user.id).then((user) => {
+      if (user) {
+        res.status(200).send(user);
+      } else {
+        res.status(404).send({ messageError: "User not found!" });
+      }
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ messageError: "Somthing goes wrong in server side!" });
+  }
+};
+
+// edit profile
+const editProfile = async (req, res) => {
+  try {
+    const user = req.user;
+    const newData = req.body;
+
+    await User.findByIdAndUpdate(user.id, newData).then((user) => {
+      if (user) {
+        res
+          .status(200)
+          .send({ user, messageSuccess: "Profile edited successfully!" });
+      } else {
+        res.status(400).send({ messageError: "Profile not edited!" });
+      }
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ messageError: "Somthing goes wrong in server side!" });
+  }
+};
+
+// edit password
+const editPassword = async (req, res) => {
+  try {
+    const user = req.user;
+    const { newPassword, oldPassword } = req.body;
+
+    await User.findById(user.id).then((user) => {
+      if (user) {
+        user.comparePasswords(oldPassword).then((result) => {
+          if (result) {
+            user.password = newPassword;
+            user.save();
+            res
+              .status(200)
+              .send({ user, messageSuccess: "Password edited successfully!" });
+          } else {
+            res.status(400).send({ messageError: "Old password is wrong!" });
+          }
+        });
+      } else {
+        res.status(404).send({ messageError: "User not found!" });
+      }
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ messageError: "Somthing goes wrong in server side!" });
+  }
+};
+
+
+
 module.exports = {
   handleRegister,
   hendleLogin,
   forgetPassword,
   sendMessage,
   recreatPassword,
+  getProfile,
+  editProfile,
+  editPassword,
 };

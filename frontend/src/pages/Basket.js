@@ -39,7 +39,7 @@ function Basket() {
             <div className="flex items-center justify-center w-full h-[2px] mb-8">
               <span className="bg-gray-100 h-full w-80 rounded-full"></span>
             </div>
-            {orders.length > 0 && (
+            {orders?.length > 0 && (
               <div className="hover:border-b hover:border-main w-fit">
                 <a
                   href="/products"
@@ -49,7 +49,7 @@ function Basket() {
               </div>
             )}
             <BasketTable isLoggedIn={isLoggedIn} orders={userOrders} />
-            {orders.length > 0 && (
+            {orders?.length > 0 && (
               <div className="mt-6">
                 <button
                   onClick={() => {
