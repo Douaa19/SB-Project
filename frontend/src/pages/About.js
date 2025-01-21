@@ -45,7 +45,7 @@ function About() {
   return (
     <>
       <NavBar />
-      <div className="mt-24 flex flex-col w-full md:px-28 ssm:px-16 items-center md:gap-4 ssm:gap-2">
+      <div className="mt-24 mb-20 flex flex-col w-full md:px-28 ssm:px-16 items-center md:gap-4 ssm:gap-2">
         <PageTitle
           title="about us"
           className="font-extrabold md:text-42 ssm:text-32 capitalize text-main"
