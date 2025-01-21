@@ -6,15 +6,14 @@ const routes = require("./src/routes");
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-
 // require mongoose
 require("./src/config/mongoose");
 
 const allowedOrigins = [
-  "https://sabaembroidery.onrender.com",
   "http://localhost:3000",
   "http://localhost:3001",
   "https://www.sabaembroidery.com",
+  "https://sabaembroidery.com",
 ];
 
 app.use(morgan("tiny"));
