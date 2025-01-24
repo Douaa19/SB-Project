@@ -62,8 +62,15 @@ const getItemsByCategory = async (req, res) => {
 // create item
 const createItem = async (req, res) => {
   try {
-    const { title, description, color, size, price, category_id, bestSelling } =
-      req.body;
+    const {
+      title,
+      description,
+      colors,
+      size,
+      price,
+      category_id,
+      bestSelling,
+    } = req.body;
     const images = [];
     req.files.map((file, index) => {
       images.push(file.filename);
@@ -76,7 +83,7 @@ const createItem = async (req, res) => {
       const newItem = await Item.create({
         title,
         description,
-        color,
+        colors: colors.split(","),
         size,
         price,
         bestSelling,
@@ -84,7 +91,9 @@ const createItem = async (req, res) => {
         images: images,
       });
       if (newItem) {
-        res.status(200).send({ messageSuccess: "New atem created", newItem });
+        res
+          .status(200)
+          .send({ messageSuccess: "New item created successfully", newItem });
       }
     }
   } catch (error) {
@@ -295,6 +304,11 @@ const getMismatchedCategoriesItems = async (req, res) => {
   }
 };
 
+// Insert CSV file
+const insertCsvItems = async (req, res) => {
+  console.log("Welcome CSV file!");
+};
+
 module.exports = {
   getItems,
   getItem,
@@ -307,4 +321,5 @@ module.exports = {
   getItemImages,
   getNewestItems,
   getMismatchedCategoriesItems,
+  insertCsvItems,
 };
