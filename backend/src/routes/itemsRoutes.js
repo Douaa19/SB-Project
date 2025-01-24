@@ -8,7 +8,7 @@ const {
 } = require("../middlewares/authorization");
 
 // controllers
-const { Item, uploadImages } = require("../controllers");
+const { Item, uploadImages, uploadCSV } = require("../controllers");
 
 // get items
 router.route("/get-items").get(Item.getItems);
@@ -57,8 +57,16 @@ router.route("/:item_id/images").get(Item.getItemImages);
 router.route("/newest-items").get(Item.getNewestItems);
 
 // get mismatched category items
+router.route("/mismatch/:category_id").get(Item.getMismatchedCategoriesItems);
+
+// insert csv items
 router
-  .route("/mismatch/:category_id")
-  .get(Item.getMismatchedCategoriesItems);
+  .route("/insert-csv-items")
+  .post(
+    authorization,
+    authorizationRole("admin"),
+    uploadCSV.single("csvFile"),
+    Item.insertCsvItems
+  );
 
 module.exports = router;

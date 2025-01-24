@@ -19,6 +19,18 @@ const storage = (pathName) => {
   });
 };
 
+// csv file storage
+const csvStorage = (pathName) => {
+  return multer.diskStorage({
+    distination: function (req, file, cb) {
+      cb(null, pathName);
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname);
+    },
+  });
+};
+
 // filter
 const fFilter = (req, file, cb) => {
   // allowed ext
@@ -46,10 +58,15 @@ const uploadImages = multer({
   ),
 });
 
+const uploadCSV = multer({
+  storage: csvStorage(path.join(path.dirname(__dirname), "public", "csv")),
+});
+
 module.exports = {
   Users,
   Categories,
   Item,
   uploadImages,
   Order,
+  uploadCSV,
 };
