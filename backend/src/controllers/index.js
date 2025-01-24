@@ -22,7 +22,7 @@ const storage = (pathName) => {
 // csv file storage
 const csvStorage = (pathName) => {
   return multer.diskStorage({
-    distination: function (req, file, cb) {
+    destination: function (req, file, cb) {
       cb(null, pathName);
     },
     filename: function (req, file, cb) {

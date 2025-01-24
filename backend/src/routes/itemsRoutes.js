@@ -61,7 +61,7 @@ router.route("/mismatch/:category_id").get(Item.getMismatchedCategoriesItems);
 
 // insert csv items
 router
-  .route("/insert-csv-items")
+  .route("/create-many")
   .post(
     authorization,
     authorizationRole("admin"),

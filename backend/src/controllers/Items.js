@@ -1,6 +1,7 @@
 const { Item, Category } = require("../models");
 const path = require("path");
 const fs = require("fs");
+const csv = require("csv-parser");
 
 // get all items
 const getItems = async (req, res) => {
@@ -306,7 +307,33 @@ const getMismatchedCategoriesItems = async (req, res) => {
 
 // Insert CSV file
 const insertCsvItems = async (req, res) => {
-  console.log("Welcome CSV file!");
+  const itemsData = [];
+
+  const csvFilePath = path.join(
+    __dirname,
+    "..",
+    "public",
+    "csv",
+    req.file.filename
+  );
+
+  fs.createReadStream(csvFilePath)
+    .pipe(csv())
+    .on("data", (data) => {
+      const colors = data.colors.split(",");
+      const images = data.images.split(",");
+      const item = {
+        title: data.title,
+        description: data.description,
+        colors,
+        images,
+        size: data.size,
+        price: data.price,
+        bestSelling: data.bestSelling,
+        category_id: data.category_id,
+      };
+      itemsData.push(item);
+    });
 };
 
 module.exports = {
