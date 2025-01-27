@@ -308,7 +308,6 @@ const getMismatchedCategoriesItems = async (req, res) => {
 // Insert CSV file
 const insertCsvItems = async (req, res) => {
   const itemsData = [];
-
   const csvFilePath = path.join(
     __dirname,
     "..",
@@ -320,8 +319,8 @@ const insertCsvItems = async (req, res) => {
   fs.createReadStream(csvFilePath)
     .pipe(csv())
     .on("data", (data) => {
-      const colors = data.colors.split(",");
-      const images = data.images.split(",");
+      const colors = data.colors ? data.colors.split(",") : [];
+      const images = data.images ? data.images.split(",") : [];
       const item = {
         title: data.title,
         description: data.description,
@@ -332,7 +331,56 @@ const insertCsvItems = async (req, res) => {
         bestSelling: data.bestSelling,
         category_id: data.category_id,
       };
-      itemsData.push(item);
+
+      if (colors.length === 0) {
+        console.log(
+          `Skipping item with title ${data.title} due to missing colors.`
+        );
+      } else {
+        itemsData.push(item);
+      }
+    })
+    .on("end", async () => {
+      try {
+        const existingItems = await Item.find({
+          title: { $in: itemsData.map((item) => item.title) },
+        });
+
+        const existingItemsSet = new Set(
+          existingItems.map((item) => item.title)
+        );
+        const itemsToInsert = [];
+        const itemsToUpdate = [];
+
+        itemsData.forEach((item) => {
+          if (existingItemsSet.has(item.title)) {
+            Item.findOneAndUpdate({ title: item.title }, item, { upsert: true })
+              .then((updateditem) => {
+                console.log(`Item with title ${item.title} updated!`);
+              })
+              .catch((error) => {
+                console.log(
+                  `Error updating item with title ${item.title}`,
+                  error
+                );
+              });
+          } else {
+            itemsToInsert.push(item);
+          }
+        });
+
+        if (itemsToInsert.length > 0) {
+          await Item.insertMany(itemsToInsert);
+          console.log(`${itemsToInsert.length} new items inserted!`);
+        }
+
+        res.status(200).send({
+          message: `${itemsToInsert.length} new items inserted or updated successfully.`,
+        });
+      } catch (error) {
+        console.error("Error processing items:", error);
+        res.status(500).send(error);
+      }
     });
 };
 
