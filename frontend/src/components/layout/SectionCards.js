@@ -61,7 +61,7 @@ function SectionCards({ items, title, buttonText, page, limit, transition }) {
                   key={index}
                   description={i.description}
                   price={i.price}
-                  color={i.color}
+                  colors={i.colors}
                   id={i._id}
                   url={page}
                   transition={false}
