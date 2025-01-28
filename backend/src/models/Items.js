@@ -10,7 +10,7 @@ const Items = new mongoose.Schema(
       type: String,
       required: true,
     },
-    color: [
+    colors: [
       {
         type: String,
         required: true,

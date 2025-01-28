@@ -1,6 +1,7 @@
 const { Item, Category } = require("../models");
 const path = require("path");
 const fs = require("fs");
+const csv = require("csv-parser");
 
 // get all items
 const getItems = async (req, res) => {
@@ -62,8 +63,15 @@ const getItemsByCategory = async (req, res) => {
 // create item
 const createItem = async (req, res) => {
   try {
-    const { title, description, color, size, price, category_id, bestSelling } =
-      req.body;
+    const {
+      title,
+      description,
+      colors,
+      size,
+      price,
+      category_id,
+      bestSelling,
+    } = req.body;
     const images = [];
     req.files.map((file, index) => {
       images.push(file.filename);
@@ -76,7 +84,7 @@ const createItem = async (req, res) => {
       const newItem = await Item.create({
         title,
         description,
-        color,
+        colors: colors.split(","),
         size,
         price,
         bestSelling,
@@ -84,7 +92,9 @@ const createItem = async (req, res) => {
         images: images,
       });
       if (newItem) {
-        res.status(200).send({ messageSuccess: "New atem created", newItem });
+        res
+          .status(200)
+          .send({ messageSuccess: "New item created successfully", newItem });
       }
     }
   } catch (error) {
@@ -295,6 +305,85 @@ const getMismatchedCategoriesItems = async (req, res) => {
   }
 };
 
+// Insert CSV file
+const insertCsvItems = async (req, res) => {
+  const itemsData = [];
+  const csvFilePath = path.join(
+    __dirname,
+    "..",
+    "public",
+    "csv",
+    req.file.filename
+  );
+
+  fs.createReadStream(csvFilePath)
+    .pipe(csv())
+    .on("data", (data) => {
+      const colors = data.colors ? data.colors.split(",") : [];
+      const images = data.images ? data.images.split(",") : [];
+      const item = {
+        title: data.title,
+        description: data.description,
+        colors,
+        images,
+        size: data.size,
+        price: data.price,
+        bestSelling: data.bestSelling,
+        category_id: data.category_id,
+      };
+
+      if (colors.length === 0) {
+        console.log(
+          `Skipping item with title ${data.title} due to missing colors.`
+        );
+      } else {
+        itemsData.push(item);
+      }
+    })
+    .on("end", async () => {
+      try {
+        const existingItems = await Item.find({
+          title: { $in: itemsData.map((item) => item.title) },
+        });
+
+        const existingItemsSet = new Set(
+          existingItems.map((item) => item.title)
+        );
+        const itemsToInsert = [];
+        const itemsToUpdate = [];
+
+        itemsData.forEach((item) => {
+          if (existingItemsSet.has(item.title)) {
+            Item.findOneAndUpdate({ title: item.title }, item, { upsert: true })
+              .then((updateditem) => {
+                console.log(`Item with title ${item.title} updated!`);
+              })
+              .catch((error) => {
+                console.log(
+                  `Error updating item with title ${item.title}`,
+                  error
+                );
+              });
+          } else {
+            itemsToInsert.push(item);
+          }
+        });
+
+        if (itemsToInsert.length > 0) {
+          await Item.insertMany(itemsToInsert);
+          console.log(`${itemsToInsert.length} new items inserted!`);
+        }
+
+        res.status(200).send({
+          message: `${itemsToInsert.length} new items inserted or updated successfully.`,
+        });
+      } catch (error) {
+        console.error("Error processing items:", error);
+        res.status(500).send(error);
+      }
+    });
+};
+
 module.exports = {
   getItems,
   getItem,
@@ -307,4 +396,5 @@ module.exports = {
   getItemImages,
   getNewestItems,
   getMismatchedCategoriesItems,
+  insertCsvItems,
 };

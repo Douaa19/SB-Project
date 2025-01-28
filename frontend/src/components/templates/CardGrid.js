@@ -31,7 +31,7 @@ function CardGrid({
                     description={item.description}
                     id={item._id}
                     price={item.price}
-                    color={item.color}
+                    colors={item.colors}
                     key={key}
                     url={url}
                     transition={transition}
