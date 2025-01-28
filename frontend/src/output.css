@@ -902,6 +902,10 @@ video {
   height: 100vh;
 }
 
+.h-60 {
+  height: 15rem;
+}
+
 .max-h-\[400px\] {
   max-height: 400px;
 }
@@ -1534,6 +1538,10 @@ video {
 
 .pt-4 {
   padding-top: 12px;
+}
+
+.pt-2 {
+  padding-top: 4px;
 }
 
 .text-center {
@@ -2545,6 +2553,10 @@ body .menu ul li > a:hover {
     height: auto;
   }
 
+  .ssm\:h-\[20rem\] {
+    height: 20rem;
+  }
+
   .ssm\:w-1 {
     width: 0.25rem;
   }
@@ -2774,6 +2786,10 @@ body .menu ul li > a:hover {
 
   .sm\:h-full {
     height: 100%;
+  }
+
+  .sm\:h-\[24rem\] {
+    height: 24rem;
   }
 
   .sm\:w-2 {
