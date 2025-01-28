@@ -39,7 +39,7 @@ function ItemCard({ description, price, id, colors, url, title }) {
       <div className="">
         <div className="w-full relative mx-auto overflow-hidden">
           {!itemImg ? (
-            <div className="w-full h-74 rounded-md animate-pulse bg-gray-100"></div>
+            <div className="w-full h-[24rem] rounded-md animate-pulse bg-gray-100"></div>
           ) : (
             <img
               src={itemImg}

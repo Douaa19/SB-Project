@@ -56,22 +56,26 @@ function SectionCards({ items, title, buttonText, page, limit, transition }) {
           {items.length > 0 ? (
             <Slider {...settings}>
               {items.slice(0, limit).map((i, index) => (
-                <ItemCard
-                  title={i.title}
-                  key={index}
-                  description={i.description}
-                  price={i.price}
-                  colors={i.colors}
-                  id={i._id}
-                  url={page}
-                  transition={false}
-                />
+                <div className="h-[42rem] flex flex-col justify-between">
+                  <ItemCard
+                    title={i.title}
+                    key={index}
+                    description={i.description}
+                    price={i.price}
+                    colors={i.colors}
+                    id={i._id}
+                    url={page}
+                    transition={false}
+                  />
+                </div>
               ))}
             </Slider>
           ) : (
             <Slider {...settings}>
               {myArr.map((i, index) => (
-                <LoadingCard key={index} />
+                <div className="h-96 flex items-center justify-center">
+                  <LoadingCard key={index} />
+                </div>
               ))}
             </Slider>
           )}
@@ -79,9 +83,9 @@ function SectionCards({ items, title, buttonText, page, limit, transition }) {
       </div>
       <div className="w-max mt-10">
         <button
-          class="relative flex px-6 py-3 items-center justify-center overflow-hidden bg-main md:text-16 ssm:text-14 font-medium rounded-md text-white shadow-md transition-all duration-300 before:absolute before:inset-0 before:border-0 before:border-white before:duration-100 before:ease-linear hover:bg-white hover:text-main hover:shadow-main hover:before:border-[25px]"
+          className="relative flex px-6 py-3 items-center justify-center overflow-hidden bg-main md:text-16 ssm:text-14 font-medium rounded-md text-white shadow-md transition-all duration-300 before:absolute before:inset-0 before:border-0 before:border-white before:duration-100 before:ease-linear hover:bg-white hover:text-main hover:shadow-main hover:before:border-[25px]"
           onClick={() => (window.location = `/${page}`)}>
-          <span class="relative z-10">{buttonText}</span>
+          <span className="relative z-10">{buttonText}</span>
         </button>
       </div>
     </div>
