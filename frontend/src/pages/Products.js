@@ -28,13 +28,13 @@ function Products({ title }) {
   }, [limit]);
 
   useEffect(() => {
-    setDisplayLimit(10);
+    setDisplayLimit(12);
 
     dispatch(setCategoryItems(null));
   }, [dispatch]);
 
   const handleLoadMore = () => {
-    const newLimit = displayLimit + 10;
+    const newLimit = displayLimit + 12;
 
     dispatch(loadMoreItems(newLimit));
 
