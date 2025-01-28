@@ -72,11 +72,13 @@ function NavBar(props) {
     <div
       className={`bg-light h-max fixed top-0 w-full z-[60] md:flex md:flex-row md:items-center md:justify-between gap-4 md:w-full font-normal md:gap-1 ssm:flex ssm:flex-col ssm:items-start ssm:gap-1 ssm:justify-center py-2 md:px-10 ssm:px-8 transition-colors duration-300`}>
       <div className="flex justify-center items-center md:ml-0 ssm:ml-[2rem]">
-        <img
-          src={Logo}
-          alt="logo"
-          className="text-main text-center hover:cursor-pointer md:w-16 ssm:w-12"
-        />
+        <a href="/">
+          <img
+            src={Logo}
+            alt="logo"
+            className="text-main text-center hover:cursor-pointer md:w-16 ssm:w-12"
+          />
+        </a>
       </div>
       <div
         className={`lg:block lg:text-16 lg:w-640 flex justify-center items-center md:block ssm:text-14 md:w-500 ssm:w-full p-0`}>
