@@ -4,10 +4,10 @@ import { Button } from "../atoms";
 import { setOrders } from "../../redux/actions/orders";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
-import chroma from "chroma-js";
 import { BACK_URL } from "../../config";
 import { ReactComponent as Next } from "../../assets/icons/arrow-next-small-svgrepo-com.svg";
 import { ReactComponent as Prev } from "../../assets/icons/arrow-prev-small-svgrepo-com.svg";
+import { Input } from "../atoms";
 
 function BigItemCard({ url, item }) {
   const dispatch = useDispatch();
@@ -30,11 +30,6 @@ function BigItemCard({ url, item }) {
     });
   });
 
-  const numberOptions = Array.from({ length: 5 }, (_, i) => ({
-    value: i + 1,
-    label: `${i + 1}`,
-  }));
-
   const settings = {
     dots: true,
     infinite: true,
@@ -51,81 +46,6 @@ function BigItemCard({ url, item }) {
       );
     },
     dotsClass: "slick-dots",
-  };
-
-  // const colorStyles = {
-  //   control: (styles, state) => ({
-  //     ...styles,
-  //     background: "white",
-  //     boxShadow: "none",
-  //     border: state.isFocused ? "1px solid #CCCCCC" : "1px solid #CECECE",
-  //     "&:hover": { outline: "none" },
-  //   }),
-  //   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-  //     const color = chroma(data.color);
-  //     return {
-  //       ...styles,
-  //       backgroundColor: isDisabled
-  //         ? undefined
-  //         : isSelected
-  //         ? data.color
-  //         : isFocused
-  //         ? color.alpha(0.1).css()
-  //         : undefined,
-  //       color: isDisabled
-  //         ? "#ccc"
-  //         : isSelected
-  //         ? chroma.contrast(color, "black") > 2
-  //           ? "white"
-  //           : "black"
-  //         : data.color,
-  //       cursor: isDisabled ? "not-allowed" : "default",
-  //       ":active": {
-  //         ...styles[":active"],
-  //         backgroundColor: !isDisabled
-  //           ? isSelected
-  //             ? data.color
-  //             : color.alpha(0.3).css()
-  //           : undefined,
-  //       },
-  //     };
-  //   },
-  //   multiValue: (styles, { data }) => {
-  //     const color = chroma(data.color);
-  //     return {
-  //       ...styles,
-  //       backgroundColor: color.alpha(0.1).css(),
-  //     };
-  //   },
-  //   multiValueLabel: (styles, { data }) => ({
-  //     ...styles,
-  //     color: chroma.contrast(data.color, "white") > 2 ? data.color : "black", // Ensure black text for white option
-  //   }),
-  //   multiValueRemove: (styles, { data }) => ({
-  //     ...styles,
-  //     color: data.color,
-  //     ":hover": {
-  //       backgroundColor: data.color,
-  //       color: "white",
-  //     },
-  //   }),
-  // };
-
-  const quantityStyles = {
-    control: (styles, state) => ({
-      ...styles,
-      background: "white",
-      boxShadow: "none",
-      border: state.isFocused ? "1px solid #CCCCCC" : "1px solid #CECECE",
-      "&:hover": { outline: "none" },
-    }),
-    option: (styles) => {
-      return {
-        ...styles,
-        text: "#F5F5F5",
-        cursor: "pointer",
-      };
-    },
   };
 
   const handleError = (data) => {
@@ -177,7 +97,7 @@ function BigItemCard({ url, item }) {
     }
   };
 
-  const handleNumberChange = (selectedOption) => {
+  const handleQuantityChange = (selectedOption) => {
     setOrder((prevOrder) => ({ ...prevOrder, quantity: selectedOption.value }));
   };
 
@@ -266,9 +186,8 @@ function BigItemCard({ url, item }) {
                       closeMenuOnSelect={true}
                       defaultValue={null}
                       options={colorOptions}
-                      // styles={colorStyles}
                       placeholder="Color"
-                      className={`w-32 text-14 ${
+                      className={`w-32 text-14 ml-6 rounded-md ${
                         errors.colors ? "border border-red rounded-md" : ""
                       }`}
                       isClearable={isClearable}
@@ -282,17 +201,14 @@ function BigItemCard({ url, item }) {
                   </div>
                   <div className="flex justify-start items-center gap-4">
                     <span className="text-14">Quantity:</span>
-                    <Select
-                      value={numberOptions.find(
-                        (option) => option.value === order.quantity
-                      )}
-                      onChange={handleNumberChange}
+                    <Input
+                      type="number"
+                      name="quantity"
+                      value={order.quantity}
+                      placeHolder="Quantity"
+                      onChange={handleQuantityChange}
+                      className="border border-gray-100 text-gray-500 rounded-md w-32 text-16 px-2 py-2 outline-none"
                       error={errors.quantity}
-                      options={numberOptions}
-                      placeholder="Quantity"
-                      isClearable={isClearable}
-                      className="w-24 text-14"
-                      styles={quantityStyles}
                     />
                   </div>
                 </div>
