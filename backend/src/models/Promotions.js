@@ -4,9 +4,9 @@ const Promotions = new mongoose.Schema(
   {
     item_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Items",
+      ref: "Item",
     },
-    price: {
+    percentage: {
       type: Number,
       required: true,
       default: 0,

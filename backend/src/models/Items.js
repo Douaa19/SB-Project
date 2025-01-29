@@ -31,9 +31,9 @@ const Items = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    soldPrice: {
-      type: Number,
-      required: false,
+    promotionPrice: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: "Promotion",
     },
     bestSelling: {
       type: Boolean,
