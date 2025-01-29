@@ -31,7 +31,7 @@ function BigItemCard({ url, item }) {
   });
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 1000,
     autoplay: false,
@@ -156,7 +156,7 @@ function BigItemCard({ url, item }) {
                     {images.map((imageData, index) => (
                       <div
                         key={index}
-                        className="w-auto max-h-[400px] flex items-center justify-center relative">
+                        className="w-auto max-h-[550px] flex items-center justify-center relative">
                         <img
                           className="object-contain w-full h-auto px-1"
                           src={`data:image/png;base64,${imageData}`}
@@ -212,7 +212,18 @@ function BigItemCard({ url, item }) {
                     />
                   </div>
                 </div>
-                <span className="md:text-18 ssm:text-16 font-medium">{`${item.price}DH`}</span>
+                <div className="w-full flex flex-col justify-start items-end gap-0 my-6">
+                  <span
+                    className={`md:text-18 ssm:text-16 font-bold ${
+                      !item.soldPrice ? "line-through text-red" : "text-dark"
+                    }`}>{`${item.price}DH`}</span>
+                  {/* If there is a solde price */}
+                  {!item.soldPrice && (
+                    <span className="md:text-24 ssm:text-18 font-bold">
+                      99DH
+                    </span>
+                  )}
+                </div>
               </div>
               <div className="flex md:justify-center ssm:justify-start ssm:items-center w-full">
                 <Button

@@ -914,6 +914,18 @@ video {
   max-height: 400px;
 }
 
+.max-h-\[500px\] {
+  max-height: 500px;
+}
+
+.max-h-full {
+  max-height: 100%;
+}
+
+.max-h-\[550px\] {
+  max-height: 550px;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -1738,6 +1750,10 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.line-through {
+  text-decoration-line: line-through;
 }
 
 .opacity-0 {
