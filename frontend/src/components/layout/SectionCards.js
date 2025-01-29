@@ -11,7 +11,7 @@ function SectionCards({ items, title, buttonText, page, limit, transition }) {
     dots: false,
     infinite: true,
     speed: 500,
-    autoplay: false,
+    autoplay: true,
     slidesToShow: 3,
     slidesToScroll: 1,
     nextArrow: <Next />,
