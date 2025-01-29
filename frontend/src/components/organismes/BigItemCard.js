@@ -22,10 +22,13 @@ function BigItemCard({ url, item }) {
   });
   const [isClearable, setIsClearable] = useState(false);
 
-  const colorOptions = [
-    { value: "beige", label: "Beige", color: "#ede8d0" },
-    { value: "black", label: "Black", color: "#000000" },
-  ];
+  const colorOptions = [];
+  item.colors.forEach((color) => {
+    colorOptions.push({
+      value: color,
+      label: color.charAt(0).toUpperCase() + color.slice(1),
+    });
+  });
 
   const numberOptions = Array.from({ length: 5 }, (_, i) => ({
     value: i + 1,
@@ -50,63 +53,63 @@ function BigItemCard({ url, item }) {
     dotsClass: "slick-dots",
   };
 
-  const colorStyles = {
-    control: (styles, state) => ({
-      ...styles,
-      background: "white",
-      boxShadow: "none",
-      border: state.isFocused ? "1px solid #CCCCCC" : "1px solid #CECECE",
-      "&:hover": { outline: "none" },
-    }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-      const color = chroma(data.color);
-      return {
-        ...styles,
-        backgroundColor: isDisabled
-          ? undefined
-          : isSelected
-          ? data.color
-          : isFocused
-          ? color.alpha(0.1).css()
-          : undefined,
-        color: isDisabled
-          ? "#ccc"
-          : isSelected
-          ? chroma.contrast(color, "black") > 2
-            ? "white"
-            : "black"
-          : data.color,
-        cursor: isDisabled ? "not-allowed" : "default",
-        ":active": {
-          ...styles[":active"],
-          backgroundColor: !isDisabled
-            ? isSelected
-              ? data.color
-              : color.alpha(0.3).css()
-            : undefined,
-        },
-      };
-    },
-    multiValue: (styles, { data }) => {
-      const color = chroma(data.color);
-      return {
-        ...styles,
-        backgroundColor: color.alpha(0.1).css(),
-      };
-    },
-    multiValueLabel: (styles, { data }) => ({
-      ...styles,
-      color: chroma.contrast(data.color, "white") > 2 ? data.color : "black", // Ensure black text for white option
-    }),
-    multiValueRemove: (styles, { data }) => ({
-      ...styles,
-      color: data.color,
-      ":hover": {
-        backgroundColor: data.color,
-        color: "white",
-      },
-    }),
-  };
+  // const colorStyles = {
+  //   control: (styles, state) => ({
+  //     ...styles,
+  //     background: "white",
+  //     boxShadow: "none",
+  //     border: state.isFocused ? "1px solid #CCCCCC" : "1px solid #CECECE",
+  //     "&:hover": { outline: "none" },
+  //   }),
+  //   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+  //     const color = chroma(data.color);
+  //     return {
+  //       ...styles,
+  //       backgroundColor: isDisabled
+  //         ? undefined
+  //         : isSelected
+  //         ? data.color
+  //         : isFocused
+  //         ? color.alpha(0.1).css()
+  //         : undefined,
+  //       color: isDisabled
+  //         ? "#ccc"
+  //         : isSelected
+  //         ? chroma.contrast(color, "black") > 2
+  //           ? "white"
+  //           : "black"
+  //         : data.color,
+  //       cursor: isDisabled ? "not-allowed" : "default",
+  //       ":active": {
+  //         ...styles[":active"],
+  //         backgroundColor: !isDisabled
+  //           ? isSelected
+  //             ? data.color
+  //             : color.alpha(0.3).css()
+  //           : undefined,
+  //       },
+  //     };
+  //   },
+  //   multiValue: (styles, { data }) => {
+  //     const color = chroma(data.color);
+  //     return {
+  //       ...styles,
+  //       backgroundColor: color.alpha(0.1).css(),
+  //     };
+  //   },
+  //   multiValueLabel: (styles, { data }) => ({
+  //     ...styles,
+  //     color: chroma.contrast(data.color, "white") > 2 ? data.color : "black", // Ensure black text for white option
+  //   }),
+  //   multiValueRemove: (styles, { data }) => ({
+  //     ...styles,
+  //     color: data.color,
+  //     ":hover": {
+  //       backgroundColor: data.color,
+  //       color: "white",
+  //     },
+  //   }),
+  // };
 
   const quantityStyles = {
     control: (styles, state) => ({
@@ -263,7 +266,7 @@ function BigItemCard({ url, item }) {
                       closeMenuOnSelect={true}
                       defaultValue={null}
                       options={colorOptions}
-                      styles={colorStyles}
+                      // styles={colorStyles}
                       placeholder="Color"
                       className={`w-32 text-14 ${
                         errors.colors ? "border border-red rounded-md" : ""
