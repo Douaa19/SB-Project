@@ -782,6 +782,10 @@ video {
   margin-left: 1.5rem;
 }
 
+.ml-8 {
+  margin-left: 2rem;
+}
+
 .block {
   display: block;
 }
@@ -1180,6 +1184,22 @@ video {
 
 .gap-8 {
   gap: 2rem;
+}
+
+.gap-12 {
+  gap: 3rem;
+}
+
+.gap-\[2\.5rem\] {
+  gap: 2.5rem;
+}
+
+.gap-\[3rem\] {
+  gap: 3rem;
+}
+
+.gap-\[2\.8rem\] {
+  gap: 2.8rem;
 }
 
 .self-end {
@@ -2959,6 +2979,14 @@ body .menu ul li > a:hover {
     height: 80vh;
   }
 
+  .md\:h-full {
+    height: 100%;
+  }
+
+  .md\:h-auto {
+    height: auto;
+  }
+
   .md\:w-1\/2 {
     width: 50%;
   }
@@ -3249,6 +3277,10 @@ body .menu ul li > a:hover {
 
   .lg\:text-24 {
     font-size: 24px;
+  }
+
+  .lg\:text-32 {
+    font-size: 32px;
   }
 }
 

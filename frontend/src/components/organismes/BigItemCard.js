@@ -33,8 +33,8 @@ function BigItemCard({ url, item }) {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 1000,
-    autoplay: false,
+    speed: 2000,
+    autoplay: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <Next />,
@@ -147,7 +147,7 @@ function BigItemCard({ url, item }) {
             </span>
           </p>
         </div>
-        <div className="h-auto flex md:flex-row md:justify-between items-center ssm:flex-col ssm:justify-start md:gap-16 ssm:gap-12">
+        <div className="h-auto flex md:flex-row md:justify-between items-between ssm:flex-col ssm:justify-start md:gap-16 ssm:gap-12">
           <div className="flex justify-start md:w-1/2 ssm:w-full h-full">
             <div className="w-full">
               {item.images.length > 0 ? (
@@ -171,15 +171,20 @@ function BigItemCard({ url, item }) {
               )}
             </div>
           </div>
-          <div className="md:h-[60vh] ssm:h-auto flex justify-start w-full ssm:mt-8 md:mt-0">
+          <div className="md:h-auto flex justify-start w-full ssm:mt-8 md:mt-0">
             <div className="w-full flex flex-col justify-between items-start">
               <div className="w-full">
-                <h3 className="lg:text-24 ssm:text-24 text-dark-gray font-bold tracking-wider">
+                <h3 className="lg:text-32 ssm:text-24 text-dark-gray font-extrabold tracking-wider mb-4">
                   {item.title}
                 </h3>
-                <p className="md:text-16 ssm:text-14">{item.description}</p>
-                <span className="md:text-16 ssm:text-14">{`${item.size} cm`}</span>
-                <div className="flex flex-col gap-2 w-full my-4">
+                <p className="md:text-16 ssm:text-14 mb-6">
+                  {item.description}
+                </p>
+                <div className="md:text-16 ssm:text-14 flex gap-[2.8rem]">
+                  Size:{" "}
+                  <span className="font-semibold">{`${item.size} cm`}</span>
+                </div>
+                <div className="flex flex-col gap-4 w-full my-6">
                   <div className="flex justify-start items-center gap-4">
                     <span className="text-14">Color:</span>
                     <Select
@@ -207,25 +212,27 @@ function BigItemCard({ url, item }) {
                       value={order.quantity}
                       placeHolder="Quantity"
                       onChange={handleQuantityChange}
-                      className="border border-gray-100 text-gray-500 rounded-md w-32 text-16 px-2 py-2 outline-none"
+                      className="border border-gray-100 text-gray-500 rounded-md w-32 text-16 px-4 py-2 outline-none"
                       error={errors.quantity}
                     />
                   </div>
                 </div>
-                <div className="w-full flex flex-col justify-start items-end gap-0 my-6">
+              </div>
+              <div className="flex flex-col md:justify-center ssm:justify-start ssm:items-center w-full">
+                <div className="w-full flex flex-col justify-end items-end gap-0 my-6">
                   <span
-                    className={`md:text-18 ssm:text-16 font-bold ${
-                      !item.soldPrice ? "line-through text-red" : "text-dark"
+                    className={`font-bold ${
+                      item.soldPrice
+                        ? "line-through text-red md:text-18 ssm:text-16"
+                        : "text-dark md:text-24 ssm:text-18"
                     }`}>{`${item.price}DH`}</span>
                   {/* If there is a solde price */}
-                  {!item.soldPrice && (
+                  {item.soldPrice && (
                     <span className="md:text-24 ssm:text-18 font-bold">
-                      99DH
+                      {item.soldPrice}DH
                     </span>
                   )}
                 </div>
-              </div>
-              <div className="flex md:justify-center ssm:justify-start ssm:items-center w-full">
                 <Button
                   className="ssm:mt-4 md:w-1/2 ssm:w-full md:mt-2
           border-1 border-main rounded-md md:px-10 ssm:px-6 py-3 capitalize text-white bg-main md:text-16 ssm:text-16 font-medium outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105"
