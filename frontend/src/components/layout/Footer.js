@@ -26,7 +26,7 @@ function Footer() {
               <li className="pb-2">
                 <div className="flex items-center gap-2">
                   <Mail size={20} className="" strokeWidth={1} />
-                  <span>embroidery.saba12@gmail.com</span>
+                  <span>contact@sabaembroidery.com</span>
                 </div>
               </li>
             </ul>

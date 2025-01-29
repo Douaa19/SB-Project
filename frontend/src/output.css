@@ -726,6 +726,10 @@ video {
   margin-bottom: 2rem;
 }
 
+.ml-6 {
+  margin-left: 1.5rem;
+}
+
 .mr-1 {
   margin-right: 0.25rem;
 }
@@ -772,18 +776,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.ml-3 {
-  margin-left: 0.75rem;
-}
-
-.ml-6 {
-  margin-left: 1.5rem;
-}
-
-.ml-8 {
-  margin-left: 2rem;
 }
 
 .block {
@@ -914,18 +906,6 @@ video {
   height: 100vh;
 }
 
-.max-h-\[400px\] {
-  max-height: 400px;
-}
-
-.max-h-\[500px\] {
-  max-height: 500px;
-}
-
-.max-h-full {
-  max-height: 100%;
-}
-
 .max-h-\[550px\] {
   max-height: 550px;
 }
@@ -936,10 +916,6 @@ video {
 
 .w-10 {
   width: 2.5rem;
-}
-
-.w-16 {
-  width: 4rem;
 }
 
 .w-2\/4 {
@@ -1020,10 +996,6 @@ video {
 
 .w-max {
   width: max-content;
-}
-
-.w-24 {
-  width: 6rem;
 }
 
 .min-w-full {
@@ -1184,18 +1156,6 @@ video {
 
 .gap-8 {
   gap: 2rem;
-}
-
-.gap-12 {
-  gap: 3rem;
-}
-
-.gap-\[2\.5rem\] {
-  gap: 2.5rem;
-}
-
-.gap-\[3rem\] {
-  gap: 3rem;
 }
 
 .gap-\[2\.8rem\] {
@@ -1767,14 +1727,14 @@ video {
   color: rgb(255 0 77 / var(--tw-text-opacity));
 }
 
-.text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .text-secondary {
   --tw-text-opacity: 1;
   color: rgb(218 184 138 / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .line-through {
@@ -2418,14 +2378,14 @@ body .menu ul li > a:hover {
   color: rgb(255 0 77 / var(--tw-text-opacity));
 }
 
-.hover\:text-white:hover {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .hover\:text-secondary:hover {
   --tw-text-opacity: 1;
   color: rgb(218 184 138 / var(--tw-text-opacity));
+}
+
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .hover\:underline:hover {
@@ -2597,10 +2557,6 @@ body .menu ul li > a:hover {
 
   .ssm\:h-\[40vh\] {
     height: 40vh;
-  }
-
-  .ssm\:h-auto {
-    height: auto;
   }
 
   .ssm\:w-1 {
@@ -2981,16 +2937,8 @@ body .menu ul li > a:hover {
     display: none;
   }
 
-  .md\:h-\[60vh\] {
-    height: 60vh;
-  }
-
   .md\:h-\[80vh\] {
     height: 80vh;
-  }
-
-  .md\:h-full {
-    height: 100%;
   }
 
   .md\:h-auto {
@@ -3283,10 +3231,6 @@ body .menu ul li > a:hover {
 
   .lg\:text-16 {
     font-size: 16px;
-  }
-
-  .lg\:text-24 {
-    font-size: 24px;
   }
 
   .lg\:text-32 {
