@@ -128,21 +128,21 @@ function BigItemCard({ url, item }) {
   return (
     <div className="lg:py-8 ssm:py-6 sm:px-24 ssm:px-6 mt-20 h-auto">
       <div className="flex flex-col gap-3 h-full">
-        <div className="capitalize text-16">
+        <div className="capitalize text-18 mb-4">
           <p>
             <a
               href="/"
-              className="hover:underline hover:text-main lg:text-16 sm:text-14 ssm:text-12">
+              className="hover:underline hover:text-secondary hover:font-semibold lg:text-16 sm:text-14 ssm:text-12">
               home
             </a>{" "}
             /{" "}
             <a
               href={`/${url}`}
-              className="hover:underline hover:text-main lg:text-16 sm:text-14 ssm:text-12">
+              className="hover:underline hover:text-secondary hover:font-semibold lg:text-16 sm:text-14 ssm:text-12">
               {url === "best-selling" ? "best selling" : "products"}
             </a>{" "}
             /{" "}
-            <span className="text-main lg:text-16 sm:text-14 ssm:text-12">
+            <span className="text-secondary font-semibold lg:text-16 sm:text-14 ssm:text-12">
               {item.title}
             </span>
           </p>
