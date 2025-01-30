@@ -9,18 +9,26 @@ const getPromotions = async (req, res) => {
     } else {
       res
         .status(200)
-        .semnd({ message: "Promitions table are empty", promotions });
+        .send({ message: "Promitions table are empty", promotions });
     }
   } catch (error) {
-    res
-      .status(500)
-      .send({ messageError: "Somthing goes wrong in bak end", error });
+    res.status(500).send({
+      messageError: "Somthing goes wrong in back end",
+      error: error.message,
+    });
   }
 };
 
 // Create Promotion
 const createPromotion = async (req, res) => {
-  
+  try {
+    const { item_id, percentage, duration } = req.body;
+    console.log(item_id, percentage, duration);
+  } catch (error) {
+    res
+      .status(500)
+      .send({ messageError: "Somthing goes wrong in bak end", error });
+  }
 };
 
 // Delete Promotion

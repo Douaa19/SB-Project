@@ -4,7 +4,7 @@ const Promotions = new mongoose.Schema(
   {
     item_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Item",
+      ref: "Items",
     },
     percentage: {
       type: Number,

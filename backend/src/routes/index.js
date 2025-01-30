@@ -19,6 +19,6 @@ app.use("/categories", categories);
 app.use("/items", items);
 app.use("/orders", orders);
 app.use("/user", users);
-app.use("promotions", promotions);
+app.use("/promotions", promotions);
 
 module.exports = app;

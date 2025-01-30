@@ -11,9 +11,7 @@ const {
 const { Promotion } = require("../controllers");
 
 // get promotions
-router
-  .route(":promotions")
-  .get(authorization, authorizationRole("admin"), Promotion.getPromotions);
+router.route("/promotions").get(Promotion.getPromotions);
 
 // create promotion
 router
