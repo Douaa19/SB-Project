@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import NavBar from "../components/layout/NavBar";
-import PageTitle from "../components/atoms/PageTitle";
 import CardGrid from "../components/templates/CardGrid";
 import Footer from "../components/layout/Footer";
 import Image0 from "../assets/images/aboutus1.JPG";
@@ -36,7 +36,7 @@ function About() {
     },
     {
       title: "Thank you",
-      text: "For visiting our store and we hope that you will find something here that speaks to your heart. If you have any questions or comments, please don’t hesitate to contact us",
+      text: `For visiting our store and we hope that you will find something here that speaks to your heart. If you have any questions or comments, please don’t hesitate to <a href="/contact" class="text-blue-500 underline">contact us</a>.`,
     },
   ];
 
@@ -44,10 +44,6 @@ function About() {
     <>
       <NavBar />
       <div className="mt-24 mb-20 flex flex-col w-full md:px-28 ssm:px-16 items-center md:gap-4 ssm:gap-2">
-        {/* <PageTitle
-          title="Our mission"
-          className="font-extrabold md:text-42 ssm:text-32 capitalize text-main"
-        /> */}
         <div className="flex flex-col items-center w-10/12">
           <CardGrid type="about" aboutItems={aboutItems} />
         </div>

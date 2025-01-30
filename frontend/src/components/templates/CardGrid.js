@@ -43,7 +43,7 @@ function CardGrid({
             <>
               {aboutItems?.map((item, key) => (
                 <AboutCard
-                  key={key}
+                  index={key}
                   title={item.title}
                   text={item.text}
                   image={item.image}
