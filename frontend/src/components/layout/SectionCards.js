@@ -4,8 +4,17 @@ import { ReactComponent as Prev } from "../../assets/icons/arrow-prev-small-svgr
 import ItemCard from "../organismes/ItemCard";
 import Slider from "react-slick";
 import LoadingCard from "../organismes/LoadingCard";
+import { Star } from "lucide-react";
 
-function SectionCards({ items, title, buttonText, page, limit, transition }) {
+function SectionCards({
+  items,
+  title,
+  buttonText,
+  page,
+  limit,
+  transition,
+  icon,
+}) {
   const myArr = [0, 1, 2, 3, 4, 5];
   const settings = {
     dots: false,
@@ -48,9 +57,9 @@ function SectionCards({ items, title, buttonText, page, limit, transition }) {
   return (
     <div
       className={`sm:px-10 ssm:px-6 ssm:pb-4 sm:pb-7 flex flex-col justify-center items-center w-full`}>
-      <div className="w-full capitalize sm:text-32 ssm:text-24 font-extrabold text-main pl-16">
-        {title}
-      </div>
+      <h2 className="flex items-center gap-2 text-2xl font-bold text-main capitalize">
+        <span>{icon}</span> {title}
+      </h2>
       <div className="w-[90%]">
         <div className="sm:mt-10 ssm:mt-5">
           {items.length > 0 ? (

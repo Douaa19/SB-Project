@@ -45,6 +45,7 @@ module.exports = {
         "gray-100": "#CECECE",
         red: "#FF004D",
         "dark-gray": "#333333",
+        "yellow-500": "#ecc94b",
       },
       padding: {
         1: "2px",
@@ -74,6 +75,7 @@ module.exports = {
         "gray-300": "rgb(209 213 219)",
         "gray-100": "rgb(206 206 206)",
         "blue-600": "rgb(37 99 235)",
+        "yellow-500": "#ecc94b",
       },
       borderWidth: {
         1: "1px",
