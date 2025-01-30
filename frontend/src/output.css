@@ -778,10 +778,6 @@ video {
   margin-top: 2rem;
 }
 
-.mb-0 {
-  margin-bottom: 0px;
-}
-
 .block {
   display: block;
 }
@@ -908,18 +904,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[\] {
-  height: ;
-}
-
-.h-\[0\.2rem\] {
-  height: 0.2rem;
-}
-
-.h-\[0\.25rem\] {
-  height: 0.25rem;
 }
 
 .max-h-\[550px\] {
@@ -2775,10 +2759,6 @@ body .menu ul li > a:hover {
     font-size: 24px;
   }
 
-  .ssm\:text-32 {
-    font-size: 32px;
-  }
-
   .ssm\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -3138,10 +3118,6 @@ body .menu ul li > a:hover {
 
   .md\:text-36 {
     font-size: 36px;
-  }
-
-  .md\:text-42 {
-    font-size: 42px;
   }
 
   .md\:text-sm {
