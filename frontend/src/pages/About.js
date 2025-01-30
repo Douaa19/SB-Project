@@ -13,26 +13,26 @@ function About() {
     {
       title: "“Stitching stories, creating memories”",
       text: `Our slogan represents the focus and the interest on the details to create the beautiful embroidered products we can, to stitch a wonderful memory on your mind. Welcome to our store. We specialize in creating unique, handcrafted embroidered products that are made with love and care`,
-      image: Image0,
     },
     {
       title: "The passion for the art",
       text: "Passed down from mother to daughter for generations, this tradition is sustained by our love and appreciation for the art. We are driven to keep it alive by creating beautiful products that showcase its beauty.",
-      image: Image1,
+      image: Image0,
     },
     {
       title: "The quality commitment",
       text: "Quality is one of our greatest strengths. We believe our products should meet the highest standards, so we use the finest materials to create our embroidered items. We are immensely proud of our work, and we hope you will be just as proud to own one of our products.",
-      image: Image2,
+      image: Image1,
     },
     {
       title: "The sustainability devoteduess",
       text: "Our products are not only beautiful but also sustainable. We prioritize eco-friendly materials and methods whenever possible and support local communities by sourcing our materials from local suppliers.",
-      image: Image3,
+      image: Image2,
     },
     {
       title: "Our mission",
       text: "Our mission is to create beautiful, high-quality embroidered products that bring happiness and preserve unforgettable memories. We aim for our products to be cherished for generations.",
+      image: Image3,
     },
     {
       title: "Thank you",
@@ -44,10 +44,10 @@ function About() {
     <>
       <NavBar />
       <div className="mt-24 mb-20 flex flex-col w-full md:px-28 ssm:px-16 items-center md:gap-4 ssm:gap-2">
-        <PageTitle
+        {/* <PageTitle
           title="Our mission"
           className="font-extrabold md:text-42 ssm:text-32 capitalize text-main"
-        />
+        /> */}
         <div className="flex flex-col items-center w-10/12">
           <CardGrid type="about" aboutItems={aboutItems} />
         </div>
