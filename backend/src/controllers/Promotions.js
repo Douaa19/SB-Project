@@ -1,4 +1,4 @@
-const { Promotion } = require("../models");
+const { Promotion, Item } = require("../models");
 
 //  Get promotions
 const getPromotions = async (req, res) => {
@@ -23,7 +23,43 @@ const getPromotions = async (req, res) => {
 const createPromotion = async (req, res) => {
   try {
     const { item_id, percentage, duration } = req.body;
-    console.log(item_id, percentage, duration);
+    const item = await Item.findById(item_id);
+    if (!item) {
+      res.status(400).send({ messageError: "Item not found!" });
+    }
+    const promotionPrice = item.price - (item.price * percentage) / 100;
+    const promotionExists = Promotion.find({ item_id });
+    if (!promotionExists) {
+      const newPromo = await Promotion.create({
+        item_id,
+        percentage,
+        duration,
+        price: promotionPrice,
+      });
+
+      if (newPromo) {
+        await Item.findByIdAndUpdate(item_id, { promotionPrice: newPromo._id });
+        res
+          .status(200)
+          .send({ messageSuccess: "Promotion created successfully", newPromo });
+
+        setTimeout(async () => {
+          const deletePromo = await Promotion.findByIdAndDelete(newPromo._id);
+          if (deletePromo) {
+            const updateItem = await Item.findByIdAndUpdate(item_id, {
+              promotionPrice: null,
+            });
+            if (updateItem) {
+              res.status(200).send({
+                messageSuccess: "Promo deleted & Item updated successfully!",
+              });
+            }
+          }
+        }, duration * 24 * 60 * 60);
+      }
+    } else {
+      res.status(200).send({ messageError: "Promotion is already exists!" });
+    }
   } catch (error) {
     res
       .status(500)
