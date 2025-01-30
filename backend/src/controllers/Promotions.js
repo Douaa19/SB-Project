@@ -81,7 +81,17 @@ const createPromotion = async (req, res) => {
 const deletePromotion = async (req, res) => {
   try {
     const { promotion_id } = req.params;
-    console.log(promotion_id);
+    const promotion = await Promotion.findByIdAndDelete(promotion_id);
+    if (promotion) {
+      const updateItem = await Item.findByIdAndUpdate(promotion.item_id, {
+        promotionPrice: null,
+      });
+      if (updateItem) {
+        res
+          .status(200)
+          .send({ messageSuccess: "Promotion deleted successfully!" });
+      }
+    }
   } catch (error) {
     res.status(500).send({
       messageError: "Somthing goes wrong in bak end",
