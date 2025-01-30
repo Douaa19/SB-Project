@@ -3,7 +3,15 @@ const { Promotion, Item } = require("../models");
 //  Get promotions
 const getPromotions = async (req, res) => {
   try {
-    const promotions = await Promotion.find().populate("item_id");
+    const promotions = await Promotion.find().populate({
+      path: "item_id",
+      select:
+        "title description colors images size price promotionPrice bestSelling category_id",
+      populate: {
+        path: "category_id",
+        select: "name",
+      },
+    });
     if (promotions.length > 0) {
       res.status(200).send(promotions);
     } else {
