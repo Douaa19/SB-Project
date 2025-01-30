@@ -102,7 +102,37 @@ const deletePromotion = async (req, res) => {
 
 // Update Promotion
 const updatePromotion = async (req, res) => {
-  console.log("Update Promotion");
+  try {
+    const { promotion_id } = req.params;
+    const { percentage, duration } = req.body;
+
+    const item = await Item.findOne({ promotionPrice: promotion_id });
+    if (item) {
+      const newPrice = item.price - (item.price * percentage) / 100;
+      const updatePromo = await Promotion.findByIdAndUpdate(promotion_id, {
+        percentage,
+        duration,
+        price: newPrice,
+      });
+      if (updatePromo) {
+        res
+          .status(200)
+          .send({
+            messageSuccess: "Promotion updated successfully!",
+            updatePromo,
+          });
+      } else {
+        res.status(404).send({ messageError: "Promotion not updated!" });
+      }
+    } else {
+      res.status(404).send({ messageError: "Item doesn't found!" });
+    }
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in bak end",
+      error: error.message,
+    });
+  }
 };
 
 module.exports = {
