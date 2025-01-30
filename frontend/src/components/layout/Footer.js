@@ -1,37 +1,38 @@
 import React from "react";
 import Logo from "../../assets/images/big-logo-sabaembroidery.svg";
 import { Phone, Mail, Facebook, Instagram, Pin } from "lucide-react";
-import MultiS from "../../assets/images/multi-s.svg";
+import FooterBg from "../../assets/images/footer-bg.svg";
+import { motion } from "framer-motion";
 
 function Footer() {
   return (
     <div
       className="w-full relative bottom-0 left-0 mt-10 bg-main lg:py-8 ssm:py-6 lg:px-28 ssm:px-16 h-max bg-cover bg-repeat"
-      style={{ backgroundImage: `url(${MultiS})` }}>
-      <div className="flex justify-between flex-col items-start">
-        <div className="w-full mb-4 mx-0 flex items-center lg:justify-center ssm:justify-center">
+      style={{ backgroundImage: `url(${FooterBg})` }}>
+      <div className="flex justify-between flex-row items-center">
+        <div className="w-1/2 mb-4 mx-0 flex items-start">
           <a href="/">
             <img src={Logo} alt="logo" className="md:w-52 ssm:w-36" />
           </a>
         </div>
-        <div className="flex lg:justify-between lg:flex-row w-full pt-4 mb-6 gap-2 ssm:flex-col-reverse">
-          <div className="flex flex-col justify-start items-start md:w-fit ssm:w-1/2 ssm:mt-4 lg:mt-0">
-            <ul className="md:text-14 ssm:text-12 flex flex-col h-max text-gray-400">
-              <li className="pb-2">
-                <div className="flex items-center gap-2">
-                  <Phone size={20} className="" strokeWidth={1} />
-                  <span>+212634242755</span>
-                </div>
-              </li>
-              <li className="pb-2">
-                <div className="flex items-center gap-2">
-                  <Mail size={20} className="" strokeWidth={1} />
-                  <span>contact@sabaembroidery.com</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div className="flex lg:justify-around items-center gap-2 lg:w-1/2 md:w-full ssm:justify-between">
+        <div className="flex justify-between flex-row w-full pt-4 mb-6 gap-2 ssm:flex-col-reverse">
+          <div className="flex lg:justify-around items-center gap-2 lg:w-full md:w-full ssm:justify-between">
+            <div className="flex flex-col justify-start items-start md:w-fit ssm:w-1/2 ssm:mt-4 lg:mt-0">
+              <ul className="md:text-14 ssm:text-12 flex flex-col h-max text-gray-400">
+                <li className="pb-2">
+                  <div className="flex items-center gap-2">
+                    <Phone size={20} className="" strokeWidth={1} />
+                    <span>+212634242755</span>
+                  </div>
+                </li>
+                <li className="pb-2">
+                  <div className="flex items-center gap-2">
+                    <Mail size={20} className="" strokeWidth={1} />
+                    <span>contact@sabaembroidery.com</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <div className="">
               <h6 className="md:text-18 ssm:text-16 capitalize pb-4 font-bold text-gray-100">
                 main menu
