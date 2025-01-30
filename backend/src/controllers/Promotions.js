@@ -28,8 +28,11 @@ const createPromotion = async (req, res) => {
       res.status(400).send({ messageError: "Item not found!" });
     }
     const promotionPrice = item.price - (item.price * percentage) / 100;
-    const promotionExists = Promotion.find({ item_id });
-    if (!promotionExists) {
+    const promotionExists = await Promotion.find({ item_id });
+
+    if (promotionExists.length > 0) {
+      res.status(200).send({ messageError: "Promotion is already exists!" });
+    } else {
       const newPromo = await Promotion.create({
         item_id,
         percentage,
@@ -57,19 +60,26 @@ const createPromotion = async (req, res) => {
           }
         }, duration * 24 * 60 * 60);
       }
-    } else {
-      res.status(200).send({ messageError: "Promotion is already exists!" });
     }
   } catch (error) {
-    res
-      .status(500)
-      .send({ messageError: "Somthing goes wrong in bak end", error });
+    res.status(500).send({
+      messageError: "Somthing goes wrong in bak end",
+      error: error.message,
+    });
   }
 };
 
 // Delete Promotion
 const deletePromotion = async (req, res) => {
-  console.log("Delete Promotion");
+  try {
+    const { promotion_id } = req.params;
+    console.log(promotion_id);
+  } catch (error) {
+    res.status(500).send({
+      messageError: "Somthing goes wrong in bak end",
+      error: error.message,
+    });
+  }
 };
 
 // Update Promotion
