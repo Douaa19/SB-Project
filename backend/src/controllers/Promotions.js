@@ -91,6 +91,8 @@ const deletePromotion = async (req, res) => {
           .status(200)
           .send({ messageSuccess: "Promotion deleted successfully!" });
       }
+    } else {
+      res.status(404).send({ messageError: "Promotion doesn't found!" });
     }
   } catch (error) {
     res.status(500).send({
@@ -115,12 +117,10 @@ const updatePromotion = async (req, res) => {
         price: newPrice,
       });
       if (updatePromo) {
-        res
-          .status(200)
-          .send({
-            messageSuccess: "Promotion updated successfully!",
-            updatePromo,
-          });
+        res.status(200).send({
+          messageSuccess: "Promotion updated successfully!",
+          updatePromo,
+        });
       } else {
         res.status(404).send({ messageError: "Promotion not updated!" });
       }
