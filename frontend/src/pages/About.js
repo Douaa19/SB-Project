@@ -47,9 +47,8 @@ function About() {
       <div className="mt-24 mb-20 flex flex-col w-full md:px-28 ssm:px-16 items-center md:gap-4 ssm:gap-2">
         <PageTitle
           title="our mission"
-          className={`font-bold md:text-3xl ssm:text-2xl capitalize text-main w-full text-start mt-6 flex items-center gap-1`}
           icon={<Users size={32} />}
-          colorIcon="main"
+          colorIcon="yellow-500"
         />
         <div className="flex flex-col items-center w-10/12">
           <CardGrid type="about" aboutItems={aboutItems} />

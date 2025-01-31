@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-function AboutCard({ index, title, text, image, reverse }) {
+function AboutCard({ index, title, text, image, reverse, titleColor }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
@@ -13,10 +13,12 @@ function AboutCard({ index, title, text, image, reverse }) {
       }`}>
       <div className={`${image ? "w-1/2" : "w-full mt-6"}`}>
         <h3
-          className={`font-bold capitalize text-dark md:pb-4 ssm:pb-2 ${
+          className={`font-bold capitalize md:pb-4 ssm:pb-2 ${
             !image
-              ? "font-extrabold flex flex-col items-center md:text-28 ssm:text-24"
-              : "md:text-24 ssm:text-18"
+              ? `font-extrabold flex flex-col items-center md:text-28 ssm:text-24 text-${
+                  index === 0 ? "secondary" : "dark"
+                }`
+              : "md:text-24 ssm:text-18 text-dark"
           }`}>
           {title}
           {index === 0 && (
@@ -24,7 +26,7 @@ function AboutCard({ index, title, text, image, reverse }) {
               initial={{ width: 0 }}
               animate={{ width: "55%" }}
               transition={{ duration: 1, ease: "easeInOut" }}
-              className="h-[2px] bg-dark mt-2 text-center mb-2 relative"
+              className="h-[2px] bg-secondary mt-2 text-center mb-2 relative"
             />
           )}
         </h3>
