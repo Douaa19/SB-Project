@@ -1582,6 +1582,11 @@ video {
   line-height: 1.25rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .font-bold {
   font-weight: 600;
 }
@@ -2327,6 +2332,12 @@ body .menu ul li > a:hover {
   background-color: rgb(25 38 85 / var(--tw-bg-opacity));
 }
 
+.after\:bg-secondary::after {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(218 184 138 / var(--tw-bg-opacity));
+}
+
 .after\:content-\[\'\'\]::after {
   --tw-content: '';
   content: var(--tw-content);
@@ -2816,6 +2827,10 @@ body .menu ul li > a:hover {
     line-height: 1.75rem;
   }
 
+  .ssm\:text-32 {
+    font-size: 32px;
+  }
+
   .ssm\:opacity-100 {
     opacity: 1;
   }
@@ -3176,6 +3191,10 @@ body .menu ul li > a:hover {
   .md\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  .md\:text-42 {
+    font-size: 42px;
   }
 
   .md\:text-main {

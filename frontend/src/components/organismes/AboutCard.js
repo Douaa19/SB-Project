@@ -23,7 +23,7 @@ function AboutCard({ index, title, text, image, reverse }) {
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: "55%" }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
+              transition={{ duration: 1, ease: "easeInOut" }}
               className="h-[2px] bg-dark mt-2 text-center mb-2 relative"
             />
           )}

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import React from "react";
 import NavBar from "../components/layout/NavBar";
 import CardGrid from "../components/templates/CardGrid";
 import Footer from "../components/layout/Footer";
@@ -7,6 +6,8 @@ import Image0 from "../assets/images/aboutus1.JPG";
 import Image1 from "../assets/images/aboutus2.JPG";
 import Image2 from "../assets/images/aboutus3.JPG";
 import Image3 from "../assets/images/aboutus4.JPG";
+import { PageTitle } from "../components/atoms";
+import { Users } from "lucide-react";
 
 function About() {
   const aboutItems = [
@@ -44,6 +45,12 @@ function About() {
     <>
       <NavBar />
       <div className="mt-24 mb-20 flex flex-col w-full md:px-28 ssm:px-16 items-center md:gap-4 ssm:gap-2">
+        <PageTitle
+          title="our mission"
+          className={`font-bold md:text-3xl ssm:text-2xl capitalize text-main w-full text-start mt-6 flex items-center gap-1`}
+          icon={<Users size={32} />}
+          colorIcon="main"
+        />
         <div className="flex flex-col items-center w-10/12">
           <CardGrid type="about" aboutItems={aboutItems} />
         </div>
