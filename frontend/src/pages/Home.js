@@ -4,7 +4,7 @@ import { Header, Loading } from "../components/layout";
 import PresentationCards from "../components/layout/PresentationCards";
 import SectionCards from "../components/layout/SectionCards";
 import Footer from "../components/layout/Footer";
-import { Star } from "lucide-react";
+import { Star, Package } from "lucide-react";
 
 function Home() {
   const bestSellingItems = useSelector((state) => state.bestSellingItems);
@@ -31,15 +31,18 @@ function Home() {
             page="best-selling"
             limit={displayLimit}
             transition={false}
-            icon={<Star />}
+            icon={<Star size={32} />}
+            lineSize="28"
           />
           <SectionCards
             items={newestItems}
-            title="new products"
+            title="our products"
             buttonText="View more"
             page="products"
             limit={displayLimit}
             transition={false}
+            icon={<Package size={32} />}
+            lineSize="24"
           />
           <Footer />
         </>

@@ -1532,10 +1532,6 @@ video {
   padding-bottom: 2rem;
 }
 
-.pl-16 {
-  padding-left: 4rem;
-}
-
 .pr-2 {
   padding-right: 4px;
 }
@@ -1570,11 +1566,6 @@ video {
 
 .text-18 {
   font-size: 18px;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
 }
 
 .text-5xl {
@@ -2295,6 +2286,52 @@ body .menu ul li > a:hover {
   transition-timing-function: linear;
 }
 
+.after\:absolute::after {
+  content: var(--tw-content);
+  position: absolute;
+}
+
+.after\:bottom-0::after {
+  content: var(--tw-content);
+  bottom: 0px;
+}
+
+.after\:left-0::after {
+  content: var(--tw-content);
+  left: 0px;
+}
+
+.after\:h-1::after {
+  content: var(--tw-content);
+  height: 0.25rem;
+}
+
+.after\:w-32::after {
+  content: var(--tw-content);
+  width: 8rem;
+}
+
+.after\:w-28::after {
+  content: var(--tw-content);
+  width: 7rem;
+}
+
+.after\:w-24::after {
+  content: var(--tw-content);
+  width: 6rem;
+}
+
+.after\:bg-main::after {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(25 38 85 / var(--tw-bg-opacity));
+}
+
+.after\:content-\[\'\'\]::after {
+  --tw-content: '';
+  content: var(--tw-content);
+}
+
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
@@ -2769,6 +2806,11 @@ body .menu ul li > a:hover {
     font-size: 24px;
   }
 
+  .ssm\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
   .ssm\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -2865,10 +2907,6 @@ body .menu ul li > a:hover {
 
   .sm\:text-24 {
     font-size: 24px;
-  }
-
-  .sm\:text-32 {
-    font-size: 32px;
   }
 }
 
@@ -3128,6 +3166,11 @@ body .menu ul li > a:hover {
 
   .md\:text-36 {
     font-size: 36px;
+  }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 
   .md\:text-sm {

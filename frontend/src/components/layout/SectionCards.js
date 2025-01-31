@@ -14,6 +14,7 @@ function SectionCards({
   limit,
   transition,
   icon,
+  lineSize,
 }) {
   const myArr = [0, 1, 2, 3, 4, 5];
   const settings = {
@@ -56,9 +57,10 @@ function SectionCards({
 
   return (
     <div
-      className={`sm:px-10 ssm:px-6 ssm:pb-4 sm:pb-7 flex flex-col justify-center items-center w-full`}>
-      <h2 className="flex items-center gap-2 text-2xl font-bold text-main capitalize">
-        <span>{icon}</span> {title}
+      className={`sm:px-10 ssm:px-6 ssm:pb-4 sm:pb-7 flex flex-col justify-center items-center w-full mt-6`}>
+      <h2
+        className={`capitalize text-main flex items-center gap-1 relative ssm:text-2xl md:text-3xl font-bold pb-2 after:content-[''] after:absolute after:w-${lineSize} after:h-1 after:bg-main after:bottom-0 after:left-0`}>
+        <span className="text-secondary">{icon}</span> {title}
       </h2>
       <div className="w-[90%]">
         <div className="sm:mt-10 ssm:mt-5">
