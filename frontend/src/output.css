@@ -653,6 +653,10 @@ video {
   z-index: 60;
 }
 
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
@@ -754,6 +758,10 @@ video {
   margin-top: 2.5rem;
 }
 
+.mt-16 {
+  margin-top: 4rem;
+}
+
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -774,8 +782,8 @@ video {
   margin-top: 1.5rem;
 }
 
-.mt-16 {
-  margin-top: 4rem;
+.mt-3 {
+  margin-top: 0.75rem;
 }
 
 .block {
@@ -1074,8 +1082,16 @@ video {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -1543,6 +1559,10 @@ video {
 
 .pt-4 {
   padding-top: 12px;
+}
+
+.pt-2 {
+  padding-top: 4px;
 }
 
 .text-center {
@@ -2395,18 +2415,8 @@ body .menu ul li > a:hover {
   background-color: rgb(255 255 255 / 0.2);
 }
 
-.hover\:bg-secondary:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(218 184 138 / var(--tw-bg-opacity));
-}
-
 .hover\:font-semibold:hover {
   font-weight: 600;
-}
-
-.hover\:text-gray-100:hover {
-  --tw-text-opacity: 1;
-  color: rgb(206 206 206 / var(--tw-text-opacity));
 }
 
 .hover\:text-gray-500:hover {
@@ -3023,6 +3033,10 @@ body .menu ul li > a:hover {
     width: 500px;
   }
 
+  .md\:w-60 {
+    width: 15rem;
+  }
+
   .md\:w-9\/12 {
     width: 75%;
   }
@@ -3033,10 +3047,6 @@ body .menu ul li > a:hover {
 
   .md\:w-full {
     width: 100%;
-  }
-
-  .md\:w-60 {
-    width: 15rem;
   }
 
   .md\:min-w-\[50rem\] {
@@ -3179,11 +3189,6 @@ body .menu ul li > a:hover {
     line-height: 2.25rem;
   }
 
-  .md\:text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
-
   .md\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -3276,11 +3281,6 @@ body .menu ul li > a:hover {
   .lg\:py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
-  }
-
-  .lg\:py-12 {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
   }
 
   .lg\:text-14 {
