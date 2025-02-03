@@ -5,7 +5,7 @@ import { Form } from "../components/templates";
 import PresentationCards from "../components/layout/PresentationCards";
 import SectionCards from "../components/layout/SectionCards";
 import Footer from "../components/layout/Footer";
-import { Star, Package, Mail, Earth, Phone, Map } from "lucide-react";
+import { Star, Package, Mail, Earth, Phone, Map, Send } from "lucide-react";
 
 function Home() {
   const bestSellingItems = useSelector((state) => state.bestSellingItems);
@@ -78,21 +78,21 @@ function Home() {
                       </p>
                       <div className="grid grid-cols-2 gap-0 mt-6">
                         <div className="col-span-1 flex justify-start items-center gap-1 mt-3 text-main">
-                          <Phone size={32} className="text-yellow-500" />
+                          <Phone size={32} className="text-main" />
                           <div className="">
                             <h5 className="capitalize font-bold">call us</h5>
                             <span>+212634242755</span>
                           </div>
                         </div>
                         <div className="col-span-1 flex justify-start items-center gap-1 mt-3 text-main">
-                          <Mail size={32} className="text-yellow-500" />
+                          <Send size={32} className="text-main" />
                           <div className="">
                             <h5 className="capitalize font-bold">email us</h5>
                             <span>contact@sabaembroidery.com</span>
                           </div>
                         </div>
                         <div className="col-span-1 flex justify-start items-center gap-1 mt-3 text-main">
-                          <Earth size={32} className="text-yellow-500" />
+                          <Earth size={32} className="text-main" />
                           <div className="">
                             <h5 className="capitalize font-bold">website</h5>
                             <a href="https://sabaembroidery.com">
@@ -101,7 +101,7 @@ function Home() {
                           </div>
                         </div>
                         <div className="col-span-1 flex justify-start items-center gap-1 mt-3 text-main">
-                          <Map size={32} className="text-yellow-500" />
+                          <Map size={32} className="text-main" />
                           <div className="">
                             <h5 className="capitalize font-bold">address</h5>
                             <span>Morocco, Youssoufia</span>
