@@ -6,7 +6,10 @@ const csv = require("csv-parser");
 // get all items
 const getItems = async (req, res) => {
   try {
-    const items = await Item.find().populate("category_id promotionPrice", "name item_id percentage duration");
+    const items = await Item.find().populate(
+      "category_id promotionPrice",
+      "name item_id percentage duration"
+    );
     if (items.length > 0) {
       res.status(200).send(items);
     } else {
