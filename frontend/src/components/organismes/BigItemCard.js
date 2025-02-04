@@ -222,14 +222,14 @@ function BigItemCard({ url, item }) {
                 <div className="w-full flex flex-col justify-end items-end gap-0 my-6">
                   <span
                     className={`font-bold ${
-                      item.soldPrice
+                      item.promotionPrice
                         ? "line-through text-red md:text-18 ssm:text-16"
                         : "text-dark md:text-24 ssm:text-18"
                     }`}>{`${item.price}DH`}</span>
                   {/* If there is a solde price */}
-                  {item.soldPrice && (
+                  {item.promotionPrice && (
                     <span className="md:text-24 ssm:text-18 font-bold">
-                      {item.soldPrice}DH
+                      {item.promotionPrice.price}DH
                     </span>
                   )}
                 </div>
