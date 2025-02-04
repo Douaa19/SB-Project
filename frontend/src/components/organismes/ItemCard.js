@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BACK_URL } from "../../config";
 
-function ItemCard({ description, price, id, colors, url, title }) {
+function ItemCard({ description, price, promotion, id, colors, url, title }) {
   const [hover, setHover] = useState(false);
 
   const openProduct = (item_id) => {
@@ -55,8 +55,20 @@ function ItemCard({ description, price, id, colors, url, title }) {
           <p className="font-normale">{description}</p>
         </div>
       </div>
-      <div className="px-4 flex flex-row justify-between items-start w-full mb-4">
-        <span className="font-bold">{price}DH</span>
+      <div className="px-4 flex flex-row justify-between items-end w-full mb-4">
+        <div className="flex flex-col justify-center items-start">
+          <span
+            className={`font-bold ${
+              promotion
+                ? "line-through text-red md:text-18 ssm:text-16"
+                : "text-dark md:text-24 ssm:text-18"
+            }`}>{`${price}DH`}</span>
+          {promotion !== null && (
+            <span className="md:text-24 ssm:text-18 font-bold">
+              {promotion.price}DH
+            </span>
+          )}
+        </div>
         <div className="flex gap-2">
           {colors.map((color, index) => (
             <span
