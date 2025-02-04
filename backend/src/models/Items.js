@@ -33,7 +33,7 @@ const Items = new mongoose.Schema(
     },
     promotionPrice: {
       type: mongoose.Schema.Types.ObjectId,
-      required: "Promotion",
+      ref: "Promotion",
       default: null,
     },
     bestSelling: {

@@ -61,7 +61,7 @@ const createPromotion = async (req, res) => {
               promotionPrice: null,
             });
             if (updateItem) {
-              res.status(200).send({
+              console.log({
                 messageSuccess: "Promo deleted & Item updated successfully!",
               });
             }
