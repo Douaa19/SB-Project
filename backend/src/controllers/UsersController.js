@@ -25,17 +25,16 @@ const handleRegister = async (req, res) => {
         phoneNum,
         address,
       });
-      console.log(newUser);
       if (!newUser) {
         res.send({ messageError: "New user not created" });
       } else {
         const transporter = nodemailer.createTransport({
-          host: `${Host}`,
-          port: `${Port}`,
+          host: `smtp.hostinger.com`,
+          port: 465,
           secure: true,
           auth: {
-            user: EmailAuth,
-            pass: PasswordAuth,
+            user: `${EmailAuth}`,
+            pass: `${PasswordAuth}`,
           },
         });
 
@@ -46,11 +45,11 @@ const handleRegister = async (req, res) => {
           html: RegisterEmail.register(newUser.username),
         };
 
-        // await transporter.sendMail(mailOption);
+        await transporter.sendMail(mailOption);
 
-        // return res.status(200).send({
-        //   messageSuccess: "User created successfully",
-        // });
+        return res.status(200).send({
+          messageSuccess: "User created successfully",
+        });
       }
     } else {
       res.send({ userExists, messageError: "User already exists!" });
@@ -135,8 +134,8 @@ const forgetPassword = async (req, res) => {
       const resetLink = `http://localhost:3000/reset-password/${user.resetToken}/${user._id}`;
 
       const transporter = nodemailer.createTransport({
-        host: `${Host}`,
-        port: `${Port}`,
+        host: `smtp.hostinger.com`,
+        port: 465,
         secure: true,
         auth: {
           user: `${EmailAuth}`,
@@ -180,8 +179,8 @@ const recreatPassword = async (req, res) => {
       await user.save();
 
       const transporter = nodemailer.createTransport({
-        host: `${Host}`,
-        port: `${Port}`,
+        host: `smtp.hostinger.com`,
+        port: 465,
         secure: true,
         auth: {
           user: `${EmailAuth}`,
