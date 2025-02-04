@@ -106,7 +106,7 @@ module.exports.register = (username) => {
                             color: black;
                             margin-left: 1rem;
                           ">
-                          <span>Hello ${user.username},</span>
+                          <span>Hello ${username},</span>
                           <p>
                             Welcome aboard! 🎉 We're delighted to have you join
                             SabaEmbroidery family. As you embark on your journey
