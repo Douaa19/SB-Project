@@ -28,7 +28,7 @@ const getItem = async (req, res) => {
     const { item_id } = req.params;
     const item = await Item.findById(item_id).populate(
       "category_id promotionPrice",
-      "name item_id percentage duration"
+      "name item_id percentage duration price"
     );
     if (!item) {
       res.status(404).send({ messageError: "Item doesn't found" });
@@ -51,7 +51,7 @@ const getItemsByCategory = async (req, res) => {
     if (type === "best-selling") {
       items = await Item.find({ category_id, bestSelling: true }).populate(
         "promotionPrice",
-        "item_id percentage duration"
+        "item_id percentage duration price"
       );
     } else {
       items = await Item.find({ category_id }).populate("promotionPrice");
@@ -215,7 +215,10 @@ const getBestSelling = async (req, res) => {
       .sort({
         createdAt: "desc",
       })
-      .populate("category_id promotionPrice", "item_id percentage duration");
+      .populate(
+        "category_id promotionPrice",
+        "item_id percentage duration price"
+      );
     if (bestSellingItems.length == 0) {
       res.status(200).send({ messageError: "Best selling list is empty!" });
     } else {
@@ -287,7 +290,7 @@ const getNewestItems = async (req, res) => {
     const newestItems = await Item.find({})
       .populate(
         "category_id promotionPrice",
-        "name item_id percentage duration"
+        "name item_id percentage duration price"
       )
       .sort({ createdAt: "desc" });
     // .limit(6);
@@ -308,7 +311,10 @@ const getMismatchedCategoriesItems = async (req, res) => {
     const { category_id } = req.params;
     const items = await Item.find({
       category_id: { $ne: category_id },
-    }).populate("category_id promotionPrice", "item_id percentage duration");
+    }).populate(
+      "category_id promotionPrice",
+      "item_id percentage duration price"
+    );
     if (items.length > 0) {
       res.status(200).send(items);
     } else {
