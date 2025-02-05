@@ -60,12 +60,12 @@ function ItemCard({ description, price, promotion, id, colors, url, title }) {
           <span
             className={`font-bold ${
               promotion
-                ? "line-through text-red md:text-18 ssm:text-16"
-                : "text-dark md:text-24 ssm:text-18"
+                ? "line-through text-red md:text-16 ssm:text-14"
+                : "text-dark md:text-18 ssm:text-16"
             }`}>{`${price}DH`}</span>
           {promotion !== null && (
-            <span className="md:text-24 ssm:text-18 font-bold">
-              {promotion.price}DH
+            <span className="md:text-18 ssm:text-16 font-bold">
+              {promotion?.price}DH
             </span>
           )}
         </div>
