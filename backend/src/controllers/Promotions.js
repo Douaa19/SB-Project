@@ -119,27 +119,38 @@ const deletePromotion = async (req, res) => {
 const updatePromotion = async (req, res) => {
   try {
     const { promotion_id } = req.params;
-    const { percentage, duration } = req.body;
+    const { percentage, duration, start_date, end_date } = req.body;
 
     const item = await Item.findOne({ promotionPrice: promotion_id });
-    if (item) {
-      const newPrice = item.price - (item.price * percentage) / 100;
-      const updatePromo = await Promotion.findByIdAndUpdate(promotion_id, {
-        percentage,
-        duration,
-        price: newPrice,
-      });
-      if (updatePromo) {
-        res.status(200).send({
-          messageSuccess: "Promotion updated successfully!",
-          updatePromo,
-        });
-      } else {
-        res.status(404).send({ messageError: "Promotion not updated!" });
-      }
-    } else {
-      res.status(404).send({ messageError: "Item doesn't found!" });
+    if (!item) {
+      res.status(404).send({ messageError: "Item not found!" });
     }
+
+    const promotion = await Promotion.findById(item.promotionPrice);
+    if (!promotion) {
+      res.status(404).send({ messageError: "Promotion not found!" });
+    }
+
+    if (promotion) {
+      const newPrice = item.price - (item.price * percentage) / 100;
+      promotion.price = newPrice;
+    }
+
+    promotion.percentage = percentage ?? promotion.percentage;
+    promotion.duration = duration ?? promotion.duration;
+    promotion.startDate = start_date
+      ? convertToISODate(start_date)
+      : promotion.startDate;
+    promotion.endDate = end_date
+      ? convertToISODate(end_date)
+      : promotion.endDate;
+
+    await promotion.save();
+
+    res.status(200).send({
+      messageSuccess: "Promotion updated successfully!",
+      updatedPromotion: promotion,
+    });
   } catch (error) {
     res.status(500).send({
       messageError: "Somthing goes wrong in bak end",
