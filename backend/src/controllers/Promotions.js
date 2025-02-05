@@ -35,7 +35,8 @@ const createPromotion = async (req, res) => {
     if (!item) {
       res.status(400).send({ messageError: "Item not found!" });
     }
-    const promotionPrice = item.price - (item.price * percentage) / 100;
+    const newPrice = item.price - (item.price * percentage) / 100;
+    const promotionPrice = (Math.ceil(newPrice) - 0.01 + 1).toFixed(2);
     const promotionExists = await Promotion.find({ item_id });
 
     if (promotionExists.length > 0) {
