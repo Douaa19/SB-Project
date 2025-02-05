@@ -30,7 +30,7 @@ const getPromotions = async (req, res) => {
 // Create Promotion
 const createPromotion = async (req, res) => {
   try {
-    const { item_id, percentage, duration } = req.body;
+    const { item_id, percentage, duration, start_date, end_date } = req.body;
     const item = await Item.findById(item_id);
     if (!item) {
       res.status(400).send({ messageError: "Item not found!" });
@@ -47,6 +47,8 @@ const createPromotion = async (req, res) => {
         percentage,
         duration,
         price: promotionPrice,
+        startDate: convertToISODate(start_date),
+        endDate: convertToISODate(end_date),
       });
 
       if (newPromo) {
@@ -55,19 +57,24 @@ const createPromotion = async (req, res) => {
           .status(200)
           .send({ messageSuccess: "Promotion created successfully", newPromo });
 
-        setTimeout(async () => {
-          const deletePromo = await Promotion.findByIdAndDelete(newPromo._id);
-          if (deletePromo) {
-            const updateItem = await Item.findByIdAndUpdate(item_id, {
-              promotionPrice: null,
-            });
-            if (updateItem) {
-              console.log({
-                messageSuccess: "Promo deleted & Item updated successfully!",
-              });
-            }
-          }
-        }, duration * 24 * 60 * 60);
+        // setTimeout(async () => {
+        //   const promotion = await Promotion.findById(newPromo._id);
+        //   if (promotion) {
+        //     const deletePromo = await Promotion.findByIdAndDelete(newPromo._id);
+        //     if (deletePromo) {
+        //       const updateItem = await Item.findByIdAndUpdate(item_id, {
+        //         promotionPrice: null,
+        //       });
+        //       if (updateItem) {
+        //         console.log({
+        //           messageSuccess: "Promo deleted & Item updated successfully!",
+        //         });
+        //       }
+        //     }
+        //   } else {
+        //     console.log("Promotion doesn't found!");
+        //   }
+        // }, duration * 24 * 60 * 60);
       }
     }
   } catch (error) {
@@ -76,6 +83,11 @@ const createPromotion = async (req, res) => {
       error: error.message,
     });
   }
+};
+
+const convertToISODate = (dateStr) => {
+  const [day, month, year] = dateStr.split("-");
+  return new Date(`${year}-${month}-${day}T00:00:00Z`);
 };
 
 // Delete Promotion
