@@ -56,25 +56,6 @@ const createPromotion = async (req, res) => {
         res
           .status(200)
           .send({ messageSuccess: "Promotion created successfully", newPromo });
-
-        setTimeout(async () => {
-          const promotion = await Promotion.findById(newPromo._id);
-          if (promotion) {
-            const deletePromo = await Promotion.findByIdAndDelete(newPromo._id);
-            if (deletePromo) {
-              const updateItem = await Item.findByIdAndUpdate(item_id, {
-                promotionPrice: null,
-              });
-              if (updateItem) {
-                console.log({
-                  messageSuccess: "Promo deleted & Item updated successfully!",
-                });
-              }
-            }
-          } else {
-            console.log("Promotion doesn't found!");
-          }
-        }, duration * 24 * 60 * 60);
       }
     }
   } catch (error) {
