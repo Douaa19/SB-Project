@@ -1,6 +1,4 @@
 const { User } = require("../models");
-const Host = process.env.Host;
-const Port = process.env.Port;
 const EmailAuth = process.env.EmailAuth;
 const PasswordAuth = process.env.PasswordAuth;
 const jwt = require("jsonwebtoken");

@@ -30,12 +30,13 @@ const getPromotions = async (req, res) => {
 // Create Promotion
 const createPromotion = async (req, res) => {
   try {
-    const { item_id, percentage, duration } = req.body;
+    const { item_id, percentage, duration, start_date, end_date } = req.body;
     const item = await Item.findById(item_id);
     if (!item) {
       res.status(400).send({ messageError: "Item not found!" });
     }
-    const promotionPrice = item.price - (item.price * percentage) / 100;
+    const newPrice = item.price - (item.price * percentage) / 100;
+    const promotionPrice = (Math.ceil(newPrice) - 0.01 + 1).toFixed(2);
     const promotionExists = await Promotion.find({ item_id });
 
     if (promotionExists.length > 0) {
@@ -46,6 +47,8 @@ const createPromotion = async (req, res) => {
         percentage,
         duration,
         price: promotionPrice,
+        startDate: convertToISODate(start_date),
+        endDate: convertToISODate(end_date),
       });
 
       if (newPromo) {
@@ -53,20 +56,6 @@ const createPromotion = async (req, res) => {
         res
           .status(200)
           .send({ messageSuccess: "Promotion created successfully", newPromo });
-
-        setTimeout(async () => {
-          const deletePromo = await Promotion.findByIdAndDelete(newPromo._id);
-          if (deletePromo) {
-            const updateItem = await Item.findByIdAndUpdate(item_id, {
-              promotionPrice: null,
-            });
-            if (updateItem) {
-              console.log({
-                messageSuccess: "Promo deleted & Item updated successfully!",
-              });
-            }
-          }
-        }, duration * 24 * 60 * 60);
       }
     }
   } catch (error) {
@@ -75,6 +64,11 @@ const createPromotion = async (req, res) => {
       error: error.message,
     });
   }
+};
+
+const convertToISODate = (dateStr) => {
+  const [day, month, year] = dateStr.split("-");
+  return new Date(`${year}-${month}-${day}T00:00:00Z`);
 };
 
 // Delete Promotion
@@ -106,27 +100,38 @@ const deletePromotion = async (req, res) => {
 const updatePromotion = async (req, res) => {
   try {
     const { promotion_id } = req.params;
-    const { percentage, duration } = req.body;
+    const { percentage, duration, start_date, end_date } = req.body;
 
     const item = await Item.findOne({ promotionPrice: promotion_id });
-    if (item) {
-      const newPrice = item.price - (item.price * percentage) / 100;
-      const updatePromo = await Promotion.findByIdAndUpdate(promotion_id, {
-        percentage,
-        duration,
-        price: newPrice,
-      });
-      if (updatePromo) {
-        res.status(200).send({
-          messageSuccess: "Promotion updated successfully!",
-          updatePromo,
-        });
-      } else {
-        res.status(404).send({ messageError: "Promotion not updated!" });
-      }
-    } else {
-      res.status(404).send({ messageError: "Item doesn't found!" });
+    if (!item) {
+      res.status(404).send({ messageError: "Item not found!" });
     }
+
+    const promotion = await Promotion.findById(item.promotionPrice);
+    if (!promotion) {
+      res.status(404).send({ messageError: "Promotion not found!" });
+    }
+
+    if (promotion) {
+      const newPrice = item.price - (item.price * percentage) / 100;
+      promotion.price = newPrice;
+    }
+
+    promotion.percentage = percentage ?? promotion.percentage;
+    promotion.duration = duration ?? promotion.duration;
+    promotion.startDate = start_date
+      ? convertToISODate(start_date)
+      : promotion.startDate;
+    promotion.endDate = end_date
+      ? convertToISODate(end_date)
+      : promotion.endDate;
+
+    await promotion.save();
+
+    res.status(200).send({
+      messageSuccess: "Promotion updated successfully!",
+      updatedPromotion: promotion,
+    });
   } catch (error) {
     res.status(500).send({
       messageError: "Somthing goes wrong in bak end",
@@ -135,9 +140,57 @@ const updatePromotion = async (req, res) => {
   }
 };
 
+// fiilter promotions
+const filterPromotion = async (req, res) => {
+  try {
+    const { status } = req.params;
+    const today = new Date();
+
+    let result;
+
+    if (status == "active") {
+      result = await Promotion.find({
+        startDate: {
+          $lte: today,
+        },
+        endDate: {
+          $gte: today,
+        },
+      }).populate("item_id");
+    } else if (status == "upcoming") {
+      result = await Promotion.find({
+        startDate: {
+          $gte: today,
+        },
+        endDate: {
+          $gte: today,
+        },
+      }).populate("item_id");
+    } else {
+      result = await Promotion.find({
+        startDate: {
+          $lte: today,
+        },
+        endDate: {
+          $lte: today,
+        },
+      }).populate("item_id");
+    }
+
+    if (result.length > 0) {
+      res.status(200).send({ result });
+    } else {
+      res.status(400).send({ message: "No promotion found." });
+    }
+  } catch (error) {
+    res.status(500).send({ messageError: "Somthing goes wrong!" });
+  }
+};
+
 module.exports = {
   getPromotions,
   createPromotion,
   deletePromotion,
   updatePromotion,
+  filterPromotion,
 };

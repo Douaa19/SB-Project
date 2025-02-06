@@ -28,4 +28,7 @@ router
   .route("/update-promotion/:promotion_id")
   .put(authorization, authorizationRole("admin"), Promotion.updatePromotion);
 
+// filter promotion
+router.route("/filter/:status").get(authorization, Promotion.filterPromotion);
+
 module.exports = router;

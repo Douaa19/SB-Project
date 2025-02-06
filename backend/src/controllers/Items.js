@@ -8,7 +8,7 @@ const getItems = async (req, res) => {
   try {
     const items = await Item.find().populate(
       "category_id promotionPrice",
-      "name item_id percentage duration"
+      "name item_id percentage duration startDate endDate"
     );
     if (items.length > 0) {
       res.status(200).send(items);
@@ -28,7 +28,7 @@ const getItem = async (req, res) => {
     const { item_id } = req.params;
     const item = await Item.findById(item_id).populate(
       "category_id promotionPrice",
-      "name item_id percentage duration price"
+      "name item_id percentage duration price startDate endDate"
     );
     if (!item) {
       res.status(404).send({ messageError: "Item doesn't found" });
@@ -51,7 +51,7 @@ const getItemsByCategory = async (req, res) => {
     if (type === "best-selling") {
       items = await Item.find({ category_id, bestSelling: true }).populate(
         "promotionPrice",
-        "item_id percentage duration price"
+        "item_id percentage duration price startDate endDate"
       );
     } else {
       items = await Item.find({ category_id }).populate("promotionPrice");
@@ -217,7 +217,7 @@ const getBestSelling = async (req, res) => {
       })
       .populate(
         "category_id promotionPrice",
-        "item_id percentage duration price"
+        "item_id percentage duration price startDate endDate"
       );
     if (bestSellingItems.length == 0) {
       res.status(200).send({ messageError: "Best selling list is empty!" });
@@ -290,7 +290,7 @@ const getNewestItems = async (req, res) => {
     const newestItems = await Item.find({})
       .populate(
         "category_id promotionPrice",
-        "name item_id percentage duration price"
+        "name item_id percentage duration price startDate endDate"
       )
       .sort({ createdAt: "desc" });
     // .limit(6);
@@ -313,7 +313,7 @@ const getMismatchedCategoriesItems = async (req, res) => {
       category_id: { $ne: category_id },
     }).populate(
       "category_id promotionPrice",
-      "item_id percentage duration price"
+      "item_id percentage duration price startDate endDate"
     );
     if (items.length > 0) {
       res.status(200).send(items);
