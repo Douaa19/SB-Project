@@ -140,9 +140,57 @@ const updatePromotion = async (req, res) => {
   }
 };
 
+// fiilter promotions
+const filterPromotion = async (req, res) => {
+  try {
+    const { status } = req.params;
+    const today = new Date();
+
+    let result;
+
+    if (status == "active") {
+      result = await Promotion.find({
+        startDate: {
+          $lte: today,
+        },
+        endDate: {
+          $gte: today,
+        },
+      }).populate("item_id");
+    } else if (status == "upcoming") {
+      result = await Promotion.find({
+        startDate: {
+          $gte: today,
+        },
+        endDate: {
+          $gte: today,
+        },
+      }).populate("item_id");
+    } else {
+      result = await Promotion.find({
+        startDate: {
+          $lte: today,
+        },
+        endDate: {
+          $lte: today,
+        },
+      }).populate("item_id");
+    }
+
+    if (result.length > 0) {
+      res.status(200).send({ result });
+    } else {
+      res.status(400).send({ message: "No promotion found." });
+    }
+  } catch (error) {
+    res.status(500).send({ messageError: "Somthing goes wrong!" });
+  }
+};
+
 module.exports = {
   getPromotions,
   createPromotion,
   deletePromotion,
   updatePromotion,
+  filterPromotion,
 };
