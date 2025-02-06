@@ -67,9 +67,9 @@ module.exports.register = (username) => {
                       max-width: 300px;
                       margin-bottom: 1rem;
                     ">
-                    <a href="sabaembroidery.ma">
+                    <a href="https://www.sabaembroidery.com">
                       <img
-                        src="https://drive.google.com/uc?export=download&id=1NNBtsCyJXXH2cPm68vt8edNNZguDYHH5"
+                        src="https://drive.google.com/uc?export=view&id=1VNM5eYrwCgo6FqIRUlipZHk8mEt8YaMD?v=2"
                         alt="Saba Embroidery LOGO"
                         width="14%" />
                     </a>

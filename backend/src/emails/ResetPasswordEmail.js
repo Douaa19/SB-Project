@@ -67,9 +67,9 @@ module.exports.resetPassword = (username, resetLink) => {
                         max-width: 300px;
                         margin-bottom: 1rem;
                       ">
-                      <a href="sabaembroidery.ma">
+                      <a href="https://www.sabaembroidery.com">
                         <img
-                          src="https://drive.google.com/uc?export=download&id=1NNBtsCyJXXH2cPm68vt8edNNZguDYHH5"
+                          src="https://drive.google.com/uc?export=view&id=1yG5ofgy1YFA4tnV4H2TEXKswWnQkg_FH"
                           alt="Saba Embroidery LOGO"
                           width="14%" />
                       </a>
