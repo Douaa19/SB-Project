@@ -2,7 +2,9 @@ const cron = require("node-cron");
 const nodemailer = require("nodemailer");
 const { Promotion } = require("../models");
 const EmailAuth = process.env.EmailAuth;
+exports.EmailAuth = EmailAuth;
 const PasswordAuth = process.env.PasswordAuth;
+exports.PasswordAuth = PasswordAuth;
 
 const transporter = nodemailer.createTransport({
   host: `smtp.hostinger.com`,
