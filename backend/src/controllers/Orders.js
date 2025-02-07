@@ -11,6 +11,7 @@ const {
 const {
   orderModifiedClientEmail,
 } = require("../emails/OrderModifiedClientEmail");
+// const orderSentEmail = require("../emails/OrderSentEmail");
 
 const createOrder = async (req, res) => {
   const client_id = req.user.id;
@@ -77,8 +78,8 @@ const createOrder = async (req, res) => {
 
                     // Send email to admin
                     const transporter = nodemailer.createTransport({
-                      host: `${Host}`,
-                      port: `${Port}`,
+                      host: `smtp.hostinger.com`,
+                      port: 465,
                       secure: true,
                       auth: {
                         user: `${EmailAuth}`,
