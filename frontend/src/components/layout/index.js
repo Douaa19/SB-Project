@@ -10,6 +10,7 @@ import SectionCards from "./SectionCards";
 import Slider from "./Slider";
 import BasketTable from "../organismes/BasketTable";
 import Loading from "./Loading";
+import ContactSection from "./ContactSection";
 
 export {
   ActionMenu,
@@ -24,4 +25,5 @@ export {
   Slider,
   BasketTable,
   Loading,
+  ContactSection,
 };
