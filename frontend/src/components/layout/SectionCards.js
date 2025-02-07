@@ -5,13 +5,22 @@ import ItemCard from "../organismes/ItemCard";
 import Slider from "react-slick";
 import LoadingCard from "../organismes/LoadingCard";
 
-function SectionCards({ items, title, buttonText, page, limit, transition }) {
+function SectionCards({
+  items,
+  title,
+  buttonText,
+  page,
+  limit,
+  transition,
+  icon,
+  lineSize,
+}) {
   const myArr = [0, 1, 2, 3, 4, 5];
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    autoplay: false,
+    autoplay: true,
     slidesToShow: 3,
     slidesToScroll: 1,
     nextArrow: <Next />,
@@ -47,10 +56,11 @@ function SectionCards({ items, title, buttonText, page, limit, transition }) {
 
   return (
     <div
-      className={`sm:px-10 ssm:px-6 ssm:pb-4 sm:pb-7 flex flex-col justify-center items-center w-full`}>
-      <div className="w-full capitalize sm:text-32 ssm:text-24 font-extrabold text-main pl-16">
-        {title}
-      </div>
+      className={`sm:px-10 ssm:px-6 ssm:pb-4 sm:pb-7 flex flex-col justify-center items-center w-full mt-6`}>
+      <h2
+        className={`capitalize text-main flex items-center gap-1 relative ssm:text-2xl md:text-3xl font-bold pb-2 after:content-[''] after:absolute after:w-${lineSize} after:h-1 after:bg-main after:bottom-0 after:left-0`}>
+        <span className="text-yellow-500">{icon}</span> {title}
+      </h2>
       <div className="w-[90%]">
         <div className="sm:mt-10 ssm:mt-5">
           {items.length > 0 ? (

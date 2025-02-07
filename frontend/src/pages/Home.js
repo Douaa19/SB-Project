@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Header, Loading } from "../components/layout";
+import { Header, Loading, ContactSection } from "../components/layout";
 import PresentationCards from "../components/layout/PresentationCards";
 import SectionCards from "../components/layout/SectionCards";
 import Footer from "../components/layout/Footer";
+import { Star, Package } from "lucide-react";
 
 function Home() {
   const bestSellingItems = useSelector((state) => state.bestSellingItems);
@@ -25,20 +26,25 @@ function Home() {
           <PresentationCards />
           <SectionCards
             items={bestSellingItems}
-            title="best selling"
+            title="best selling products"
             buttonText="View more"
             page="best-selling"
             limit={displayLimit}
             transition={false}
+            icon={<Star size={32} />}
+            lineSize="28"
           />
           <SectionCards
             items={newestItems}
-            title="new products"
+            title="our products"
             buttonText="View more"
             page="products"
             limit={displayLimit}
             transition={false}
+            icon={<Package size={32} />}
+            lineSize="24"
           />
+          <ContactSection />
           <Footer />
         </>
       ) : (

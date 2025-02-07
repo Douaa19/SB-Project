@@ -6,7 +6,10 @@ const csv = require("csv-parser");
 // get all items
 const getItems = async (req, res) => {
   try {
-    const items = await Item.find().populate("category_id", "name");
+    const items = await Item.find().populate(
+      "category_id promotionPrice",
+      "name item_id percentage duration startDate endDate"
+    );
     if (items.length > 0) {
       res.status(200).send(items);
     } else {
@@ -23,7 +26,10 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { item_id } = req.params;
-    const item = await Item.findById(item_id).populate("category_id", "name");
+    const item = await Item.findById(item_id).populate(
+      "category_id promotionPrice",
+      "name item_id percentage duration price startDate endDate"
+    );
     if (!item) {
       res.status(404).send({ messageError: "Item doesn't found" });
     } else {
@@ -43,9 +49,12 @@ const getItemsByCategory = async (req, res) => {
     const { category_id, type } = req.params;
     let items;
     if (type === "best-selling") {
-      items = await Item.find({ category_id, bestSelling: true });
+      items = await Item.find({ category_id, bestSelling: true }).populate(
+        "promotionPrice",
+        "item_id percentage duration price startDate endDate"
+      );
     } else {
-      items = await Item.find({ category_id });
+      items = await Item.find({ category_id }).populate("promotionPrice");
     }
     if (items) {
       res.status(200).send(items);
@@ -87,6 +96,7 @@ const createItem = async (req, res) => {
         colors: colors.split(","),
         size,
         price,
+        promotionPrice: null,
         bestSelling,
         category_id,
         images: images,
@@ -111,6 +121,7 @@ const deleteItem = async (req, res) => {
     const { item_id } = req.params;
     const item = await Item.findByIdAndDelete(item_id);
     if (item) {
+      await Promotion.findOneAndDelete({ item_id });
       item.images.forEach((image) => {
         const imagePath = path.join(
           path.dirname(__dirname),
@@ -204,7 +215,10 @@ const getBestSelling = async (req, res) => {
       .sort({
         createdAt: "desc",
       })
-      .populate("category_id");
+      .populate(
+        "category_id promotionPrice",
+        "item_id percentage duration price startDate endDate"
+      );
     if (bestSellingItems.length == 0) {
       res.status(200).send({ messageError: "Best selling list is empty!" });
     } else {
@@ -274,7 +288,10 @@ const getItemImages = async (req, res) => {
 const getNewestItems = async (req, res) => {
   try {
     const newestItems = await Item.find({})
-      .populate("category_id")
+      .populate(
+        "category_id promotionPrice",
+        "name item_id percentage duration price startDate endDate"
+      )
       .sort({ createdAt: "desc" });
     // .limit(6);
 
@@ -294,7 +311,10 @@ const getMismatchedCategoriesItems = async (req, res) => {
     const { category_id } = req.params;
     const items = await Item.find({
       category_id: { $ne: category_id },
-    }).populate("category_id");
+    }).populate(
+      "category_id promotionPrice",
+      "item_id percentage duration price startDate endDate"
+    );
     if (items.length > 0) {
       res.status(200).send(items);
     } else {
@@ -328,6 +348,7 @@ const insertCsvItems = async (req, res) => {
         images,
         size: data.size,
         price: data.price,
+        promotionPrice: null,
         bestSelling: data.bestSelling,
         category_id: data.category_id,
       };

@@ -31,6 +31,11 @@ const Items = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    promotionPrice: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Promotion",
+      default: null,
+    },
     bestSelling: {
       type: Boolean,
       deault: false,

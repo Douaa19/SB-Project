@@ -31,6 +31,7 @@ function CardGrid({
                     description={item.description}
                     id={item._id}
                     price={item.price}
+                    promotion={item.promotionPrice}
                     colors={item.colors}
                     key={key}
                     url={url}
@@ -43,7 +44,7 @@ function CardGrid({
             <>
               {aboutItems?.map((item, key) => (
                 <AboutCard
-                  key={key}
+                  index={key}
                   title={item.title}
                   text={item.text}
                   image={item.image}

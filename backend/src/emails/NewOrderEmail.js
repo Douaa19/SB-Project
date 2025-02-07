@@ -83,9 +83,9 @@ module.exports.newOrder = (data) => {
                       max-width: 300px;
                       margin-bottom: 1rem;
                     ">
-                    <a href="sabaembroidery.ma">
+                    <a href="https://www.sabaembroidery.com">
                       <img
-                        src="https://drive.google.com/uc?export=download&id=1NNBtsCyJXXH2cPm68vt8edNNZguDYHH5"
+                        src="https://drive.google.com/uc?export=view&id=1yG5ofgy1YFA4tnV4H2TEXKswWnQkg_FH"
                         alt="Saba Embroidery LOGO"
                         width="14%" />
                     </a>
@@ -169,7 +169,7 @@ module.exports.newOrder = (data) => {
                           <p>If you have any questions or need further assistance, feel free to reach out to us. Thank you for choosing us!</p>
                           <p style="display: flex; flex-direction: column;">
                             <span>Best regards,</span>
-                            <span>SabaEmbroidery Team </span>
+                            <span>SabaEmbroidery Team</span>
                             </p>
                         </td>
                       </tr>

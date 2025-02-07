@@ -1,4 +1,6 @@
 const { User } = require("../models");
+const EmailAuth = process.env.EmailAuth;
+const PasswordAuth = process.env.PasswordAuth;
 const jwt = require("jsonwebtoken");
 const moment = require("moment");
 const uuid = require("node-uuid");
@@ -11,8 +13,8 @@ const PasswordReseted = require("../emails/PasswordResetedEmail");
 const handleRegister = async (req, res) => {
   try {
     const { email, username, password, phoneNum, address, role } = req.body;
-    const userExists = await User.find({ email });
-    if (userExists.length == 0) {
+    const userExists = await User.findOne({ email });
+    if (userExists == null) {
       const newUser = await User.create({
         email,
         password,
@@ -25,31 +27,26 @@ const handleRegister = async (req, res) => {
         res.send({ messageError: "New user not created" });
       } else {
         const transporter = nodemailer.createTransport({
-          service: "G&mail",
-          host: "smtp.gmail.com",
+          host: `smtp.hostinger.com`,
           port: 465,
           secure: true,
           auth: {
-            user: "embroidery.saba12@gmail.com",
-            pass: "EMBROIDERYsaba123",
+            user: `${EmailAuth}`,
+            pass: `${PasswordAuth}`,
           },
         });
 
         const mailOption = {
-          from: '"Saba Embroidery" <embroidery.saba12@gmail.com>',
+          from: '"Saba Embroidery" <contact@sabaembroidery.com>',
           to: `${newUser.email}`,
           subject: `Welcome to SabaEmbroidery`,
           html: RegisterEmail.register(newUser.username),
         };
 
-        transporter.sendMail(mailOption, (error, info) => {
-          if (error) {
-            res.send(error);
-          } else {
-            return res
-              .status(200)
-              .send({ messageSuccess: "User created successfully", info });
-          }
+        await transporter.sendMail(mailOption);
+
+        return res.status(200).send({
+          messageSuccess: "User created successfully",
         });
       }
     } else {
@@ -135,18 +132,17 @@ const forgetPassword = async (req, res) => {
       const resetLink = `http://localhost:3000/reset-password/${user.resetToken}/${user._id}`;
 
       const transporter = nodemailer.createTransport({
-        service: "Gmail",
-        host: "smtp.gmail.com",
+        host: `smtp.hostinger.com`,
         port: 465,
         secure: true,
         auth: {
-          user: "sabalarif97@gmail.com",
-          pass: "bjnzseuzjmzvomlv",
+          user: `${EmailAuth}`,
+          pass: `${PasswordAuth}`,
         },
       });
 
       const mailOption = {
-        from: '"Saba Embroidery" <embroidery.saba12@gmail.com>',
+        from: '"Saba Embroidery" <contact@sabaembroidery.com>',
         to: email,
         subject: "Password Reset Instructions for Your SabaEmbroidery Account",
         html: ResetPassword.resetPassword(user.username, resetLink),
@@ -181,18 +177,17 @@ const recreatPassword = async (req, res) => {
       await user.save();
 
       const transporter = nodemailer.createTransport({
-        service: "Gmail",
-        host: "smtp.gmail.com",
+        host: `smtp.hostinger.com`,
         port: 465,
         secure: true,
         auth: {
-          user: "sabalarif97@gmail.com",
-          pass: "bjnzseuzjmzvomlv",
+          user: `${EmailAuth}`,
+          pass: `${PasswordAuth}`,
         },
       });
 
       const mailOption = {
-        from: '"Saba Embroidery" <sabalarif97@gmail.com>',
+        from: '"Saba Embroidery" <contact@sabaembroidery.com>',
         to: `${user.email}`,
         subject: "Your Password Has Been Successfully Reset",
         html: PasswordReseted.passwordReseted(
@@ -220,21 +215,20 @@ const sendMessage = async (req, res) => {
       email: req.body.data.email,
       phone: req.body.data.phone,
       message: req.body.data.message,
-      to: "sabalarif97@gmail.com",
+      to: "contact@sabaembroidery.com",
     };
 
     const transporter = nodemailer.createTransport({
-      service: "Gmail",
-      host: "smtp.gmail.com",
+      host: `smtp.hostinger.com`,
       port: 465,
       secure: true,
       auth: {
-        user: "sabalarif97@gmail.com",
-        pass: "bjnzseuzjmzvomlv",
+        user: `${EmailAuth}`,
+        pass: `${PasswordAuth}`,
       },
     });
     const mailOption = {
-      from: data.email,
+      from: '"Saba Embroidery" <contact@sabaembroidery.com>',
       to: data.to,
       subject: "Contact message",
       html: `<!DOCTYPE html>
@@ -283,7 +277,7 @@ const sendMessage = async (req, res) => {
               font-family: Montserrat;
               color: black;
             }
-            
+
           </style>
         </head>
         <body>
@@ -309,7 +303,7 @@ const sendMessage = async (req, res) => {
                   </table>
                 </td>
               </tr>
-      
+
               <!-- TEXT -->
               <tr>
                 <td>
@@ -330,7 +324,7 @@ const sendMessage = async (req, res) => {
                 </td>
               </tr>
               <!-- TEXT -->
-      
+
               <!-- BODY SECTION -->
               <tr>
                 <td>
@@ -390,6 +384,7 @@ const sendMessage = async (req, res) => {
         res.send(error);
       } else {
         res.status(200).send("Message sent!");
+        // res.end();
       }
     });
   } catch (error) {
@@ -466,8 +461,6 @@ const editPassword = async (req, res) => {
       .send({ messageError: "Somthing goes wrong in server side!" });
   }
 };
-
-
 
 module.exports = {
   handleRegister,

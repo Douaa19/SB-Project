@@ -45,7 +45,7 @@ function NavBar(props) {
     { name: "best selling", link: "/best-selling" },
     { name: "our products", link: "/products" },
     { name: "about us", link: "/about" },
-    { name: "contact us", link: "/contact" },
+    { name: "contact us", link: "/#contact" },
     isLoggedIn !== true
       ? { name: "login", link: "/login" }
       : { name: "logout", link: "/" },

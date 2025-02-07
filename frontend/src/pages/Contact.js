@@ -25,15 +25,12 @@ function Contact() {
             <div
               className="overflow-hidden ll:absolute ll:top-8 ll:-left-20 ssm:relative bg-main shadow-md text-light px-8 py-12 rounded-sm ll:h-[85%]"
               style={{ backgroundImage: `url(${Logo})` }}>
-              {/* <div className="ll:absolute top-0 left-0 ll:block ssm:hidden bg-main opacity-1 w-full z-0">
-                <img src={Logo} alt="Saba Embroidery logo" className="w-full" />
-              </div> */}
               <div className="relative z-10">
                 <h2 className="font-medium pb-8">Contact Us</h2>
                 <div className="flex flex-col justify-arond items-center gap-4">
                   <div className="flex justify-start items-center gap-4 w-full py-2">
                     <Inbox className="w- h-" size={20} />
-                    <p className="ssm:text-14">embroidery.saba12@gmail.com</p>
+                    <p className="ssm:text-14">contact@sabaembroidery.com</p>
                   </div>
                   <div className="flex justify-start items-center gap-4 w-full py-2">
                     <Phone className="w- h-" size={20} />

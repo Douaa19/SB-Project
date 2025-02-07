@@ -32,7 +32,7 @@ function AppRoutes() {
             element={<Products title="our products" categories />}
           />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          {/* <Route path="/contact" element={<Contact />} /> */}
           <Route path="/basket" element={<Basket />} />
           <Route path="/login" element={isLoggedIn ? <Home /> : <Login />} />
           <Route

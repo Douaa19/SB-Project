@@ -1,5 +1,5 @@
 module.exports.orderModifiedAdminEmail = (data) => {
-    return `<!DOCTYPE html>
+  return `<!DOCTYPE html>
       <html lang="en">
         <head>
           <meta name="viewport" content="width=device-width" />
@@ -63,9 +63,9 @@ module.exports.orderModifiedAdminEmail = (data) => {
                   <table width="100%">
                     <tr>
                       <td style="text-align: center; padding: 1rem;">
-                        <a href="sabaembroidery.ma">
+                        <a href="https://www.sabaembroidery.com">
                           <img
-                            src="https://drive.google.com/uc?export=download&id=1NNBtsCyJXXH2cPm68vt8edNNZguDYHH5"
+                            src="https://drive.google.com/uc?export=view&id=1yG5ofgy1YFA4tnV4H2TEXKswWnQkg_FH"
                             alt="Saba Embroidery LOGO"
                             width="14%" />
                         </a>
@@ -115,5 +115,4 @@ module.exports.orderModifiedAdminEmail = (data) => {
           </center>
         </body>
       </html>`;
-  };
-  
+};

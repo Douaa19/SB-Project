@@ -1,4 +1,8 @@
 const { Order, OrderProducts } = require("../models");
+const Host = process.env.Host;
+const Port = process.env.Port;
+const EmailAuth = process.env.EmailAuth;
+const PasswordAuth = process.env.PasswordAuth;
 const nodemailer = require("nodemailer");
 const newOrderEmail = require("../emails/NewOrderEmail");
 const {
@@ -7,6 +11,7 @@ const {
 const {
   orderModifiedClientEmail,
 } = require("../emails/OrderModifiedClientEmail");
+// const orderSentEmail = require("../emails/OrderSentEmail");
 
 const createOrder = async (req, res) => {
   const client_id = req.user.id;
@@ -73,19 +78,18 @@ const createOrder = async (req, res) => {
 
                     // Send email to admin
                     const transporter = nodemailer.createTransport({
-                      service: "Gmail",
-                      host: "smtp.gmail.com",
+                      host: `smtp.hostinger.com`,
                       port: 465,
                       secure: true,
                       auth: {
-                        user: "sabalarif97@gmail.com",
-                        pass: "bjnzseuzjmzvomlv",
+                        user: `${EmailAuth}`,
+                        pass: `${PasswordAuth}`,
                       },
                     });
 
                     const mailOption = {
-                      from: '"Saba Embroidery" <sabalarif97@gmail.com>',
-                      to: `sabalarif97@gmail.com, ${shippingInfos.email}`,
+                      from: '"Saba Embroidery" <contact@sabaembroidery.com>',
+                      to: `contact@sabaembroidery.com, ${shippingInfos.email}`,
                       subject: "Your Order Confirmation from SabaEmbroidery",
                       html: newOrderEmail.newOrder(data),
                     };
@@ -267,26 +271,25 @@ const editOrder = async (req, res) => {
                 };
 
                 const transporter = nodemailer.createTransport({
-                  service: "Gmail",
-                  host: "smtp.gmail.com",
-                  port: 465,
+                  host: `${Host}`,
+                  port: `${Port}`,
                   secure: true,
                   auth: {
-                    user: "sabalarif97@gmail.com",
-                    pass: "bjnzseuzjmzvomlv",
+                    user: `${EmailAuth}`,
+                    pass: `${PasswordAuth}`,
                   },
                 });
 
                 const clientMailOption = {
-                  from: '"Saba Embroidery" <sabalarif97@gmail.com>',
+                  from: '"Saba Embroidery" <contact@sabaembroidery.com>',
                   to: order.client_id.email,
                   subject: "Shipping Info Updated",
                   html: orderModifiedClientEmail(data),
                 };
 
                 const adminMailOprion = {
-                  from: '"Saba Embroidery" <sabalarif97@gmail.com>',
-                  to: "sabalarif97@gmail.com",
+                  from: '"Saba Embroidery" <contact@sabaembroidery.com>',
+                  to: "contact@sabaembroidery.com",
                   subject: "Customer Shipping Info Updated",
                   html: orderModifiedAdminEmail(data),
                 };

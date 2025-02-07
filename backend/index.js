@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const routes = require("./src/routes");
+require("./src/jobs/cronJob");
+require("./src/jobs/deleteExpiredPromotions");
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -20,7 +22,7 @@ app.use(morgan("tiny"));
 app.use(
   cors({
     origin: allowedOrigins,
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 app.use(
