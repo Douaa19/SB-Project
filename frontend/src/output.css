@@ -2714,6 +2714,10 @@ body .menu ul li > a:hover {
     min-width: 25rem;
   }
 
+  .ssm\:flex-grow {
+    flex-grow: 1;
+  }
+
   .ssm\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
@@ -2772,6 +2776,10 @@ body .menu ul li > a:hover {
 
   .ssm\:gap-4 {
     gap: 1rem;
+  }
+
+  .ssm\:gap-8 {
+    gap: 2rem;
   }
 
   .ssm\:p-1 {
@@ -3130,6 +3138,10 @@ body .menu ul li > a:hover {
 
   .md\:w-12 {
     width: 3rem;
+  }
+
+  .md\:w-auto {
+    width: auto;
   }
 
   .md\:min-w-\[50rem\] {

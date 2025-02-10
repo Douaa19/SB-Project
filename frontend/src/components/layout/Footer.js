@@ -10,13 +10,13 @@ function Footer() {
       className="w-full relative bottom-0 left-0 mt-16 bg-main lg:py-8 ssm:py-6 lg:px-28 ssm:px-16 h-max bg-cover bg-repeat"
       style={{ backgroundImage: `url(${FooterBg})` }}>
       <div className="flex mt-4 md:flex-row ssm:flex-col">
-        <div className="md:w-1/2 ssm:w-full md:mb-4 mx-0 ssm:mb-6">
+        <div className="md:w-1/2 ssm:w-full md:mb-4 mx-0 ssm:mb-6 flex ssm:justify-center md:justify-start">
           <a href="/">
             <img src={Logo} alt="logo" className="md:w-60 ssm:w-60" />
           </a>
         </div>
-        <div className=" flex md:justify-between ssm:justify-start items-start md:gap-6 flex-wrap lg:w-full md:w-full h-auto">
-          <div className="">
+        <div className="flex md:justify-between ssm:justify-start md:items-start ssm:items-center md:gap-6 flex-wrap lg:w-full md:w-full h-auto">
+          <div className="ssm:w-1/2 md:w-auto">
             <h6 className="ssm:text-md lg:text-lg capitalize pb-4 font-bold text-gray-100">
               main menu
             </h6>
@@ -35,7 +35,7 @@ function Footer() {
               </motion.li>
             </ul>
           </div>
-          <div className="ssm:mt-4 md:mt-0">
+          <div className="ssm:w-1/2 md:w-auto">
             <h6 className="ssm:text-md lg:text-lg capitalize pb-4 font-bold text-gray-100">
               helpful informations
             </h6>
