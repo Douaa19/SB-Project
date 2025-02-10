@@ -4,6 +4,8 @@ import { BACK_URL } from "../../config";
 function ItemCard({ description, price, promotion, id, colors, url, title }) {
   const [hover, setHover] = useState(false);
 
+  console.log(promotion);
+
   const openProduct = (item_id) => {
     window.location = `/${url}/item/${item_id}`;
   };
@@ -63,7 +65,7 @@ function ItemCard({ description, price, promotion, id, colors, url, title }) {
                 ? "line-through text-red md:text-16 ssm:text-14"
                 : "text-dark md:text-18 ssm:text-16"
             }`}>{`${price}DH`}</span>
-          {promotion !== null && (
+          {promotion && (
             <span className="md:text-18 ssm:text-16 font-bold">
               {promotion?.price}DH
             </span>
