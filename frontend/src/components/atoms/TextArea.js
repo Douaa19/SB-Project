@@ -14,9 +14,7 @@ function TextArea({ name, id, rows, className, value, onChange, text, error }) {
       />
       {error && (
         <>
-          <span className="md:text-12 ssm:text-10 absolute md:top-[7.8rem] ssm:top-[7rem] left-3">
-            {error}
-          </span>
+          <span className="md:text-md ssm:text-sm ml-2">{error}</span>
         </>
       )}
     </div>

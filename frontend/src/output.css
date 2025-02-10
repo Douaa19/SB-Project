@@ -790,6 +790,10 @@ video {
   margin-top: 2rem;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
 .line-clamp-3 {
   overflow: hidden;
   display: -webkit-box;
@@ -3004,6 +3008,10 @@ body .menu ul li > a:hover {
 
   .md\:top-\[7\.8rem\] {
     top: 7.8rem;
+  }
+
+  .md\:top-3 {
+    top: 0.75rem;
   }
 
   .md\:order-first {
