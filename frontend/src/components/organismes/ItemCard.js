@@ -52,7 +52,7 @@ function ItemCard({ description, price, promotion, id, colors, url, title }) {
         </div>
         <div className="px-4 mt-4 pb-4 md:text-16 ssm:text-14 flex flex-col justify-start items-start gap-4">
           <span className="font-bold">{title}</span>
-          <p className="font-normale">{description}</p>
+          <p className="font-normale line-clamp-3">{description}</p>
         </div>
       </div>
       <div className="px-4 flex flex-row justify-between items-end w-full mb-4">
