@@ -28,7 +28,7 @@ function PresentationCards() {
   let [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <div className="max-w-6xl mx-auto px-8">
+    <div className="max-w-6xl mx-auto px-8 mt-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10">
         {items.map((item, index) => (
           <div

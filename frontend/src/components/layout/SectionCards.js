@@ -66,7 +66,7 @@ function SectionCards({
           {items.length > 0 ? (
             <Slider {...settings}>
               {items.slice(0, limit).map((i, index) => (
-                <div className="h-[42rem] flex flex-col justify-between">
+                <div className="h-auto flex flex-col justify-between">
                   <ItemCard
                     title={i.title}
                     key={index}
