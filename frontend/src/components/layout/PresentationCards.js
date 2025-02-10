@@ -29,11 +29,11 @@ function PresentationCards() {
 
   return (
     <div className="max-w-6xl mx-auto px-8 mt-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 py-10">
         {items.map((item, index) => (
           <div
             key={index}
-            className="relative group block p-2 h-full w-full "
+            className="relative group block p-2 h-full w-full"
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}>
             <AnimatePresence>
