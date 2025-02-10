@@ -17,34 +17,18 @@ function ContactSection() {
       <div className="w-[90%]">
         <div className="sm:mt-10 ssm:mt-5">
           <div className="ll:grid grid-cols-4 gap-8 py-6 md:px-10 ssm:px-8">
-            <div className="col-span-2 ll:pl-10">
-              <h1 className="text-main font-semibold text-18 md:text-start ssm:text-center ssm:block md:hidden">
-                Get in Touch
-              </h1>
-              <p className="text-gray-500 md:text-16 ssm:text-14 font-medium md:text-start ssm:text-start ssm:block md:hidden ssm:mb-6 md:mb-0">
-                Have questions or need assistance? We're here to help! Feel free
-                to reach out to us. Our team is ready to assist you with any
-                inquiries.
-              </p>
-              <div className="">
-                <Form
-                  className="relative flex flex-col items-between w-full gap-4"
-                  type="contact"
-                />
-              </div>
-            </div>
             <div className="flex flex-col items-start justify-start col-span-2 lg:mb-8 lg:mt-0 ssm:mb-0 ssm:mt-8">
               <div className="">
-                <h1 className="text-main font-semibold text-18 md:text-start ssm:text-center ssm:hidden md:block">
+                <h1 className="text-main font-semibold text-18 md:text-start ssm:text-center">
                   Get in Touch
                 </h1>
-                <p className="text-gray-500 md:text-16 ssm:text-14 font-medium md:text-start ssm:text-center ssm:hidden md:block">
+                <p className="text-gray-500 md:text-16 ssm:text-14 font-medium md:text-start ssm:text-center">
                   Have questions or need assistance? We're here to help! Feel
                   free to reach out to us. Our team is ready to assist you with
                   any inquiries.
                 </p>
-                <div className="grid md:grid-cols-2 gap-0 mt-6">
-                  <div className="col-span-1 flex flex-col justify-start md:items-start ssm:items-center gap-1 mt-3 text-main">
+                <div className="grid ssm:grid-cols-1 sm:grid-cols-2 gap-0 mt-6">
+                  <div className="col-span-1 flex flex-col justify-start sm:items-start ssm:items-center gap-1 mt-3 text-main">
                     <div className="flex items-end gap-2">
                       <Phone size={32} className="text-main" />
                       <h5 className="capitalize font-bold">call us</h5>
@@ -53,7 +37,7 @@ function ContactSection() {
                       +212634242755
                     </span>
                   </div>
-                  <div className="col-span-1 flex flex-col justify-start md:items-start ssm:items-center gap-1 mt-3 text-main">
+                  <div className="col-span-1 flex flex-col justify-start sm:items-start ssm:items-center gap-1 mt-3 text-main">
                     <div className="flex items-end gap-2">
                       <Send size={32} className="text-main" />
                       <h5 className="capitalize font-bold">email us</h5>
@@ -62,7 +46,7 @@ function ContactSection() {
                       contact@sabaembroidery.com
                     </span>
                   </div>
-                  <div className="col-span-1 flex flex-col justify-start md:items-start ssm:items-center gap-1 mt-3 text-main">
+                  <div className="col-span-1 flex flex-col justify-start sm:items-start ssm:items-center gap-1 mt-3 text-main">
                     <div className="flex items-end gap-2">
                       <Map size={32} className="text-main" />
                       <h5 className="capitalize font-bold">address</h5>
@@ -71,7 +55,7 @@ function ContactSection() {
                       Morocco, Youssoufia
                     </span>
                   </div>
-                  <div className="col-span-1 flex flex-col justify-start md:items-start ssm:items-center gap-1 mt-3 text-main">
+                  <div className="col-span-1 flex flex-col justify-start sm:items-start ssm:items-center gap-1 mt-3 text-main">
                     <div className="flex items-end gap-2">
                       <Earth size={32} className="text-main" />
                       <h5 className="capitalize font-bold">website</h5>
@@ -81,6 +65,14 @@ function ContactSection() {
                     </a>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div className="col-span-2 ll:pl-10 ssm:mt-6 ll:mt-0">
+              <div className="">
+                <Form
+                  className="relative flex flex-col items-between w-full gap-4"
+                  type="contact"
+                />
               </div>
             </div>
           </div>

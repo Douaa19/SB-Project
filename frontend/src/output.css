@@ -1108,6 +1108,10 @@ video {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .flex-row {
   flex-direction: row;
 }
@@ -2917,8 +2921,16 @@ body .menu ul li > a:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .sm\:grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
   .sm\:flex-row {
     flex-direction: row;
+  }
+
+  .sm\:items-start {
+    align-items: flex-start;
   }
 
   .sm\:p-2 {
@@ -3270,6 +3282,10 @@ body .menu ul li > a:hover {
 
   .ll\:top-8 {
     top: 2rem;
+  }
+
+  .ll\:mt-0 {
+    margin-top: 0px;
   }
 
   .ll\:block {
