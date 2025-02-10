@@ -4,8 +4,6 @@ import { BACK_URL } from "../../config";
 function ItemCard({ description, price, promotion, id, colors, url, title }) {
   const [hover, setHover] = useState(false);
 
-  console.log(promotion);
-
   const openProduct = (item_id) => {
     window.location = `/${url}/item/${item_id}`;
   };
@@ -34,14 +32,14 @@ function ItemCard({ description, price, promotion, id, colors, url, title }) {
 
   return (
     <div
-      className={`bg-white h-full text-dark hover:cursor-pointer rounded-md overflow-hidden border border-gray-100 order-gray flex flex-col justify-between items-start gap-4 hover:shadow-lg transition-all duration-300 ease-in-out mx-2`}
+      className={`bg-white h-auto text-dark hover:cursor-pointer rounded-md overflow-hidden border border-gray-100 order-gray flex flex-col justify-between items-start gap-4 hover:shadow-lg transition-all duration-300 ease-in-out mx-2`}
       onClick={() => openProduct(id)}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}>
       <div className="">
         <div className="w-full relative mx-auto overflow-hidden">
           {!itemImg ? (
-            <div className="w-full h-[24rem] rounded-md animate-pulse bg-gray-100"></div>
+            <div className="w-full h-[22rem] rounded-md animate-pulse bg-gray-100"></div>
           ) : (
             <img
               src={itemImg}
