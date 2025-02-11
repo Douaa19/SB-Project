@@ -134,5 +134,4 @@ module.exports = {
       "red-400": "rgb(248 113 113)",
     },
   },
-  plugins: [],
 };

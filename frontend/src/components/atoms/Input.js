@@ -36,7 +36,7 @@ function Input(props) {
       )}
       {props.error && (
         <>
-          <span className="text-red text-12 relative left-1">
+          <span className="text-red md:text-md ssm:text-sm mt-2 ml-2">
             {props.error}
           </span>
         </>

@@ -146,7 +146,7 @@ function Form(props) {
       {props.button !== false && (
         <div className="flex items-center md:justify-start ssm:justify-center w-full">
           <Button
-            className={`ssm:m-0 md:mt-3 border-1 border-main rounded-md md:px-10 ssm:px-6 md:py-3 ssm:py-[6px] capitalize text-white bg-main md:text-16 ssm:text-14 font-medium outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105`}
+            className={`ssm:m-0 md:mt-3 border-1 border-main rounded-md px-10 py-3 capitalize text-white bg-main md:text-md ssm:text-sm font-medium outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105`}
             text={
               props.type === "contact"
                 ? "send"
