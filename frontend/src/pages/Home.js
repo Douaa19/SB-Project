@@ -32,7 +32,7 @@ function Home() {
             limit={displayLimit}
             transition={false}
             icon={<Star size={32} />}
-            lineSize="28"
+            lineSize="24"
           />
           <SectionCards
             items={newestItems}
