@@ -597,10 +597,6 @@ video {
   left: 0.25rem;
 }
 
-.left-3 {
-  left: 0.75rem;
-}
-
 .left-4 {
   left: 1rem;
 }
@@ -730,6 +726,10 @@ video {
   margin-bottom: 2rem;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
 .ml-6 {
   margin-left: 1.5rem;
 }
@@ -788,10 +788,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.ml-2 {
-  margin-left: 0.5rem;
 }
 
 .line-clamp-3 {
@@ -877,6 +873,10 @@ video {
   height: 21px;
 }
 
+.h-\[22rem\] {
+  height: 22rem;
+}
+
 .h-\[24rem\] {
   height: 24rem;
 }
@@ -891,10 +891,6 @@ video {
 
 .h-\[366px\] {
   height: 366px;
-}
-
-.h-\[42rem\] {
-  height: 42rem;
 }
 
 .h-\[448px\] {
@@ -927,14 +923,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[22rem\] {
-  height: 22rem;
-}
-
-.h-\[18rem\] {
-  height: 18rem;
 }
 
 .max-h-\[550px\] {
@@ -1110,10 +1098,6 @@ video {
 
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -1485,6 +1469,11 @@ video {
   padding-right: 2px;
 }
 
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
 .px-2 {
   padding-left: 4px;
   padding-right: 4px;
@@ -1555,16 +1544,6 @@ video {
   padding-bottom: 1.5rem;
 }
 
-.px-10 {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-}
-
-.px-12 {
-  padding-left: 3rem;
-  padding-right: 3rem;
-}
-
 .pb-10 {
   padding-bottom: 2.5rem;
 }
@@ -1624,11 +1603,6 @@ video {
 
 .text-8 {
   font-size: 8px;
-}
-
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
 }
 
 .text-lg {
@@ -2580,10 +2554,6 @@ body .menu ul li > a:hover {
     right: 2rem;
   }
 
-  .ssm\:top-\[7rem\] {
-    top: 7rem;
-  }
-
   .ssm\:order-last {
     order: 9999;
   }
@@ -2622,12 +2592,12 @@ body .menu ul li > a:hover {
     margin-right: 0px;
   }
 
-  .ssm\:mt-1 {
-    margin-top: 0.25rem;
-  }
-
   .ssm\:mt-16 {
     margin-top: 4rem;
+  }
+
+  .ssm\:mt-2 {
+    margin-top: 0.5rem;
   }
 
   .ssm\:mt-4 {
@@ -2678,6 +2648,10 @@ body .menu ul li > a:hover {
     width: 50%;
   }
 
+  .ssm\:w-10 {
+    width: 2.5rem;
+  }
+
   .ssm\:w-12 {
     width: 3rem;
   }
@@ -2694,10 +2668,6 @@ body .menu ul li > a:hover {
     width: 15rem;
   }
 
-  .ssm\:w-8 {
-    width: 2rem;
-  }
-
   .ssm\:w-\[11rem\] {
     width: 11rem;
   }
@@ -2706,16 +2676,8 @@ body .menu ul li > a:hover {
     width: 100%;
   }
 
-  .ssm\:w-10 {
-    width: 2.5rem;
-  }
-
   .ssm\:min-w-\[25rem\] {
     min-width: 25rem;
-  }
-
-  .ssm\:flex-grow {
-    flex-grow: 1;
   }
 
   .ssm\:grid-cols-1 {
@@ -2778,10 +2740,6 @@ body .menu ul li > a:hover {
     gap: 1rem;
   }
 
-  .ssm\:gap-8 {
-    gap: 2rem;
-  }
-
   .ssm\:p-1 {
     padding: 2px;
   }
@@ -2826,16 +2784,6 @@ body .menu ul li > a:hover {
     padding-bottom: 6px;
   }
 
-  .ssm\:px-10 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-  }
-
-  .ssm\:py-\[8px\] {
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
-
   .ssm\:pb-2 {
     padding-bottom: 4px;
   }
@@ -2864,14 +2812,6 @@ body .menu ul li > a:hover {
     text-align: center;
   }
 
-  .ssm\:text-start {
-    text-align: start;
-  }
-
-  .ssm\:text-10 {
-    font-size: 10px;
-  }
-
   .ssm\:text-12 {
     font-size: 12px;
   }
@@ -2895,6 +2835,11 @@ body .menu ul li > a:hover {
   .ssm\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+
+  .ssm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 
   .ssm\:text-sm {
@@ -2953,10 +2898,6 @@ body .menu ul li > a:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .sm\:grid-cols-1 {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-
   .sm\:flex-row {
     flex-direction: row;
   }
@@ -2999,27 +2940,11 @@ body .menu ul li > a:hover {
   .sm\:text-14 {
     font-size: 14px;
   }
-
-  .sm\:text-16 {
-    font-size: 16px;
-  }
-
-  .sm\:text-24 {
-    font-size: 24px;
-  }
 }
 
 @media (min-width: 768px) {
   .md\:static {
     position: static;
-  }
-
-  .md\:top-\[7\.8rem\] {
-    top: 7.8rem;
-  }
-
-  .md\:top-3 {
-    top: 0.75rem;
   }
 
   .md\:order-first {
@@ -3104,8 +3029,8 @@ body .menu ul li > a:hover {
     width: 50%;
   }
 
-  .md\:w-10 {
-    width: 2.5rem;
+  .md\:w-12 {
+    width: 3rem;
   }
 
   .md\:w-16 {
@@ -3128,6 +3053,10 @@ body .menu ul li > a:hover {
     width: 75%;
   }
 
+  .md\:w-auto {
+    width: auto;
+  }
+
   .md\:w-fit {
     width: fit-content;
   }
@@ -3136,24 +3065,12 @@ body .menu ul li > a:hover {
     width: 100%;
   }
 
-  .md\:w-12 {
-    width: 3rem;
-  }
-
-  .md\:w-auto {
-    width: auto;
-  }
-
   .md\:min-w-\[50rem\] {
     min-width: 50rem;
   }
 
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .md\:grid-cols-1 {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 
   .md\:grid-rows-1 {
@@ -3291,13 +3208,14 @@ body .menu ul li > a:hover {
     line-height: 2rem;
   }
 
-  .md\:text-36 {
-    font-size: 36px;
-  }
-
   .md\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
+  }
+
+  .md\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
   }
 
   .md\:text-sm {
