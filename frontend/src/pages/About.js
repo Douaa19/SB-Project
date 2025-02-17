@@ -48,7 +48,7 @@ function About() {
         <PageTitle
           title="our mission"
           icon={<Users size={32} />}
-          colorIcon="yellow-500"
+          colorIcon="secondary"
         />
         <div className="flex flex-col items-center w-10/12">
           <CardGrid type="about" aboutItems={aboutItems} />

@@ -48,7 +48,7 @@ function HeaderProducts({ title, categories }) {
         icon={
           title === "best selling" ? <Star size={32} /> : <Package size={32} />
         }
-        colorIcon="yellow-500"
+        colorIcon="secondary"
       />
       <div className="h-full flex md:justify-between md:items-start md:flex-row md:gap-4 ssm:flex-col ssm:gap-4 sm:pt-4 sm:pb-2 ssm:py-4 mt-6">
         <CardGrid type="category" categories={updatedCategories} />
