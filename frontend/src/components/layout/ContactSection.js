@@ -1,6 +1,6 @@
 import React from "react";
 import { Form } from "../templates";
-import { Mail, Earth, Phone, Map, Send } from "lucide-react";
+import { Mail } from "lucide-react";
 
 function ContactSection() {
   return (
@@ -9,7 +9,7 @@ function ContactSection() {
       id="contact">
       <h2
         className={`capitalize text-main flex items-center gap-1 relative ssm:text-2xl md:text-3xl font-bold pb-2 after:content-[''] after:absolute after:w-24 after:h-1 after:bg-main after:bottom-0 after:left-0`}>
-        <span className="text-secondary0">
+        <span className="text-secondary">
           <Mail size={32} />
         </span>{" "}
         Contact us
@@ -30,7 +30,6 @@ function ContactSection() {
                 <div className="grid ssm:grid-cols-1 sm:grid-cols-2 gap-0 mt-6">
                   <div className="col-span-1 flex flex-col justify-start sm:items-start ssm:items-center gap-1 mt-3 text-main">
                     <div className="flex items-end gap-2">
-                      <Phone size={32} className="text-main" />
                       <h5 className="capitalize font-bold">call us</h5>
                     </div>
                     <span className="md:text-md ssm:text-sm">
@@ -39,7 +38,6 @@ function ContactSection() {
                   </div>
                   <div className="col-span-1 flex flex-col justify-start sm:items-start ssm:items-center gap-1 mt-3 text-main">
                     <div className="flex items-end gap-2">
-                      <Send size={32} className="text-main" />
                       <h5 className="capitalize font-bold">email us</h5>
                     </div>
                     <span className="md:text-md ssm:text-sm">
@@ -48,21 +46,11 @@ function ContactSection() {
                   </div>
                   <div className="col-span-1 flex flex-col justify-start sm:items-start ssm:items-center gap-1 mt-3 text-main">
                     <div className="flex items-end gap-2">
-                      <Map size={32} className="text-main" />
                       <h5 className="capitalize font-bold">address</h5>
                     </div>
                     <span className="md:text-md ssm:text-sm">
                       Morocco, Youssoufia
                     </span>
-                  </div>
-                  <div className="col-span-1 flex flex-col justify-start sm:items-start ssm:items-center gap-1 mt-3 text-main">
-                    <div className="flex items-end gap-2">
-                      <Earth size={32} className="text-main" />
-                      <h5 className="capitalize font-bold">website</h5>
-                    </div>
-                    <a href="https://sabaembroidery.com">
-                      https://sabaembroidery.com
-                    </a>
                   </div>
                 </div>
               </div>
