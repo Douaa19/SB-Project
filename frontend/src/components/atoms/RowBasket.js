@@ -9,6 +9,9 @@ import Button from "./Button";
 function RowBasket(props) {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user_id);
+  const priceItem = props.data.item.promotionPrice
+    ? props.data.item.promotionPrice.price
+    : props.data.item.price;
 
   const itemImg = `${BACK_URL}/items/${props.data.item._id}/image`;
 
@@ -113,9 +116,7 @@ function RowBasket(props) {
             </span>
           </div>
           <div className="flex items-center justify-center mx-2">
-            <span className="text-14 font-medium">
-              {props.data.item.price}DH
-            </span>
+            <span className="text-14 font-medium">{priceItem}DH</span>
           </div>
           <div className="flex items-center justify-center gap-2 mx-2">
             <button
@@ -132,7 +133,7 @@ function RowBasket(props) {
           </div>
           <div className="">
             <span className="md:text-16 ssm:text-14 font-bold mx-2">
-              {props.data.quantity * props.data.item.price}DH
+              {props.data.quantity * priceItem}DH
             </span>
           </div>
           <Button

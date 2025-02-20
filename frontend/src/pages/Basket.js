@@ -36,9 +36,6 @@ function Basket() {
               className="capitalize md:text-28 ssm:text-24 font-extrabold text-main flex justify-center items-center mb-2 pb-2 px-4 w-full"
               icon={<ShoppingBag size={24} className="text-main mx-1" />}
             />
-            <div className="flex items-center justify-center w-full h-[2px] mb-8">
-              <span className="bg-gray-100 h-full w-80 rounded-full"></span>
-            </div>
             {orders?.length > 0 && (
               <div className="hover:border-b hover:border-main w-fit">
                 <a
