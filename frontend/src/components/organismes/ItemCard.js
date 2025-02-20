@@ -65,16 +65,20 @@ function ItemCard({
         </div>
       </div>
       <div className="px-4 flex flex-row justify-between items-end w-full mb-4">
-        <div className="flex justify-start items-start gap-1">
+        <div className="flex justify-start items-center gap-1">
           <span
             className={`font-bold ${
               promotion
-                ? "text-red md:text-16 ssm:text-14"
+                ? "text-red md:text-16 ssm:text-16"
                 : "text-dark md:text-18 ssm:text-16"
             }`}>
             {promotion ? promotion.price : price}DH
           </span>
-          {promotion && <span className="text-red"> {percentage}%</span>}
+          {promotion && (
+            <span className="text-red text-14 border border-red px-2 rounded-sm">
+              -{percentage}%
+            </span>
+          )}
           {/* <span
             className={`font-bold ${
               promotion
