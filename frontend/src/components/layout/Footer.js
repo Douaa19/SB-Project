@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../../assets/images/big-logo-sabaembroidery.svg";
 import { Phone, Mail, Facebook, Instagram } from "lucide-react";
 import FooterBg from "../../assets/images/footer-bg.svg";
-import { ReactComponent as Pinterest } from "../../assets/icons/pinterest-svgrepo-com.svg";
+import { ReactComponent as Pinterest } from "../../assets/icons/pinterest.svg";
 import { motion } from "framer-motion";
 
 function Footer() {
