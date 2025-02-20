@@ -36,6 +36,7 @@ function CardGrid({
                     key={key}
                     url={url}
                     transition={transition}
+                    percentage={item.promotionPrice?.percentage}
                   />
                 ))}
               </div>

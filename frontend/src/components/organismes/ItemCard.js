@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import { BACK_URL } from "../../config";
 
-function ItemCard({ description, price, promotion, id, colors, url, title }) {
+function ItemCard({
+  description,
+  price,
+  promotion,
+  id,
+  colors,
+  url,
+  title,
+  percentage,
+}) {
   const [hover, setHover] = useState(false);
 
   const openProduct = (item_id) => {
@@ -56,18 +65,27 @@ function ItemCard({ description, price, promotion, id, colors, url, title }) {
         </div>
       </div>
       <div className="px-4 flex flex-row justify-between items-end w-full mb-4">
-        <div className="flex flex-col justify-center items-start">
+        <div className="flex justify-start items-start gap-1">
           <span
             className={`font-bold ${
               promotion
-                ? "line-through text-red md:text-16 ssm:text-14"
+                ? "text-red md:text-16 ssm:text-14"
+                : "text-dark md:text-18 ssm:text-16"
+            }`}>
+            {promotion ? promotion.price : price}DH
+          </span>
+          {promotion && <span className="text-red"> {percentage}%</span>}
+          {/* <span
+            className={`font-bold ${
+              promotion
+                ? "line-through md:text-16 ssm:text-14"
                 : "text-dark md:text-18 ssm:text-16"
             }`}>{`${price}DH`}</span>
           {promotion && (
-            <span className="md:text-18 ssm:text-16 font-bold">
+            <span className="md:text-18 ssm:text-16 font-bold text-red">
               {promotion?.price}DH
             </span>
-          )}
+          )} */}
         </div>
         <div className="flex gap-2">
           {colors.map((color, index) => (
