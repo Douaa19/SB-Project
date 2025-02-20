@@ -25,6 +25,8 @@ function Checkout() {
 
   const userOrders = orders[userId];
 
+  // console.log(orders);
+
   const handleSubmit = () => {
     const updatedData = { ...data, payment: selectedPayment };
     const validationErrors = validationForm(updatedData);
@@ -111,7 +113,10 @@ function Checkout() {
         typeof userOrders[index].item.price === "number" &&
         typeof userOrders[index].quantity === "number"
       ) {
-        total += userOrders[index].item.price * userOrders[index].quantity;
+        const priceItem = userOrders[index].item.promotionPrice
+          ? userOrders[index].item.promotionPrice.price
+          : userOrders[index].item.price;
+        total += priceItem * userOrders[index].quantity;
       }
     }
 

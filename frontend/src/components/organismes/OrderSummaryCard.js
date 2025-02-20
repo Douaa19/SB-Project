@@ -6,6 +6,9 @@ import { editOrder, removeOrder } from "../../redux/actions/orders";
 function OrderSummaryCard(props) {
   const dispatch = useDispatch();
   const itemImg = `${BACK_URL}/items/${props.order.item._id}/image`;
+  const priceItem = props.order.item.promotionPrice
+    ? props.order.item.promotionPrice.price
+    : props.order.item.price;
 
   const handleQuantityChange = (operation) => {
     if (operation === "add") {
@@ -59,7 +62,7 @@ function OrderSummaryCard(props) {
             {props.order.item.category_id?.name}
           </span>
           <span className="text-14 font-semibold capitalize text-gray-700">
-            {props.order.item.price * props.order.quantity}DH
+            {priceItem * props.order.quantity}DH
           </span>
         </div>
       </div>
