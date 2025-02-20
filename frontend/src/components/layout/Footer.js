@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../../assets/images/big-logo-sabaembroidery.svg";
-import { Phone, Mail, Facebook, Instagram } from "lucide-react";
+import { Phone, Mail, Facebook, Instagram, Linkedin } from "lucide-react";
 import FooterBg from "../../assets/images/footer-bg.svg";
 import { ReactComponent as Pinterest } from "../../assets/icons/pinterest.svg";
 import { motion } from "framer-motion";
@@ -75,6 +75,13 @@ function Footer() {
       </div>
       <div className="h-full w-full flex flex-col justify-between mt-6">
         <div className="flex lg:justify-end items-center gap-5 w-full ssm:justify-center ssm:mt-6">
+          <a
+            href="https://www.linkedin.com/in/saba-embroidery-491601267/?originalSubdomain=ma"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-center flex-row-reverse gap-1 border border-gray-400 p-3 rounded-full text-gray-400 hover:border-white">
+            <Linkedin strokeWidth={1} size={20} className="" />
+          </a>
           <a
             href="https://www.facebook.com/p/Embroidery-Saba-100087891292627/"
             target="_blank"
