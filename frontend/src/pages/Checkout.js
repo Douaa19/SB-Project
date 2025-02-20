@@ -183,8 +183,8 @@ function Checkout() {
                         Cash on Delivery
                       </label>
                     </div>
-                    {/* <div
-                      className={`py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md ${
+                    <div
+                      className={`cursor-pointer py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md ${
                         selectedPayment === "online-payment"
                           ? "border-main border-2"
                           : "border-light border-2"
@@ -208,7 +208,7 @@ function Checkout() {
                         />
                         Online Payment
                       </label>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
                 <div className="w-full text-center md:hidden ssm:block">
