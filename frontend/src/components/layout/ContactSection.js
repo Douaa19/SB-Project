@@ -24,8 +24,8 @@ function ContactSection() {
                 </h1>
                 <p className="text-gray-500 md:text-16 ssm:text-14 font-medium md:text-start ssm:text-center">
                   Have questions or need assistance? We're here to help! Feel
-                  free to reach out to us. Our team is ready to assist you with
-                  any inquiries.
+                  free to reach out to us. <br /> Our team is ready to assist
+                  you with any inquiries.
                 </p>
                 <div className="grid ssm:grid-cols-1 sm:grid-cols-2 gap-0 mt-6">
                   <div className="col-span-1 flex flex-col justify-start sm:items-start ssm:items-center gap-1 mt-3 text-main">
