@@ -7,6 +7,7 @@ import {
   loginAction,
   setIdAction,
   setRoleAction,
+  setEmailAction,
 } from "../../redux/actions/auth";
 import { login } from "../../services/auth";
 import { jwtDecode } from "jwt-decode";
@@ -21,7 +22,7 @@ function LoginCard() {
   const [errors, setErrors] = useState({});
   const [passwordType, setPasswordType] = useState("password");
   const [passwordIcon, setPasswordIcon] = useState(
-    <EyeOff size={20} strokeWidth={1} s />
+    <EyeOff size={20} strokeWidth={1} />
   );
   const [errorResponse, setErrorResponse] = useState({});
   const [userId, setUserId] = useState(null);
@@ -63,10 +64,12 @@ function LoginCard() {
           return errors;
         } else {
           const decodedToken = jwtDecode(response.data.token);
+          console.log(decodedToken);
           setUserId(decodedToken.id);
           await dispatch(loginAction());
           await dispatch(setRoleAction(decodedToken.role));
           await dispatch(setIdAction(decodedToken.id));
+          await dispatch(setEmailAction(decodedToken.email));
 
           mergeGuestOrdersWithUserOrders(decodedToken.id, userOrders);
 

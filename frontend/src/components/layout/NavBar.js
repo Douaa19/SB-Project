@@ -6,6 +6,7 @@ import { ShoppingCart } from "lucide-react";
 import {
   setIdAction,
   setRoleAction,
+  setEmailAction,
   logoutAction,
 } from "../../redux/actions/auth";
 
@@ -60,6 +61,7 @@ function NavBar(props) {
     localStorage.removeItem("token");
     dispatch(setRoleAction(""));
     dispatch(setIdAction(""));
+    dispatch(setEmailAction(""));
     dispatch(logoutAction(""));
     props.setLoading(true);
 
