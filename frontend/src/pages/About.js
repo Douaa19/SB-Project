@@ -37,7 +37,7 @@ function About() {
     },
     {
       title: "Thank you",
-      text: `For visiting our store and we hope that you will find something here that speaks to your heart. If you have any questions or comments, please don’t hesitate to <a href="/contact" class="text-blue-500 underline">contact us</a>.`,
+      text: `For visiting our store and we hope that you will find something here that speaks to your heart. If you have any questions or comments, please don’t hesitate to <a href="/#contact" class="text-blue-500 underline">contact us</a>.`,
     },
   ];
 
