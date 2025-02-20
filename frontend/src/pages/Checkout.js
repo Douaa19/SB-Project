@@ -19,6 +19,7 @@ function Checkout() {
   const [grandtotal, setGrandTotal] = useState(null);
   const shipping = 49;
   const userId = useSelector((state) => state.user_id);
+  const userEmail = useSelector((state) => state.email);
   const orders = useSelector((state) => state.orders.orders);
   const [loading, setLoading] = useState(true);
   const orderSent = useSelector((state) => state.orderSentPopup);
@@ -62,12 +63,6 @@ function Checkout() {
       errors.phone = "Please enter a valid phone number.";
     }
 
-    if (!data.email) {
-      errors.email = "The field email is required to proceed.";
-    } else if (!isValidEmail(data.email)) {
-      errors.email = "Please enter a valid email address.";
-    }
-
     if (!data.city) {
       errors.city = "The field city is required to proceed.";
     }
@@ -85,11 +80,6 @@ function Checkout() {
     }
 
     return errors;
-  };
-
-  const isValidEmail = (email) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
   };
 
   const isPhoneNumber = (phone) => {
@@ -154,6 +144,7 @@ function Checkout() {
                     data={data}
                     setData={setData}
                     errors={errors}
+                    email={userEmail}
                   />
                 </div>
                 <div className="flex flex-col items-start gap-2 w-full">

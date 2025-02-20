@@ -62,7 +62,10 @@ function OrderSummaryCard(props) {
             {props.order.item.category_id?.name}
           </span>
           <span className="text-14 font-semibold capitalize text-gray-700">
-            {priceItem * props.order.quantity}DH
+            {typeof priceItem === "number" &&
+            typeof props.order.quantity === "number"
+              ? `${(priceItem * props.order.quantity).toFixed(2)}DH`
+              : "Invalid price"}
           </span>
         </div>
       </div>
