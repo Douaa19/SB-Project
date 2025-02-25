@@ -67,36 +67,34 @@ function BigItemCard({ url, item }) {
     // validation
     let errors = handleError(order);
 
-    console.log(order);
+    if (Object.keys(errors).length === 0) {
+      if (isLoggedIn) {
+        dispatch(setOrders(userId, item, order.quantity, order.colors));
+      } else {
+        const guestOrders =
+          JSON.parse(localStorage.getItem("guestOrders")) || [];
+        const existingItemIndex = guestOrders.findIndex(
+          (existingOrder) =>
+            existingOrder.item._id === order.item._id &&
+            JSON.stringify(existingOrder.colors) ===
+              JSON.stringify(order.colors)
+        );
 
-    // if (Object.keys(errors).length === 0) {
-    //   if (isLoggedIn) {
-    //     dispatch(setOrders(userId, order.item, order.quantity, order.colors));
-    //   } else {
-    //     const guestOrders =
-    //       JSON.parse(localStorage.getItem("guestOrders")) || [];
-    //     const existingItemIndex = guestOrders.findIndex(
-    //       (existingOrder) =>
-    //         existingOrder.item._id === order.item._id &&
-    //         JSON.stringify(existingOrder.colors) ===
-    //           JSON.stringify(order.colors)
-    //     );
+        if (existingItemIndex !== -1) {
+          guestOrders[existingItemIndex].quantity += order.quantity;
+        } else {
+          guestOrders.push({
+            item: order.item,
+            quantity: order.quantity,
+            colors: order.colors,
+          });
+        }
 
-    //     if (existingItemIndex !== -1) {
-    //       guestOrders[existingItemIndex].quantity += order.quantity;
-    //     } else {
-    //       guestOrders.push({
-    //         item: order.item,
-    //         quantity: order.quantity,
-    //         colors: order.colors,
-    //       });
-    //     }
-
-    //     localStorage.setItem("guestOrders", JSON.stringify(guestOrders));
-    //   }
-    // } else {
-    //   console.log("Error!!");
-    // }
+        localStorage.setItem("guestOrders", JSON.stringify(guestOrders));
+      }
+    } else {
+      console.log(errors);
+    }
   };
 
   const handleQuantityChange = (e) => {

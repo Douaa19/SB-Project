@@ -17,7 +17,7 @@ function Basket() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const orders = isLoggedIn ? userOrders : guestOrders;
 
-  console.log(userOrders);
+  console.log(orders);
 
   useEffect(() => {
     setTimeout(() => {
