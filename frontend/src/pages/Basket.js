@@ -17,6 +17,8 @@ function Basket() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const orders = isLoggedIn ? userOrders : guestOrders;
 
+  console.log(userOrders);
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -37,7 +39,7 @@ function Basket() {
               icon={<ShoppingBag size={24} className="text-main mx-1" />}
             />
             {orders?.length > 0 && (
-              <div className="hover:border-b hover:border-main w-fit">
+              <div className="hover:border-b hover:border-main w-fit mt-6">
                 <a
                   href="/products"
                   className="md:text-16 ssm:text-14 text-gray-700 hover:text-main flex gap-0 items-end justify-start">

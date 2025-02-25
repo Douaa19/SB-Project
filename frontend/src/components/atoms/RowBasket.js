@@ -121,19 +121,24 @@ function RowBasket(props) {
           <div className="flex items-center justify-center gap-2 mx-2">
             <button
               onClick={() => handleQuantityChange("subtract")}
-              className="text-16 font-semibold text-gray-500 hover:text-gray-700">
+              className="text-16 font-semibold text-gray-500 hover:text-gray-700 px-4">
               -
             </button>
-            <span className="text-14 font-medium">{props.data.quantity}</span>
+            <span className="text-14 font-bold px-2">
+              {props.data.quantity}
+            </span>
             <button
               onClick={() => handleQuantityChange("add")}
-              className="text-16 font-semibold text-gray-500 hover:text-gray-700">
+              className="text-16 font-semibold text-gray-500 hover:text-gray-700 px-4">
               +
             </button>
           </div>
           <div className="">
             <span className="md:text-16 ssm:text-14 font-bold mx-2">
-              {props.data.quantity * priceItem}DH
+              {typeof priceItem === "number" &&
+              typeof props.data.quantity === "number"
+                ? `${(priceItem * props.data.quantity).toFixed(2)}DH`
+                : "Invalid price"}
             </span>
           </div>
           <Button
