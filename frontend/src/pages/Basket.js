@@ -14,10 +14,7 @@ function Basket() {
   const [loading, setLoading] = useState(true);
   const guestOrders = JSON.parse(localStorage.getItem("guestOrders"));
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const orders = isLoggedIn ? userOrders : guestOrders;
-
-  console.log(orders);
 
   useEffect(() => {
     setTimeout(() => {

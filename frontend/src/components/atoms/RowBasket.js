@@ -14,6 +14,7 @@ function RowBasket(props) {
     : props.data.item.price;
 
   const itemImg = `${BACK_URL}/items/${props.data.item._id}/image`;
+  const quantity = parseInt(props.data.quantity);
 
   const handleDeleteItem = () => {
     if (props.isLoggedIn) {
@@ -35,15 +36,15 @@ function RowBasket(props) {
   const handleQuantityChange = (operation) => {
     if (props.isLoggedIn) {
       if (operation === "add") {
-        const newQuantity = props.data.quantity + 1;
+        const newQuantity = quantity + 1;
         dispatch(
           editOrder(userId, props.data.item._id, props.data.colors, newQuantity)
         );
       } else if (operation === "subtract") {
-        if (props.data.quantity === 1) {
+        if (quantity === 1) {
           handleDeleteItem();
-        } else if (props.data.quantity > 1) {
-          const newQuantity = props.data.quantity - 1;
+        } else if (quantity > 1) {
+          const newQuantity = quantity - 1;
           dispatch(
             editOrder(
               userId,
@@ -71,7 +72,7 @@ function RowBasket(props) {
         }
         return order;
       });
-      localStorage.setItem("guestOredrs", JSON.stringify(updatedOrders));
+      localStorage.setItem("guestOrders", JSON.stringify(updatedOrders)); // Fixed typo here
       props.onGuestOrdersUpdate(updatedOrders);
     }
   };
@@ -100,7 +101,7 @@ function RowBasket(props) {
                 {props.data.item.title}
               </span>
               <div className="flex flex-col">
-                <span className="font-normal capitadivze text-gray-400 md:text-14 ssm:text-12">
+                <span className="font-normal capitalize text-gray-400 md:text-14 ssm:text-12">
                   {props.data.item.category_id?.name}
                 </span>
                 <span className="font-normal text-gray-400 md:text-14 ssm:text-12">
@@ -135,10 +136,7 @@ function RowBasket(props) {
           </div>
           <div className="">
             <span className="md:text-16 ssm:text-14 font-bold mx-2">
-              {typeof priceItem === "number" &&
-              typeof props.data.quantity === "number"
-                ? `${(priceItem * props.data.quantity).toFixed(2)}DH`
-                : "Invalid price"}
+              {(priceItem * quantity).toFixed(2)}DH
             </span>
           </div>
           <Button
