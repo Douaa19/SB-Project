@@ -26,8 +26,6 @@ function Checkout() {
 
   const userOrders = orders[userId];
 
-  // console.log(orders);
-
   const handleSubmit = () => {
     const updatedData = { ...data, payment: selectedPayment };
     const validationErrors = validationForm(updatedData);
@@ -110,13 +108,13 @@ function Checkout() {
       }
     }
 
-    setSubTotal(total);
+    setSubTotal(Number(total.toFixed(2)));
   }, [orders, userOrders]);
 
   useEffect(() => {
     if (subtotal !== null) {
       const grandTotal = subtotal + shipping;
-      setGrandTotal(grandTotal);
+      setGrandTotal(Number(grandTotal.toFixed(2)));
     }
 
     setTimeout(() => {
