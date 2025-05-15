@@ -3065,6 +3065,10 @@ body .menu ul li > a:hover {
     width: 100%;
   }
 
+  .md\:w-8 {
+    width: 2rem;
+  }
+
   .md\:min-w-\[50rem\] {
     min-width: 50rem;
   }
@@ -3290,6 +3294,10 @@ body .menu ul li > a:hover {
 
   .lg\:w-full {
     width: 100%;
+  }
+
+  .lg\:w-10 {
+    width: 2.5rem;
   }
 
   .lg\:grid-cols-3 {

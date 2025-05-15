@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/small-logo-sabaembroidery.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, UserRound } from "lucide-react";
 import {
   setIdAction,
   setRoleAction,
@@ -50,6 +50,7 @@ function NavBar(props) {
     isLoggedIn !== true
       ? { name: "login", link: "/login" }
       : { name: "logout", link: "/" },
+    { name: "profile", link: "/profile" },
   ];
 
   let [open, setOpen] = useState(false);
@@ -111,7 +112,7 @@ function NavBar(props) {
         </ul>
       </div>
       <div className="btns md:static flex justify-between items-center md:gap-2 w-max ssm:gap-2 ssm:absolute ssm:right-8">
-        <div className="w-full">
+        <div className="w-full flex justify-center items-center md:gap-2 ssm:gap-2">
           {isLoggedIn !== true ? (
             <button
               onClick={() => (window.location = "/login")}
@@ -126,11 +127,18 @@ function NavBar(props) {
             </button>
           )}
         </div>
+        {isLoggedIn !== false && (
+          <div className="relative group">
+            <button className="flex items-center justify-center w-10 h-10 border border-main rounded-full text-main transition-all ease-in-out hover:bg-main hover:text-light hover:shadow-md hover:scale-105 duration-300">
+              <UserRound size={18} strokeWidth={1.5} />
+            </button>
+          </div>
+        )}
 
         {/* {inputContent} */}
-        <div className="relative lg:w-6 md:w-5 ssm:w-12 ssm:mr-0 md:mr-0">
+        <div className="relative lg:w-10 md:w-8 ssm:w-12 ssm:mr-0 md:mr-0">
           <button
-            className="hover:cursor-pointer w-full flex items-center justify-center"
+            className="hover:cursor-pointer flex items-center justify-center w-10 h-10"
             onClick={() => {
               window.location = "/basket";
             }}>
