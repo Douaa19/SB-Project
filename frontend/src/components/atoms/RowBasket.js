@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { removeOrder, editOrder } from "../../redux/actions/orders";
 import { useDispatch, useSelector } from "react-redux";
 import { BACK_URL } from "../../config";
@@ -15,6 +15,7 @@ function RowBasket(props) {
 
   const itemImg = `${BACK_URL}/items/${props.data.item._id}/image`;
   const quantity = parseInt(props.data.quantity);
+  const [localQuantity, setLocalQuantity] = useState(quantity);
 
   const handleDeleteItem = () => {
     if (props.isLoggedIn) {
@@ -36,15 +37,17 @@ function RowBasket(props) {
   const handleQuantityChange = (operation) => {
     if (props.isLoggedIn) {
       if (operation === "add") {
-        const newQuantity = quantity + 1;
+        const newQuantity = localQuantity + 1;
+        setLocalQuantity(newQuantity);
         dispatch(
           editOrder(userId, props.data.item._id, props.data.colors, newQuantity)
         );
       } else if (operation === "subtract") {
-        if (quantity === 1) {
+        if (localQuantity === 1) {
           handleDeleteItem();
         } else if (quantity > 1) {
-          const newQuantity = quantity - 1;
+          const newQuantity = localQuantity - 1;
+          setLocalQuantity(newQuantity);
           dispatch(
             editOrder(
               userId,
@@ -72,10 +75,14 @@ function RowBasket(props) {
         }
         return order;
       });
-      localStorage.setItem("guestOrders", JSON.stringify(updatedOrders)); // Fixed typo here
+      localStorage.setItem("guestOrders", JSON.stringify(updatedOrders));
       props.onGuestOrdersUpdate(updatedOrders);
     }
   };
+
+  useEffect(() => {
+    setLocalQuantity(quantity);
+  }, [quantity]);
 
   return (
     <>
@@ -125,9 +132,7 @@ function RowBasket(props) {
               className="text-16 font-semibold text-gray-500 hover:text-gray-700 px-4">
               -
             </button>
-            <span className="text-14 font-bold px-2">
-              {props.data.quantity}
-            </span>
+            <span className="text-14 font-bold px-2">{localQuantity}</span>
             <button
               onClick={() => handleQuantityChange("add")}
               className="text-16 font-semibold text-gray-500 hover:text-gray-700 px-4">
