@@ -126,7 +126,7 @@ function NavBar(props) {
             </div>
           </button>
           {allOrders.length > 0 && (
-            <div className="cursor-pointer length text-white w-4 text-center text-8 border border-red bg-red rounded-full absolute bottom-4 left-4 p-1">
+            <div className="cursor-pointer length text-white w-4 text-center text-8 border border-red bg-red rounded-full absolute bottom-[24px] left-[26px] p-1">
               <span className="">{allOrders.length}</span>
             </div>
           )}

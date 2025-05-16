@@ -589,6 +589,10 @@ video {
   bottom: 1rem;
 }
 
+.bottom-\[24px\] {
+  bottom: 24px;
+}
+
 .left-0 {
   left: 0px;
 }
@@ -597,8 +601,8 @@ video {
   left: 0.25rem;
 }
 
-.left-4 {
-  left: 1rem;
+.left-\[26px\] {
+  left: 26px;
 }
 
 .right-0 {
@@ -738,6 +742,10 @@ video {
   margin-right: 0.25rem;
 }
 
+.mr-4 {
+  margin-right: 1rem;
+}
+
 .mr-8 {
   margin-right: 2rem;
 }
@@ -788,14 +796,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mr-2 {
-  margin-right: 0.5rem;
-}
-
-.mr-4 {
-  margin-right: 1rem;
 }
 
 .line-clamp-3 {
@@ -855,10 +855,6 @@ video {
 
 .h-5 {
   height: 1.25rem;
-}
-
-.h-7 {
-  height: 1.75rem;
 }
 
 .h-8 {
@@ -933,14 +929,6 @@ video {
   height: 100vh;
 }
 
-.h-12 {
-  height: 3rem;
-}
-
-.h-24 {
-  height: 6rem;
-}
-
 .max-h-\[550px\] {
   max-height: 550px;
 }
@@ -985,10 +973,6 @@ video {
   width: 1.25rem;
 }
 
-.w-7 {
-  width: 1.75rem;
-}
-
 .w-8 {
   width: 2rem;
 }
@@ -1001,12 +985,20 @@ video {
   width: 15px;
 }
 
+.w-\[25\%\] {
+  width: 25%;
+}
+
 .w-\[28rem\] {
   width: 28rem;
 }
 
 .w-\[70\%\] {
   width: 70%;
+}
+
+.w-\[80\%\] {
+  width: 80%;
 }
 
 .w-\[90\%\] {
@@ -1027,30 +1019,6 @@ video {
 
 .w-max {
   width: max-content;
-}
-
-.w-12 {
-  width: 3rem;
-}
-
-.w-24 {
-  width: 6rem;
-}
-
-.w-\[\] {
-  width: ;
-}
-
-.w-\[80\%\] {
-  width: 80%;
-}
-
-.w-\[25\] {
-  width: 25;
-}
-
-.w-\[25\%\] {
-  width: 25%;
 }
 
 .min-w-full {
@@ -1280,20 +1248,16 @@ video {
   border-width: 4px;
 }
 
+.border-r-1 {
+  border-right-width: 1px;
+}
+
 .border-t-1 {
   border-top-width: 1px;
 }
 
 .border-t-4 {
   border-top-width: 4px;
-}
-
-.border-r-1 {
-  border-right-width: 1px;
-}
-
-.border-b-1 {
-  border-bottom-width: 1px;
 }
 
 .border-gray-100 {
@@ -1339,11 +1303,6 @@ video {
 .border-white {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
-}
-
-.border-gray-50 {
-  --tw-border-opacity: 1;
-  border-color: rgb(249 250 251 / var(--tw-border-opacity, 1));
 }
 
 .bg-\[\#C5E8E6\] {
@@ -1661,11 +1620,6 @@ video {
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
 }
 
 .font-bold {
@@ -2421,14 +2375,6 @@ body .menu ul li > a:hover {
 
 .hover\:cursor-pointer:hover {
   cursor: pointer;
-}
-
-.hover\:rounded:hover {
-  border-radius: 0.25rem;
-}
-
-.hover\:rounded-md:hover {
-  border-radius: 0.375rem;
 }
 
 .hover\:border:hover {
@@ -3366,10 +3312,6 @@ body .menu ul li > a:hover {
 
   .lg\:w-full {
     width: 100%;
-  }
-
-  .lg\:w-12 {
-    width: 3rem;
   }
 
   .lg\:grid-cols-3 {

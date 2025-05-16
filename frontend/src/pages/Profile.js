@@ -15,7 +15,6 @@ function Profile() {
     const fetchUser = async () => {
       try {
         await getUser().then((res) => {
-          console.log(res.data);
           setUser(res.data);
           setLoading(false);
         });
