@@ -10,6 +10,7 @@ import {
   Product,
   Login,
   Checkout,
+  Profile,
 } from "../pages";
 
 function AppRoutes() {
@@ -40,6 +41,7 @@ function AppRoutes() {
             element={<Login />}
           />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
     </>

@@ -111,6 +111,26 @@ function NavBar(props) {
         </ul>
       </div>
       <div className="btns md:static flex justify-between items-center md:gap-2 w-max ssm:gap-2 ssm:absolute ssm:right-8">
+        <div className="relative lg:w-10 md:w-8 ssm:w-12 ssm:mr-0 md:mr-0">
+          <button
+            className="hover:cursor-pointer flex items-center justify-center w-10 h-10"
+            onClick={() => {
+              window.location = "/basket";
+            }}>
+            <div className={`${open ? "mr-[3.2rem]" : ""}`}>
+              <ShoppingCart
+                size={18}
+                strokeWidth={1.2}
+                className="text-main hover:text-secondary hover:bg-main hover:duration-300 hover:shadow-md w-8 h-8 p-2 hover:scale-110 border border-main rounded-full transition-all ease-in-out"
+              />
+            </div>
+          </button>
+          {allOrders.length > 0 && (
+            <div className="cursor-pointer length text-white w-4 text-center text-8 border border-red bg-red rounded-full absolute bottom-4 left-4 p-1">
+              <span className="">{allOrders.length}</span>
+            </div>
+          )}
+        </div>
         <div className="w-full flex justify-center items-center md:gap-2 ssm:gap-2">
           {isLoggedIn !== true ? (
             <button
@@ -128,33 +148,15 @@ function NavBar(props) {
         </div>
         {isLoggedIn !== false && (
           <div className="relative group">
-            <button className="flex items-center justify-center w-8 h-8 border border-main rounded-full text-main transition-all ease-in-out hover:bg-main hover:text-secondary hover:shadow-md hover:scale-110 duration-300">
-              <UserRound size={18} strokeWidth={1.5} />
-            </button>
+            <a href="/profile">
+              <button className="flex items-center justify-center w-8 h-8 border border-main rounded-full text-main transition-all ease-in-out hover:bg-main hover:text-secondary hover:shadow-md hover:scale-110 duration-300">
+                <UserRound size={18} strokeWidth={1.5} />
+              </button>
+            </a>
           </div>
         )}
 
         {/* {inputContent} */}
-        <div className="relative lg:w-10 md:w-8 ssm:w-12 ssm:mr-0 md:mr-0">
-          <button
-            className="hover:cursor-pointer flex items-center justify-center w-10 h-10"
-            onClick={() => {
-              window.location = "/basket";
-            }}>
-            <div className={`${open ? "mr-[3.2rem]" : ""}`}>
-              <ShoppingCart
-                size={20}
-                strokeWidth={1.2}
-                className="text-main hover:text-secondary hover:bg-main hover:duration-300 hover:shadow-md w-8 h-8 p-2 hover:scale-110 border border-main rounded-full transition-all ease-in-out"
-              />
-            </div>
-          </button>
-          {allOrders.length > 0 && (
-            <div className="cursor-pointer length text-white w-4 text-center text-8 border border-red bg-red rounded-full absolute bottom-4 left-4 p-1">
-              <span className="">{allOrders.length}</span>
-            </div>
-          )}
-        </div>
 
         <div className="md:hidden">
           <button
