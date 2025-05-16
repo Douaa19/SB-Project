@@ -6,7 +6,7 @@ export const sendMessage = async (data) => {
   return result;
 };
 
-export const getUser = async (userId) => {
+export const getUser = async () => {
   const result = axios.get(`${BACK_URL}/user/profile`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,

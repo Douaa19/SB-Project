@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ProfileCard, PasswordCard, OrdersCard } from "../molecules";
 
 function ProfileSection(props) {
   const [section, setSection] = useState("profile");
@@ -32,9 +33,21 @@ function ProfileSection(props) {
             </ul>
           </div>
           <div className="w-full px-8 h-full">
-            {section === "profile" && <>Profile</>}
-            {section === "password" && <>Password</>}
-            {section === "orders" && <>Orders</>}
+            {section === "profile" && (
+              <>
+                <ProfileCard user={props.user} />
+              </>
+            )}
+            {section === "password" && (
+              <>
+                <PasswordCard user={props.user} />
+              </>
+            )}
+            {section === "orders" && (
+              <>
+                <OrdersCard orders={props.orders} />
+              </>
+            )}
           </div>
         </div>
       </div>

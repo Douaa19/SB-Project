@@ -6,7 +6,7 @@ import { getUser } from "../services/userServices";
 
 function Profile() {
   const userId = useSelector((state) => state.user_id);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const orders = useSelector((state) => state.orders);
   const [loading, setLoading] = useState(true);
 
@@ -14,7 +14,8 @@ function Profile() {
     // user
     const fetchUser = async () => {
       try {
-        await getUser(userId).then((res) => {
+        await getUser().then((res) => {
+          console.log(res.data);
           setUser(res.data);
           setLoading(false);
         });
@@ -29,17 +30,15 @@ function Profile() {
 
   return (
     <>
-      {/* {loading === false ? ( */}
-      <>
-        <NavBar
-        // setLoading={setLoading}
-        />
-        <ProfileSection />
-        <Footer />
-      </>
-      {/* ) : (
+      {loading === false ? (
+        <>
+          <NavBar setLoading={setLoading} />
+          <ProfileSection orders={orders} user={user} />
+          <Footer />
+        </>
+      ) : (
         <Loading />
-      )} */}
+      )}
     </>
   );
 }

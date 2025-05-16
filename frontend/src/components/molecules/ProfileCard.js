@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function ProfileCard() {
-  return (
-    <div>ProfileCard</div>
-  )
+function ProfileCard(props) {
+  return <div>ProfileCard</div>;
 }
 
-export default ProfileCard
+export default ProfileCard;

@@ -396,9 +396,16 @@ const sendMessage = async (req, res) => {
 const getProfile = async (req, res) => {
   try {
     const user = req.user;
-    await User.findById(user.id).then((user) => {
-      if (user) {
-        res.status(200).send(user);
+    let data = {};
+    await User.findById(user.id).then((response) => {
+      if (response) {
+        data.username = response.username;
+        data.email = response.email;
+        data.phoneNum = response.phoneNum;
+        data.address = response.address;
+        data.role = response.role;
+        data.password = response.password;
+        res.status(200).json(data);
       } else {
         res.status(404).send({ messageError: "User not found!" });
       }
