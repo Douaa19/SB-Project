@@ -58,7 +58,7 @@ function SectionCards({
     <div
       className={`sm:px-10 ssm:px-6 ssm:pb-4 sm:pb-7 flex flex-col justify-center items-center w-full mt-6`}>
       <h2
-        className={`capitalize text-main flex items-center gap-1 relative ssm:text-2xl md:text-3xl font-normal pb-2 after:content-[''] after:absolute after:w-${lineSize} after:h-1 after:bg-main after:bottom-0 after:left-0`}>
+        className={`capitalize text-main flex items-center gap-1 relative ssm:text-2xl md:text-3xl font-bold pb-2 after:content-[''] after:absolute after:w-${lineSize} after:h-1 after:bg-main after:bottom-0 after:left-0`}>
         <span className="text-secondary">{icon}</span> {title}
       </h2>
       <div className="w-[90%]">

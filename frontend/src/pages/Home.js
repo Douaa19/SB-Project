@@ -26,7 +26,7 @@ function Home() {
           <PresentationCards />
           <SectionCards
             items={bestSellingItems}
-            title="best selling products"
+            title="best selling"
             buttonText="View more"
             page="best-selling"
             limit={displayLimit}
@@ -44,6 +44,7 @@ function Home() {
             icon={<Package size={32} />}
             lineSize="24"
           />
+          {/* Partners/Clients section */}
           <ContactSection />
           <Footer />
         </>
