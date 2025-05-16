@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-function ProfileSection() {
+function ProfileSection(props) {
   const [section, setSection] = useState("profile");
-  const [user, setUser] = useState({});
 
   const liStyle =
     "capitalize hover:cursor-pointer hover:bg-main hover:text-light rounded-md hover:transition-all hover:duration-300 hover:ease-linear py-3 px-4 mr-4";

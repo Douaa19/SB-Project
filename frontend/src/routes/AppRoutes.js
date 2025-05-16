@@ -41,7 +41,7 @@ function AppRoutes() {
             element={<Login />}
           />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} userId={userId} />
         </Routes>
       </Router>
     </>
