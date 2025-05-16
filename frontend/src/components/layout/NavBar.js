@@ -50,7 +50,6 @@ function NavBar(props) {
     isLoggedIn !== true
       ? { name: "login", link: "/login" }
       : { name: "logout", link: "/" },
-    { name: "profile", link: "/profile" },
   ];
 
   let [open, setOpen] = useState(false);
@@ -116,20 +115,20 @@ function NavBar(props) {
           {isLoggedIn !== true ? (
             <button
               onClick={() => (window.location = "/login")}
-              className={`mr-1 md:block ssm:hidden outline-none text-main lg:text-16 ssm:text-14 py-1 px-6 rounded-full hover:scale-110 transition-all ease-in-out border border-main hover:bg-main hover:text-light hover:duration-300 hover:shadow-md`}>
+              className={`mr-1 md:block ssm:hidden outline-none text-main lg:text-16 ssm:text-14 py-2 px-6 rounded-full hover:scale-110 transition-all ease-in-out border border-main hover:bg-main hover:text-secondary hover:duration-300 hover:shadow-md`}>
               <span className="">Log in</span>
             </button>
           ) : (
             <button
               onClick={logout}
-              className={`mr-1 md:block ssm:hidden outline-none text-main lg:text-16 ssm:text-14 py-1 px-6 rounded-full hover:scale-110 transition-all ease-in-out border border-main hover:bg-main hover:text-light hover:duration-300 hover:shadow-md`}>
+              className={`mr-1 md:block ssm:hidden outline-none text-main lg:text-16 ssm:text-14 py-2 px-6 rounded-full hover:scale-110 transition-all ease-in-out border border-main hover:bg-main hover:text-secondary hover:duration-300 hover:shadow-md`}>
               <span className="">Log out</span>
             </button>
           )}
         </div>
         {isLoggedIn !== false && (
           <div className="relative group">
-            <button className="flex items-center justify-center w-10 h-10 border border-main rounded-full text-main transition-all ease-in-out hover:bg-main hover:text-light hover:shadow-md hover:scale-105 duration-300">
+            <button className="flex items-center justify-center w-8 h-8 border border-main rounded-full text-main transition-all ease-in-out hover:bg-main hover:text-secondary hover:shadow-md hover:scale-110 duration-300">
               <UserRound size={18} strokeWidth={1.5} />
             </button>
           </div>
@@ -146,7 +145,7 @@ function NavBar(props) {
               <ShoppingCart
                 size={20}
                 strokeWidth={1.2}
-                className="text-main hover:text-light hover:bg-main hover:duration-300 hover:shadow-md w-7 h-7 p-2 hover:scale-110 border border-main rounded-full transition-all ease-in-out"
+                className="text-main hover:text-secondary hover:bg-main hover:duration-300 hover:shadow-md w-8 h-8 p-2 hover:scale-110 border border-main rounded-full transition-all ease-in-out"
               />
             </div>
           </button>
