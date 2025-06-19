@@ -12,7 +12,6 @@ function SectionCards({
   page,
   limit,
   transition,
-  icon,
   lineSize,
 }) {
   const myArr = [0, 1, 2, 3, 4, 5];
@@ -59,7 +58,7 @@ function SectionCards({
       className={`sm:px-10 ssm:px-6 ssm:pb-4 sm:pb-7 flex flex-col justify-center items-center w-full mt-6`}>
       <h2
         className={`capitalize text-main flex items-center gap-1 relative ssm:text-2xl md:text-3xl font-bold pb-2 after:content-[''] after:absolute after:w-${lineSize} after:h-1 after:bg-main after:bottom-0 after:left-0`}>
-        <span className="text-secondary">{icon}</span> {title}
+        {title}
       </h2>
       <div className="w-[90%]">
         <div className="sm:mt-10 ssm:mt-5">
@@ -93,7 +92,7 @@ function SectionCards({
       </div>
       <div className="w-max mt-10">
         <button
-          className="ssm:m-0 md:mt-3 border-1 border-main rounded-md px-10 py-3 capitalize text-white bg-main md:text-md ssm:text-sm font-medium outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105"
+          className="ssm:m-0 md:mt-3 border-1 border-main rounded-md px-10 py-3 capitalize text-white bg-main md:text-md ssm:text-sm font-bold outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105"
           onClick={() => (window.location = `/${page}`)}>
           <span className="relative z-10">{buttonText}</span>
         </button>

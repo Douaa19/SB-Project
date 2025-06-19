@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-function AboutCard({ index, title, text, image, reverse, titleColor }) {
+function AboutCard({ index, title, text, jsx, image, reverse }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
@@ -30,13 +30,15 @@ function AboutCard({ index, title, text, image, reverse, titleColor }) {
             />
           )}
         </h3>
-        <p
+
+        <div
           className={`md:pb-5 ssm:pb-3 md:text-18 ssm:text-14 ${
             !image ? "text-center" : ""
           }`}>
-          <p dangerouslySetInnerHTML={{ __html: text }} />
-        </p>
+          {jsx ? jsx : <p>{text}</p>}
+        </div>
       </div>
+
       {image && (
         <div className="flex items-center justify-center w-1/2">
           <img src={image} alt="about-img" className="rounded-md w-full" />

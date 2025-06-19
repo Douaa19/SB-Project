@@ -653,10 +653,6 @@ video {
   z-index: 60;
 }
 
-.col-span-1 {
-  grid-column: span 1 / span 1;
-}
-
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
@@ -734,10 +730,6 @@ video {
   margin-left: 0.5rem;
 }
 
-.ml-6 {
-  margin-left: 1.5rem;
-}
-
 .mr-1 {
   margin-right: 0.25rem;
 }
@@ -780,10 +772,6 @@ video {
 
 .mt-24 {
   margin-top: 6rem;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
 }
 
 .mt-4 {
@@ -851,6 +839,10 @@ video {
 
 .h-3 {
   height: 0.75rem;
+}
+
+.h-32 {
+  height: 8rem;
 }
 
 .h-5 {
@@ -929,16 +921,8 @@ video {
   height: 100vh;
 }
 
-.h-12 {
-  height: 3rem;
-}
-
-.h-24 {
-  height: 6rem;
-}
-
-.max-h-\[550px\] {
-  max-height: 550px;
+.max-h-full {
+  max-height: 100%;
 }
 
 .w-1\/2 {
@@ -951,6 +935,10 @@ video {
 
 .w-10\/12 {
   width: 83.333333%;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .w-20 {
@@ -1027,14 +1015,6 @@ video {
 
 .w-max {
   width: max-content;
-}
-
-.w-12 {
-  width: 3rem;
-}
-
-.w-24 {
-  width: 6rem;
 }
 
 .min-w-full {
@@ -1116,10 +1096,6 @@ video {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
 .flex-row {
   flex-direction: row;
 }
@@ -1174,6 +1150,10 @@ video {
 
 .gap-1 {
   gap: 0.25rem;
+}
+
+.gap-10 {
+  gap: 2.5rem;
 }
 
 .gap-2 {
@@ -1284,6 +1264,11 @@ video {
 .border-gray-400 {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity, 1));
+}
+
+.border-gray-50 {
+  --tw-border-opacity: 1;
+  border-color: rgb(249 250 251 / var(--tw-border-opacity, 1));
 }
 
 .border-gray-500 {
@@ -1488,10 +1473,6 @@ video {
   padding: 2rem;
 }
 
-.p-16 {
-  padding: 4rem;
-}
-
 .px-1 {
   padding-left: 2px;
   padding-right: 2px;
@@ -1530,11 +1511,6 @@ video {
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
-}
-
-.py-1 {
-  padding-top: 2px;
-  padding-bottom: 2px;
 }
 
 .py-10 {
@@ -1622,11 +1598,6 @@ video {
 
 .text-18 {
   font-size: 18px;
-}
-
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
 }
 
 .text-8 {
@@ -2942,10 +2913,6 @@ body .menu ul li > a:hover {
 
   .sm\:flex-row {
     flex-direction: row;
-  }
-
-  .sm\:items-start {
-    align-items: flex-start;
   }
 
   .sm\:p-2 {

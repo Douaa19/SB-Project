@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Logo from "../../assets/images/small-logo-sabaembroidery.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { ShoppingCart, UserRound } from "lucide-react";
@@ -13,6 +13,7 @@ import {
 function NavBar(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const orders = useSelector((state) => state.orders.orders);
   const userId = useSelector((state) => state.user_id);
@@ -51,6 +52,24 @@ function NavBar(props) {
       ? { name: "login", link: "/login" }
       : { name: "logout", link: "/" },
   ];
+
+  const handleLinkClick = (link) => {
+    if (link === "/#contact") {
+      if (location.pathname !== "/") {
+        navigate("/", { replace: false });
+
+        setTimeout(() => {
+          const section = document.getElementById("contact");
+          if (section) section.scrollIntoView({ behavior: "smooth" });
+        }, 300);
+      } else {
+        const section = document.getElementById("contact");
+        if (section) section.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate(link);
+    }
+  };
 
   let [open, setOpen] = useState(false);
 
@@ -94,7 +113,7 @@ function NavBar(props) {
               <a
                 href={link.link}
                 style={{ animationDelay: `0.${index + 1}s` }}
-                onClick={link.name === "logout" ? logout : () => {}}
+                onClick={() => handleLinkClick(link.link)}
                 className={`costum-list ${
                   open ? "open" : ""
                 } list cursor-pointer ${

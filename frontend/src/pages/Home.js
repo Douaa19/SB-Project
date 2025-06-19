@@ -31,7 +31,6 @@ function Home() {
             page="best-selling"
             limit={displayLimit}
             transition={false}
-            icon={<Star size={32} />}
             lineSize="24"
           />
           <SectionCards
@@ -41,7 +40,6 @@ function Home() {
             page="products"
             limit={displayLimit}
             transition={false}
-            icon={<Package size={32} />}
             lineSize="24"
           />
           {/* Partners/Clients section */}

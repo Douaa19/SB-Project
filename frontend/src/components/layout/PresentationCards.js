@@ -15,7 +15,7 @@ function PresentationCards() {
     },
     {
       icon: EcoFriendly,
-      title: "Ico Friendly",
+      title: "Eco Friendly",
       desc: "Saba Embroidery is committed to sustainability. We use organic materials and eco-friendly practices, supporting a greener future with every embroidered creation.",
     },
     {

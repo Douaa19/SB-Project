@@ -6,7 +6,6 @@ function ItemCard({
   price,
   promotion,
   id,
-  colors,
   url,
   title,
   percentage,
@@ -79,28 +78,6 @@ function ItemCard({
               -{percentage}%
             </span>
           )}
-          {/* <span
-            className={`font-bold ${
-              promotion
-                ? "line-through md:text-16 ssm:text-14"
-                : "text-dark md:text-18 ssm:text-16"
-            }`}>{`${price}DH`}</span>
-          {promotion && (
-            <span className="md:text-18 ssm:text-16 font-bold text-red">
-              {promotion?.price}DH
-            </span>
-          )} */}
-        </div>
-        <div className="flex gap-2">
-          {colors.map((color, index) => (
-            <span
-              key={index}
-              style={{
-                backgroundColor: color,
-                color: getTextColor(color),
-              }}
-              className={`w-5 h-5 font-normal text-14 py-1 px-2 border border-gray-100 rounded-full`}></span>
-          ))}
         </div>
       </div>
     </div>
