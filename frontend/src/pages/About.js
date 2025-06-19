@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import NavBar from "../components/layout/NavBar";
 import CardGrid from "../components/templates/CardGrid";
 import Footer from "../components/layout/Footer";
@@ -7,9 +8,29 @@ import Image1 from "../assets/images/aboutus2.JPG";
 import Image2 from "../assets/images/aboutus3.JPG";
 import Image3 from "../assets/images/aboutus4.JPG";
 import { PageTitle } from "../components/atoms";
-import { Users } from "lucide-react";
 
 function About() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleLinkClick = (link) => {
+    if (link === "/#contact") {
+      if (location.pathname !== "/") {
+        navigate("/", { replace: false });
+
+        setTimeout(() => {
+          const section = document.getElementById("contact");
+          if (section) section.scrollIntoView({ behavior: "smooth" });
+        }, 300);
+      } else {
+        const section = document.getElementById("contact");
+        if (section) section.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate(link);
+    }
+  };
+
   const aboutItems = [
     {
       title: "“Stitching stories, creating memories”",
@@ -37,7 +58,18 @@ function About() {
     },
     {
       title: "Thank you",
-      text: `For visiting our store and we hope that you will find something here that speaks to your heart. If you have any questions or comments, please don’t hesitate to <a href="/contact" class="text-blue-500 underline">contact us</a>.`,
+      text: (
+        <>
+          For visiting our store, we hope you find something that speaks to your
+          heart. If you have any questions or comments, please don’t hesitate to{" "}
+          <span
+            onClick={() => handleLinkClick("/#contact")}
+            className="text-blue-500 underline cursor-pointer">
+            contact us
+          </span>
+          .
+        </>
+      ),
     },
   ];
 
@@ -45,11 +77,7 @@ function About() {
     <>
       <NavBar />
       <div className="mt-24 mb-20 flex flex-col w-full md:px-28 ssm:px-16 items-center md:gap-4 ssm:gap-2">
-        <PageTitle
-          title="our mission"
-          icon={<Users size={32} />}
-          colorIcon="yellow-500"
-        />
+        <PageTitle title="our mission" colorIcon="secondary" />
         <div className="flex flex-col items-center w-10/12">
           <CardGrid type="about" aboutItems={aboutItems} />
         </div>

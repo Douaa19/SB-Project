@@ -4,7 +4,7 @@ function EmptyRowBasket() {
   return (
     <>
       <div className="transition duration-300 ease-in-out flex items-center justify-center my-6">
-        <div className=" w-1/2 drop-shadow-md bg-white rounded-lg border-gray-100 text-center px-8 py-10 flex flex-col items-center justify-center gap-6">
+        <div className="md:w-1/2 drop-shadow-md bg-white rounded-lg border-gray-100 text-center px-8 py-10 flex flex-col items-center justify-center gap-6">
           <span className="text-18 font-bold text-gray-700">
             Your basket is looking a little empty! 🛒
           </span>

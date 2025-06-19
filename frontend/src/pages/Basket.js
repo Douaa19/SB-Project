@@ -14,7 +14,6 @@ function Basket() {
   const [loading, setLoading] = useState(true);
   const guestOrders = JSON.parse(localStorage.getItem("guestOrders"));
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const orders = isLoggedIn ? userOrders : guestOrders;
 
   useEffect(() => {
@@ -30,17 +29,14 @@ function Basket() {
       ) : (
         <>
           <NavBar />
-          <div className="ssm:pt-4 md:px-20 w-full mt-24">
+          <div className="ssm:pt-4 px-20 w-full mt-24">
             <PageTitle
               title="your shopping bag"
               className="capitalize md:text-28 ssm:text-24 font-extrabold text-main flex justify-center items-center mb-2 pb-2 px-4 w-full"
               icon={<ShoppingBag size={24} className="text-main mx-1" />}
             />
-            <div className="flex items-center justify-center w-full h-[2px] mb-8">
-              <span className="bg-gray-100 h-full w-80 rounded-full"></span>
-            </div>
             {orders?.length > 0 && (
-              <div className="hover:border-b hover:border-main w-fit">
+              <div className="hover:border-b hover:border-main w-fit mt-6">
                 <a
                   href="/products"
                   className="md:text-16 ssm:text-14 text-gray-700 hover:text-main flex gap-0 items-end justify-start">

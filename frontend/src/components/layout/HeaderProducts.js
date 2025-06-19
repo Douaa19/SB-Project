@@ -5,7 +5,6 @@ import Search from "../../assets/icons/search-svgrepo-com.svg";
 import { PageTitle } from "../atoms";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchResults } from "../../redux/actions/items";
-import { Package, Star } from "lucide-react";
 
 function HeaderProducts({ title, categories }) {
   const dispatch = useDispatch();
@@ -43,13 +42,7 @@ function HeaderProducts({ title, categories }) {
   };
   return (
     <div className="ssm:px-4 sm:px:0">
-      <PageTitle
-        title={title}
-        icon={
-          title === "best selling" ? <Star size={32} /> : <Package size={32} />
-        }
-        colorIcon="yellow-500"
-      />
+      <PageTitle title={title} colorIcon="secondary" />
       <div className="h-full flex md:justify-between md:items-start md:flex-row md:gap-4 ssm:flex-col ssm:gap-4 sm:pt-4 sm:pb-2 ssm:py-4 mt-6">
         <CardGrid type="category" categories={updatedCategories} />
         <div className="flex md:justify-end ssm:justify-end items-start h-full md:my-4 ssm:my-0">

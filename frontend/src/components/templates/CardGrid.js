@@ -32,10 +32,11 @@ function CardGrid({
                     id={item._id}
                     price={item.price}
                     promotion={item.promotionPrice}
-                    colors={item.colors}
+                    // colors={item.colors}
                     key={key}
                     url={url}
                     transition={transition}
+                    percentage={item.promotionPrice?.percentage}
                   />
                 ))}
               </div>

@@ -8,11 +8,13 @@ const ordersReducer = (state = { orders: {} }, action) => {
         userOrders[user] = [];
       }
 
-      const existingItemIndex = userOrders[user].findIndex(
-        (order) =>
+      const existingItemIndex = userOrders[user].findIndex((order) => {
+        return (
+          order.item &&
           order.item._id === item._id &&
           JSON.stringify(order.colors) === JSON.stringify(colors)
-      );
+        );
+      });
 
       if (existingItemIndex !== -1) {
         userOrders[user][existingItemIndex].quantity += quantity;

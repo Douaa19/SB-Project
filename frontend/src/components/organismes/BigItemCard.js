@@ -18,16 +18,6 @@ function BigItemCard({ url, item }) {
   const [order, setOrder] = useState({
     quantity: 1,
     item,
-    colors: "",
-  });
-  const [isClearable, setIsClearable] = useState(false);
-
-  const colorOptions = [];
-  item.colors.forEach((color) => {
-    colorOptions.push({
-      value: color,
-      label: color.charAt(0).toUpperCase() + color.slice(1),
-    });
   });
 
   const settings = {
@@ -55,10 +45,6 @@ function BigItemCard({ url, item }) {
       errors.quantity = "Minimum quantity is 1";
     }
 
-    if (!data.colors) {
-      errors.colors = "Please select a color.";
-    }
-
     setErrors(errors);
     return errors;
   };
@@ -69,7 +55,7 @@ function BigItemCard({ url, item }) {
 
     if (Object.keys(errors).length === 0) {
       if (isLoggedIn) {
-        dispatch(setOrders(userId, order.item, order.quantity, order.colors));
+        dispatch(setOrders(userId, item, order.quantity, order.colors));
       } else {
         const guestOrders =
           JSON.parse(localStorage.getItem("guestOrders")) || [];
@@ -93,21 +79,12 @@ function BigItemCard({ url, item }) {
         localStorage.setItem("guestOrders", JSON.stringify(guestOrders));
       }
     } else {
-      console.log("Error!!");
+      console.log(errors);
     }
   };
 
-  const handleQuantityChange = (selectedOption) => {
-    setOrder((prevOrder) => ({ ...prevOrder, quantity: selectedOption.value }));
-  };
-
-  const handleColorChange = (selectedOption) => {
-    const selectedColor = selectedOption ? selectedOption.value : null;
-
-    setOrder((prevOrder) => ({
-      ...prevOrder,
-      colors: selectedColor ? selectedColor : null,
-    }));
+  const handleQuantityChange = (e) => {
+    setOrder({ order, quantity: e.target.value });
   };
 
   useEffect(() => {
@@ -156,9 +133,9 @@ function BigItemCard({ url, item }) {
                     {images.map((imageData, index) => (
                       <div
                         key={index}
-                        className="w-auto max-h-[550px] flex items-center justify-center relative">
+                        className="w-auto max-h-full flex items-center justify-center relative">
                         <img
-                          className="object-contain w-full h-auto px-1"
+                          className="object-contain w-full h-full px-1"
                           src={`data:image/png;base64,${imageData}`}
                           alt="item_img"
                         />
@@ -172,38 +149,26 @@ function BigItemCard({ url, item }) {
             </div>
           </div>
           <div className="md:h-auto flex justify-start w-full ssm:mt-8 md:mt-0">
-            <div className="w-full flex flex-col justify-between items-start">
+            <div className="w-full flex flex-col justify-start items-start">
               <div className="w-full">
                 <h3 className="lg:text-32 ssm:text-24 text-dark-gray font-extrabold tracking-wider mb-4">
                   {item.title}
                 </h3>
                 <p className="md:text-16 ssm:text-14 mb-6">
-                  {item.description}
+                  {item.description.split(".").map((sentence, index) =>
+                    sentence.trim() ? (
+                      <span key={index}>
+                        {sentence.trim()}.
+                        <br />
+                      </span>
+                    ) : null
+                  )}
                 </p>
                 <div className="md:text-16 ssm:text-14 flex gap-[2.8rem]">
                   Size:{" "}
                   <span className="font-semibold">{`${item.size} cm`}</span>
                 </div>
                 <div className="flex flex-col gap-4 w-full my-6">
-                  <div className="flex justify-start items-center gap-4">
-                    <span className="text-14">Color:</span>
-                    <Select
-                      closeMenuOnSelect={true}
-                      defaultValue={null}
-                      options={colorOptions}
-                      placeholder="Color"
-                      className={`w-32 text-14 ml-6 rounded-md ${
-                        errors.colors ? "border border-red rounded-md" : ""
-                      }`}
-                      isClearable={isClearable}
-                      onChange={handleColorChange}
-                    />
-                    {errors.colors && (
-                      <span className="text-red font-medium text-14">
-                        {errors.colors}
-                      </span>
-                    )}
-                  </div>
                   <div className="flex justify-start items-center gap-4">
                     <span className="text-14">Quantity:</span>
                     <Input
@@ -212,7 +177,7 @@ function BigItemCard({ url, item }) {
                       value={order.quantity}
                       placeHolder="Quantity"
                       onChange={handleQuantityChange}
-                      className="border border-gray-100 text-gray-500 rounded-md w-32 text-16 px-4 py-2 outline-none"
+                      className="border border-gray-100 text-gray-500 rounded-md w-12 text-16 px-4 py-2 outline-none"
                       error={errors.quantity}
                     />
                   </div>

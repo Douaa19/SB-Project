@@ -135,7 +135,6 @@ module.exports.newOrder = (data) => {
                                 <th>Item</th>
                                 <th>Price</th>
                                 <th>Size</th>
-                                <th>Color</th>
                                 <th>Quantity</th>
                             </tr>
                             ${data.items
@@ -145,7 +144,6 @@ module.exports.newOrder = (data) => {
                               <td>${item.item.title}</td>
                               <td>${item.item.price}</td>
                               <td>${item.item.size}</td>
-                              <td>${item.item.color}</td>
                               <td>${item.quantity}</td>
                             </tr>
                           `

@@ -71,7 +71,7 @@ const createOrder = async (req, res) => {
                     const data = {
                       username: shippingInfos.name,
                       items,
-                      shipping: 40,
+                      shipping: 49,
                       total: Total,
                       status: response.status,
                     };

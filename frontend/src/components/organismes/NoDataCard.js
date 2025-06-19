@@ -8,14 +8,12 @@ function NoDataCard() {
       animate={{ opacity: 1, scale: 1, duration: 300 }}>
       <div className="h-[60vh] w-full flex justify-center items-center mb-6 text-gray-700">
         <div className="max-w-[35rem] border border-gray-100 bg-gray-50 p-10 rounded-lg shadow-lg">
-          <div className="">{/* <img src="" alt="" /> */}</div>
-          <div class="text-5xl font-dark font-bold text-center mb-6">404</div>
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center items-center text-center">
             <span className="ssm:text-xl md:text-2xl font-light leading-normal pb-2">
-              Sorry we couldn't find this category.
+              Item not found.
             </span>
             <p className="font-normal">
-              Please try again later or explore other categories.
+              This item is currently out of stock. Please try again later.
             </p>
           </div>
         </div>

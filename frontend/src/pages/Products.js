@@ -94,7 +94,7 @@ function Products({ title }) {
         />
         <div className="mt-10 flex justify-center items-center">
           <Button
-            className="capitalize relative flex px-6 py-3 items-center justify-center overflow-hidden bg-main md:text-16 ssm:text-14 font-medium rounded-md text-white shadow-md transition-all duration-300 before:absolute before:inset-0 before:border-0 before:border-white before:duration-100 before:ease-linear hover:bg-white hover:text-main hover:shadow-main hover:before:border-[25px]"
+            className="ssm:m-0 md:mt-3 border-1 border-main rounded-md px-10 py-3 capitalize text-white bg-main md:text-md ssm:text-sm font-bold outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105"
             text="load more"
             textClass="relative z-10"
             onClick={handleLoadMore}

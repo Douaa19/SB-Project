@@ -23,3 +23,10 @@ export const setIdAction = (id) => {
     payload: id,
   };
 };
+
+export const setEmailAction = (email) => {
+  return {
+    type: "SETEMAIL",
+    payload: email,
+  };
+};

@@ -26,13 +26,12 @@ function Home() {
           <PresentationCards />
           <SectionCards
             items={bestSellingItems}
-            title="best selling products"
+            title="best selling"
             buttonText="View more"
             page="best-selling"
             limit={displayLimit}
             transition={false}
-            icon={<Star size={32} />}
-            lineSize="28"
+            lineSize="24"
           />
           <SectionCards
             items={newestItems}
@@ -41,9 +40,9 @@ function Home() {
             page="products"
             limit={displayLimit}
             transition={false}
-            icon={<Package size={32} />}
             lineSize="24"
           />
+          {/* Partners/Clients section */}
           <ContactSection />
           <Footer />
         </>

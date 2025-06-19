@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Logo from "../../assets/images/small-logo-sabaembroidery.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, UserRound } from "lucide-react";
 import {
   setIdAction,
   setRoleAction,
+  setEmailAction,
   logoutAction,
 } from "../../redux/actions/auth";
 
 function NavBar(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const orders = useSelector((state) => state.orders.orders);
   const userId = useSelector((state) => state.user_id);
@@ -51,6 +53,24 @@ function NavBar(props) {
       : { name: "logout", link: "/" },
   ];
 
+  const handleLinkClick = (link) => {
+    if (link === "/#contact") {
+      if (location.pathname !== "/") {
+        navigate("/", { replace: false });
+
+        setTimeout(() => {
+          const section = document.getElementById("contact");
+          if (section) section.scrollIntoView({ behavior: "smooth" });
+        }, 300);
+      } else {
+        const section = document.getElementById("contact");
+        if (section) section.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate(link);
+    }
+  };
+
   let [open, setOpen] = useState(false);
 
   const isOpen = open ? "open" : "";
@@ -60,6 +80,7 @@ function NavBar(props) {
     localStorage.removeItem("token");
     dispatch(setRoleAction(""));
     dispatch(setIdAction(""));
+    dispatch(setEmailAction(""));
     dispatch(logoutAction(""));
     props.setLoading(true);
 
@@ -92,7 +113,7 @@ function NavBar(props) {
               <a
                 href={link.link}
                 style={{ animationDelay: `0.${index + 1}s` }}
-                onClick={link.name === "logout" ? logout : () => {}}
+                onClick={() => handleLinkClick(link.link)}
                 className={`costum-list ${
                   open ? "open" : ""
                 } list cursor-pointer ${
@@ -108,44 +129,53 @@ function NavBar(props) {
           ))}
         </ul>
       </div>
-      <div className="btns md:static flex justify-between items-center md:gap-2 w-max ssm:gap-2 ssm:absolute ssm:right-8">
-        <div className="w-full">
-          {isLoggedIn !== true ? (
-            <button
-              onClick={() => (window.location = "/login")}
-              className={`mr-1 md:block ssm:hidden outline-none text-main lg:text-16 ssm:text-14 py-1 px-6 rounded-full hover:scale-110 transition-all ease-in-out border border-main hover:bg-main hover:text-light hover:duration-300 hover:shadow-md`}>
-              <span className="">Log in</span>
-            </button>
-          ) : (
-            <button
-              onClick={logout}
-              className={`mr-1 md:block ssm:hidden outline-none text-main lg:text-16 ssm:text-14 py-1 px-6 rounded-full hover:scale-110 transition-all ease-in-out border border-main hover:bg-main hover:text-light hover:duration-300 hover:shadow-md`}>
-              <span className="">Log out</span>
-            </button>
-          )}
-        </div>
-
-        {/* {inputContent} */}
-        <div className="relative lg:w-6 md:w-5 ssm:w-12 ssm:mr-0 md:mr-0">
+      <div className="btns md:static flex justify-between items-center md:gap-2 w-max ssm:gap-0 ssm:absolute ssm:right-8">
+        <div className="relative lg:w-10 md:w-8 ssm:w-12 ssm:mr-0 md:mr-0">
           <button
-            className="hover:cursor-pointer w-full flex items-center justify-center"
+            className="hover:cursor-pointer flex items-center justify-center w-10 h-10"
             onClick={() => {
               window.location = "/basket";
             }}>
             <div className={`${open ? "mr-[3.2rem]" : ""}`}>
               <ShoppingCart
-                size={20}
+                size={18}
                 strokeWidth={1.2}
-                className="text-main hover:text-light hover:bg-main hover:duration-300 hover:shadow-md w-7 h-7 p-2 hover:scale-110 border border-main rounded-full transition-all ease-in-out"
+                className="text-main hover:text-secondary hover:bg-main hover:duration-300 hover:shadow-md w-8 h-8 p-2 hover:scale-110 border border-main rounded-full transition-all ease-in-out"
               />
             </div>
           </button>
           {allOrders.length > 0 && (
-            <div className="cursor-pointer length text-white w-4 text-center text-8 border border-red bg-red rounded-full absolute bottom-4 left-4 p-1">
+            <div className="cursor-pointer length text-white w-4 text-center text-8 border border-red bg-red rounded-full absolute bottom-[24px] left-[26px] p-1">
               <span className="">{allOrders.length}</span>
             </div>
           )}
         </div>
+        <div className="w-full flex justify-center items-center md:gap-2 ssm:gap-2">
+          {isLoggedIn !== true ? (
+            <button
+              onClick={() => (window.location = "/login")}
+              className={`mr-1 md:block ssm:hidden outline-none text-main lg:text-16 ssm:text-14 py-2 px-6 rounded-full hover:scale-110 transition-all ease-in-out border border-main hover:bg-main hover:text-secondary hover:duration-300 hover:shadow-md`}>
+              <span className="">Log in</span>
+            </button>
+          ) : (
+            <button
+              onClick={logout}
+              className={`mr-1 md:block ssm:hidden outline-none text-main lg:text-16 ssm:text-14 py-2 px-6 rounded-full hover:scale-110 transition-all ease-in-out border border-main hover:bg-main hover:text-secondary hover:duration-300 hover:shadow-md`}>
+              <span className="">Log out</span>
+            </button>
+          )}
+        </div>
+        {/* {isLoggedIn !== false && (
+          <div className="relative group">
+            <a href="/profile">
+              <button className="flex items-center justify-center w-8 h-8 border border-main rounded-full text-main transition-all ease-in-out hover:bg-main hover:text-secondary hover:shadow-md hover:scale-110 duration-300">
+                <UserRound size={18} strokeWidth={1.5} />
+              </button>
+            </a>
+          </div>
+        )} */}
+
+        {/* {inputContent} */}
 
         <div className="md:hidden">
           <button

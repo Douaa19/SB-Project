@@ -66,14 +66,12 @@ function ShippingForm(props) {
               Email
               <Input
                 type="email"
-                className={`${
-                  props.errors.email ? "border-red-400" : "border-gray-100"
-                } border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 mt-1`}
+                className={`border rounded-5 lg:block px-4 py-3 outline-none w-full text-14 mt-1 border-gray-100`}
                 name="email"
                 id="email"
-                value={props.data.email}
-                onChange={(e) => handleChange("email", e.target.value)}
-                error={props.errors.email}
+                value={props.email}
+                // onChange={(e) => handleChange("email", e.target.value)}
+                // error={props.errors.email}
               />
             </label>
             <label

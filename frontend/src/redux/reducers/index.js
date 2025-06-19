@@ -13,6 +13,7 @@ import orders from "./ordersReducer";
 import authReducer from "./authReducer";
 import roleReducer from "./roleReducer";
 import idUserReducer from "./idUserReducer";
+import emailReducer from "./emailReducer";
 import forgetPasswordPopup from "./forgetPasswordPopupReducer";
 import resetPasswordPopup from "./resetPasswordPopupReducer";
 import orderSentPopup from "./orderSentPopupReducer";
@@ -30,6 +31,7 @@ const allReducers = combineReducers({
   auth: authReducer,
   role: roleReducer,
   user_id: idUserReducer,
+  email: emailReducer,
   forgetPasswordPopup,
   resetPasswordPopup,
   orderSentPopup,

@@ -9,6 +9,7 @@ import NoDataCard from "./NoDataCard";
 import BasketTable from "./BasketTable";
 import CheckOutCard from "./CheckOutCard";
 import OrderSummaryCard from "./OrderSummaryCard";
+import ProfileSection from "./ProfileSection";
 
 export {
   AboutCard,
@@ -22,4 +23,5 @@ export {
   BasketTable,
   CheckOutCard,
   OrderSummaryCard,
+  ProfileSection,
 };

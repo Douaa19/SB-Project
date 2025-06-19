@@ -19,6 +19,7 @@ function Checkout() {
   const [grandtotal, setGrandTotal] = useState(null);
   const shipping = 49;
   const userId = useSelector((state) => state.user_id);
+  const userEmail = useSelector((state) => state.email);
   const orders = useSelector((state) => state.orders.orders);
   const [loading, setLoading] = useState(true);
   const orderSent = useSelector((state) => state.orderSentPopup);
@@ -26,7 +27,7 @@ function Checkout() {
   const userOrders = orders[userId];
 
   const handleSubmit = () => {
-    const updatedData = { ...data, payment: selectedPayment };
+    const updatedData = { ...data, payment: selectedPayment, email: userEmail };
     const validationErrors = validationForm(updatedData);
 
     if (Object.keys(validationErrors).length === 0) {
@@ -60,12 +61,6 @@ function Checkout() {
       errors.phone = "Please enter a valid phone number.";
     }
 
-    if (!data.email) {
-      errors.email = "The field email is required to proceed.";
-    } else if (!isValidEmail(data.email)) {
-      errors.email = "Please enter a valid email address.";
-    }
-
     if (!data.city) {
       errors.city = "The field city is required to proceed.";
     }
@@ -85,11 +80,6 @@ function Checkout() {
     return errors;
   };
 
-  const isValidEmail = (email) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
-  };
-
   const isPhoneNumber = (phone) => {
     return /^(\+212\d{9}|0\d{9})$/.test(phone);
   };
@@ -99,7 +89,7 @@ function Checkout() {
       type="submit"
       text="Confirm Order"
       textClass="relative z-10"
-      className="capitalize relative flex px-6 py-3 items-center justify-center overflow-hidden bg-main text-16 font-medium rounded-md text-white shadow-md transition-all duration-300 before:absolute before:inset-0 before:border-0 before:border-white before:duration-100 before:ease-linear hover:bg-white hover:text-main hover:shadow-main hover:before:border-[25px]"
+      className="ssm:m-0 md:mt-3 border-1 border-main rounded-md px-10 py-3 capitalize text-white bg-main md:text-md ssm:text-sm font-bold outline-none hover:bg-white hover:text-main transition-all ease-in-out duration-300 hover:shadwo:md hover:scale-105"
       onClick={handleSubmit}
     />
   );
@@ -111,17 +101,20 @@ function Checkout() {
         typeof userOrders[index].item.price === "number" &&
         typeof userOrders[index].quantity === "number"
       ) {
-        total += userOrders[index].item.price * userOrders[index].quantity;
+        const priceItem = userOrders[index].item.promotionPrice
+          ? userOrders[index].item.promotionPrice.price
+          : userOrders[index].item.price;
+        total += priceItem * userOrders[index].quantity;
       }
     }
 
-    setSubTotal(total);
+    setSubTotal(Number(total.toFixed(2)));
   }, [orders, userOrders]);
 
   useEffect(() => {
     if (subtotal !== null) {
       const grandTotal = subtotal + shipping;
-      setGrandTotal(grandTotal);
+      setGrandTotal(Number(grandTotal.toFixed(2)));
     }
 
     setTimeout(() => {
@@ -149,6 +142,7 @@ function Checkout() {
                     data={data}
                     setData={setData}
                     errors={errors}
+                    email={userEmail}
                   />
                 </div>
                 <div className="flex flex-col items-start gap-2 w-full">
@@ -162,7 +156,7 @@ function Checkout() {
                   )}
                   <div className="w-full flex sm:flex-row ssm:flex-col gap-4 items-center justify-between">
                     <div
-                      className={`py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md ${
+                      className={`cursor-pointer py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md ${
                         selectedPayment === "cash-on-delivery"
                           ? "border-main border-2"
                           : "border-gray-100"
@@ -188,7 +182,7 @@ function Checkout() {
                       </label>
                     </div>
                     <div
-                      className={`py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md ${
+                      className={`cursor-pointer py-4 px-4 flex w-full items-center bg-white shadow-sm rounded-md ${
                         selectedPayment === "online-payment"
                           ? "border-main border-2"
                           : "border-light border-2"

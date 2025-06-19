@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./output.css";
 import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 import allReducers from "./redux/reducers";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";

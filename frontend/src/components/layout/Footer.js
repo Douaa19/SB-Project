@@ -1,7 +1,8 @@
 import React from "react";
 import Logo from "../../assets/images/big-logo-sabaembroidery.svg";
-import { Phone, Mail, Facebook, Instagram, Pin } from "lucide-react";
+import { Phone, Mail, Facebook, Instagram, Linkedin } from "lucide-react";
 import FooterBg from "../../assets/images/footer-bg.svg";
+import { ReactComponent as Pinterest } from "../../assets/icons/pinterest.svg";
 import { motion } from "framer-motion";
 
 function Footer() {
@@ -75,25 +76,36 @@ function Footer() {
       <div className="h-full w-full flex flex-col justify-between mt-6">
         <div className="flex lg:justify-end items-center gap-5 w-full ssm:justify-center ssm:mt-6">
           <a
+            href="https://www.linkedin.com/in/saba-embroidery-491601267/?originalSubdomain=ma"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-center flex-row-reverse gap-1 border border-gray-400 p-3 rounded-full text-gray-400 hover:border-white">
+            <Linkedin strokeWidth={1} size={20} className="" />
+          </a>
+          <a
             href="https://www.facebook.com/p/Embroidery-Saba-100087891292627/"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center justify-center flex-row-reverse gap-1 border border-gray-400 p-3 rounded-full text-gray-400 hover:text-white hover:border-white">
+            className="flex items-center justify-center flex-row-reverse gap-1 border border-gray-400 p-3 rounded-full text-gray-400 hover:border-white">
             <Facebook strokeWidth={1} size={20} className="" />
           </a>
           <a
             href="https://www.instagram.com/embroiderysaba?igsh=NGVhN2U2NjQ0Yg=="
             target="_blank"
             rel="noreferrer"
-            className="flex items-center justify-center flex-row-reverse gap-1 border border-gray-400 p-3 rounded-full text-gray-400 hover:text-white hover:border-white">
-            <Instagram strokeWidth={1} size={20} className="" />
+            className="flex items-center justify-center flex-row-reverse gap-1 border border-gray-400 p-3 rounded-full text-gray-400 hover:border-white">
+            <Instagram
+              strokeWidth={1}
+              size={20}
+              className="hover:text-gray-400"
+            />
           </a>
           <a
             href="https://www.pinterest.com/sabaembroidery/"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center justify-center flex-row-reverse gap-1 border border-gray-400 p-3 rounded-full text-gray-400 hover:text-white hover:border-white">
-            <Pin strokeWidth={1} size={20} className="" />
+            className="flex items-center justify-center flex-row-reverse gap-1 border border-gray-400 p-3 rounded-full text-gray-400 hover:border-white">
+            <Pinterest className="text-[20px] text-secondary hover:text-white" />
           </a>
         </div>
         <div className="h-[1px] bg-gray-400 w-full rounded-full mb-4 mt-6"></div>
