@@ -1596,6 +1596,10 @@ video {
   padding-right: 4px;
 }
 
+.pt-4 {
+  padding-top: 12px;
+}
+
 .text-center {
   text-align: center;
 }
@@ -2506,6 +2510,11 @@ body .menu ul li > a:hover {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.hover\:text-gray-100:hover {
+  --tw-text-opacity: 1;
+  color: rgb(206 206 206 / var(--tw-text-opacity, 1));
+}
+
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
@@ -2731,6 +2740,10 @@ body .menu ul li > a:hover {
     width: 100%;
   }
 
+  .ssm\:w-36 {
+    width: 9rem;
+  }
+
   .ssm\:min-w-\[25rem\] {
     min-width: 25rem;
   }
@@ -2909,6 +2922,10 @@ body .menu ul li > a:hover {
   .ssm\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .ssm\:text-10 {
+    font-size: 10px;
   }
 
   .ssm\:opacity-100 {
@@ -3118,6 +3135,10 @@ body .menu ul li > a:hover {
 
   .md\:w-full {
     width: 100%;
+  }
+
+  .md\:w-52 {
+    width: 13rem;
   }
 
   .md\:min-w-\[50rem\] {
@@ -3347,12 +3368,32 @@ body .menu ul li > a:hover {
     width: 100%;
   }
 
+  .lg\:w-1\/2 {
+    width: 50%;
+  }
+
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .lg\:flex-row {
+    flex-direction: row;
+  }
+
   .lg\:justify-end {
     justify-content: flex-end;
+  }
+
+  .lg\:justify-center {
+    justify-content: center;
+  }
+
+  .lg\:justify-between {
+    justify-content: space-between;
+  }
+
+  .lg\:justify-around {
+    justify-content: space-around;
   }
 
   .lg\:px-28 {
