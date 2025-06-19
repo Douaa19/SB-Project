@@ -45,10 +45,6 @@ function BigItemCard({ url, item }) {
       errors.quantity = "Minimum quantity is 1";
     }
 
-    if (!data.colors) {
-      errors.colors = "Please select a color.";
-    }
-
     setErrors(errors);
     return errors;
   };

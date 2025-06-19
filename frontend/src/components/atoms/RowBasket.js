@@ -103,8 +103,8 @@ function RowBasket(props) {
                 />
               )}
             </div>
-            <div className="flex flex-col justify-center items-start gap-2 mx-2">
-              <span className="title md:text-16 font-bold ssm:text-14">
+            <div className="flex flex-col justify-center items-start gap-2 mx-2 w-44">
+              <span className="title md:text-16 font-bold ssm:text-14 break-words whitespace-normal leading-tight">
                 {props.data.item.title}
               </span>
               <div className="flex flex-col">

@@ -27,7 +27,7 @@ function Checkout() {
   const userOrders = orders[userId];
 
   const handleSubmit = () => {
-    const updatedData = { ...data, payment: selectedPayment };
+    const updatedData = { ...data, payment: selectedPayment, email: userEmail };
     const validationErrors = validationForm(updatedData);
 
     if (Object.keys(validationErrors).length === 0) {

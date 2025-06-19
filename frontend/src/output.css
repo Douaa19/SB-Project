@@ -786,6 +786,13 @@ video {
   margin-top: 2rem;
 }
 
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
 .line-clamp-3 {
   overflow: hidden;
   display: -webkit-box;
@@ -1017,6 +1024,10 @@ video {
   width: max-content;
 }
 
+.w-44 {
+  width: 11rem;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -1196,8 +1207,16 @@ video {
   overflow-x: auto;
 }
 
+.whitespace-normal {
+  white-space: normal;
+}
+
 .whitespace-nowrap {
   white-space: nowrap;
+}
+
+.break-words {
+  overflow-wrap: break-word;
 }
 
 .rounded {
@@ -1488,6 +1507,11 @@ video {
   padding-right: 4px;
 }
 
+.px-20 {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
 .px-3 {
   padding-left: 8px;
   padding-right: 8px;
@@ -1659,6 +1683,10 @@ video {
 
 .leading-relaxed {
   line-height: 1.625;
+}
+
+.leading-tight {
+  line-height: 1.25;
 }
 
 .tracking-wide {
@@ -1882,6 +1910,20 @@ video {
 
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 @keyframes fadeIn {
@@ -2735,6 +2777,10 @@ body .menu ul li > a:hover {
 
   .ssm\:justify-center {
     justify-content: center;
+  }
+
+  .ssm\:gap-0 {
+    gap: 0px;
   }
 
   .ssm\:gap-1 {

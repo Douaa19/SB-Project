@@ -129,7 +129,7 @@ function NavBar(props) {
           ))}
         </ul>
       </div>
-      <div className="btns md:static flex justify-between items-center md:gap-2 w-max ssm:gap-2 ssm:absolute ssm:right-8">
+      <div className="btns md:static flex justify-between items-center md:gap-2 w-max ssm:gap-0 ssm:absolute ssm:right-8">
         <div className="relative lg:w-10 md:w-8 ssm:w-12 ssm:mr-0 md:mr-0">
           <button
             className="hover:cursor-pointer flex items-center justify-center w-10 h-10"
@@ -165,7 +165,7 @@ function NavBar(props) {
             </button>
           )}
         </div>
-        {isLoggedIn !== false && (
+        {/* {isLoggedIn !== false && (
           <div className="relative group">
             <a href="/profile">
               <button className="flex items-center justify-center w-8 h-8 border border-main rounded-full text-main transition-all ease-in-out hover:bg-main hover:text-secondary hover:shadow-md hover:scale-110 duration-300">
@@ -173,7 +173,7 @@ function NavBar(props) {
               </button>
             </a>
           </div>
-        )}
+        )} */}
 
         {/* {inputContent} */}
 
