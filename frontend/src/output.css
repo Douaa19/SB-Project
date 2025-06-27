@@ -786,13 +786,6 @@ video {
   margin-top: 2rem;
 }
 
-.line-clamp-2 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
 .line-clamp-3 {
   overflow: hidden;
   display: -webkit-box;
@@ -972,6 +965,10 @@ video {
   width: 400px;
 }
 
+.w-44 {
+  width: 11rem;
+}
+
 .w-5 {
   width: 1.25rem;
 }
@@ -1022,10 +1019,6 @@ video {
 
 .w-max {
   width: max-content;
-}
-
-.w-44 {
-  width: 11rem;
 }
 
 .min-w-full {
@@ -1910,13 +1903,6 @@ video {
 
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-}
-
-.line-clamp-2 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
 }
 
 .line-clamp-3 {
