@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-function PageTitle({ title, colorIcon }) {
+function PageTitle({ title }) {
   return (
     <motion.h2
       initial={{ opacity: 0, x: -50 }}
