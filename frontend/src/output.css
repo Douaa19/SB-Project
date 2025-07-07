@@ -2595,6 +2595,10 @@ body .menu ul li > a:hover {
     right: 2rem;
   }
 
+  .ssm\:top-8 {
+    top: 2rem;
+  }
+
   .ssm\:order-last {
     order: 9999;
   }
@@ -2655,6 +2659,14 @@ body .menu ul li > a:hover {
 
   .ssm\:mt-8 {
     margin-top: 2rem;
+  }
+
+  .ssm\:mt-20 {
+    margin-top: 5rem;
+  }
+
+  .ssm\:mt-24 {
+    margin-top: 6rem;
   }
 
   .ssm\:block {

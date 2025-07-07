@@ -56,15 +56,15 @@ function HearoHeader() {
   return (
     <div className="w-[100%] md:h-[80vh] sm:h-[60vh] ssm:h-[40vh] block md:mt-20 ssm:mt-16">
       <div className="z-[1] md:h-[80vh] sm:h-[60vh] ssm:h-[40vh] absolute w-full left-0 top-0 flex justify-center items-center">
-        <div className="flex flex-col items-center justify-center">
-          <h2 className="frame-5 text-center text-white font-normale md:text-3xl ssm:text-2xl">
+        <div className="flex flex-col items-center justify-center ssm:mt-24 md:mt-0">
+          <h2 className="frame-5 text-center text-white font-normale md:text-3xl ssm:text-xl">
             <span>Stitching</span>
             <span> stories,</span>
             <span> creating</span>
             <span> memories</span>
           </h2>
           <h1 className="frame-5 md:mt-2 ssm:mt-2">
-            <span className=" md:text-5xl ssm:text-3xl font-bold text-white">
+            <span className=" md:text-5xl ssm:text-2xl font-bold text-white">
               Saba Embroidery
             </span>
           </h1>
