@@ -60,7 +60,7 @@ const createOrder = async (req, res) => {
                 Total += t;
               });
               // add shipping fees
-              Total += 40;
+              Total += 49;
 
               // Update total in order
               Order.findByIdAndUpdate(

@@ -51,7 +51,7 @@ function Footer() {
                 whileHover={{ x: 8, color: "#f3f4f6" }} // Moves right & changes color
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="pb-2 capitalize cursor-pointer">
-                <a href="/contact">contact us</a>
+                <a href="/#contact">contact us</a>
               </motion.li>
             </ul>
           </div>
