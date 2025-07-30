@@ -38,7 +38,7 @@ function Footer() {
           </div>
           <div className="ssm:w-1/2 md:w-auto">
             <h6 className="ssm:text-md lg:text-lg capitalize pb-4 font-bold text-gray-100">
-              helpful informations
+              information
             </h6>
             <ul className="text-md text-gray-400">
               <motion.li
@@ -51,7 +51,7 @@ function Footer() {
                 whileHover={{ x: 8, color: "#f3f4f6" }} // Moves right & changes color
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="pb-2 capitalize cursor-pointer">
-                <a href="/contact">contact us</a>
+                <a href="/#contact">contact us</a>
               </motion.li>
             </ul>
           </div>

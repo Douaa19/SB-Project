@@ -2642,12 +2642,20 @@ body .menu ul li > a:hover {
     margin-right: 0px;
   }
 
+  .ssm\:mt-0 {
+    margin-top: 0px;
+  }
+
   .ssm\:mt-16 {
     margin-top: 4rem;
   }
 
   .ssm\:mt-2 {
     margin-top: 0.5rem;
+  }
+
+  .ssm\:mt-24 {
+    margin-top: 6rem;
   }
 
   .ssm\:mt-4 {
@@ -2802,6 +2810,11 @@ body .menu ul li > a:hover {
     padding: 2px;
   }
 
+  .ssm\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   .ssm\:px-16 {
     padding-left: 4rem;
     padding-right: 4rem;
@@ -2895,11 +2908,6 @@ body .menu ul li > a:hover {
     line-height: 2rem;
   }
 
-  .ssm\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-  }
-
   .ssm\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -2920,6 +2928,10 @@ body .menu ul li > a:hover {
 }
 
 @media (min-width: 640px) {
+  .sm\:mt-0 {
+    margin-top: 0px;
+  }
+
   .sm\:mt-10 {
     margin-top: 2.5rem;
   }
@@ -3141,6 +3153,10 @@ body .menu ul li > a:hover {
 
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:flex-row-reverse {
+    flex-direction: row-reverse;
   }
 
   .md\:items-start {

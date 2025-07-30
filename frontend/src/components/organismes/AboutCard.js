@@ -9,13 +9,15 @@ function AboutCard({ index, title, text, jsx, image, reverse }) {
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
       className={`md:mt-8 ssm:mt-4 flex justify-between items-center gap-8 w-full ${
-        reverse ? "flex-row-reverse" : "flex-row"
+        reverse
+          ? "md:flex-row-reverse ssm:flex-col ssm:w-full"
+          : "md:flex-row ssm:flex-col ssm:w-full"
       }`}>
-      <div className={`${image ? "w-1/2" : "w-full mt-6"}`}>
+      <div className={`${image ? "md:w-1/2 ssm:w-full" : "w-full mt-6"}`}>
         <h3
           className={`font-bold capitalize md:pb-4 ssm:pb-2 ${
             !image
-              ? `font-extrabold flex flex-col items-center md:text-28 ssm:text-24 text-${
+              ? `font-extrabold flex flex-col items-center md:text-28 ssm:text-24 ssm:text-center text-${
                   index === 0 ? "secondary" : "dark"
                 }`
               : "md:text-24 ssm:text-18 text-dark"
@@ -40,7 +42,7 @@ function AboutCard({ index, title, text, jsx, image, reverse }) {
       </div>
 
       {image && (
-        <div className="flex items-center justify-center w-1/2">
+        <div className="flex items-center justify-center md:w-1/2 ssm:w-full">
           <img src={image} alt="about-img" className="rounded-md w-full" />
         </div>
       )}

@@ -18,7 +18,7 @@ function CheckoutPopupContent() {
     setTimeout(() => {
       closePopup();
     }, 4000);
-  }, []);
+  }, [dispatch, userId]);
 
   return (
     <>
